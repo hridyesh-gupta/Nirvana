@@ -1,0 +1,127 @@
+
+'use client';
+
+import Link from 'next/link';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
+
+export default function MenuPage() {
+  return (
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      
+      <main className="pt-20">
+        <div className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+                Menu & Wine Collection
+              </h1>
+              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>Carte et Menus</div>
+              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+              <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
+                Discover our authentic Indian cuisine and carefully curated wine selection. 
+                Choose from our extensive food menu or explore our wine collection.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+              {/* Food Items Section */}
+              <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-2 hover:shadow-2xl transition-all duration-500 group" style={{ borderColor: '#751140' }}>
+                <div 
+                  className="h-64 bg-cover bg-center relative"
+                  style={{ 
+                    backgroundImage: `url(https://readdy.ai/api/search-image?query=authentic%20indian%20food%20platter%20with%20various%20colorful%20curries%20rice%20naan%20bread%20and%20appetizers%20beautifully%20arranged%20on%20traditional%20thali%20plate%20with%20aromatic%20spices%20and%20garnishes%2C%20vibrant%20colors%20and%20appetizing%20presentation&width=600&height=400&seq=menufood1&orientation=landscape)` 
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h2 className="text-3xl font-bold text-white mb-2">Food Items</h2>
+                    <p className="text-white/90 text-lg">Authentic Indian Cuisine</p>
+                  </div>
+                </div>
+                
+                <div className="p-8">
+                  <p className="text-gray-600 mb-8 leading-relaxed">
+                    Explore our traditional Indian dishes prepared with authentic recipes and finest spices. 
+                    From appetizing starters to satisfying main courses and sweet desserts.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <Link href="/menu/starters" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Starters</div>
+                    </Link>
+                    <Link href="/menu/main-courses" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">Main Courses</div>
+                    </Link>
+                    <Link href="/menu/thalis-biryani" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Thalis & Biryani</div>
+                    </Link>
+                    <Link href="/menu/vegetarian" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">Vegetarian</div>
+                    </Link>
+                    <Link href="/menu/vegan" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Vegan</div>
+                    </Link>
+                    <Link href="/menu/accompaniments" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">Accompaniments</div>
+                    </Link>
+                    <Link href="/menu/desserts" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md col-span-2" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Desserts</div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wine Collection Section */}
+              <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-2 hover:shadow-2xl transition-all duration-500 group" style={{ borderColor: '#BD8E21' }}>
+                <div 
+                  className="h-64 bg-cover bg-center relative"
+                  style={{ 
+                    backgroundImage: `url(https://readdy.ai/api/search-image?query=elegant%20wine%20collection%20display%20with%20various%20wine%20bottles%20red%20white%20rose%20and%20champagne%20arranged%20on%20wooden%20shelves%20in%20upscale%20restaurant%20setting%20with%20soft%20lighting%20and%20professional%20presentation&width=600&height=400&seq=menuwine1&orientation=landscape)` 
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h2 className="text-3xl font-bold text-white mb-2">Wine Collection</h2>
+                    <p className="text-white/90 text-lg">Curated Wine Selection</p>
+                  </div>
+                </div>
+                
+                <div className="p-8">
+                  <p className="text-gray-600 mb-8 leading-relaxed">
+                    Discover our carefully curated wine collection featuring exceptional bottles 
+                    from France and around the world, perfectly paired with Indian cuisine.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <Link href="/wines/white-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">White Wines</div>
+                    </Link>
+                    <Link href="/wines/rose-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Rosé Wines</div>
+                    </Link>
+                    <Link href="/wines/red-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">Red Wines</div>
+                    </Link>
+                    <Link href="/wines/world-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">World Wines</div>
+                    </Link>
+                    <Link href="/wines/champagne" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#BD8E21', backgroundColor: '#BD8E21', color: 'white' }}>
+                      <div className="font-medium">Champagnes</div>
+                    </Link>
+                    <Link href="/wines/magnums" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md" style={{ borderColor: '#751140', backgroundColor: '#751140', color: 'white' }}>
+                      <div className="font-medium">Magnums</div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
