@@ -4,7 +4,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-const Navigation = () => {
+interface NavigationProps {
+  cartItemsCount: number;
+  onCartClick: () => void;
+}
+
+const Navigation = ({ cartItemsCount, onCartClick }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -106,18 +111,52 @@ const Navigation = () => {
               Contact
             </Link>
             
-            <Link href="/cart" className="text-white hover:text-[#BD8E21] font-medium transition-colors text-lg">
-              Cart
+            <Link href="/news" className="text-white hover:text-[#BD8E21] font-medium transition-colors text-lg">
+              News
             </Link>
+            
+            <Link href="/reservations" className="text-white hover:text-[#BD8E21] font-medium transition-colors text-lg">
+              Reservations
+            </Link>
+            
+            <Link href="/fresh-produce" className="text-white hover:text-[#BD8E21] font-medium transition-colors text-lg">
+              Fresh Produce
+            </Link>
+            
+            {/* Shopping Cart Icon */}
+            <div className="relative">
+              <button 
+                className="text-white hover:text-[#BD8E21] transition-colors relative"
+                onClick={onCartClick}
+              >
+                <i className="ri-shopping-cart-2-line text-2xl"></i>
+                {cartItemsCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItemsCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </nav>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden flex justify-center">
+          <div className="lg:hidden flex items-center justify-between">
+            <Link href="/">
+              <img 
+                src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/logo-1.png" 
+                alt="Nirvana" 
+                className="h-16 w-auto"
+              />
+            </Link>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-white hover:text-[#BD8E21] transition-colors"
+              className="text-white focus:outline-none"
             >
-              <i className="ri-menu-line text-2xl"></i>
+              {isMenuOpen ? (
+                <i className="ri-close-line text-3xl"></i>
+              ) : (
+                <i className="ri-menu-3-line text-3xl"></i>
+              )}
             </button>
           </div>
         </div>
@@ -168,13 +207,6 @@ const Navigation = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
-            </Link>
-            <Link 
-              href="/cart" 
-              className="block text-white hover:text-[#BD8E21] font-medium transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Cart
             </Link>
           </div>
         </div>
