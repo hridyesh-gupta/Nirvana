@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 export default function FreshProducePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation />
+      <Navigation cartItemsCount={0} onCartClick={() => {}} />
       
       <main className="pt-20">
         <div className="py-20 px-4 sm:px-6 lg:px-8">

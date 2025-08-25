@@ -53,7 +53,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation />
+      <Navigation cartItemsCount={0} onCartClick={() => {}} />
       
       <main className="pt-20">
         {/* Google Maps */}

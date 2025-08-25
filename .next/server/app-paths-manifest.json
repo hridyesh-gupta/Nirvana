@@ -1,6 +1,26 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/cart/page": "app/cart/page.js",
+  "/fresh-produce/page": "app/fresh-produce/page.js",
+  "/events/page": "app/events/page.js",
   "/menu/desserts/page": "app/menu/desserts/page.js",
-  "/menu/vegetarian/page": "app/menu/vegetarian/page.js",
+  "/menu/accompaniments/page": "app/menu/accompaniments/page.js",
+  "/gallery/page": "app/gallery/page.js",
+  "/menu/main-courses/page": "app/menu/main-courses/page.js",
+  "/menu/starters/page": "app/menu/starters/page.js",
+  "/menu/vegan/page": "app/menu/vegan/page.js",
+  "/menu/page": "app/menu/page.js",
   "/page": "app/page.js",
-  "/menu/vegan/page": "app/menu/vegan/page.js"
+  "/menu/vegetarian/page": "app/menu/vegetarian/page.js",
+  "/news/page": "app/news/page.js",
+  "/menu/thalis-biryani/page": "app/menu/thalis-biryani/page.js",
+  "/wines/champagne/page": "app/wines/champagne/page.js",
+  "/partners/page": "app/partners/page.js",
+  "/wines/red-wines/page": "app/wines/red-wines/page.js",
+  "/wines/magnums/page": "app/wines/magnums/page.js",
+  "/wines/white-wines/page": "app/wines/white-wines/page.js",
+  "/wines/page": "app/wines/page.js",
+  "/wines/rose-wines/page": "app/wines/rose-wines/page.js",
+  "/wines/world-wines/page": "app/wines/world-wines/page.js"
 }
