@@ -102,7 +102,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none transition-all"
-                        style={{ focusBorderColor: '#751140' }}
+                        style={{ borderColor: '#751140' }}
                         required
                       />
                     </div>

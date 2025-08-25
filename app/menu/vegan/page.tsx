@@ -29,7 +29,12 @@ export default function VeganPage() {
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#751140' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#751140' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=delicious%20chana%20masala%20chickpeas%20cooked%20in%20aromatic%20tomato%20and%20onion%20gravy%20with%20traditional%20spices%2C%20rich%20plant-based%20curry%20presentation%20with%20fresh%20herbs&width=400&height=250&seq=chanamasala1&orientation=landscape"
+                    alt="Chana Masala"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#751140' }}>Chana Masala</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
@@ -44,7 +49,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#BD8E21' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=traditional%20dal%20tadka%20yellow%20lentils%20tempered%20with%20cumin%20mustard%20seeds%20and%20fresh%20herbs%2C%20classic%20comfort%20vegan%20food%20with%20aromatic%20spices&width=400&height=250&seq=daltadka1&orientation=landscape"
+                    alt="Dal Tadka"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#BD8E21' }}>Dal Tadka</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #BD8E21, #751140)` }}>
@@ -59,7 +69,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#751140' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#751140' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=smoky%20baingan%20bharta%20roasted%20eggplant%20mashed%20with%20onions%20tomatoes%20and%20aromatic%20spices%2C%20traditional%20preparation%20with%20vibrant%20colors%20and%20garnishes&width=400&height=250&seq=bainganb1&orientation=landscape"
+                    alt="Baingan Bharta"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#751140' }}>Baingan Bharta</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
@@ -83,7 +98,12 @@ export default function VeganPage() {
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#BD8E21' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=fragrant%20coconut%20rice%20cooked%20with%20coconut%20milk%20and%20curry%20leaves%2C%20south%20indian%20specialty%20with%20aromatic%20presentation%20and%20traditional%20garnishes&width=400&height=250&seq=coconutrice1&orientation=landscape"
+                    alt="Coconut Rice"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#BD8E21' }}>Coconut Rice</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #BD8E21, #751140)` }}>
@@ -98,7 +118,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#751140' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#751140' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=fresh%20whole%20wheat%20roti%20flatbread%20made%20without%20dairy%20cooked%20on%20traditional%20tawa%2C%20perfect%20vegan%20bread%20accompaniment%20with%20rustic%20presentation&width=400&height=250&seq=veganroti1&orientation=landscape"
+                    alt="Vegan Roti"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#751140' }}>Roti (Vegan)</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
@@ -113,7 +138,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#BD8E21' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=aromatic%20vegetable%20pulao%20basmati%20rice%20with%20mixed%20vegetables%20and%20whole%20spices%2C%20complete%20vegan%20meal%20presentation%20with%20colorful%20vegetables&width=400&height=250&seq=vegpulao1&orientation=landscape"
+                    alt="Vegetable Pulao"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#BD8E21' }}>Vegetable Pulao</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #BD8E21, #751140)` }}>
@@ -137,7 +167,12 @@ export default function VeganPage() {
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#751140' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-3000 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#751140' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=crispy%20samosa%20filled%20with%20spiced%20potatoes%20and%20peas%20served%20with%20chutneys%2C%20classic%20indian%20street%20food%20completely%20vegan%20with%20golden%20brown%20presentation&width=400&height=250&seq=vegansamosa1&orientation=landscape"
+                    alt="Vegan Samosa"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#751140' }}>Samosa (2 pcs)</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
@@ -152,7 +187,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#BD8E21' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=spiced%20potato%20patties%20aloo%20tikki%20pan-fried%20until%20golden%20served%20with%20mint%20chutney%2C%20crispy%20outside%20soft%20inside%20with%20appetizing%20presentation&width=400&height=250&seq=alootikki1&orientation=landscape"
+                    alt="Aloo Tikki"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#BD8E21' }}>Aloo Tikki (3 pcs)</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #BD8E21, #751140)` }}>
@@ -167,7 +207,12 @@ export default function VeganPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105" style={{ borderColor: '#751140' }}>
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden" style={{ borderColor: '#751140' }}>
+                  <img
+                    src="https://readdy.ai/api/search-image?query=mixed%20vegetable%20pakora%20assorted%20vegetables%20dipped%20in%20chickpea%20flour%20batter%20and%20deep-fried%2C%20perfect%20rainy%20day%20snack%20with%20crispy%20golden%20presentation&width=400&height=250&seq=vegpakora1&orientation=landscape"
+                    alt="Mixed Vegetable Pakora"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold" style={{ color: '#751140' }}>Mixed Vegetable Pakora</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>

@@ -1,0 +1,7 @@
+{
+  "/menu/desserts/page": "app/menu/desserts/page.js",
+  "/menu/thalis-biryani/page": "app/menu/thalis-biryani/page.js",
+  "/menu/vegetarian/page": "app/menu/vegetarian/page.js",
+  "/page": "app/page.js",
+  "/menu/vegan/page": "app/menu/vegan/page.js"
+}
