@@ -45,31 +45,30 @@ export default function MenuPage() {
                 </div>
                 
                 <div className="p-8">
-                  <p className="text-gray-600 mb-8 leading-relaxed">
+                  <p className="text-gray-600 text-lg font-light mb-8">
                     Explore our traditional Indian dishes prepared with authentic recipes and finest spices. 
                     From appetizing starters to satisfying main courses and sweet desserts.
                   </p>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <Link href="/menu/starters" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <Link href="/menu/starters" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Starters</div>
                     </Link>
-                    <Link href="/menu/main-courses" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/menu/main-courses" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Main Courses</div>
                     </Link>
-                    <Link href="/menu/thalis-biryani" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                    <Link href="/menu/thalis-biryani" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Thalis & Biryani</div>
                     </Link>
-                    <Link href="/menu/vegetarian" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/menu/vegetarian" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Vegetarian</div>
                     </Link>
-                    <Link href="/menu/vegan" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                    <Link href="/menu/vegan" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Vegan</div>
                     </Link>
-                    <Link href="/menu/accompaniments" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/menu/accompaniments" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Accompaniments</div>
                     </Link>
-                    <Link href="/menu/desserts" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md col-span-2 border-primary bg-primary text-white">
+                    <Link href="/menu/desserts" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Desserts</div>
                     </Link>
                   </div>
@@ -92,28 +91,28 @@ export default function MenuPage() {
                 </div>
                 
                 <div className="p-8">
-                  <p className="text-gray-600 mb-8 leading-relaxed">
+                  <p className="text-gray-600 text-lg font-light mb-8">
                     Discover our carefully curated wine collection featuring exceptional bottles 
                     from France and around the world, perfectly paired with Indian cuisine.
                   </p>
                   
                   <div className="grid grid-cols-2 gap-4">
-                    <Link href="/wines/white-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/wines/white-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">White Wines</div>
                     </Link>
-                    <Link href="/wines/rose-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                    <Link href="/wines/rose-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Rosé Wines</div>
                     </Link>
-                    <Link href="/wines/red-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/wines/red-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Red Wines</div>
                     </Link>
-                    <Link href="/wines/world-wines" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                    <Link href="/wines/world-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">World Wines</div>
                     </Link>
-                    <Link href="/wines/champagne" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-secondary bg-secondary text-white">
+                    <Link href="/wines/champagne" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Champagnes</div>
                     </Link>
-                    <Link href="/wines/magnums" className="text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-primary bg-primary text-white">
+                    <Link href="/wines/magnums" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Magnums</div>
                     </Link>
                   </div>

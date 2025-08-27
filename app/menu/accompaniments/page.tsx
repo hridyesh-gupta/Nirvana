@@ -132,7 +132,6 @@ export default function AccompanimentsPage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Accompaniments
               </h1>
-              <div className="text-2xl text-primary mb-8">Nos accompagnements</div>
               <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Perfect your Indian dining experience with our selection of traditional rice dishes and 
@@ -143,8 +142,7 @@ export default function AccompanimentsPage() {
             {/* Rice Section */}
             <div className="mb-20">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-semibold text-gray-800 mb-4">Our Rice</h2>
-                <div className="text-lg text-primary">Nos riz</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Our Rice</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -204,8 +202,7 @@ export default function AccompanimentsPage() {
             {/* Bread Section */}
             <div>
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-semibold text-gray-800 mb-4">Our Breads</h2>
-                <div className="text-lg text-primary">Nos pains</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Our Breads</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

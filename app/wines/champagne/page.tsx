@@ -83,7 +83,6 @@ export default function ChampagnePage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Champagnes
               </h1>
-              <div className="text-2xl mb-8 text-secondary">Champagne Selection</div>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Celebrate special moments with our prestigious champagne collection, featuring

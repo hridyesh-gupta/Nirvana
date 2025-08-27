@@ -106,9 +106,6 @@ export default function RedWinesPage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Red Wines
               </h1>
-              <div className="text-2xl mb-8 text-secondary">
-                Red Wines
-              </div>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Discover our exceptional selection of red wines from France's most prestigious regions. Each bottle has been carefully chosen to complement our Indian cuisine perfectly.
@@ -118,8 +115,7 @@ export default function RedWinesPage() {
             {/* French Wine Regions */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">French Wine Regions</h2>
-                <div className="text-lg text-primary">French Wine Regions</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">French Wine Regions</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -159,8 +155,7 @@ export default function RedWinesPage() {
             {/* Bordeaux Appellations */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Bordeaux Appellations</h2>
-                <div className="text-lg text-primary">Bordeaux Appellations</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Bordeaux Appellations</h2>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">

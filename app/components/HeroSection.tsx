@@ -2,16 +2,34 @@
 'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function HeroSection() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    setScrollPosition(window.pageYOffset);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const parallaxStyle = {
+    backgroundImage: 'url(/images/main.png)',
+    backgroundPositionY: `-${scrollPosition * 0.5}px`, // Adjust 0.5 for desired parallax speed
+    backgroundAttachment: 'fixed',
+  };
+
   return (
     <div className="relative h-screen flex items-center justify-center text-center text-white font-serif">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(/images/main.png)'
-        }}
+        style={parallaxStyle}
       />
       
       {/* Overlay */}
@@ -33,22 +51,22 @@ export default function HeroSection() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
-            href="/menu" 
+            href="/reservations" 
             className="bg-primary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
-            Menu & Dishes
+            Reserve Table
           </Link>
           <Link 
-            href="/contact" 
+            href="/menu" 
             className="bg-secondary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
-            Contact Us
+            Order Online
           </Link>
         </div>
       </div>
       
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce" />
         </div>

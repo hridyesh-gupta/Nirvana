@@ -92,9 +92,8 @@ const Navigation = ({}: NavigationProps) => {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="lg:hidden bg-primary border-t border-secondary/20">
-          <div className="px-4 py-3 space-y-3">
+      <div className={`lg:hidden bg-primary border-t border-secondary/20 transition-all duration-300 ease-in ${isMenuOpen ? 'max-h-screen opacity-100 py-3' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className="px-4 space-y-3">
             <Link 
               href="/" 
               className="block text-white hover:text-secondary font-playfair transition-colors"
@@ -146,7 +145,6 @@ const Navigation = ({}: NavigationProps) => {
             </Link>
           </div>
         </div>
-      )}
 
       {/* Cart Modal */}
       {/* <Cart

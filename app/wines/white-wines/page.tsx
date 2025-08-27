@@ -79,19 +79,13 @@ export default function WhiteWinesPage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 White Wines
               </h1>
-              <div className="text-2xl mb-8 text-secondary">White Wines</div>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
-              <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
-                Discover our exceptional selection of white wines, featuring crisp and elegant bottles 
-                that pair beautifully with our Indian cuisine's aromatic spices and flavors.
-              </p>
             </div>
 
             {/* Premium White Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Premium Selection</h2>
-                <div className="text-lg text-primary">Premium Selection</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Premium Selection</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -152,8 +146,7 @@ export default function WhiteWinesPage() {
             {/* Wines by the Glass */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Wines by the Glass</h2>
-                <div className="text-lg text-primary mb-4">Wines by the Glass (1 dl)</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Wines by the Glass</h2>
                 <p className="text-gray-600">Perfect for tasting or pairing with individual dishes</p>
               </div>
 
@@ -218,7 +211,6 @@ export default function WhiteWinesPage() {
                   <i className="ri-restaurant-line text-white text-3xl"></i>
                 </div>
                 <h2 className="text-3xl font-semibold mb-4 text-primary">Perfect Pairings</h2>
-                <div className="text-lg mb-6 text-secondary">Perfect Pairings</div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">

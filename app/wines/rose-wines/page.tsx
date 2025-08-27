@@ -79,22 +79,13 @@ export default function RoseWinesPage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Rosé Wines
               </h1>
-              <div className="text-2xl mb-8 text-secondary">
-                Our Rosé Wines
-              </div>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
-
-              <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
-                Experience our refreshing selection of rosé wines, offering delicate flavors
-                and elegant pink hues that complement the vibrant spices of Indian cuisine.
-              </p>
             </div>
 
             {/* Premium Rosé Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Premium Rosé Collection</h2>
-                <div className="text-lg text-primary">Premium Rosé Collection</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Premium Rosé Collection</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -155,8 +146,7 @@ export default function RoseWinesPage() {
             {/* Rosé by the Glass */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Rosé by the Glass</h2>
-                <div className="text-lg text-primary mb-4">Rosé by the Glass (1 dl)</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Rosé by the Glass</h2>
                 <p className="text-gray-600">Perfect for a refreshing start to your meal</p>
               </div>
 

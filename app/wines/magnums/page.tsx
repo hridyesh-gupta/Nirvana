@@ -95,9 +95,6 @@ export default function MagnumsPage() {
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Magnums
               </h1>
-              <div className="text-2xl mb-8 text-secondary">
-                Our Magnums
-              </div>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Discover our prestigious collection of magnum bottles (1.5L), perfect for celebrations
@@ -110,7 +107,7 @@ export default function MagnumsPage() {
               {magnumCategories.map((categoryData, index) => (
                 <div key={categoryData.category} className="mb-16">
                   <div className="text-center mb-12">
-                    <h2 className="text-3xl font-semibold text-gray-800 mb-2">{categoryData.category}</h2>
+                    <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">{categoryData.category}</h2>
                   </div>
 
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
