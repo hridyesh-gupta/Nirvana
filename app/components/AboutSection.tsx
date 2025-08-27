@@ -1,36 +1,53 @@
 
 'use client';
 
+import { useState } from 'react';
+import Link from 'next/link';
+import { useInView } from 'react-intersection-observer'; // Import useInView
+
 export default function AboutSection() {
+  const [ref1, inView1] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  const [ref2, inView2] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  const [ref3, inView3] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <>
       {/* Restaurant Hours & Info Section - Deep Burgundy & Golden Yellow */}
-      <div style={{ background: `linear-gradient(to right, #751140, #5a0e32)` }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2">
-            <div style={{ backgroundColor: '#751140' }} className="text-white p-8 text-center">
-              <h2 className="text-2xl font-light mb-4 font-serif tracking-wide">THE RESTAURANT IS OPEN 7 DAYS A WEEK</h2>
-              <p className="mb-6 font-serif text-lg">
-                Lunch: 12:00 – 14:30 and Dinner: 19:00 – 22:30
+      <div className="bg-gradient-to-r from-primary to-[#5a0e32] md:py-0">
+        <div className="mx-auto">
+          <div className="grid md:grid-cols-2 items-stretch">
+            <div className="bg-primary text-white p-8 text-center">
+              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">WE ARE OPEN <span className="font-lato">7</span> DAYS A WEEK</h2>
+              <p className="mb-6 font-serif text-[17px] sm:text-[18px]">
+                Lunch: <span className="font-lato">12:00 – 14:30</span> | Dinner: <span className="font-lato">19:00 – 22:30</span>
               </p>
               <a
                 href="tel:+41227821010"
-                className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#751140] px-6 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif tracking-wide"
+                className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
               >
-                Reservation: 022 782 10 10
+                Book Your Table: <span className="font-lato">022 782 10 10</span>
               </a>
             </div>
             
-            <div style={{ backgroundColor: '#BD8E21' }} className="text-white p-8 text-center">
-              <h2 className="text-2xl font-light mb-4 font-serif tracking-wide">Your Indian Restaurant in Meyrin</h2>
-              <p className="mb-6 font-serif text-lg">
-                Discover a universe full of colors and flavors
+            <div className="bg-secondary text-white p-8 text-center">
+              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">YOUR INDIAN RESTAURANT IN MEYRIN</h2>
+              <p className="mb-6 font-serif text-[17px] sm:text-[18px]">
+                Discover a universe of authentic flavors and vibrant colors.
               </p>
               <a
                 href="/menu"
-                className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#BD8E21] px-6 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif tracking-wide"
+                className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
               >
-                Discover Our Dishes & Menus
+                Explore Our Dishes & Menus
               </a>
             </div>
           </div>
@@ -39,67 +56,68 @@ export default function AboutSection() {
 
       {/* Order Online Section - Blue Gradient */}
       <div 
-        className="py-6"
-        style={{
-          background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)'
-        }}
+        className="bg-white py-6"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center px-4">
           <a
-            href="#order"
-            style={{ backgroundColor: '#BD8E21' }}
-            className="inline-block hover:opacity-90 text-white px-12 py-4 rounded-lg font-light text-xl transition-all duration-300 cursor-pointer whitespace-nowrap font-serif tracking-wider"
+            href="/order"
+            className="bg-primary inline-block hover:opacity-90 text-white px-6 py-3 rounded-lg font-light text-base transition-all duration-300 cursor-pointer sm:px-12 sm:py-4 sm:text-xl font-serif tracking-wider"
           >
-            ORDER for DELIVERY or TAKEAWAY
+            ORDER FOR DELIVERY OR TAKEAWAY
           </a>
         </div>
       </div>
 
       {/* Business Section - Blue Background */}
       <div 
-        className="py-12"
-        style={{
-          background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'
-        }}
+        className="relative"
       >
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h3 className="text-2xl text-white leading-relaxed font-serif font-light tracking-wide">
-            NIRVANA welcomes you for your business meals in a cozy and colorful atmosphere.<br />
-            Don't hesitate to book: <a href="tel:0041227821010" className="underline hover:no-underline">022 782 10 10</a>
-          </h3>
+        <div
+          className="py-12 relative bg-cover bg-center" // Added bg-cover and bg-center
+          style={{
+            backgroundImage: 'url(/images/nirvana-noel.jpeg)',
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay */}
+          <div ref={ref1} className={`max-w-4xl mx-auto text-center px-4 relative z-10 transition-opacity duration-1000 ${inView1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> {/* Text container with z-index and fade-in */}
+            <h3 className="text-3xl sm:text-3xl text-white leading-relaxed font-cursive font-light tracking-wide text-shadow-lg">
+              NIRVANA welcomes you for your business meals in a cozy and colorful atmosphere.<br />
+              Don't hesitate to book your table: <a href="tel:+41227821010" className="underline hover:no-underline"><span className="font-lato">022 782 10 10</span></a>
+            </h3>
+          </div>
         </div>
       </div>
 
       {/* Takeaway Info Section - Light Gray */}
-      <div className="bg-gray-300 py-8">
+      <div className="bg-primary py-8"> {/* Changed from bg-gray-300 */}
         <div className="max-w-4xl mx-auto text-center px-4">
-          <div className="text-black font-serif">
-            <p className="text-lg font-light tracking-wide"><strong>TAKEAWAY DISHES: – 10% (Payment on site)</strong></p>
-            <p className="text-lg font-light tracking-wide"><strong>AND DELIVERY <a href="#" style={{ color: '#751140' }} className="underline">HERE</a></strong></p>
+          <div className="text-white font-serif">
+            <p className="text-lg font-light tracking-wide"><strong>TAKEAWAY DISHES: <span className="font-lato">10%</span> DISCOUNT (Payment on-site)</strong></p>
+            <p className="text-lg font-light tracking-wide"><strong>AND FOR DELIVERY, ORDER <a href="/order" className="underline text-secondary">HERE</a></strong></p>
           </div>
         </div>
       </div>
 
       {/* Welcome Section - White Background */}
-      <div className="bg-white py-20">
+      <div className="bg-white py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start flex-col-reverse lg:flex-row">
             <div className="space-y-6">
-              <h1 className="text-4xl font-light text-black mb-6 font-serif tracking-wider">Welcome to NIRVANA</h1>
-              <div className="w-32 h-1" style={{ backgroundColor: '#751140' }} />
+              <h1 className="text-3xl sm:text-4xl font-light text-black mb-6 font-serif tracking-wider">Welcome to NIRVANA</h1>
+              <div className="w-32 h-1 bg-primary" />
               
-              <div className="space-y-4 text-gray-700 text-justify font-serif text-lg leading-relaxed">
+              <div className="space-y-4 text-gray-700 text-justify font-serif text-base sm:text-lg leading-relaxed">
                 <p>
-                  NIRVANA also offers takeaway dishes with a 10% discount (payment on site).<br />
-                  Order your "basket" immediately at 022 782 10 10.
+                  NIRVANA also offers takeaway dishes with a <span className="font-lato">10%</span> discount (payment on site).<br />
+                  Order your "basket" immediately at <span className="font-lato">022 782 10 10</span>.
                 </p>
                 
                 <p>
-                  Also for Delivery and Takeaway <strong><a href="#" style={{ color: '#751140' }} className="underline">HERE</a></strong>
+                  For Delivery and Takeaway, order <a href="/order" className="underline text-primary">HERE</a>.
                 </p>
                 
                 <p>
-                  NIRVANA has a superb terrace that will be made available to you on beautiful days.
+                  NIRVANA boasts a superb terrace that will be made available to you on beautiful days.
                 </p>
               </div>
             </div>
@@ -108,27 +126,37 @@ export default function AboutSection() {
               <img
                 src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-25.jpg"
                 alt="Restaurant Nirvana Interior"
-                className="w-full rounded-lg shadow-lg"
+                ref={ref2} className={`w-full rounded-lg shadow-lg transition-opacity duration-1000 ${inView2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
               />
             </div>
           </div>
 
-          <div className="mt-16">
-            <h2 className="text-2xl font-light text-black mb-6 font-serif tracking-wide">
-              Think about booking now at <a href="tel:+41227821010" style={{ color: '#751140' }} className="underline">022 782 10 10</a>
+          <div ref={ref3} className={`mt-16 transition-opacity duration-1000 ${inView3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+            <h2 className="text-xl sm:text-2xl font-light text-black mb-6 font-serif tracking-wide">
+              Reserve your table now:
             </h2>
-            <p className="text-gray-700 font-serif text-lg leading-relaxed">
-              Come visit us, we will be delighted to welcome you, and are happy to greet our regular customers in Meyrin.
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Link href="/reservations" className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
+                <i className="ri-calendar-line text-xl"></i>
+                <span>Online Reservation</span>
+              </Link>
+              <a href="tel:+41227821010" className="bg-white text-primary border border-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
+                <i className="ri-phone-line text-xl"></i>
+                <span className="font-lato">022 782 10 10</span>
+              </a>
+            </div>
+            <p className="text-gray-700 font-serif text-base sm:text-lg leading-relaxed">
+              Come visit us; we will be delighted to welcome you and happy to greet our regular customers in Meyrin.
             </p>
           </div>
         </div>
       </div>
 
       {/* Gallery Grid Section - Light Gray Background */}
-      <div className="bg-gray-100 py-16">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* <div className="bg-gray-100 py-16"> */}
+        {/* <div className="max-w-7xl mx-auto px-4"> */}
           {/* First Row */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+          {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <a href="/menu" className="group relative overflow-hidden">
               <img
                 src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-11.jpg"
@@ -172,10 +200,10 @@ export default function AboutSection() {
                 <h4 className="text-white font-light text-lg font-serif tracking-wide">Events</h4>
               </div>
             </a>
-          </div>
+          </div> */}
 
           {/* Second Row */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <a href="/partners" className="group relative overflow-hidden">
               <img
                 src="https://www.nirvana-geneve.ch/wp-content/uploads/2018/08/karishma-lounge-divonne-les-bains-salle-6.jpg"
@@ -219,9 +247,9 @@ export default function AboutSection() {
                 <h4 className="text-white font-light text-lg font-serif tracking-wide">Takeaway Sales</h4>
               </div>
             </a>
-          </div>
-        </div>
-      </div>
+          </div> */}
+        {/* </div> */}
+      {/* </div> */}
     </>
   );
 }

@@ -70,19 +70,19 @@ export default function RoseWinesPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation cartItemsCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+      <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Rosé Wines
               </h1>
-              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>
-                Les vins rosés
+              <div className="text-2xl mb-8 text-secondary">
+                Our Rosé Wines
               </div>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
 
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Experience our refreshing selection of rosé wines, offering delicate flavors
@@ -94,15 +94,14 @@ export default function RoseWinesPage() {
             <div className="mb-16">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-semibold text-gray-800 mb-4">Premium Rosé Collection</h2>
-                <div className="text-lg text-pink-600">Collection Rosé Premium</div>
+                <div className="text-lg text-primary">Premium Rosé Collection</div>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {roseWines.map((wine) => (
                   <div
                     key={wine.id}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2"
-                    style={{ borderColor: '#751140' }}
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary"
                   >
                     <div
                       className="h-48 bg-cover bg-center relative"
@@ -110,12 +109,12 @@ export default function RoseWinesPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {wine.price.toFixed(2)}
                         </span>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <span className="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                           <i className="ri-heart-line"></i>
                           <span>Rosé</span>
                         </span>
@@ -123,7 +122,7 @@ export default function RoseWinesPage() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {wine.name}
                       </h3>
 
@@ -133,14 +132,13 @@ export default function RoseWinesPage() {
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
-                          <span className="text-sm text-gray-500 font-medium">French Rosé</span>
+                          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
+                          <span className="text-sm text-gray-500 font-medium">European Rosé</span>
                         </div>
 
                         <button
                           onClick={() => handleAddToCart(wine)}
-                          className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
-                          style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                          className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                         >
                           <div className="w-5 h-5 flex items-center justify-center">
                             <i className="ri-add-line"></i>
@@ -158,7 +156,7 @@ export default function RoseWinesPage() {
             <div className="mb-16">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-semibold text-gray-800 mb-4">Rosé by the Glass</h2>
-                <div className="text-lg text-pink-600 mb-4">Vins rosés au verre (1 dl)</div>
+                <div className="text-lg text-primary mb-4">Rosé by the Glass (1 dl)</div>
                 <p className="text-gray-600">Perfect for a refreshing start to your meal</p>
               </div>
 
@@ -166,7 +164,7 @@ export default function RoseWinesPage() {
                 {roseByGlass.map((wine) => (
                   <div
                     key={wine.id}
-                    className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-pink-200"
+                    className="bg-gradient-to-br from-primary/50 to-secondary/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-primary"
                   >
                     <div
                       className="h-48 bg-cover bg-center relative"
@@ -174,19 +172,19 @@ export default function RoseWinesPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                        <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
                           CHF {wine.price.toFixed(2)}
                         </span>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <span className="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
                           1 dl Glass
                         </span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-pink-600 transition-colors">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
                         {wine.name}
                       </h3>
 
@@ -196,13 +194,13 @@ export default function RoseWinesPage() {
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full" />
+                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
                           <span className="text-sm text-gray-500 font-medium">By Glass</span>
                         </div>
 
                         <button
                           onClick={() => handleAddToCart(wine)}
-                          className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
+                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
                         >
                           <div className="w-5 h-5 flex items-center justify-center">
                             <i className="ri-add-line"></i>
@@ -217,18 +215,18 @@ export default function RoseWinesPage() {
             </div>
 
             {/* Rosé Benefits Section */}
-            <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 border border-pink-200">
+            <div className="bg-gradient-to-r from-primary/50 to-secondary/50 rounded-2xl p-8 border border-primary">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-sun-line text-white text-3xl"></i>
                 </div>
                 <h2 className="text-3xl font-semibold text-gray-800 mb-4">Perfect for Indian Cuisine</h2>
-                <div className="text-lg text-pink-600 mb-6">Parfait pour la Cuisine Indienne</div>
+                <div className="text-lg text-primary mb-6">Perfect for Indian Cuisine</div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-fire-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">Spice Balance</h3>
@@ -236,7 +234,7 @@ export default function RoseWinesPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-leaf-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">Fresh & Clean</h3>
@@ -244,7 +242,7 @@ export default function RoseWinesPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-restaurant-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">Versatile Pairing</h3>

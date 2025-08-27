@@ -7,25 +7,25 @@ import Footer from '../components/Footer';
 export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation cartItemsCount={0} onCartClick={() => {}} />
+      <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Gallery
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Discover the ambiance and atmosphere of our restaurant
               </p>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ backgroundColor: '#BD8E21' }} />
+              <div className="w-32 h-1 mx-auto rounded-full bg-secondary" />
             </div>
 
             {/* Photo Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Restaurant Interior */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#751140' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-primary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-25.jpg"
                   alt="Restaurant Interior"
@@ -40,7 +40,7 @@ export default function GalleryPage() {
               </div>
 
               {/* Dining Area */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-secondary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-11.jpg"
                   alt="Dining Area"
@@ -55,7 +55,7 @@ export default function GalleryPage() {
               </div>
 
               {/* Decoration Details */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#751140' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-primary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-3.jpg"
                   alt="Decoration"
@@ -70,7 +70,7 @@ export default function GalleryPage() {
               </div>
 
               {/* Food Presentation */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-secondary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-10.jpg"
                   alt="Food Presentation"
@@ -85,7 +85,7 @@ export default function GalleryPage() {
               </div>
 
               {/* Event Setup */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#751140' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-primary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-14.jpg"
                   alt="Event Setup"
@@ -100,7 +100,7 @@ export default function GalleryPage() {
               </div>
 
               {/* Takeaway Counter */}
-              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105" style={{ borderColor: '#BD8E21' }}>
+              <div className="group relative overflow-hidden rounded-xl shadow-lg border-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-secondary">
                 <img
                   src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/IMG_0061.jpg"
                   alt="Takeaway Counter"
@@ -117,11 +117,11 @@ export default function GalleryPage() {
 
             {/* Visit Us Section */}
             <div className="mt-20 text-center">
-              <div className="bg-white rounded-2xl p-8 border-2 shadow-lg" style={{ borderColor: '#751140' }}>
-                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+              <div className="bg-white rounded-2xl p-8 border-2 shadow-lg border-primary">
+                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-camera-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4" style={{ color: '#751140' }}>Visit Our Restaurant</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">Visit Our Restaurant</h2>
                 <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                   Experience the authentic atmosphere and delicious Indian cuisine at Nirvana. 
                   Come and create your own beautiful memories with us.
@@ -130,16 +130,14 @@ export default function GalleryPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+41227821010"
-                    className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2"
-                    style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                    className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
                     <span>Reserve: 022 782 10 10</span>
                   </a>
                   <a
                     href="/menu"
-                    className="bg-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer border-2 flex items-center justify-center space-x-2"
-                    style={{ color: '#751140', borderColor: '#751140' }}
+                    className="bg-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer border-2 flex items-center justify-center space-x-2 text-primary border-primary"
                   >
                     <i className="ri-restaurant-line text-xl"></i>
                     <span>View Menu</span>

@@ -2,29 +2,29 @@
 'use client';
 
 import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'; // Re-confirming import path
 
 export default function FreshProducePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation cartItemsCount={0} onCartClick={() => {}} />
+      <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-purple-600 to-green-600 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-['fairdisplay']">
                 Fresh Products
               </h1>
-              <div className="text-2xl text-purple-600 mb-8">Des produits frais</div>
-              <div className="w-32 h-1 bg-gradient-to-r from-purple-600 via-green-500 to-purple-600 mx-auto rounded-full" />
+              <div className="text-2xl text-primary mb-8">Fresh Products</div>
+              <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
-                <div className="bg-white rounded-2xl shadow-lg p-8 border border-purple-100">
+                <div className="bg-white rounded-2xl shadow-lg p-8 border border-primary">
                   <div className="flex items-start space-x-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
                       <i className="ri-leaf-line text-white text-2xl"></i>
                     </div>
                     <div>
@@ -38,29 +38,29 @@ export default function FreshProducePage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-purple-50 to-green-50 rounded-2xl p-8 border border-purple-200">
+                <div className="bg-gradient-to-r from-primary/50 to-secondary/50 rounded-2xl p-8 border border-primary">
                   <h3 className="text-2xl font-semibold text-gray-800 mb-6">Our Commitment</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
                       <span className="text-gray-700">Fresh ingredients sourced daily</span>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
                       <span className="text-gray-700">Local suppliers and regional specialties</span>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
                       <span className="text-gray-700">Authentic spices imported from India</span>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
                       <span className="text-gray-700">Sustainable and ethical sourcing practices</span>
@@ -85,19 +85,19 @@ export default function FreshProducePage() {
               </div>
             </div>
 
-            <div className="mt-20 bg-gradient-to-r from-purple-600 to-green-600 rounded-2xl p-12 text-white text-center">
+            <div className="mt-20 bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-white text-center">
               <div className="max-w-3xl mx-auto">
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
                   <i className="ri-restaurant-line text-white text-3xl"></i>
                 </div>
                 <h2 className="text-3xl font-bold mb-6">Discover Indian Flavors Without Traveling</h2>
                 <p className="text-xl mb-8 opacity-90">
-                  NIRVANA is always ready to let you discover authentic Indian flavors without leaving Geneva. 
+                  NIRVANA is always ready to let you discover authentic Indian flavors without leaving Switzerland. 
                   Experience the rich culinary traditions of India with our carefully prepared dishes.
                 </p>
                 <a 
                   href="tel:+41227821010" 
-                  className="inline-flex items-center space-x-3 bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center space-x-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
                 >
                   <i className="ri-phone-line"></i>
                   <span>Contact Us</span>

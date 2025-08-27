@@ -35,17 +35,17 @@ export default function PartnersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation cartItemsCount={0} onCartClick={() => {}} />
+      <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-purple-600 to-green-600 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-['fairdisplay']">
                 Our Partners
               </h1>
-              <div className="text-2xl text-purple-600 mb-8">Partenaires</div>
-              <div className="w-32 h-1 bg-gradient-to-r from-purple-600 via-green-500 to-purple-600 mx-auto rounded-full" />
+              <div className="text-2xl text-primary mb-8">Partners</div>
+              <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 <strong>NIRVANA</strong> is not an isolated establishment. It is part of a group of restaurants 
                 that bring you diversity and expand the possibilities of services.
@@ -59,7 +59,7 @@ export default function PartnersPage() {
                     href={partner.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-purple-100 hover:scale-105"
+                    className="block bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-primary hover:scale-105"
                   >
                     <div className="h-48 bg-gray-200 relative overflow-hidden">
                       <img 
@@ -71,16 +71,16 @@ export default function PartnersPage() {
                     </div>
                     
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-primary transition-colors">
                         {partner.name}
                       </h3>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-purple-600 to-green-600 rounded-full"></div>
+                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
                           <span className="text-sm text-gray-500 font-medium">Partner Restaurant</span>
                         </div>
                         
-                        <div className="flex items-center space-x-2 text-purple-600 font-medium">
+                        <div className="flex items-center space-x-2 text-primary font-medium">
                           <span className="text-sm">Visit</span>
                           <div className="w-4 h-4 flex items-center justify-center">
                             <i className="ri-external-link-line"></i>
@@ -93,7 +93,7 @@ export default function PartnersPage() {
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-purple-600 to-green-600 rounded-2xl p-12 text-white text-center">
+            <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-white text-center">
               <div className="max-w-3xl mx-auto">
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
                   <i className="ri-group-line text-white text-3xl"></i>
@@ -105,7 +105,7 @@ export default function PartnersPage() {
                 </p>
                 <a 
                   href="tel:+41227821010" 
-                  className="inline-flex items-center space-x-3 bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center space-x-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
                 >
                   <i className="ri-phone-line"></i>
                   <span>Contact Us</span>

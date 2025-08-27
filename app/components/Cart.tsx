@@ -33,9 +33,9 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 ${isOpen ? 'block' : 'hidden'}`}>
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-purple-600 to-green-600">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-primary to-secondary">
           <h2 className="text-2xl font-semibold text-white">Your Cart</h2>
           <button
             onClick={onClose}
@@ -105,7 +105,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
                     onClick={() => setOrderType('delivery')}
                     className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                       orderType === 'delivery'
-                        ? 'bg-purple-600 text-white'
+                        ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -115,7 +115,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
                     onClick={() => setOrderType('pickup')}
                     className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                       orderType === 'pickup'
-                        ? 'bg-purple-600 text-white'
+                        ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -131,7 +131,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
                     onClick={() => setPaymentMethod('razorpay')}
                     className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                       paymentMethod === 'razorpay'
-                        ? 'bg-green-600 text-white'
+                        ? 'bg-secondary text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -142,7 +142,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
                       onClick={() => setPaymentMethod('cod')}
                       className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                         paymentMethod === 'cod'
-                          ? 'bg-green-600 text-white'
+                          ? 'bg-secondary text-white'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
@@ -165,7 +165,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
                 </div>
               )}
               {orderType === 'pickup' && discount > 0 && (
-                <div className="flex justify-between text-green-600">
+                <div className="flex justify-between text-secondary">
                   <span>Pickup Discount (10%):</span>
                   <span className="font-medium">-CHF {discount.toFixed(2)}</span>
                 </div>
@@ -180,7 +180,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
 
             <button
               onClick={handleCheckout}
-              className="w-full bg-gradient-to-r from-purple-600 to-green-600 hover:from-purple-700 hover:to-green-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+              className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
             >
               {paymentMethod === 'razorpay' ? 'Pay Now' : 'Place Order (COD)'}
             </button>

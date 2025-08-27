@@ -126,55 +126,54 @@ export default function MainCoursesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation cartItemsCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+      <Navigation />
 
-      <main className="pt-20">
-        <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-purple-50/30">
+      <main className="pt-1">
+        <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-primary/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Main Courses
               </h1>
-              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>Plats Principaux</div>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+              {/* <div className="text-2xl mb-8 text-secondary">Main Courses</div> */}
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Classic Dishes */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Classic Dishes</h2>
-                <div className="text-lg text-purple-600">Grands Classiques</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Classic Dishes</h2>
+                {/* <div className="text-lg text-primary">Classic Dishes</div> */}
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 {classicDishes.map((item) => (
-                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2" style={{ borderColor: '#751140' }}>
+                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary">
                     <div
                       className="h-48 bg-cover bg-center relative"
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {item.price.toFixed(2)}
                         </span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {item.name}
                       </h3>
 
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600">{item.description}</p>
-                        <p className="text-sm italic" style={{ color: '#BD8E21' }}>{item.frenchDescription}</p>
+                        {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer"
-                        style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                       >
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
@@ -190,40 +189,39 @@ export default function MainCoursesPage() {
             {/* Traditional Dishes */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Traditional Dishes</h2>
-                <div className="text-lg text-purple-600 mb-4">Plats Traditionnels</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Traditional Dishes</h2>
+                {/* <div className="text-lg text-primary mb-4">Traditional Dishes</div> */}
                 <p className="text-gray-600 mb-8">Choose your main dishes with your favorite sauce... Enjoy!</p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
                 {traditionalDishes.map((item) => (
-                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2" style={{ borderColor: '#BD8E21' }}>
+                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-secondary">
                     <div
                       className="h-48 bg-cover bg-center relative"
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {item.price.toFixed(2)}
                         </span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {item.name}
                       </h3>
 
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600">{item.description}</p>
-                        <p className="text-sm italic" style={{ color: '#BD8E21' }}>{item.frenchDescription}</p>
+                        {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer"
-                        style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                       >
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
@@ -239,25 +237,25 @@ export default function MainCoursesPage() {
             {/* Chef's Specials */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Chef's Specials</h2>
-                <div className="text-lg text-purple-600">Les Incontournables</div>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Chef's Specials</h2>
+                {/* <div className="text-lg text-primary">Chef's Specials</div> */}
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 {chefSpecials.map((item) => (
-                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2" style={{ borderColor: '#751140' }}>
+                  <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary">
                     <div
                       className="h-48 bg-cover bg-center relative"
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {item.price.toFixed(2)}
                         </span>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+                        <span className="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                           <i className="ri-star-fill"></i>
                           <span>Chef's Special</span>
                         </span>
@@ -265,19 +263,18 @@ export default function MainCoursesPage() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {item.name}
                       </h3>
 
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600">{item.description}</p>
-                        <p className="text-sm italic" style={{ color: '#BD8E21' }}>{item.frenchDescription}</p>
+                        {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer"
-                        style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                       >
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>

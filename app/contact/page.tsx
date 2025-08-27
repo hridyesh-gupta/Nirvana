@@ -20,8 +20,8 @@ export default function ContactPage() {
   const galleryImages = [
     'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-7.jpg',
     'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/IMG_0063.jpg',
-    'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-3.jpg',
-    'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-25.jpg'
+    'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-3.jpg'
+    // 'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-25.jpg'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,9 +53,9 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation cartItemsCount={0} onCartClick={() => {}} />
+      <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-1">
         {/* Google Maps */}
         <div className="w-full h-96">
           <iframe
@@ -72,16 +72,16 @@ export default function ContactPage() {
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ background: 'linear-gradient(to right, #751140, #BD8E21)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-['fairdisplay']">
                 Contact Us
               </h1>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(to right, #751140, #BD8E21)' }} />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             <div className="grid lg:grid-cols-3 gap-12">
               {/* Contact Form */}
               <div className="lg:col-span-1">
-                <div className="bg-white rounded-2xl shadow-xl p-8" style={{ border: '1px solid #751140' }}>
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
                   <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
                   
                   {submitMessage && (
@@ -101,8 +101,7 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none transition-all"
-                        style={{ borderColor: '#751140' }}
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
                         required
                       />
                     </div>
@@ -117,7 +116,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none transition-all"
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
                         required
                       />
                     </div>
@@ -132,7 +131,7 @@ export default function ContactPage() {
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none transition-all"
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
                       />
                     </div>
 
@@ -147,7 +146,7 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         rows={5}
                         maxLength={500}
-                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none transition-all resize-none"
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all resize-none"
                         required
                       />
                     </div>
@@ -155,8 +154,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting || formData.message.length > 500}
-                      className="w-full text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:opacity-90 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
-                      style={{ background: 'linear-gradient(to right, #751140, #BD8E21)' }}
+                      className="w-full text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:opacity-90 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                     >
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
@@ -166,13 +164,13 @@ export default function ContactPage() {
 
               {/* Restaurant Information */}
               <div className="lg:col-span-2 space-y-8">
-                <div className="bg-white rounded-2xl shadow-xl p-8" style={{ border: '1px solid #751140' }}>
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
                   <h2 className="text-2xl font-semibold text-gray-800 mb-6">Restaurant Information</h2>
                   
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
-                        <i className="ri-map-pin-line" style={{ color: '#751140' }}></i>
+                        <i className="ri-map-pin-line text-primary"></i>
                         <span>Address</span>
                       </h3>
                       <div className="text-gray-600 space-y-1">
@@ -185,14 +183,13 @@ export default function ContactPage() {
 
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
-                        <i className="ri-phone-line" style={{ color: '#751140' }}></i>
+                        <i className="ri-phone-line text-primary"></i>
                         <span>Phone</span>
                       </h3>
                       <div className="text-gray-600">
                         <a 
                           href="tel:+41227821010" 
-                          className="text-lg font-medium hover:opacity-80 transition-colors"
-                          style={{ color: '#751140' }}
+                          className="text-lg font-medium hover:opacity-80 transition-colors text-primary"
                         >
                           022 782 10 10
                         </a>
@@ -201,9 +198,9 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-xl p-8" style={{ border: '1px solid #751140' }}>
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
-                    <i className="ri-time-line" style={{ color: '#751140' }}></i>
+                    <i className="ri-time-line text-primary"></i>
                     <span>Opening Hours</span>
                   </h3>
                   <div className="space-y-3">
@@ -216,13 +213,13 @@ export default function ContactPage() {
                       <span className="font-medium text-gray-800">19:00 - 22:30</span>
                     </div>
                     <div className="mt-4 pt-4 border-t border-gray-200">
-                      <p className="text-center font-medium" style={{ color: '#BD8E21' }}>Open 7 days a week</p>
+                      <p className="text-center font-medium text-secondary">Open 7 days a week</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Image Carousel */}
-                <div className="bg-white rounded-2xl shadow-xl overflow-hidden" style={{ border: '1px solid #751140' }}>
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-primary">
                   <div className="relative">
                     <img
                       src={galleryImages[currentImageIndex]}
@@ -234,14 +231,14 @@ export default function ContactPage() {
                       onClick={prevImage}
                       className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all cursor-pointer"
                     >
-                      <i className="ri-arrow-left-line text-xl text-gray-700"></i>
+                      <i className="ri-arrow-left-line text-xl text-primary"></i>
                     </button>
                     
                     <button
                       onClick={nextImage}
                       className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all cursor-pointer"
                     >
-                      <i className="ri-arrow-right-line text-xl text-gray-700"></i>
+                      <i className="ri-arrow-right-line text-xl text-primary"></i>
                     </button>
                     
                     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -250,7 +247,7 @@ export default function ContactPage() {
                           key={index}
                           onClick={() => setCurrentImageIndex(index)}
                           className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                            index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                            index === currentImageIndex ? 'bg-primary' : 'bg-white/50'
                           }`}
                         />
                       ))}
@@ -269,8 +266,7 @@ export default function ContactPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 <a
                   href="tel:+41227821010"
-                  className="text-white p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
-                  style={{ background: 'linear-gradient(to right, #751140, #BD8E21)' }}
+                  className="text-white p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer bg-gradient-to-r from-primary to-secondary"
                 >
                   <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-phone-line text-white text-2xl"></i>
@@ -281,10 +277,9 @@ export default function ContactPage() {
 
                 <a
                   href="/menu/starters"
-                  className="bg-white hover:bg-gray-50 text-gray-800 p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
-                  style={{ border: '2px solid #751140' }}
+                  className="bg-white hover:bg-gray-50 text-gray-800 p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer border-2 border-primary"
                 >
-                  <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#751140' }}>
+                  <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-primary">
                     <i className="ri-restaurant-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">View Menu</h3>
@@ -293,10 +288,9 @@ export default function ContactPage() {
 
                 <a
                   href="/gallery"
-                  className="bg-white hover:bg-gray-50 text-gray-800 p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
-                  style={{ border: '2px solid #BD8E21' }}
+                  className="bg-white hover:bg-gray-50 text-gray-800 p-8 rounded-2xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer border-2 border-secondary"
                 >
-                  <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#BD8E21' }}>
+                  <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-secondary">
                     <i className="ri-gallery-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Photo Gallery</h3>

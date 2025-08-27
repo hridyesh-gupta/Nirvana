@@ -30,7 +30,6 @@ export default function WorldWinesPage() {
   const wineRegions = [
     {
       region: 'South Africa',
-      regionFr: 'Afrique du Sud',
       wines: [
         {
           id: 'chenin-blanc-sa',
@@ -43,7 +42,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'Chile',
-      regionFr: 'Chili',
       wines: [
         {
           id: 'carmenere-chile',
@@ -56,7 +54,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'Argentina',
-      regionFr: 'Argentine',
       wines: [
         {
           id: 'malbec-mendoza',
@@ -69,7 +66,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'Spain',
-      regionFr: 'Espagne',
       wines: [
         {
           id: 'tempranillo-rioja',
@@ -82,7 +78,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'India',
-      regionFr: 'Inde',
       wines: [
         {
           id: 'shiraz-india',
@@ -95,7 +90,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'Lebanon',
-      regionFr: 'Liban',
       wines: [
         {
           id: 'lebanese-blend',
@@ -108,7 +102,6 @@ export default function WorldWinesPage() {
     },
     {
       region: 'Kosher Wines',
-      regionFr: 'Kasher',
       wines: [
         {
           id: 'kosher-cabernet',
@@ -123,17 +116,17 @@ export default function WorldWinesPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation cartItemsCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+      <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 World Wines
               </h1>
-              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>Vins du monde</div>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+              <div className="text-2xl mb-8 text-secondary">World Wines</div>
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Discover exceptional wines from around the globe, each bringing unique characteristics 
                 and flavors that complement the diverse and aromatic nature of Indian cuisine.
@@ -146,15 +139,14 @@ export default function WorldWinesPage() {
                 <div key={regionData.region} className="mb-16">
                   <div className="text-center mb-12">
                     <h2 className="text-3xl font-semibold text-gray-800 mb-2">{regionData.region}</h2>
-                    <div className="text-lg text-blue-600 mb-8">{regionData.regionFr}</div>
+                    {/* <div className="text-lg text-primary mb-8">{regionData.regionFr}</div> */}
                   </div>
 
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {regionData.wines.map((wine) => (
                       <div
                         key={wine.id}
-                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2"
-                        style={{ borderColor: '#751140' }}
+                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary"
                       >
                         <div
                           className="h-48 bg-cover bg-center relative"
@@ -162,12 +154,12 @@ export default function WorldWinesPage() {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                           <div className="absolute top-4 right-4">
-                            <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                            <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                               CHF {wine.price.toFixed(2)}
                             </span>
                           </div>
                           <div className="absolute top-4 left-4">
-                            <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+                            <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                               <i className="ri-earth-line"></i>
                               <span>World</span>
                             </span>
@@ -175,7 +167,7 @@ export default function WorldWinesPage() {
                         </div>
 
                         <div className="p-6">
-                          <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                          <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                             {wine.name}
                           </h3>
 
@@ -185,14 +177,13 @@ export default function WorldWinesPage() {
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <div className="w-3 h-3 rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+                              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
                               <span className="text-sm text-gray-500 font-medium">{regionData.region}</span>
                             </div>
 
                             <button
                               onClick={() => handleAddToCart(wine)}
-                              className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
-                              style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                              className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                             >
                               <div className="w-5 h-5 flex items-center justify-center">
                                 <i className="ri-add-line"></i>
@@ -209,18 +200,18 @@ export default function WorldWinesPage() {
             </div>
 
             {/* Global Wine Culture Section */}
-            <div className="mt-20 rounded-2xl p-8 border-2" style={{ backgroundColor: '#f9f9f9', borderColor: '#751140' }}>
+            <div className="mt-20 rounded-2xl p-8 border-2 bg-gray-50 border-primary">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-global-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4" style={{ color: '#751140' }}>Global Wine Heritage</h2>
-                <div className="text-lg mb-6" style={{ color: '#BD8E21' }}>Patrimoine Viticole Mondial</div>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">Global Wine Heritage</h2>
+                <div className="text-lg mb-6 text-secondary">Global Wine Heritage</div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#751140' }}>New World Innovation</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-primary">New World Innovation</h3>
                   <p className="text-gray-600 mb-4">
                     Our selection from South America, South Africa, and India showcases the innovation 
                     and bold flavors of New World winemaking. These wines bring fresh perspectives 
@@ -229,7 +220,7 @@ export default function WorldWinesPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#751140' }}>Ancient Traditions</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-primary">Ancient Traditions</h3>
                   <p className="text-gray-600 mb-4">
                     Lebanese wines represent some of the world's oldest winemaking traditions, 
                     while our kosher selections maintain time-honored practices. These wines 

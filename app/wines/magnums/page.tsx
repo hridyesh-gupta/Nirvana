@@ -22,7 +22,6 @@ export default function MagnumsPage() {
   const magnumCategories = [
     {
       category: 'Champagnes',
-      categoryFr: 'Champagnes',
       wines: [
         {
           id: 'dom-perignon-magnum',
@@ -42,7 +41,6 @@ export default function MagnumsPage() {
     },
     {
       category: 'Chassagne Montrachet',
-      categoryFr: 'Chassagne Montrachet',
       wines: [
         {
           id: 'chassagne-magnum',
@@ -55,20 +53,18 @@ export default function MagnumsPage() {
     },
     {
       category: 'Pommard',
-      categoryFr: 'Pommard',
       wines: [
         {
           id: 'pommard-magnum',
           name: 'Pommard Premier Cru Magnum',
           description: 'Elegant Burgundy red wine in prestigious magnum size',
           price: 380.00,
-          image: 'https://readdy.ai/api/search-image?query=pommard%20premier%20cru%20magnum%20burgundy%20red%20wine%201.5L%20prestigious%20size%20elegant%20burgundy%20wine%20bottle%20professional%20wine%20service%20restaurant%20photography&width=400&height=300&seq=magnumburg2&orientation=landscape'
+          image: 'https://readdy.ai/api/search-image?query=pommard%20premier%20cru%20magnum%20burgundy%20red%20wine%201.5L%20prestigious%20size%20elegant%20burgundy%20wine%20bottle%20professional%20wine%20service%20restaurant%20photography%20fine%20dining&width=400&height=300&seq=magnumburg2&orientation=landscape'
         }
       ]
     },
     {
       category: 'Bordeaux',
-      categoryFr: 'Bordeaux',
       wines: [
         {
           id: 'bordeaux-saint-emilion-magnum',
@@ -90,19 +86,19 @@ export default function MagnumsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation cartItemsCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+      <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Magnums
               </h1>
-              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>
-                Les Magnums
+              <div className="text-2xl mb-8 text-secondary">
+                Our Magnums
               </div>
-              <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Discover our prestigious collection of magnum bottles (1.5L), perfect for celebrations
                 and special occasions. Large format wines age more gracefully and make impressive presentations.
@@ -115,15 +111,13 @@ export default function MagnumsPage() {
                 <div key={categoryData.category} className="mb-16">
                   <div className="text-center mb-12">
                     <h2 className="text-3xl font-semibold text-gray-800 mb-2">{categoryData.category}</h2>
-                    <div className="text-lg text-purple-600 mb-8">{categoryData.categoryFr}</div>
                   </div>
 
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {categoryData.wines.map((wine) => (
                       <div
                         key={wine.id}
-                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2"
-                        style={{ borderColor: '#751140' }}
+                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary"
                       >
                         <div
                           className="h-56 bg-cover bg-center relative"
@@ -131,12 +125,12 @@ export default function MagnumsPage() {
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                           <div className="absolute top-4 right-4">
-                            <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                            <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                               CHF {wine.price.toFixed(2)}
                             </span>
                           </div>
                           <div className="absolute top-4 left-4">
-                            <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+                            <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                               <i className="ri-wine-glass-fill"></i>
                               <span>1.5L</span>
                             </span>
@@ -144,7 +138,7 @@ export default function MagnumsPage() {
                         </div>
 
                         <div className="p-6">
-                          <h3 className="text-xl font-semibold mb-3 transition-colors" style={{ color: '#751140' }}>
+                          <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                             {wine.name}
                           </h3>
 
@@ -154,14 +148,13 @@ export default function MagnumsPage() {
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <div className="w-3 h-3 rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
+                              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
                               <span className="text-sm text-gray-500 font-medium">Magnum 1.5L</span>
                             </div>
 
                             <button
                               onClick={() => handleAddToCart(wine)}
-                              className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
-                              style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}
+                              className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                             >
                               <div className="w-5 h-5 flex items-center justify-center">
                                 <i className="ri-add-line"></i>
@@ -178,25 +171,25 @@ export default function MagnumsPage() {
             </div>
 
             {/* Magnum Benefits Section */}
-            <div className="rounded-2xl p-8 border-2 mb-16" style={{ backgroundColor: '#f9f9f9', borderColor: '#751140' }}>
+            <div className="rounded-2xl p-8 border-2 mb-16 bg-gray-50 border-primary">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+                <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-award-fill text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4" style={{ color: '#751140' }}>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
                   Why Choose Magnums?
                 </h2>
-                <div className="text-lg mb-6" style={{ color: '#BD8E21' }}>
-                  Pourquoi choisir les Magnums?
+                <div className="text-lg mb-6 text-secondary">
+                  Why Choose Magnums?
                 </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-time-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#751140' }}>
+                  <h3 className="text-xl font-semibold mb-2 text-primary">
                     Superior Aging
                   </h3>
                   <p className="text-gray-600">
@@ -205,10 +198,10 @@ export default function MagnumsPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-group-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#751140' }}>
+                  <h3 className="text-xl font-semibold mb-2 text-primary">
                     Perfect for Sharing
                   </h3>
                   <p className="text-gray-600">
@@ -217,10 +210,10 @@ export default function MagnumsPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-star-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#751140' }}>
+                  <h3 className="text-xl font-semibold mb-2 text-primary">
                     Impressive Presentation
                   </h3>
                   <p className="text-gray-600">
@@ -231,7 +224,7 @@ export default function MagnumsPage() {
             </div>
 
             {/* Special Occasions Section */}
-            <div className="rounded-2xl p-12 text-white text-center" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }}>
+            <div className="rounded-2xl p-12 text-white text-center bg-gradient-to-r from-primary to-secondary">
               <div className="max-w-3xl mx-auto">
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
                   <i className="ri-gift-line text-white text-3xl"></i>
@@ -255,7 +248,7 @@ export default function MagnumsPage() {
                   </p>
                   <a
                     href="tel:+41227821010"
-                    className="inline-flex items-center space-x-2 bg-white text-purple-600 px-6 py-3 rounded-full font-semibold mt-4 hover:bg-gray-100 transition-colors"
+                    className="inline-flex items-center space-x-2 bg-white text-primary px-6 py-3 rounded-full font-semibold mt-4 hover:bg-gray-100 transition-colors"
                   >
                     <i className="ri-phone-line"></i>
                     <span>Reserve Now</span>

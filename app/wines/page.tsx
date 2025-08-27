@@ -47,16 +47,16 @@ export default function WinesPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation cartItemsCount={0} onCartClick={() => {}} />
+      <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-1">
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6" style={{ color: '#751140' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-6 font-['fairdisplay']" style={{ color: '#751140' }}>
                 Wine Collection
               </h1>
-              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>Carte des Vins</div>
+              <div className="text-2xl mb-8" style={{ color: '#BD8E21' }}>Wine List</div>
               <div className="w-32 h-1 mx-auto rounded-full" style={{ background: `linear-gradient(to right, #751140, #BD8E21)` }} />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Explore our carefully curated wine selection, featuring exceptional bottles 

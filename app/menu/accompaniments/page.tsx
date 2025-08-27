@@ -123,17 +123,17 @@ export default function AccompanimentsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Navigation cartItemsCount={itemCount} onCartClick={() => setIsCartOpen(true)} />
+      <Navigation />
 
-      <main className="pt-20">
-        <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-orange-50/30">
+      <main className="pt-1">
+        <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-secondary/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-orange-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Accompaniments
               </h1>
-              <div className="text-2xl text-orange-600 mb-8">Nos accompagnements</div>
-              <div className="w-32 h-1 bg-gradient-to-r from-orange-600 via-purple-500 to-orange-600 mx-auto rounded-full" />
+              <div className="text-2xl text-primary mb-8">Nos accompagnements</div>
+              <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
                 Perfect your Indian dining experience with our selection of traditional rice dishes and 
                 freshly baked breads, each prepared to complement our main courses perfectly.
@@ -144,14 +144,14 @@ export default function AccompanimentsPage() {
             <div className="mb-20">
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-semibold text-gray-800 mb-4">Our Rice</h2>
-                <div className="text-lg text-orange-600">Nos riz</div>
+                <div className="text-lg text-primary">Nos riz</div>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {riceOptions.map((rice) => (
                   <div
                     key={rice.id}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-orange-100"
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-primary"
                   >
                     <div
                       className="h-48 bg-cover bg-center relative"
@@ -159,14 +159,14 @@ export default function AccompanimentsPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="bg-gradient-to-r from-orange-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                        <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
                           CHF {rice.price.toFixed(2)}
                         </span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
                         {rice.name}
                       </h3>
 
@@ -181,13 +181,13 @@ export default function AccompanimentsPage() {
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-orange-600 to-purple-600 rounded-full" />
+                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
                           <span className="text-xs text-gray-500 font-medium">Basmati Rice</span>
                         </div>
 
                         <button
                           onClick={() => handleAddToCart(rice)}
-                          className="bg-gradient-to-r from-orange-600 to-purple-600 hover:from-orange-700 hover:to-purple-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
+                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
                         >
                           <div className="w-4 h-4 flex items-center justify-center">
                             <i className="ri-add-line"></i>
@@ -205,14 +205,14 @@ export default function AccompanimentsPage() {
             <div>
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-semibold text-gray-800 mb-4">Our Breads</h2>
-                <div className="text-lg text-orange-600">Nos pains</div>
+                <div className="text-lg text-primary">Nos pains</div>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {breadOptions.map((bread) => (
                   <div
                     key={bread.id}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-orange-100"
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-primary"
                   >
                     <div
                       className="h-48 bg-cover bg-center relative"
@@ -220,12 +220,12 @@ export default function AccompanimentsPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="bg-gradient-to-r from-orange-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                        <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
                           CHF {bread.price.toFixed(2)}
                         </span>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                           <i className="ri-fire-line"></i>
                           <span>Fresh</span>
                         </span>
@@ -233,7 +233,7 @@ export default function AccompanimentsPage() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-orange-600 transition-colors">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
                         {bread.name}
                       </h3>
 
@@ -248,13 +248,13 @@ export default function AccompanimentsPage() {
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-orange-600 to-purple-600 rounded-full" />
+                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
                           <span className="text-xs text-gray-500 font-medium">Tandoor Baked</span>
                         </div>
 
                         <button
                           onClick={() => handleAddToCart(bread)}
-                          className="bg-gradient-to-r from-orange-600 to-purple-600 hover:from-orange-700 hover:to-purple-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
+                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
                         >
                           <div className="w-4 h-4 flex items-center justify-center">
                             <i className="ri-add-line"></i>
@@ -269,8 +269,8 @@ export default function AccompanimentsPage() {
             </div>
 
             {/* Info Section */}
-            <div className="mt-20 bg-gradient-to-r from-orange-50 to-purple-50 rounded-2xl p-8 border border-orange-200 text-center">
-              <div className="w-20 h-20 bg-gradient-to-r from-orange-600 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+            <div className="mt-20 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-2xl p-8 border border-primary text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
                 <i className="ri-bowl-line text-white text-3xl"></i>
               </div>
               <h2 className="text-3xl font-semibold text-gray-800 mb-4">Perfect Pairing</h2>

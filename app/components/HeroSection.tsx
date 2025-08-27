@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-15.jpg")'
+          backgroundImage: 'url(/images/main.png)'
         }}
       />
       
@@ -19,7 +19,7 @@ export default function HeroSection() {
       
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight font-serif tracking-wide">
+        <h1 className="font-playfair font-light mb-6 leading-tight tracking-wide" style={{ fontSize: '50px' }}>
           Discover the Indian Restaurant<br />
           and Bar-Lounge
         </h1>
@@ -29,22 +29,18 @@ export default function HeroSection() {
             Come discover our new establishment in a cozy and warm environment. 
             Nirvana Geneva is the new meeting place for all of Geneva
           </p>
-          <p className="mb-2 text-lg font-light">Daily Menu: CHF 19,90</p>
-          <p className="text-lg font-light">Lunch: CHF 29,30</p>
         </div>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
             href="/menu" 
-            style={{ backgroundColor: '#751140' }}
-            className="hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
+            className="bg-primary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
             Menu & Dishes
           </Link>
           <Link 
             href="/contact" 
-            style={{ backgroundColor: '#BD8E21' }}
-            className="hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
+            className="bg-secondary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
             Contact Us
           </Link>
