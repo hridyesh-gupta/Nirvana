@@ -56,10 +56,6 @@ export default function CartPage() {
                 <div className="p-6 space-y-6">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
-                      <div
-                        className="w-16 h-16 bg-cover bg-center rounded-lg"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      />
                       
                       <div className="flex-1">
                         <h3 className="font-semibold text-gray-800">{item.name}</h3>

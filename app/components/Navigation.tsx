@@ -21,7 +21,7 @@ const Navigation = ({}: NavigationProps) => {
       <div className="bg-primary h-2"></div>
       
       {/* Logo Section */}
-      <div className="bg-primary py-4 justify-center hidden lg:block">
+      {/* <div className="bg-primary py-4 justify-center hidden lg:block">
         <div className="max-w-7xl mx-auto px-4 justify-center text-center">
           <Link href="/" className="inline-block">
             <img 
@@ -31,14 +31,21 @@ const Navigation = ({}: NavigationProps) => {
             />
           </Link>
         </div>
-      </div>
+      </div> */}
       <hr className="border-white/20" />
       {/* Navigation Menu */}
       <div className="bg-primary py-3">
-        <div className="max-w-7xl mx-auto px-4">
-          <nav className="hidden lg:flex items-center justify-center space-x-12">
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+          <Link href="/" className="inline-block">
+            <img 
+              src='/images/logo.png'
+              alt="Nirvana" 
+              className="h-20 w-auto"
+            />
+          </Link>
+          <nav className="hidden lg:flex items-center space-x-12">
             <Link href="/" className="text-white hover:text-secondary font-playfair text-lg">
-              The Restaurant
+              Home
             </Link>
             
             <Link href="/menu" className="text-white hover:text-secondary font-playfair text-lg">
@@ -60,33 +67,28 @@ const Navigation = ({}: NavigationProps) => {
             <Link href="/contact" className="text-white hover:text-secondary font-playfair transition-colors text-lg">
               Contact
             </Link>
-            <Link href="/cart" className="text-white hover:text-secondary font-playfair transition-colors text-lg hidden md:block">
-              Cart
+            
+            <Link href="/order" className="text-white hover:text-secondary font-playfair transition-colors text-lg">
+              Order
             </Link>
           </nav>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center">
-            <div className="flex-1"></div>
-            <Link href="/" className="font-playfair">
-              <img 
-                src='/images/logo.png'
-                alt="Nirvana" 
-                className="h-16 w-auto"
-              />
+          {/* Mobile menu button and cart icon */}
+          <div className="lg:hidden flex items-center space-x-4">
+            <Link href="/order" className="text-white hover:text-secondary font-playfair transition-colors text-lg">
+              <i className="ri-shopping-cart-line text-3xl"></i>
             </Link>
-            <div className="flex-1 text-right">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white focus:outline-none"
-              >
-                {isMenuOpen ? (
-                  <i className="ri-close-line text-3xl"></i>
-                ) : (
-                  <i className="ri-menu-3-line text-3xl"></i>
-                )}
-              </button>
-            </div>
+
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white focus:outline-none"
+            >
+              {isMenuOpen ? (
+                <i className="ri-close-line text-3xl"></i>
+              ) : (
+                <i className="ri-menu-3-line text-3xl"></i>
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -99,7 +101,7 @@ const Navigation = ({}: NavigationProps) => {
               className="block text-white hover:text-secondary font-playfair transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              The Restaurant
+              Home
             </Link>
             <Link 
               href="/menu" 
@@ -137,11 +139,11 @@ const Navigation = ({}: NavigationProps) => {
               Contact
             </Link>
             <Link 
-              href="/cart" 
+              href="/order" 
               className="block text-white hover:text-secondary font-playfair transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Cart
+              Order
             </Link>
           </div>
         </div>

@@ -3,12 +3,12 @@
 
 import { useState, useEffect } from 'react';
 
-interface CartItem {
+export interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
-  image: string;
+  // image: string; // Removed image property
 }
 
 class CartStore {

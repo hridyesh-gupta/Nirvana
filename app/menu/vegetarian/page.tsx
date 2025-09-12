@@ -3,8 +3,16 @@
 
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import { useCart } from '../../../lib/cartStore';
+import { Product } from '@/lib/products';
 
 export default function VegetarianPage() {
+  const { addItem } = useCart();
+
+  const handleAddToCart = (item: Product) => {
+    addItem(item);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -19,7 +27,7 @@ export default function VegetarianPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Rich and flavorful vegetarian dishes from across India
               </p>
-              <div className="w-32 h-1 mx-auto rounded-full bg-secondary" />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Paneer Dishes */}
@@ -44,9 +52,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Cottage cheese cubes in rich tomato and butter gravy with aromatic spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Our most popular paneer dish
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-paneer-butter-masala', name: 'Paneer Butter Masala', price: 19.50, category: 'Paneer Specialties' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -64,9 +78,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Fresh cottage cheese cooked in creamy spinach gravy with garlic and ginger
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Nutritious and delicious combination
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-palak-paneer', name: 'Palak Paneer', price: 18.50, category: 'Paneer Specialties' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -84,9 +104,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Paneer cooked with bell peppers and onions in spicy tomato-based gravy
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Cooked in traditional iron wok for authentic flavor
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-kadai-paneer', name: 'Kadai Paneer', price: 19.00, category: 'Paneer Specialties' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,9 +139,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Black lentils slow-cooked with butter, cream, and aromatic spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Royal Punjabi specialty, rich and creamy
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-dal-makhani', name: 'Dal Makhani', price: 16.50, category: 'Dal & Lentils' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -133,9 +165,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Mixed lentils tempered with cumin, onions, tomatoes, and fresh coriander
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Comfort food at its best
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-dal-fry', name: 'Dal Fry', price: 14.50, category: 'Dal & Lentils' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -153,9 +191,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Red kidney beans cooked in spiced tomato gravy with traditional herbs
                   </p>
-                  <div className="text-sm text-gray-500">
-                    North Indian home-style favorite
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-rajma', name: 'Rajma', price: 15.50, category: 'Dal & Lentils' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -182,9 +226,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Potatoes and cauliflower cooked with turmeric, cumin, and fresh herbs
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Classic dry curry, perfectly spiced
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-aloo-gobi', name: 'Aloo Gobi', price: 16.50, category: 'Vegetable Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -202,9 +252,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Fresh okra sautéed with onions, tomatoes, and aromatic Indian spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Crispy and flavorful preparation
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-bhindi-masala', name: 'Bhindi Masala', price: 17.50, category: 'Vegetable Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -222,9 +278,15 @@ export default function VegetarianPage() {
                   <p className="text-gray-600 mb-4">
                     Seasonal vegetables cooked in coconut-based curry with South Indian spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Healthy medley of fresh vegetables
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'veg-mixed-vegetable-curry', name: 'Mixed Vegetable Curry', price: 18.00, category: 'Vegetable Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>

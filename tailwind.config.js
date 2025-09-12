@@ -16,6 +16,9 @@ const config = {
         lato: ['Lato', 'sans-serif'],
         cursive: ['Satisfy', 'cursive'],
       },
+      fontSize: {
+        'base': ['20px', '28px'], // Custom base font size for normal text
+      },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',
         DEFAULT: '0 2px 4px var(--tw-shadow-color)',

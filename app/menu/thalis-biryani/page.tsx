@@ -3,8 +3,17 @@
 
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer'; // Re-confirming import path
+import Cart from '../../components/Cart';
+import { useCart } from '../../../lib/cartStore';
+import { Product } from '@/lib/products'; // Updated import path
 
 export default function ThalisBiryaniPage() {
+  const { addItem } = useCart(); // Initialize useCart hook
+
+  const handleAddToCart = (item: Product) => {
+    addItem(item);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -13,13 +22,13 @@ export default function ThalisBiryaniPage() {
         <div className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Thalis & Biryani
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Traditional complete meals and aromatic rice dishes
               </p>
-              <div className="w-32 h-1 mx-auto rounded-full bg-secondary" />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Thali Section */}
@@ -44,9 +53,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Complete vegetarian meal with dal, vegetables, rice, bread, raita, and dessert
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Traditional Indian platter with authentic flavors
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'thali-veg', name: 'Vegetarian Thali', price: 22.50, category: 'Thalis' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -64,9 +79,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Complete meal with chicken curry, dal, vegetables, rice, bread, and sides
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Perfect combination of meat and vegetarian dishes
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'thali-nonveg', name: 'Non-Vegetarian Thali', price: 26.50, category: 'Thalis' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -84,9 +105,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Premium selection with multiple curries, tandoori items, rice, breads, and sweets
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Our most elaborate traditional meal experience
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'thali-royal', name: 'Royal Thali', price: 32.50, category: 'Thalis' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,9 +140,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Fragrant basmati rice cooked with mixed vegetables and aromatic spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Served with raita and boiled egg
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-veg', name: 'Vegetable Biryani', price: 18.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -133,9 +166,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Tender chicken pieces layered with spiced basmati rice and slow-cooked
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Our signature biryani with authentic Hyderabadi flavors
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-chicken', name: 'Chicken Biryani', price: 22.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -153,9 +192,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Succulent mutton cooked with premium basmati rice and traditional spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Rich and flavorful, a true delicacy
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-mutton', name: 'Mutton Biryani', price: 26.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -173,9 +218,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Fresh prawns cooked with aromatic rice and coastal spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    A coastal specialty with unique flavors
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-prawn', name: 'Prawn Biryani', price: 24.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -193,9 +244,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Combination of chicken, mutton, and prawns with fragrant basmati rice
                   </p>
-                  <div className="text-sm text-gray-500">
-                    The ultimate biryani experience
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-mix', name: 'Special Mix Biryani', price: 28.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -213,9 +270,15 @@ export default function ThalisBiryaniPage() {
                   <p className="text-gray-600 mb-4">
                     Boiled eggs cooked with spiced basmati rice and aromatic herbs
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Simple yet flavorful option
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'biryani-egg', name: 'Egg Biryani', price: 16.50, category: 'Biryani' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>

@@ -23,6 +23,13 @@ export default function Footer() {
               <a href="#" className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors cursor-pointer">
                 <i className="ri-google-line text-xl"></i>
               </a>
+              <a 
+                href="https://wa.me/+0227821010?text=Hello%20Nirvana,%20I%20have%20a%20question." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+                <i className="ri-whatsapp-line text-xl"></i>
+              </a>
             </div>
           </div>
 
@@ -52,8 +59,8 @@ export default function Footer() {
                 <div className="w-6 h-6 flex items-center justify-center">
                   <i className="ri-mail-line text-secondary"></i>
                 </div>
-                <a href="mailto:info@nirvana-geneve.ch" className="text-gray-300 hover:text-secondary transition-colors">
-                  info@nirvana-geneve.ch
+                <a href="mailto:contact@nirvana-geneve.ch" className="text-gray-300 hover:text-secondary transition-colors">
+                contact@nirvana-geneve.ch
                 </a>
               </div>
             </div>
@@ -65,7 +72,7 @@ export default function Footer() {
               <Link href="/menu" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
                 View Menu
               </Link>
-              <Link href="/cart" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
+              <Link href="/order" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
                 Order Online
               </Link>
               <Link href="/reservations" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">

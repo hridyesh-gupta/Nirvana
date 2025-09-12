@@ -129,14 +129,13 @@ export default function AccompanimentsPage() {
         <div className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-secondary/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
                 Accompaniments
               </h1>
-              <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
-              <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
-                Perfect your Indian dining experience with our selection of traditional rice dishes and 
-                freshly baked breads, each prepared to complement our main courses perfectly.
+              <p className="text-xl text-gray-600 mb-8">                
+                Perfect your Indian dining experience with our selection of traditional rice dishes and freshly baked breads, each prepared to complement our main courses perfectly.
               </p>
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Rice Section */}
@@ -156,41 +155,39 @@ export default function AccompanimentsPage() {
                       style={{ backgroundImage: `url(${rice.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4">
+                      {/* <div className="absolute top-4 right-4">
                         <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
                           CHF {rice.price.toFixed(2)}
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
-                        {rice.name}
-                      </h3>
-
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+                          {rice.name}
+                        </h3>
+                        <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {rice.price.toFixed(2)}
+                        </span>
+                      </div>
+                      
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600 text-sm leading-relaxed">
                           {rice.description}
                         </p>
-                        <p className="text-gray-500 text-xs italic">
-                          {rice.descriptionFr}
-                        </p>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
-                          <span className="text-xs text-gray-500 font-medium">Basmati Rice</span>
-                        </div>
 
                         <button
                           onClick={() => handleAddToCart(rice)}
-                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
+                          className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                         >
-                          <div className="w-4 h-4 flex items-center justify-center">
+                          <div className="w-5 h-5 flex items-center justify-center">
                             <i className="ri-add-line"></i>
                           </div>
-                          <span>Add</span>
+                          <span>Add to Cart</span>
                         </button>
                       </div>
                     </div>
@@ -216,11 +213,11 @@ export default function AccompanimentsPage() {
                       style={{ backgroundImage: `url(${bread.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4">
+                      {/* <div className="absolute top-4 right-4">
                         <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
                           CHF {bread.price.toFixed(2)}
                         </span>
-                      </div>
+                      </div> */}
                       <div className="absolute top-4 left-4">
                         <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                           <i className="ri-fire-line"></i>
@@ -230,33 +227,30 @@ export default function AccompanimentsPage() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
-                        {bread.name}
-                      </h3>
-
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors">
+                          {bread.name}
+                        </h3>
+                        <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {bread.price.toFixed(2)}
+                        </span>
+                      </div>
+                      
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600 text-sm leading-relaxed">
                           {bread.description}
                         </p>
-                        <p className="text-gray-500 text-xs italic">
-                          {bread.descriptionFr}
-                        </p>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
-                          <span className="text-xs text-gray-500 font-medium">Tandoor Baked</span>
-                        </div>
-
                         <button
                           onClick={() => handleAddToCart(bread)}
-                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer text-sm"
+                          className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                         >
                           <div className="w-4 h-4 flex items-center justify-center">
                             <i className="ri-add-line"></i>
                           </div>
-                          <span>Add</span>
+                          <span>Add to Cart</span>
                         </button>
                       </div>
                     </div>

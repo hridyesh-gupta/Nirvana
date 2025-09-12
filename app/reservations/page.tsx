@@ -81,6 +81,35 @@ export default function ReservationsPage() {
           
           <div className="bg-white rounded-2xl p-8 border border-primary max-w-3xl mx-auto">
             <form id="kaiseki-reservation" onSubmit={handleSubmit} className="space-y-4">
+
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-gray-700 text-sm mb-2">Date *</label>
+                <DatePicker
+                  selected={formData.date ? new Date(formData.date) : null}
+                  onChange={(date: Date | null) => setFormData(prev => ({ ...prev, date: date ? date.toISOString().split('T')[0] : '' }))}
+                  className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="Select a date"
+                  required
+                  wrapperClassName="w-full"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 text-sm mb-2">Time *</label>
+                <input
+                  type="time"
+                  name="time"
+                  value={formData.time}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
+                  required
+                />
+              </div>
+            </div>
+
+
               <div>
                 <label className="block text-gray-700 text-sm mb-2">Name *</label>
                 <input
@@ -115,33 +144,6 @@ export default function ReservationsPage() {
                   className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none"
                 />
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">Date *</label>
-                  <DatePicker
-                    selected={formData.date ? new Date(formData.date) : null}
-                    onChange={(date: Date | null) => setFormData(prev => ({ ...prev, date: date ? date.toISOString().split('T')[0] : '' }))}
-                    className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
-                    dateFormat="yyyy-MM-dd"
-                    placeholderText="Select a date"
-                    required
-                    wrapperClassName="w-full"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 text-sm mb-2">Time *</label>
-                  <input
-                    type="time"
-                    name="time"
-                    value={formData.time}
-                    onChange={handleInputChange}
-                    className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
-                    required
-                  />
-                </div>
-              </div>
-
               <div>
                 <label className="block text-gray-700 text-sm mb-2">Number of Guests</label>
                 <div className="relative">

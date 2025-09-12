@@ -143,17 +143,22 @@ export default function StartersPage() {
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4">
+                      {/* <div className="absolute top-4 right-4">
                         <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {item.price.toFixed(2)}
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3 transition-colors text-primary">
-                        {item.name}
-                      </h3>
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold text-gray-800 transition-colors text-primary">
+                          {item.name}
+                        </h3>
+                        <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {item.price.toFixed(2)}
+                        </span>
+                      </div>
                       
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600">{item.description}</p>
@@ -190,17 +195,22 @@ export default function StartersPage() {
                       style={{ backgroundImage: `url(${item.image})` }}
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4">
+                      {/* <div className="absolute top-4 right-4">
                         <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {item.price.toFixed(2)}
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3 transition-colors text-primary">
-                        {item.name}
-                      </h3>
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold text-gray-800 transition-colors text-primary">
+                          {item.name}
+                        </h3>
+                        <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {item.price.toFixed(2)}
+                        </span>
+                      </div>
                       
                       <div className="space-y-2 mb-6">
                         <p className="text-gray-600">{item.description}</p>

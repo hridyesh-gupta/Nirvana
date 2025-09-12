@@ -31,11 +31,12 @@ export default function AboutSection() {
                 Lunch: <span className="font-lato">12:00 – 14:30</span> | Dinner: <span className="font-lato">19:00 – 22:30</span>
               </p>
               <a
-                href="tel:+41227821010"
-                className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
+                href="/reservations"
+                className="inline-block bg-primary border-2 border-white text-white hover:bg-white hover:text-secondary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
               >
-                Book Your Table: <span className="font-lato">022 782 10 10</span>
+                Book Your Table
               </a>
+              <p className="text-lg font-light tracking-wide font-serif"><strong>OR CALL <a href="tel:+41227821010" className="no-underline hover:no-underline"><span className="font-lato">022 782 10 10</span></a> </strong></p>
             </div>
             
             <div className="bg-secondary text-white p-8 text-center">
@@ -56,19 +57,12 @@ export default function AboutSection() {
 
       {/* Order Online Section - Blue Gradient */}
       <div 
-        className="bg-white py-6"
+        className="bg-white py-1"
       >
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <a
-            href="/order"
-            className="bg-primary inline-block hover:opacity-90 text-white px-6 py-3 rounded-lg font-light text-base transition-all duration-300 cursor-pointer sm:px-12 sm:py-4 sm:text-xl font-serif tracking-wider"
-          >
-            ORDER FOR DELIVERY OR TAKEAWAY
-          </a>
-        </div>
+        
       </div>
 
-      {/* Business Section - Blue Background */}
+      {/* Business Section - Blue Background
       <div 
         className="relative"
       >
@@ -79,21 +73,29 @@ export default function AboutSection() {
           }}
         >
           <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay */}
-          <div ref={ref1} className={`max-w-4xl mx-auto text-center px-4 relative z-10 transition-opacity duration-1000 ${inView1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> {/* Text container with z-index and fade-in */}
+          {/* <div ref={ref1} className={`max-w-4xl mx-auto text-center px-4 relative z-10 transition-opacity duration-1000 ${inView1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> Text container with z-index and fade-in
             <h3 className="text-3xl sm:text-3xl text-white leading-relaxed font-cursive font-light tracking-wide text-shadow-lg">
               NIRVANA welcomes you for your business meals in a cozy and colorful atmosphere.<br />
               Don't hesitate to book your table: <a href="tel:+41227821010" className="underline hover:no-underline"><span className="font-lato">022 782 10 10</span></a>
             </h3>
-          </div>
-        </div>
-      </div>
+          </div> */}
+        {/* </div> */}
+      {/* </div> */}
 
       {/* Takeaway Info Section - Light Gray */}
       <div className="bg-primary py-8"> {/* Changed from bg-gray-300 */}
         <div className="max-w-4xl mx-auto text-center px-4">
           <div className="text-white font-serif">
-            <p className="text-lg font-light tracking-wide"><strong>TAKEAWAY DISHES: <span className="font-lato">10%</span> DISCOUNT (Payment on-site)</strong></p>
-            <p className="text-lg font-light tracking-wide"><strong>AND FOR DELIVERY, ORDER <a href="/order" className="underline text-secondary">HERE</a></strong></p>
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <a
+              href="/order"
+              className="bg-secondary inline-block hover:opacity-90 text-white px-6 py-3 rounded-lg font-light text-base transition-all duration-300 cursor-pointer sm:px-12 sm:py-4 sm:text-xl font-serif tracking-wider"
+            >
+              ORDER FOR DELIVERY OR TAKEAWAY
+            </a>
+          </div>
+            <p className="text-lg font-light tracking-wide"><strong>TAKEAWAY DISHES: <span className="font-lato">10%</span> DISCOUNT </strong></p>
+            {/* <p className="text-lg font-light tracking-wide"><strong>AND FOR DELIVERY, ORDER <a href="/order" className="underline text-secondary">HERE</a></strong></p> */}
           </div>
         </div>
       </div>

@@ -3,8 +3,16 @@
 
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import { useCart } from '../../../lib/cartStore';
+import { Product } from '@/lib/products';
 
 export default function DessertsPage() {
+  const { addItem } = useCart();
+
+  const handleAddToCart = (item: Product) => {
+    addItem(item);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -19,7 +27,7 @@ export default function DessertsPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Sweet endings with traditional Indian confections
               </p>
-              <div className="w-32 h-1 mx-auto rounded-full bg-secondary" />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Traditional Sweets */}
@@ -44,9 +52,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Soft milk dumplings soaked in cardamom-flavored sugar syrup
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Most beloved Indian dessert, served warm
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun', name: 'Gulab Jamun (2 pcs)', price: 8.50, category: 'Traditional Sweets' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -64,9 +78,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Soft cottage cheese dumplings in creamy cardamom-pistachio milk
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Bengali delicacy, rich and creamy
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-rasmalai', name: 'Rasmalai (2 pcs)', price: 9.50, category: 'Traditional Sweets' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -84,9 +104,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Rice pudding cooked in milk with cardamom, almonds, and raisins
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Classic comfort dessert, served chilled
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-kheer', name: 'Kheer', price: 7.50, category: 'Traditional Sweets' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,9 +139,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Traditional Indian ice cream flavored with cardamom and pistachios
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Dense and creamy, unlike regular ice cream
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-kulfi', name: 'Kulfi', price: 6.50, category: 'Cold Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -133,9 +165,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Cold dessert drink with vermicelli, basil seeds, rose syrup, and ice cream
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Refreshing summer treat with multiple textures
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-falooda', name: 'Falooda', price: 8.50, category: 'Cold Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -153,9 +191,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Chilled yogurt drink, available in sweet or fresh mango flavor
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Perfect refreshing drink for any meal
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-lassi', name: 'Lassi (Sweet/Mango)', price: 5.50, category: 'Cold Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -182,9 +226,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Grated carrots cooked in milk, ghee, and sugar, garnished with nuts
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Winter specialty, served warm
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-gajar-halwa', name: 'Gajar Halwa', price: 9.00, category: 'Specialty Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -202,9 +252,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Fusion dessert combining traditional ras malai with modern cake layers
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Chef's special creation
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-ras-malai-cake', name: 'Ras Malai Cake', price: 10.50, category: 'Specialty Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -222,9 +278,15 @@ export default function DessertsPage() {
                   <p className="text-gray-600 mb-4">
                     Crispy spiral sweets served with thick sweetened milk cream
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Perfect combination of textures and flavors
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-jalebi-rabri', name: 'Jalebi with Rabri', price: 11.50, category: 'Specialty Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>

@@ -3,8 +3,16 @@
 
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import { useCart } from '../../../lib/cartStore';
+import { Product } from '@/lib/products';
 
 export default function VeganPage() {
+  const { addItem } = useCart();
+
+  const handleAddToCart = (item: Product) => {
+    addItem(item);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -19,7 +27,7 @@ export default function VeganPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Plant-based Indian cuisine with authentic flavors
               </p>
-              <div className="w-32 h-1 mx-auto rounded-full bg-secondary" />
+              <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
             {/* Vegan Curries */}
@@ -44,9 +52,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Chickpeas cooked in aromatic tomato and onion gravy with traditional spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    High in protein and completely plant-based
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-chana-masala', name: 'Chana Masala', price: 16.50, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -64,9 +78,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Yellow lentils tempered with cumin, mustard seeds, and fresh herbs
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Classic comfort food, naturally vegan
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-dal-tadka', name: 'Dal Tadka', price: 14.50, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -84,9 +104,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Roasted eggplant mashed with onions, tomatoes, and aromatic spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Smoky flavors from traditional preparation
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-baingan-bharta', name: 'Baingan Bharta', price: 17.50, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,9 +139,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Fragrant basmati rice cooked with coconut milk and curry leaves
                   </p>
-                  <div className="text-sm text-gray-500">
-                    South Indian specialty, completely plant-based
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-coconut-rice', name: 'Coconut Rice', price: 12.50, category: 'Vegan Rice & Breads' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -133,9 +165,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Whole wheat flatbread made without dairy, cooked on traditional tawa
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Perfect accompaniment to curries
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-roti', name: 'Roti (Vegan)', price: 4.50, category: 'Vegan Rice & Breads' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -153,9 +191,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Aromatic basmati rice with mixed vegetables and whole spices
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Complete meal in itself
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-vegetable-pulao', name: 'Vegetable Pulao', price: 15.50, category: 'Vegan Rice & Breads' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -182,9 +226,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Crispy pastry filled with spiced potatoes and peas, served with chutneys
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Classic Indian street food, completely vegan
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-samosa', name: 'Samosa (2 pcs)', price: 8.50, category: 'Vegan Appetizers' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -202,9 +252,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Spiced potato patties pan-fried until golden, served with mint chutney
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Crispy outside, soft inside
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-aloo-tikki', name: 'Aloo Tikki (3 pcs)', price: 9.50, category: 'Vegan Appetizers' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
@@ -222,9 +278,15 @@ export default function VeganPage() {
                   <p className="text-gray-600 mb-4">
                     Assorted vegetables dipped in chickpea flour batter and deep-fried
                   </p>
-                  <div className="text-sm text-gray-500">
-                    Perfect rainy day snack
-                  </div>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-mixed-pakora', name: 'Mixed Vegetable Pakora', price: 10.50, category: 'Vegan Appetizers' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
                 </div>
               </div>
             </div>
