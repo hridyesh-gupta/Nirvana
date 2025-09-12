@@ -8,7 +8,7 @@ import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 
 export default function MagnumsPage() {
-  const { items: cartItems, itemCount, addItem, updateQuantity } = useCart();
+  const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: any) => {
@@ -258,6 +258,13 @@ export default function MagnumsPage() {
       </main>
 
       <Footer />
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
+      />
     </div>
   );
 }

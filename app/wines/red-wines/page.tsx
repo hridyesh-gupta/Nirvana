@@ -8,7 +8,7 @@ import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 
 export default function RedWinesPage() {
-  const { items: cartItems, itemCount, addItem, updateQuantity } = useCart();
+  const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: any) => {
@@ -242,6 +242,7 @@ export default function RedWinesPage() {
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
       />
     </div>
   );

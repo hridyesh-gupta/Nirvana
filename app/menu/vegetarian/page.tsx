@@ -1,16 +1,23 @@
 
 'use client';
 
+import { useState } from 'react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 import { Product } from '@/lib/products';
 
 export default function VegetarianPage() {
-  const { addItem } = useCart();
+  const { items: cartItems, addItem, updateQuantity, clearCart } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: Product) => {
     addItem(item);
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    updateQuantity(id, quantity);
   };
 
   return (
@@ -325,6 +332,13 @@ export default function VegetarianPage() {
       </main>
 
       <Footer />
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
+      />
     </div>
   );
 }

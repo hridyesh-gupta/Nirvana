@@ -25,7 +25,10 @@ export default function OrderPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <Navigation />
       <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-playfair text-primary text-center mb-8">Our Dishes</h1>
+      <div className="text-center mb-16">
+      <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">Our Dishes</h1>
+      <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
+      </div>
       {Object.keys(groupedProducts).map((category) => (
         <div key={category} className="mb-12">
           <h2 className="text-3xl font-playfair text-secondary mb-6 border-b-2 border-secondary pb-2">

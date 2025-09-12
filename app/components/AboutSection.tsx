@@ -105,13 +105,13 @@ export default function AboutSection() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start flex-col-reverse lg:flex-row">
             <div className="space-y-6">
-              <h1 className="text-3xl sm:text-4xl font-light text-black mb-6 font-serif tracking-wider">Welcome to NIRVANA</h1>
+              <h1 className="text-3xl md:text-4xl font-light mb-6 text-primary font-['fairdisplay']">Welcome to NIRVANA</h1>
               <div className="w-32 h-1 bg-primary" />
               
               <div className="space-y-4 text-gray-700 text-justify font-serif text-base sm:text-lg leading-relaxed">
                 <p>
                   NIRVANA also offers takeaway dishes with a <span className="font-lato">10%</span> discount (payment on site).<br />
-                  Order your "basket" immediately at <span className="font-lato">022 782 10 10</span>.
+                  Order your "basket" immediately at <span className="font-lato">0227821010</span>.
                 </p>
                 
                 <p>
@@ -126,7 +126,7 @@ export default function AboutSection() {
 
             <div>
               <img
-                src="https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-25.jpg"
+                src="/images/Restro 2.jpeg"
                 alt="Restaurant Nirvana Interior"
                 ref={ref2} className={`w-full rounded-lg shadow-lg transition-opacity duration-1000 ${inView2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
               />

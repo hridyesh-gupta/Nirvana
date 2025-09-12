@@ -6,12 +6,19 @@ import Footer from '../../components/Footer'; // Re-confirming import path
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 import { Product } from '@/lib/products'; // Updated import path
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ThalisBiryaniPage() {
-  const { addItem } = useCart(); // Initialize useCart hook
+  const { items: cartItems, addItem, updateQuantity, clearCart } = useCart(); // Initialize useCart hook
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: Product) => {
     addItem(item);
+  };
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    updateQuantity(id, quantity);
   };
 
   return (
@@ -317,6 +324,13 @@ export default function ThalisBiryaniPage() {
       </main>
 
       <Footer />
+      <Cart
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
+      />
     </div>
   );
 }

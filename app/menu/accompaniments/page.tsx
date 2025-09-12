@@ -16,7 +16,7 @@ interface CartItem {
 }
 
 export default function AccompanimentsPage() {
-  const { items: cartItems, itemCount, addItem, updateQuantity } = useCart();
+  const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: any) => {
@@ -282,6 +282,7 @@ export default function AccompanimentsPage() {
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
       />
     </div>
   );

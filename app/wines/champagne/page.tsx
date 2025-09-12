@@ -16,7 +16,7 @@ interface CartItem {
 }
 
 export default function ChampagnePage() {
-  const { items: cartItems, itemCount, addItem, updateQuantity } = useCart();
+  const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: any) => {
@@ -224,6 +224,7 @@ export default function ChampagnePage() {
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
+        onClearCart={clearCart}
       />
     </div>
   );
