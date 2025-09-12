@@ -24,7 +24,7 @@ export default function Footer() {
                 <i className="ri-google-line text-xl"></i>
               </a>
               <a 
-                href="https://wa.me/+0227821010?text=Hello%20Nirvana,%20I%20have%20a%20question." 
+                href="https://wa.me/+41788432132?text=Hello%20Nirvana,%20I%20have%20a%20question: " 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors cursor-pointer">

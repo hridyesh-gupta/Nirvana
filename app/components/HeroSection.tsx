@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function HeroSection() {
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   // const [isMounted, setIsMounted] = useState(false); // Removed isMounted
 
@@ -16,16 +15,9 @@ export default function HeroSection() {
     '/images/Restro 5.jpeg',
   ];
 
-  const handleScroll = () => {
-    setScrollPosition(window.pageYOffset);
-  };
+  // Removed handleScroll function
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // Removed useEffect for scroll events
 
   // Removed isMounted useEffect
 
@@ -55,7 +47,6 @@ export default function HeroSection() {
             src={image}
             alt="Nirvana Restaurant"
             className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
-            style={{ transform: `translateY(-${scrollPosition * 0.5}px)` }}
           />
         ))}
       </div>

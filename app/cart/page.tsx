@@ -8,7 +8,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 export default function CartPage() {
-  const { items, updateQuantity } = useCart();
+  const { items, updateQuantity, clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
 
@@ -31,7 +31,7 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-white-100">
-      <Navigation />
+      <Navigation/>
       <main className="pt-1">
         <div className="w-full">
           {/* Centralized Heading for Cart Page */}
@@ -179,13 +179,19 @@ export default function CartPage() {
                   >
                     {paymentMethod === 'razorpay' ? 'Pay Now' : 'Place Order (COD)'}
                   </button>
+                  <button
+                    onClick={clearCart}
+                    className="w-1/3 mx-auto bg-red-500 hover:bg-red-600 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+                  >
+                    Clear Cart
+                  </button>
                 </div>
               </div>
             )}
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

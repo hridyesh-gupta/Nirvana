@@ -8,9 +8,10 @@ interface CartProps {
   onClose: () => void;
   items: CartItem[]; // Changed from any[] to CartItem[]
   onUpdateQuantity: (id: string, quantity: number) => void;
+  onClearCart: () => void; // Add onClearCart prop
 }
 
-export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartProps) {
+export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClearCart }: CartProps) {
   const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
 
@@ -180,6 +181,12 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity }: CartP
               className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
             >
               {paymentMethod === 'razorpay' ? 'Pay Now' : 'Place Order (COD)'}
+            </button>
+            <button
+              onClick={onClearCart}
+              className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer mt-4"
+            >
+              Clear Cart
             </button>
           </div>
         )}
