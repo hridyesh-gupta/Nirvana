@@ -41,27 +41,28 @@ export default function ThalisBiryaniPage() {
             {/* Thali Section */}
             <div className="mb-20">
               <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-                Traditional Thalis
+                Thalis
               </h2>
               
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=authentic%20indian%20vegetarian%20thali%20plate%20with%20dal%20vegetables%20rice%20bread%20raita%20and%20sweets%20arranged%20in%20traditional%20brass%20plate%20with%20colorful%20curries%20and%20accompaniments%2C%20appetizing%20presentation%20with%20vibrant%20colors&width=400&height=250&seq=vegthali1&orientation=landscape"
-                    alt="Vegetarian Thali"
+                    src="https://readdy.ai/api/search-image?query=vegetarian%20thali%20nauratan%20mixed%20vegetables%20dal%20baingan%20bharta%20raita%20beautiful%20arrangement%20on%20brass%20plate&width=400&height=250&seq=nauratan1&orientation=landscape"
+                    alt="Nauratan Thali"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Vegetarian Thali</h3>
+                    <h3 className="text-xl font-semibold text-primary">Nauratan</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 22.50
+                      CHF 45.00
                     </span>
                   </div>
+                  <p className="text-gray-600 mb-1">(Vegetarian Thali)</p>
                   <p className="text-gray-600 mb-4">
-                    Complete vegetarian meal with dal, vegetables, rice, bread, raita, and dessert
+                    Samosa; Raita; Nauratan (mixed vegetables); Dal; Baignan Bartha
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'thali-veg', name: 'Vegetarian Thali', price: 22.50, category: 'Thalis' })}
+                    onClick={() => handleAddToCart({ id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 45.00, category: 'Thalis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -73,47 +74,21 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=delicious%20non-vegetarian%20thali%20with%20chicken%20curry%20dal%20vegetables%20rice%20naan%20bread%20and%20sides%20arranged%20on%20traditional%20metal%20plate%2C%20rich%20and%20colorful%20indian%20meal%20presentation&width=400&height=250&seq=nonvegthali1&orientation=landscape"
-                    alt="Non-Vegetarian Thali"
+                    src="https://readdy.ai/api/search-image?query=shikaarpuri%20thali%20with%20chicken%20tikka%20seekh%20kebab%20butter%20chicken%20raita%20nauratan%20rogan%20josh%20rich%20spread%20on%20platter&width=400&height=250&seq=shikaarpuri1&orientation=landscape"
+                    alt="Shikaarpuri Thali"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Non-Vegetarian Thali</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Shikaarpuri</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 26.50
+                      CHF 55.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Complete meal with chicken curry, dal, vegetables, rice, bread, and sides
+                    Chicken Tikka; Seekh Kebab; Butter Chicken; Raita; Nauratan (mixed vegetables); Rogan Josh; Lamb cooked with Kashmiri spicy flavours
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'thali-nonveg', name: 'Non-Vegetarian Thali', price: 26.50, category: 'Thalis' })}
-                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <i className="ri-add-line"></i>
-                    </div>
-                    <span>Add to Cart</span>
-                  </button>
-                </div>
-
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=premium%20royal%20thali%20with%20multiple%20curries%20tandoori%20items%20rice%20breads%20and%20sweets%20arranged%20elegantly%20on%20silver%20platter%2C%20luxurious%20indian%20feast%20presentation%20with%20garnishes&width=400&height=250&seq=royalthali1&orientation=landscape"
-                    alt="Royal Thali"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Royal Thali</h3>
-                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 32.50
-                    </span>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    Premium selection with multiple curries, tandoori items, rice, breads, and sweets
-                  </p>
-                  <button
-                    onClick={() => handleAddToCart({ id: 'thali-royal', name: 'Royal Thali', price: 32.50, category: 'Thalis' })}
+                    onClick={() => handleAddToCart({ id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 55.00, category: 'Thalis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -128,27 +103,27 @@ export default function ThalisBiryaniPage() {
             {/* Biryani Section */}
             <div>
               <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-                Aromatic Biryanis
+                Byrianis
               </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Served along with Raita
+              </p>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=fragrant%20vegetable%20biryani%20with%20basmati%20rice%20mixed%20vegetables%20and%20aromatic%20spices%20served%20with%20raita%20and%20boiled%20egg%2C%20colorful%20and%20appetizing%20presentation&width=400&height=250&seq=vegbiryani1&orientation=landscape"
-                    alt="Vegetable Biryani"
+                    src="https://readdy.ai/api/search-image?query=fragrant%20vegetable%20biryani%20with%20basmati%20rice%20mixed%20vegetables%20and%20aromatic%20spices%20served%20with%20raita%20colorful%20presentation&width=400&height=250&seq=vegbiryani2&orientation=landscape"
+                    alt="Vegetarian Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Vegetable Biryani</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Vegetarian Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 18.50
+                      CHF 29.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Fragrant basmati rice cooked with mixed vegetables and aromatic spices
-                  </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'biryani-veg', name: 'Vegetable Biryani', price: 18.50, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-veg', name: 'Vegetarian Byriani', price: 29.00, category: 'Biryani' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -160,21 +135,18 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=authentic%20chicken%20biryani%20with%20tender%20chicken%20pieces%20layered%20with%20spiced%20basmati%20rice%2C%20hyderabadi%20style%20presentation%20with%20aromatic%20herbs%20and%20garnishes&width=400&height=250&seq=chickenbiryani1&orientation=landscape"
-                    alt="Chicken Biryani"
+                    src="https://readdy.ai/api/search-image?query=authentic%20chicken%20biryani%20with%20tender%20chicken%20pieces%20layered%20with%20spiced%20basmati%20rice%20hyderabadi%20style&width=400&height=250&seq=chickenbiryani2&orientation=landscape"
+                    alt="Chicken Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Chicken Biryani</h3>
+                    <h3 className="text-xl font-semibold text-primary">Chicken Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 22.50
+                      CHF 35.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Tender chicken pieces layered with spiced basmati rice and slow-cooked
-                  </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'biryani-chicken', name: 'Chicken Biryani', price: 22.50, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-chicken', name: 'Chicken Byriani', price: 35.00, category: 'Biryani' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -186,21 +158,18 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=succulent%20mutton%20biryani%20with%20tender%20lamb%20pieces%20cooked%20with%20premium%20basmati%20rice%20and%20traditional%20spices%2C%20rich%20and%20flavorful%20presentation%20with%20garnishes&width=400&height=250&seq=muttonbiryani1&orientation=landscape"
-                    alt="Mutton Biryani"
+                    src="https://readdy.ai/api/search-image?query=beef%20biryani%20with%20tender%20beef%20pieces%20and%20fragrant%20basmati%20rice%20rich%20aromas&width=400&height=250&seq=beefbiryani1&orientation=landscape"
+                    alt="Beef Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Mutton Biryani</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Beef Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 26.50
+                      CHF 37.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Succulent mutton cooked with premium basmati rice and traditional spices
-                  </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'biryani-mutton', name: 'Mutton Biryani', price: 26.50, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-beef', name: 'Beef Byriani', price: 37.00, category: 'Biryani' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -212,21 +181,18 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=delicious%20prawn%20biryani%20with%20fresh%20prawns%20cooked%20with%20aromatic%20rice%20and%20coastal%20spices%2C%20seafood%20biryani%20presentation%20with%20herbs%20and%20lemon%20garnish&width=400&height=250&seq=prawnbiryani1&orientation=landscape"
-                    alt="Prawn Biryani"
+                    src="https://readdy.ai/api/search-image?query=lamb%20biryani%20with%20succulent%20lamb%20pieces%20layered%20with%20spiced%20basmati%20rice%20traditional%20style&width=400&height=250&seq=lamxbiryani1&orientation=landscape"
+                    alt="Lamb Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Prawn Biryani</h3>
+                    <h3 className="text-xl font-semibold text-primary">Lamb Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 24.50
+                      CHF 39.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Fresh prawns cooked with aromatic rice and coastal spices
-                  </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'biryani-prawn', name: 'Prawn Biryani', price: 24.50, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-lamb', name: 'Lamb Byriani', price: 39.00, category: 'Biryani' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -238,47 +204,18 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=special%20mix%20biryani%20with%20combination%20of%20chicken%20mutton%20and%20prawns%20with%20fragrant%20basmati%20rice%2C%20ultimate%20biryani%20experience%20with%20rich%20presentation%20and%20garnishes&width=400&height=250&seq=mixbiryani1&orientation=landscape"
-                    alt="Special Mix Biryani"
+                    src="https://readdy.ai/api/search-image?query=king%20prawn%20biryani%20shelled%20prawns%20with%20aromatic%20basmati%20rice%20coastal%20spices&width=400&height=250&seq=prawnbiryani2&orientation=landscape"
+                    alt="Shelled King Prawns Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Special Mix Biryani</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Shelled King Prawns</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 28.50
+                      CHF 45.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Combination of chicken, mutton, and prawns with fragrant basmati rice
-                  </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'biryani-mix', name: 'Special Mix Biryani', price: 28.50, category: 'Biryani' })}
-                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <i className="ri-add-line"></i>
-                    </div>
-                    <span>Add to Cart</span>
-                  </button>
-                </div>
-
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=egg%20biryani%20with%20boiled%20eggs%20cooked%20with%20spiced%20basmati%20rice%20and%20aromatic%20herbs%2C%20simple%20yet%20flavorful%20biryani%20presentation%20with%20garnishes&width=400&height=250&seq=eggbiryani1&orientation=landscape"
-                    alt="Egg Biryani"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Egg Biryani</h3>
-                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 16.50
-                    </span>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    Boiled eggs cooked with spiced basmati rice and aromatic herbs
-                  </p>
-                  <button
-                    onClick={() => handleAddToCart({ id: 'biryani-egg', name: 'Egg Biryani', price: 16.50, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-king-prawns', name: 'Shelled King Prawns Byriani', price: 45.00, category: 'Biryani' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -288,6 +225,7 @@ export default function ThalisBiryaniPage() {
                   </button>
                 </div>
               </div>
+
             </div>
 
             {/* Order Section */}

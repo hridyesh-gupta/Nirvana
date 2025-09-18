@@ -30,15 +30,15 @@ export default function AccompanimentsPage() {
   const riceOptions = [
     {
       id: 'kashmiri-rice',
-      name: 'Kashmiri Rice',
+      name: 'Kashmiri',
       description: 'Saffron rice with dry fruits and nuts',
-      descriptionFr: 'Safran, fruits secs',
+      descriptionFr: 'Safran; Fruits Secs',
       price: 10.00,
       image: 'https://readdy.ai/api/search-image?query=aromatic%20kashmiri%20rice%20with%20golden%20saffron%20threads%20mixed%20with%20colorful%20dry%20fruits%20almonds%20raisins%20and%20cashews%20garnished%20with%20pistachios%20served%20in%20elegant%20bowl%2C%20rich%20golden%20yellow%20color%2C%20luxury%20presentation&width=400&height=300&seq=rice1&orientation=landscape'
     },
     {
       id: 'saffron-rice',
-      name: 'Saffron Rice',
+      name: 'Saffron',
       description: 'Fragrant basmati rice infused with premium saffron',
       descriptionFr: 'Safran',
       price: 8.00,
@@ -46,15 +46,15 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'pullao-rice',
-      name: 'Pullao Rice',
+      name: 'Pulao',
       description: 'Aromatic rice with green peas, herbs, and spices',
-      descriptionFr: 'Petits pois, herbes, épices',
+      descriptionFr: 'Petits Pois; Herbes; Épices',
       price: 6.00,
       image: 'https://readdy.ai/api/search-image?query=delicious%20pullao%20rice%20with%20basmati%20rice%20green%20peas%20whole%20spices%20like%20cardamom%20cinnamon%20bay%20leaves%20garnished%20with%20fried%20onions%20and%20fresh%20herbs%2C%20colorful%20and%20aromatic%2C%20traditional%20indian%20style&width=400&height=300&seq=rice3&orientation=landscape'
     },
     {
       id: 'plain-rice',
-      name: 'Plain Rice',
+      name: 'Plain',
       description: 'Steamed basmati rice, perfectly cooked and fluffy',
       descriptionFr: 'Nature',
       price: 4.00,
@@ -65,7 +65,7 @@ export default function AccompanimentsPage() {
   const breadOptions = [
     {
       id: 'plain-naan',
-      name: 'Plain Naan',
+      name: 'Plain',
       description: 'Traditional Indian bread baked in tandoor',
       descriptionFr: 'Nature',
       price: 4.00,
@@ -73,7 +73,7 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'chilli-naan',
-      name: 'Chilli Naan',
+      name: 'Chilli',
       description: 'Spicy naan bread with green chilies and herbs',
       descriptionFr: 'Naan au piment',
       price: 6.00,
@@ -81,7 +81,7 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'garlic-naan',
-      name: 'Garlic Naan',
+      name: 'Garlic',
       description: 'Aromatic naan topped with fresh garlic and herbs',
       descriptionFr: 'Ail',
       price: 6.00,
@@ -89,7 +89,7 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'cheese-naan',
-      name: 'Cheese Naan',
+      name: 'Cheese',
       description: 'Stuffed naan with melted cheese filling',
       descriptionFr: 'Naan au fromage',
       price: 8.00,
@@ -97,7 +97,7 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'cheese-chilli-naan',
-      name: 'Cheese and Chilli Naan',
+      name: 'Cheese, Chilli',
       description: 'Spicy cheese-stuffed naan with chilies',
       descriptionFr: 'Naan au fromage et au piment',
       price: 9.00,
@@ -105,7 +105,7 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'cheese-garlic-naan',
-      name: 'Cheese and Garlic Naan',
+      name: 'Cheese, Garlic',
       description: 'Rich naan stuffed with cheese and topped with garlic',
       descriptionFr: 'Naan au fromage et à l\'ail',
       price: 9.00,
@@ -141,7 +141,7 @@ export default function AccompanimentsPage() {
             {/* Rice Section */}
             <div className="mb-20">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Our Rice</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Rice</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -199,7 +199,7 @@ export default function AccompanimentsPage() {
             {/* Bread Section */}
             <div>
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Our Breads</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Naan Tandoori Breads</h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

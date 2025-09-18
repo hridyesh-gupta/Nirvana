@@ -37,65 +37,14 @@ export default function DessertsPage() {
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
-            {/* Traditional Sweets */}
-            <div className="mb-20">
+            {/* Desserts Grid (updated) */}
+            <div>
               <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
-                Traditional Sweets
+                Desserts
               </h2>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=delicious%20gulab%20jamun%20soft%20milk%20dumplings%20soaked%20in%20cardamom-flavored%20sugar%20syrup%2C%20most%20beloved%20indian%20dessert%20served%20warm%20with%20golden%20brown%20color&width=400&height=250&seq=gulabjamun1&orientation=landscape"
-                    alt="Gulab Jamun"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Gulab Jamun (2 pcs)</h3>
-                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 8.50
-                    </span>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    Soft milk dumplings soaked in cardamom-flavored sugar syrup
-                  </p>
-                  <button
-                    onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun', name: 'Gulab Jamun (2 pcs)', price: 8.50, category: 'Traditional Sweets' })}
-                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <i className="ri-add-line"></i>
-                    </div>
-                    <span>Add to Cart</span>
-                  </button>
-                </div>
-
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
-                  <img
-                    src="https://readdy.ai/api/search-image?query=exquisite%20rasmalai%20soft%20cottage%20cheese%20dumplings%20in%20creamy%20cardamom-pistachio%20milk%2C%20bengali%20delicacy%20rich%20and%20creamy%20dessert%20presentation&width=400&height=250&seq=rasmalai1&orientation=landscape"
-                    alt="Rasmalai"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Rasmalai (2 pcs)</h3>
-                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 9.50
-                    </span>
-                  </div>
-                  <p className="text-gray-600 mb-4">
-                    Soft cottage cheese dumplings in creamy cardamom-pistachio milk
-                  </p>
-                  <button
-                    onClick={() => handleAddToCart({ id: 'dessert-rasmalai', name: 'Rasmalai (2 pcs)', price: 9.50, category: 'Traditional Sweets' })}
-                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
-                  >
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <i className="ri-add-line"></i>
-                    </div>
-                    <span>Add to Cart</span>
-                  </button>
-                </div>
-
+                {/* Kheer */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
                     src="https://readdy.ai/api/search-image?query=classic%20kheer%20rice%20pudding%20cooked%20in%20milk%20with%20cardamom%20almonds%20and%20raisins%2C%20comfort%20dessert%20served%20chilled%20with%20nuts%20garnish&width=400&height=250&seq=kheer1&orientation=landscape"
@@ -105,14 +54,12 @@ export default function DessertsPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Kheer</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 7.50
+                      CHF 8.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Rice pudding cooked in milk with cardamom, almonds, and raisins
-                  </p>
+                  <p className="text-gray-600 mb-4">Rice pudding</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-kheer', name: 'Kheer', price: 7.50, category: 'Traditional Sweets' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-kheer', name: 'Kheer', price: 8.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -121,33 +68,23 @@ export default function DessertsPage() {
                     <span>Add to Cart</span>
                   </button>
                 </div>
-              </div>
-            </div>
 
-            {/* Ice Creams & Cold Desserts */}
-            <div className="mb-20">
-              <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-                Cold Desserts
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Halwa */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=traditional%20kulfi%20indian%20ice%20cream%20flavored%20with%20cardamom%20and%20pistachios%2C%20dense%20and%20creamy%20unlike%20regular%20ice%20cream%20with%20authentic%20presentation&width=400&height=250&seq=kulfi1&orientation=landscape"
-                    alt="Kulfi"
+                    src="https://readdy.ai/api/search-image?query=indian%20semolina%20halwa%20sooji%20sheera%20garnished%20with%20nuts%20in%20a%20bowl&width=400&height=250&seq=halwa1&orientation=landscape"
+                    alt="Halwa"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Kulfi</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Halwa</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 6.50
+                      CHF 8.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Traditional Indian ice cream flavored with cardamom and pistachios
-                  </p>
+                  <p className="text-gray-600 mb-4">Semolina cake</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-kulfi', name: 'Kulfi', price: 6.50, category: 'Cold Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-halwa', name: 'Halwa', price: 8.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -157,23 +94,22 @@ export default function DessertsPage() {
                   </button>
                 </div>
 
+                {/* Gulab Jamun */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=refreshing%20falooda%20cold%20dessert%20drink%20with%20vermicelli%20basil%20seeds%20rose%20syrup%20and%20ice%20cream%2C%20summer%20treat%20with%20multiple%20textures%20and%20colorful%20layers&width=400&height=250&seq=falooda1&orientation=landscape"
-                    alt="Falooda"
+                    src="https://readdy.ai/api/search-image?query=gulab%20jamun%20indian%20sweets%20in%20sugar%20syrup%20served%20warm%20golden%20brown&width=400&height=250&seq=gj2&orientation=landscape"
+                    alt="Gulab Jamun"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Falooda</h3>
+                    <h3 className="text-xl font-semibold text-primary">Gulab Jamun</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 8.50
+                      CHF 10.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Cold dessert drink with vermicelli, basil seeds, rose syrup, and ice cream
-                  </p>
+                  <p className="text-gray-600 mb-4">Indian sweets</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-falooda', name: 'Falooda', price: 8.50, category: 'Cold Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun', name: 'Gulab Jamun', price: 10.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -183,23 +119,22 @@ export default function DessertsPage() {
                   </button>
                 </div>
 
+                {/* Pista Kulfi */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=perfect%20lassi%20chilled%20yogurt%20drink%20available%20in%20sweet%20or%20fresh%20mango%20flavor%2C%20refreshing%20drink%20for%20any%20meal%20with%20creamy%20presentation&width=400&height=250&seq=lassi1&orientation=landscape"
-                    alt="Lassi"
+                    src="https://readdy.ai/api/search-image?query=pistachio%20kulfi%20traditional%20indian%20ice%20cream%20on%20sticks%20or%20slices&width=400&height=250&seq=pistakulfi1&orientation=landscape"
+                    alt="Pista Kulfi"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Lassi (Sweet/Mango)</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Pista Kulfi</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 5.50
+                      CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Chilled yogurt drink, available in sweet or fresh mango flavor
-                  </p>
+                  <p className="text-gray-600 mb-4">Homemade ice cream with milk, pistachios, and cardamom</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-lassi', name: 'Lassi (Sweet/Mango)', price: 5.50, category: 'Cold Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-pista-kulfi', name: 'Pista Kulfi', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -208,33 +143,123 @@ export default function DessertsPage() {
                     <span>Add to Cart</span>
                   </button>
                 </div>
-              </div>
-            </div>
 
-            {/* Special Desserts */}
-            <div>
-              <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
-                Specialty Desserts
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Gulab Jamun Flambé */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=warm%20gajar%20halwa%20grated%20carrots%20cooked%20in%20milk%20ghee%20and%20sugar%20garnished%20with%20nuts%2C%20winter%20specialty%20dessert%20with%20rich%20orange%20color&width=400&height=250&seq=gajarhalwa1&orientation=landscape"
-                    alt="Gajar Halwa"
+                    src="https://readdy.ai/api/search-image?query=gulab%20jamun%20flambe%20with%20blue%20flame%20dessert%20presentation&width=400&height=250&seq=gjflambe1&orientation=landscape"
+                    alt="Gulab Jamun Flambé"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Gajar Halwa</h3>
+                    <h3 className="text-xl font-semibold text-primary">Gulab Jamun Flambé</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 14.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Indian sweets flambéed</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun-flambe', name: 'Gulab Jamun Flambé', price: 14.00, category: 'Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                {/* Mango Ice Cream */}
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=mango%20ice%20cream%20with%20mango%20coulis%20and%20glazed%20almonds%20dessert&width=400&height=250&seq=mangoice1&orientation=landscape"
+                    alt="Mango Ice Cream"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-secondary">Mango Ice Cream</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
+                      CHF 12.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">With mango coulis and glazed almonds</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-mango-ice-cream', name: 'Mango Ice Cream', price: 12.00, category: 'Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                {/* Mango Fresh */}
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=fresh%20pakistani%20mango%20dessert%20sliced%20elegant%20plating&width=400&height=250&seq=mangofresh1&orientation=landscape"
+                    alt="Mango Fresh"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-primary">Mango Fresh</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 12.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Fresh mango from Pakistan</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-mango-fresh', name: 'Mango Fresh', price: 12.00, category: 'Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                {/* Nirvana */}
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=exotic%20fresh%20fruit%20and%20mango%20sorbet%20dessert%20with%20ginger%20liqueur%20elegant%20plating&width=400&height=250&seq=nirvana1&orientation=landscape"
+                    alt="Nirvana"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-secondary">Nirvana</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
+                      CHF 14.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Exotic fresh fruit and mango sorbet with ginger liqueur</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-nirvana', name: 'Nirvana', price: 14.00, category: 'Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                {/* Orange Carpaccio */}
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=orange%20carpaccio%20thinly%20sliced%20oranges%20with%20cinnamon%20dessert%20plate&width=400&height=250&seq=orangecarp1&orientation=landscape"
+                    alt="Orange Carpaccio"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-primary">Orange Carpaccio</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
                       CHF 9.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Grated carrots cooked in milk, ghee, and sugar, garnished with nuts
-                  </p>
+                  <p className="text-gray-600 mb-4">With cinnamon</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-gajar-halwa', name: 'Gajar Halwa', price: 9.00, category: 'Specialty Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-orange-carpaccio', name: 'Orange Carpaccio', price: 9.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -244,23 +269,22 @@ export default function DessertsPage() {
                   </button>
                 </div>
 
+                {/* Dame Blanche */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=innovative%20ras%20malai%20cake%20fusion%20dessert%20combining%20traditional%20ras%20malai%20with%20modern%20cake%20layers%2C%20chef%20special%20creation%20with%20elegant%20presentation&width=400&height=250&seq=rasmalaicake1&orientation=landscape"
-                    alt="Ras Malai Cake"
+                    src="https://readdy.ai/api/search-image?query=dame%20blanche%20vanilla%20ice%20cream%20with%20chocolate%20sauce%20and%20whipped%20cream&width=400&height=250&seq=dameblanche1&orientation=landscape"
+                    alt="Dame Blanche"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Ras Malai Cake</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Dame Blanche</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 10.50
+                      CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Fusion dessert combining traditional ras malai with modern cake layers
-                  </p>
+                  <p className="text-gray-600 mb-4">Vanilla ice cream with chocolate sauce and whipped cream</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-ras-malai-cake', name: 'Ras Malai Cake', price: 10.50, category: 'Specialty Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-dame-blanche', name: 'Dame Blanche', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -270,24 +294,48 @@ export default function DessertsPage() {
                   </button>
                 </div>
 
+                {/* Sorbets and Alcoholic Ice Creams */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=crispy%20jalebi%20with%20rabri%20spiral%20sweets%20served%20with%20thick%20sweetened%20milk%20cream%2C%20perfect%20combination%20of%20textures%20and%20flavors%20with%20golden%20presentation&width=400&height=250&seq=jalebirabri1&orientation=landscape"
-                    alt="Jalebi with Rabri"
+                    src="https://readdy.ai/api/search-image?query=pear%20sorbet%20with%20brandy%20and%20prune%20ice%20cream%20with%20whisky%20dessert&width=400&height=250&seq=alcsorbet1&orientation=landscape"
+                    alt="Sorbets and Alcoholic Ice Creams"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Jalebi with Rabri</h3>
-                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 11.50
+                    <h3 className="text-xl font-semibold text-primary">Sorbets and Alcoholic Ice Creams</h3>
+                    <span className="block w-auto text-center text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 14.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Crispy spiral sweets served with thick sweetened milk cream
-                  </p>
+                  <p className="text-gray-600 mb-4">Pear sorbet with brandy, prune ice cream with whisky</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-jalebi-rabri', name: 'Jalebi with Rabri', price: 11.50, category: 'Specialty Desserts' })}
+                    onClick={() => handleAddToCart({ id: 'dessert-sorbets-alcoholic', name: 'Sorbets and Alcoholic Ice Creams', price: 14.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                {/* Mango Ice Cream Flavours */}
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=assorted%20ice%20cream%20scoops%20raspberry%20strawberry%20passion%20fruit%20mango%20lemon%20lime%20espresso%20chocolate%20vanilla%20pear&width=400&height=250&seq=iceflavours1&orientation=landscape"
+                    alt="Ice Cream Flavours"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-secondary">Ice Cream Flavours</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
+                      CHF 6.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Raspberry & Strawberry, Passion fruit & mango, Lemon and lime, Espresso Crunch, Swiss Chocolate, Vanilla Dream, Pear</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'dessert-ice-cream-flavours', name: 'Ice Cream Flavours', price: 16.00, category: 'Desserts' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>

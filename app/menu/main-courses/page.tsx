@@ -32,7 +32,7 @@ export default function MainCoursesPage() {
       id: 'king-prawns-balti',
       name: 'King Prawns Balti',
       price: 39.00,
-      description: 'Tomato sauce; fresh herbs with spicy flavours',
+      description: 'Tomato sauce, fresh herbs with spicy flavours',
       frenchDescription: 'Gambas sautées à l\'Ail; Sauce Tomate épicée; Herbes Fraîches',
       image: 'https://readdy.ai/api/search-image?query=king%20prawns%20balti%20large%20succulent%20prawns%20cooked%20in%20rich%20tomato%20sauce%20with%20fresh%20herbs%20and%20aromatic%20spices%20served%20in%20traditional%20balti%20dish%20garnished%20with%20coriander%20and%20green%20chilies%2C%20vibrant%20red%20sauce&width=400&height=300&seq=main1&orientation=landscape'
     },
@@ -40,7 +40,7 @@ export default function MainCoursesPage() {
       id: 'kerala-prawns-masala',
       name: 'Kerala Prawns Masala',
       price: 39.00,
-      description: 'Prawns (shelled); fine Masala curry with coconut flavours',
+      description: 'Prawns (shelled) in fine masala curry with coconut flavours',
       frenchDescription: 'Gambas (décortiquées) aux épices; Feuilles de Curry; Lait de Coco',
       image: 'https://readdy.ai/api/search-image?query=kerala%20prawns%20masala%20shelled%20prawns%20in%20coconut%20curry%20with%20curry%20leaves%20mustard%20seeds%20and%20south%20indian%20spices%20creamy%20white%20coconut%20gravy%20garnished%20with%20fresh%20curry%20leaves%20and%20red%20chilies&width=400&height=300&seq=main2&orientation=landscape'
     },
@@ -48,7 +48,7 @@ export default function MainCoursesPage() {
       id: 'butter-chicken',
       name: 'Butter Chicken',
       price: 33.00,
-      description: 'Grilled Chicken; cinnamon creamy almonds sauce',
+      description: 'Grilled chicken, cinnamon creamy almond sauce',
       frenchDescription: 'Suprême Grillé; Sauce à la crème d\'Amandes; Cannelles aux épices',
       image: 'https://readdy.ai/api/search-image?query=butter%20chicken%20tender%20grilled%20chicken%20pieces%20in%20rich%20creamy%20orange%20tomato%20sauce%20with%20almonds%20and%20cinnamon%20garnished%20with%20fresh%20cream%20swirl%20and%20coriander%20leaves%2C%20luxurious%20orange%20color&width=400&height=300&seq=main3&orientation=landscape'
     },
@@ -56,7 +56,7 @@ export default function MainCoursesPage() {
       id: 'chicken-tikka-masala',
       name: 'Chicken Tikka Masala',
       price: 33.00,
-      description: 'Grilled Chicken; Tikka Masala sauce; ginger; green chilies; coriander',
+      description: 'Grilled chicken in tikka masala sauce with ginger, green chilies, coriander',
       frenchDescription: 'Parts de Suprêmes Grillés; Sauce Tikka Masala; Saveur épicées',
       image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
     }
@@ -86,6 +86,14 @@ export default function MainCoursesPage() {
       description: 'Traditional lamb curry',
       frenchDescription: 'Agneau traditionnel',
       image: 'https://readdy.ai/api/search-image?query=traditional%20lamb%20curry%20succulent%20lamb%20pieces%20in%20aromatic%20indian%20curry%20sauce%20with%20whole%20spices%20bay%20leaves%20and%20fresh%20herbs%20slow%20cooked%20for%20tender%20texture%2C%20rich%20brown%20gravy&width=400&height=300&seq=main7&orientation=landscape'
+    },
+    {
+      id: 'paneer-traditional',
+      name: 'Paneer',
+      price: 25.00,
+      description: 'Base price',
+      frenchDescription: 'Paneer traditionnel',
+      image: 'https://readdy.ai/api/search-image?query=paneer%20curry%20traditional%20indian%20cottage%20cheese%20cubes%20in%20spiced%20gravy%20with%20tomatoes%20onions%20and%20herbs%20garnished%20with%20coriander&width=400&height=300&seq=main12&orientation=landscape'
     }
   ];
 
@@ -94,7 +102,7 @@ export default function MainCoursesPage() {
       id: 'lamb-chops',
       name: 'Lamb Chops',
       price: 48.00,
-      description: 'Marinated Lamb chops grilled (~300g) - Sauce on your Choice: Rogan; Vindaloo; Korma; Jalfrezi; Madras',
+      description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
       frenchDescription: 'En Marinade Grillées (~300g) - Sauce au Choix : Rogan; Vindaloo; Korma; Jalfrezi; Madras',
       image: 'https://readdy.ai/api/search-image?query=grilled%20lamb%20chops%20marinated%20lamb%20chops%20with%20perfect%20char%20marks%20served%20on%20sizzling%20platter%20with%20choice%20of%20curry%20sauce%20and%20grilled%20vegetables%20garnished%20with%20rosemary%20and%20lemon%20wedges&width=400&height=300&seq=main8&orientation=landscape'
     },
@@ -102,7 +110,7 @@ export default function MainCoursesPage() {
       id: 'lamb-shank',
       name: 'Lamb Shank',
       price: 48.00,
-      description: 'Slow cooked lamb Shank; Traditional Kashmiri sauce flavours herbs',
+      description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
       frenchDescription: 'Souris d\'Agneau cuite à basse température; curry traditionnel du Cachemire',
       image: 'https://readdy.ai/api/search-image?query=slow%20cooked%20lamb%20shank%20tender%20lamb%20shank%20in%20traditional%20kashmiri%20sauce%20with%20aromatic%20herbs%20and%20spices%20fall-off-the-bone%20texture%20garnished%20with%20saffron%20and%20almonds%2C%20rich%20reddish%20curry&width=400&height=300&seq=main9&orientation=landscape'
     },
@@ -110,7 +118,7 @@ export default function MainCoursesPage() {
       id: 'grilled-sea-bream',
       name: 'Grilled Sea Bream Filets',
       price: 45.00,
-      description: 'Grilled Sea Bream Filets garnished with coconut sauce',
+      description: 'Garnished with coconut sauce',
       frenchDescription: 'Filet de Dorade Grillés; Sauce à la Noix de Coco',
       image: 'https://readdy.ai/api/search-image?query=grilled%20sea%20bream%20fillets%20perfectly%20cooked%20fish%20with%20light%20char%20marks%20served%20with%20creamy%20coconut%20curry%20sauce%20garnished%20with%20curry%20leaves%20and%20lime%20wedges%2C%20white%20fish%20with%20coconut%20cream&width=400&height=300&seq=main10&orientation=landscape'
     },
@@ -118,7 +126,7 @@ export default function MainCoursesPage() {
       id: 'omble-chevalier',
       name: 'Omble Chevalier',
       price: 49.00,
-      description: 'Grilled Omble Chevalier filets; curry sauce',
+      description: 'Grilled Omble Chevalier filets with curry sauce',
       frenchDescription: 'Filet d\'Omble Chevalier Grillés à l\'uni latéral, sauce au curry - selon arrivage de la Pêche',
       image: 'https://readdy.ai/api/search-image?query=grilled%20omble%20chevalier%20arctic%20char%20fillets%20with%20golden%20crust%20served%20with%20aromatic%20curry%20sauce%20and%20seasonal%20vegetables%20garnished%20with%20microgreens%20and%20lemon%2C%20premium%20fish%20presentation&width=400&height=300&seq=main11&orientation=landscape'
     }
@@ -195,8 +203,17 @@ export default function MainCoursesPage() {
             <div className="mb-16">
               <div className="text-center mb-12">
                 <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Traditional Dishes</h2>
-                {/* <div className="text-lg text-primary mb-4">Traditional Dishes</div> */}
-                <p className="text-gray-600 mb-8">Choose your main dishes with your favorite sauce... Enjoy!</p>
+                <p className="text-gray-700 mb-2">Choose your main dish with one of the following sauces:</p>
+                <div className="max-w-3xl mx-auto text-left text-gray-600">
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li><span className="font-medium text-gray-700">Korma</span> – Creamy sauce of almonds and cashew nuts</li>
+                    <li><span className="font-medium text-gray-700">Karahi</span> – Coriander, ginger, green chilli, onion sauce</li>
+                    <li><span className="font-medium text-gray-700">Madras</span> – Madras curry sauce, coriander</li>
+                    <li><span className="font-medium text-gray-700">Vindaloo</span> – Goan vindaloo curry, coriander</li>
+                    <li><span className="font-medium text-gray-700">Jalfrezi</span> – Coriander, ginger, green chillies, hot spices Jalfrezi sauce</li>
+                    <li><span className="font-medium text-gray-700">Sagwala</span> – Spinach stir-fry, fenugreek sauce with spicy flavours</li>
+                  </ul>
+                </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">

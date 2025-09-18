@@ -46,21 +46,19 @@ export default function VeganPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=delicious%20chana%20masala%20chickpeas%20cooked%20in%20aromatic%20tomato%20and%20onion%20gravy%20with%20traditional%20spices%2C%20rich%20plant-based%20curry%20presentation%20with%20fresh%20herbs&width=400&height=250&seq=chanamasala1&orientation=landscape"
-                    alt="Chana Masala"
+                    src="https://readdy.ai/api/search-image?query=classic%20baingan%20bharta%20smoked%20roasted%20eggplant%20mashed%20with%20onions%20tomatoes%20and%20spices%2C%20authentic%20north%20indian%20curry&width=400&height=250&seq=veg_baingan2&orientation=landscape"
+                    alt="Baignan Bartha"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Chana Masala</h3>
+                    <h3 className="text-xl font-semibold text-primary">Baignan Bartha</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 16.50
+                      CHF 24.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Chickpeas cooked in aromatic tomato and onion gravy with traditional spices
-                  </p>
+                  <p className="text-gray-600 mb-4">Classic Smoked 'Brenjals'</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-chana-masala', name: 'Chana Masala', price: 16.50, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-baingan-bartha', name: 'Baignan Bartha', price: 24.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -72,21 +70,19 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=traditional%20dal%20tadka%20yellow%20lentils%20tempered%20with%20cumin%20mustard%20seeds%20and%20fresh%20herbs%2C%20classic%20comfort%20vegan%20food%20with%20aromatic%20spices&width=400&height=250&seq=daltadka1&orientation=landscape"
-                    alt="Dal Tadka"
+                    src="https://readdy.ai/api/search-image?query=bhindi%20masala%20lady%20fingers%20okra%20simmered%20with%20onions%20cumin%20and%20coriander%2C%20dry%20curry&width=400&height=250&seq=veg_bhindi2&orientation=landscape"
+                    alt="Bhindi Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-secondary">Dal Tadka</h3>
+                    <h3 className="text-xl font-semibold text-secondary">Bhindi Masala</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 14.50
+                      CHF 24.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Yellow lentils tempered with cumin, mustard seeds, and fresh herbs
-                  </p>
+                  <p className="text-gray-600 mb-4">Simmered 'Lady Fingers' with Onions; Cumin; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-dal-tadka', name: 'Dal Tadka', price: 14.50, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-bhindi-masala', name: 'Bhindi Masala', price: 24.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -98,21 +94,115 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=smoky%20baingan%20bharta%20roasted%20eggplant%20mashed%20with%20onions%20tomatoes%20and%20aromatic%20spices%2C%20traditional%20preparation%20with%20vibrant%20colors%20and%20garnishes&width=400&height=250&seq=bainganb1&orientation=landscape"
-                    alt="Baingan Bharta"
+                    src="https://readdy.ai/api/search-image?query=dal%20tadka%20yellow%20lentils%20tempered%20indian%20style%20with%20coriander%20comfort%20food&width=400&height=250&seq=veg_dal_tarka1&orientation=landscape"
+                    alt="Daal Tarka"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-semibold text-primary">Baingan Bharta</h3>
+                    <h3 className="text-xl font-semibold text-primary">Daal Tarka</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 17.50
+                      CHF 22.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">
-                    Roasted eggplant mashed with onions, tomatoes, and aromatic spices
-                  </p>
+                  <p className="text-gray-600 mb-4">Indian Style; Yellow Lentils; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-baingan-bharta', name: 'Baingan Bharta', price: 17.50, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-daal-tarka', name: 'Daal Tarka', price: 22.00, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=chana%20masala%20traditional%20chickpeas%20masala%20curry%20with%20coriander%20rich%20tomato%20gravy&width=400&height=250&seq=veg_chana2&orientation=landscape"
+                    alt="Chana Masala"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-secondary">Chana Masala</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
+                      CHF 22.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Traditional Chickpeas Masala; Curry; Coriander</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-chana-masala', name: 'Chana Masala', price: 22.00, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=palak%20aloo%20spinach%20and%20potatoes%20simmered%20indian%20curry%20comforting%20green%20dish&width=400&height=250&seq=veg_palak_aloo1&orientation=landscape"
+                    alt="Palak Aloo"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-primary">Palak Aloo</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 24.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Simmered Potatoes; Spinach</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-palak-aloo', name: 'Palak Aloo', price: 24.00, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=aloo%20gobi%20potatoes%20and%20cauliflower%20simmered%20with%20coriander%20dry%20curry%20golden&width=400&height=250&seq=veg_aloo_gobi2&orientation=landscape"
+                    alt="Aloo Gobi"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-secondary">Aloo Gobi</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
+                      CHF 24.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Simmered Potatoes; Cauliflowers; Coriander</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-aloo-gobi', name: 'Aloo Gobi', price: 24.00, category: 'Vegan Curries' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=dam%20aloo%20baby%20potatoes%20cooked%20with%20cumin%20and%20curry%20leaves%20delicious%20indian%20curry&width=400&height=250&seq=veg_dam_aloo1&orientation=landscape"
+                    alt="Dam Aloo"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-primary">Dam Aloo</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 22.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">Baby Potatoes cooked with Curmin; Curry Leaves</p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'vegan-dam-aloo', name: 'Dam Aloo', price: 22.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -125,7 +215,7 @@ export default function VeganPage() {
             </div>
 
             {/* Vegan Rice & Breads */}
-            <div className="mb-20">
+            {/* <div className="mb-20">
               <h2 className="text-4xl font-bold text-center mb-12 text-primary">
                 Rice & Breads
               </h2>
@@ -209,10 +299,10 @@ export default function VeganPage() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Vegan Appetizers */}
-            <div>
+            {/* <div>
               <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
                 Vegan Appetizers
               </h2>
@@ -296,7 +386,7 @@ export default function VeganPage() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Order Section */}
             <div className="mt-20 text-center">

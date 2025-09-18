@@ -93,10 +93,10 @@ export default function MenuPage() {
                 <div className="p-8">
                   <p className="text-gray-600 text-lg font-light mb-8">
                     Discover our carefully curated wine collection featuring exceptional bottles 
-                    from France and around the world, perfectly paired with Indian cuisine.
+                    from Swiss, France and around the world, perfectly paired with Indian cuisine.
                   </p>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <Link href="/wines/white-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">White Wines</div>
                     </Link>
