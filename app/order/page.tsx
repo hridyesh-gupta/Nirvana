@@ -38,7 +38,7 @@ export default function OrderPage() {
             {groupedProducts[category].map((product: Product) => (
               <div key={product.id} className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-between p-6">
                 <h3 className="text-xl font-playfair text-gray-800 mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
+                <p className="text-gray-600 mb-4">CHF {product.price.toFixed(2)}</p>
                 <button
                   onClick={() => addItem(product)}
                   className="bg-primary text-white px-4 py-2 rounded-md hover:bg-secondary transition-colors mt-auto"
