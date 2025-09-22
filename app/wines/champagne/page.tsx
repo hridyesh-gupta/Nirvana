@@ -27,48 +27,59 @@ export default function ChampagnePage() {
     updateQuantity(id, quantity);
   };
 
-  const champagnes = [
+  const handleAddVariant = (baseId: string, name: string, variant: string, price: number) => {
+    const id = `${baseId}-${variant.toLowerCase().replace(/\s+/g, '-')}`;
+    handleAddToCart({ id, name: `${name} (${variant})`, price });
+  };
+
+  const champagnesList = [
     {
-      id: 'dom-perignon',
-      name: 'Dom Pérignon Vintage',
-      description: 'Legendary prestige cuvée champagne with exceptional elegance',
-      price: 280.00,
-      image: 'https://readdy.ai/api/search-image?query=dom%20perignon%20vintage%20champagne%20legendary%20prestige%20cuvee%20elegant%20bottle%20luxury%20champagne%20service%20fine%20dining%20restaurant%20professional%20photography%20golden%20bubbles&width=400&height=300&seq=champagne1&orientation=landscape'
-    },
-    {
-      id: 'krug-grande-cuvee',
-      name: 'Krug Grande Cuvée',
-      description: 'Complex and rich champagne with multiple vintage blend',
-      price: 220.00,
-      image: 'https://readdy.ai/api/search-image?query=krug%20grande%20cuvee%20champagne%20complex%20rich%20multiple%20vintage%20blend%20luxury%20champagne%20bottle%20elegant%20flute%20glass%20professional%20sommelier%20photography&width=400&height=300&seq=champagne2&orientation=landscape'
-    },
-    {
-      id: 'cristal-roederer',
-      name: 'Louis Roederer Cristal',
-      description: 'Premium champagne with crystal-clear bottle and exceptional purity',
-      price: 350.00,
-      image: 'https://readdy.ai/api/search-image?query=louis%20roederer%20cristal%20champagne%20premium%20crystal%20clear%20bottle%20exceptional%20purity%20luxury%20champagne%20service%20elegant%20restaurant%20presentation%20professional&width=400&height=300&seq=champagne3&orientation=landscape'
-    },
-    {
-      id: 'bollinger-special',
-      name: 'Bollinger Special Cuvée',
-      description: 'Full-bodied champagne with distinctive character and depth',
-      price: 120.00,
-      image: 'https://readdy.ai/api/search-image?query=bollinger%20special%20cuvee%20champagne%20full%20bodied%20distinctive%20character%20depth%20elegant%20champagne%20bottle%20professional%20restaurant%20service%20bubbles&width=400&height=300&seq=champagne4&orientation=landscape'
-    },
-    {
-      id: 'laurent-perrier-rose',
-      name: 'Laurent-Perrier Rosé',
-      description: 'Elegant rosé champagne with delicate salmon color',
-      price: 150.00,
-      image: 'https://readdy.ai/api/search-image?query=laurent%20perrier%20rose%20champagne%20elegant%20salmon%20color%20delicate%20pink%20bubbles%20luxury%20champagne%20bottle%20fine%20dining%20restaurant%20professional%20photography&width=400&height=300&seq=champagne5&orientation=landscape'
-    },
-    {
-      id: 'veuve-clicquot',
-      name: 'Veuve Clicquot Brut',
-      description: 'Classic champagne with perfect balance and crisp finish',
+      id: 'deutz-brut-classic',
+      name: 'Deutz Brut Classic',
+      description: '',
       price: 95.00,
-      image: 'https://readdy.ai/api/search-image?query=veuve%20clicquot%20brut%20champagne%20classic%20perfect%20balance%20crisp%20finish%20iconic%20orange%20label%20champagne%20bottle%20elegant%20service%20professional%20photography&width=400&height=300&seq=champagne6&orientation=landscape'
+      image: 'https://readdy.ai/api/search-image?query=deutz%20brut%20classic%20champagne%20bottle&width=400&height=300&seq=champagne-1&orientation=landscape'
+    },
+    {
+      id: 'deutz-brut-rose',
+      name: 'Deutz Brut Rosé',
+      description: '',
+      price: 139.00,
+      image: 'https://readdy.ai/api/search-image?query=deutz%20brut%20rose%20champagne%20bottle&width=400&height=300&seq=champagne-2&orientation=landscape'
+    },
+    {
+      id: 'gosset-extra-brut',
+      name: 'Gosset Extra Brut',
+      description: '',
+      price: 145.00,
+      image: 'https://readdy.ai/api/search-image?query=gosset%20extra%20brut%20champagne%20bottle&width=400&height=300&seq=champagne-3&orientation=landscape'
+    },
+    {
+      id: 'gosset-la-grande-cuvee',
+      name: 'Gosset La Grande Cuvée (BT 37.5 DL)',
+      description: '',
+      price: 59.00,
+      image: 'https://readdy.ai/api/search-image?query=gosset%20la%20grande%20cuvee%20champagne%20bottle&width=400&height=300&seq=champagne-4&orientation=landscape'
+    },
+    {
+      id: 'veuve-clicquot-cuvee-la-grande-dame',
+      name: 'Veuve Clicquot Cuvée La Grande Dame 2004',
+      description: '',
+      price: 299.00,
+      image: 'https://readdy.ai/api/search-image?query=veuve%20clicquot%20cuvee%20la%20grande%20dame%202004%20champagne%20bottle&width=400&height=300&seq=champagne-5&orientation=landscape'
+    }
+  ];
+
+  const proseccoList = [
+    {
+      id: 'prosecco-risteri-bresolin-enrico',
+      name: 'Prosecco Risseri – Bresolin Enrico',
+      description: 'Maser, Province of Treviso 2021 (Nature Blanc). Pale straw yellow, very fine and abundant bubbles. Intense aroma with notes of apple and citrus fruits, accompanied by a floral hint of acacia. On the palate, fresh expression, delicate, and elegant with a saline finish. Certified Organic and Vegan.',
+      image: 'https://readdy.ai/api/search-image?query=prosecco%20risteri%20bresolin%20enrico%20maser%202021%20nature%20blanc%20organic%20vegan%20bottle&width=400&height=300&seq=prosecco-1&orientation=landscape',
+      variants: [
+        { label: '10 cl', price: 9.00 },
+        { label: '75 cl', price: 55.00 }
+      ]
     }
   ];
 
@@ -81,57 +92,50 @@ export default function ChampagnePage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Champagnes
+                Champagnes & Sparkling Wines
               </h1>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
-                Celebrate special moments with our prestigious champagne collection, featuring
-                the world's finest houses and their most exceptional cuvées.
+                Celebrate special moments with our prestigious champagne collection and delightful sparkling wines.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {champagnes.map((champagne) => (
-                <div
-                  key={champagne.id}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-secondary"
-                >
+            {/* Champagnes */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Champagnes</h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {champagnesList.map((champagne) => (
                   <div
-                    className="h-56 bg-cover bg-center relative"
-                    style={{ backgroundImage: `url(${champagne.image})` }}
+                    key={champagne.id}
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-secondary"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute top-4 right-4">
-                      <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
-                        CHF {champagne.price.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
-                        <i className="ri-goblet-fill"></i>
-                        <span>Prestige</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
-                      {champagne.name}
-                    </h3>
-
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                      {champagne.description}
-                    </p>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
-                        <span className="text-sm text-gray-500 font-medium">Champagne AOC</span>
+                    <div
+                      className="h-56 bg-cover bg-center relative"
+                      style={{ backgroundImage: `url(${champagne.image})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute top-4 right-4">
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {champagne.price.toFixed(2)}
+                        </span>
                       </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
+                        {champagne.name}
+                      </h3>
+
+                      <p className="text-gray-600 leading-relaxed mb-6">
+                        {champagne.description}
+                      </p>
 
                       <button
                         onClick={() => handleAddToCart(champagne)}
-                        className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                       >
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
@@ -140,10 +144,55 @@ export default function ChampagnePage() {
                       </button>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
+            {/* Sparkling Wines (Prosecco) */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Sparkling Wines</h2>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {proseccoList.map((prosecco) => (
+                  <div
+                    key={prosecco.id}
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary"
+                  >
+                    <div
+                      className="h-56 bg-cover bg-center relative"
+                      style={{ backgroundImage: `url(${prosecco.image})` }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
+                          {prosecco.name}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 mb-6">{prosecco.description}</p>
+                      {('variants' in prosecco) ? (
+                        <div className="grid grid-cols-1 gap-3">
+                          {(prosecco as any).variants.map((v: any) => (
+                            <button
+                              key={v.label}
+                              onClick={() => handleAddVariant(prosecco.id, prosecco.name, v.label, v.price)}
+                              className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                            >
+                              <span>Add {v.label}</span>
+                              <span className="font-bold">CHF {v.price.toFixed(2)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (null)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* The Art of Champagne Section */}
             <div className="rounded-2xl p-8 border-2 mb-16 bg-gray-50 border-secondary">
               <div className="text-center mb-8">
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
@@ -180,6 +229,7 @@ export default function ChampagnePage() {
               </div>
             </div>
 
+            {/* Champagne & Indian Cuisine Section */}
             <div className="rounded-2xl p-12 text-white text-center bg-gradient-to-r from-primary to-secondary">
               <div className="max-w-3xl mx-auto">
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">

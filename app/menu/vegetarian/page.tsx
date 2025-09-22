@@ -46,7 +46,7 @@ export default function VegetarianPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=matar%20paneer%20creamy%20green%20peas%20sauce%20with%20paneer%20onions%20ginger%20masala%2C%20vibrant%20north%20indian%20curry&width=400&height=250&seq=matarpaneer1&orientation=landscape"
+                    src="/images/Matar-Paneer.jpg"
                     alt="Matar Paneer"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

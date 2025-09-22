@@ -122,7 +122,7 @@ export default function DessertsPage() {
                 {/* Pista Kulfi */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=pistachio%20kulfi%20traditional%20indian%20ice%20cream%20on%20sticks%20or%20slices&width=400&height=250&seq=pistakulfi1&orientation=landscape"
+                    src="/images/Pista-Kulfi.jpg"
                     alt="Pista Kulfi"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

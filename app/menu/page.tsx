@@ -106,15 +106,15 @@ export default function MenuPage() {
                     <Link href="/wines/red-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Red Wines</div>
                     </Link>
-                    <Link href="/wines/world-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
+                    {/* <Link href="/wines/world-wines" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">World Wines</div>
-                    </Link>
+                    </Link> */}
                     <Link href="/wines/champagne" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Champagnes</div>
                     </Link>
-                    <Link href="/wines/magnums" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
+                    {/* <Link href="/wines/magnums" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Magnums</div>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>

@@ -27,44 +27,30 @@ export default function RoseWinesPage() {
     updateQuantity(id, quantity);
   };
 
-  const roseWines = [
+  const swissRoseWines = [
     {
-      id: 'provence-rose',
-      name: 'Côtes de Provence Rosé',
-      description: 'Elegant and dry rosé from the heart of Provence',
-      price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=elegant%20cotes%20de%20provence%20rose%20wine%20bottle%20with%20pale%20pink%20wine%20in%20glass%20dry%20provence%20rose%20professional%20wine%20photography%20restaurant%20setting%20summer%20vibes&width=400&height=300&seq=rosewine1&orientation=landscape'
+      id: 'oeil-de-perdrix-domaine-des-bossons',
+      name: 'Oeil de Perdrix',
+      description: 'Domaine des Bossons 2021 – Geneva',
+      price: 49.00,
+      image: 'https://readdy.ai/api/search-image?query=oeil%20de%20perdrix%20domaine%20des%20bossons%202021%20rose%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=rose-swiss-1&orientation=landscape'
     },
     {
-      id: 'bandol-rose',
-      name: 'Bandol Rosé',
-      description: 'Premium rosé with exceptional depth and complexity',
-      price: 85.00,
-      image: 'https://readdy.ai/api/search-image?query=premium%20bandol%20rose%20wine%20complex%20depth%20pale%20salmon%20color%20wine%20bottle%20elegant%20glass%20sophisticated%20wine%20photography%20fine%20dining%20restaurant%20luxury&width=400&height=300&seq=rosewine2&orientation=landscape'
-    },
-    {
-      id: 'tavel-rose',
-      name: 'Tavel Rosé',
-      description: 'Full-bodied rosé from the Rhône Valley',
-      price: 70.00,
-      image: 'https://readdy.ai/api/search-image?query=tavel%20rose%20rhone%20valley%20full%20bodied%20rose%20wine%20rich%20pink%20color%20wine%20bottle%20professional%20sommelier%20photography%20restaurant%20wine%20service%20elegant%20presentation&width=400&height=300&seq=rosewine3&orientation=landscape'
+      id: 'rose-de-lune-les-balisiers',
+      name: 'Rosé de Lune',
+      description: 'Les Balisiers 2021 – Geneva',
+      price: 49.00,
+      image: 'https://readdy.ai/api/search-image?query=rose%20de%20lune%20les%20balisiers%202021%20rose%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=rose-swiss-2&orientation=landscape'
     }
   ];
 
-  const roseByGlass = [
+  const frenchRoseWines = [
     {
-      id: 'rose-glass-1',
-      name: 'Côtes du Rhône Rosé',
-      description: 'Fresh and fruity Rhône Valley rosé (1 dl)',
-      price: 13.00,
-      image: 'https://readdy.ai/api/search-image?query=cotes%20du%20rhone%20rose%20by%20glass%20fresh%20fruity%20rhone%20valley%20wine%20elegant%20wine%20glass%20restaurant%20service%20professional%20photography%20pink%20wine&width=400&height=300&seq=roseglass1&orientation=landscape'
-    },
-    {
-      id: 'rose-glass-2',
-      name: 'Languedoc Rosé',
-      description: 'Mediterranean-style rosé with vibrant fruit flavors (1 dl)',
-      price: 12.00,
-      image: 'https://readdy.ai/api/search-image?query=languedoc%20rose%20mediterranean%20style%20wine%20by%20glass%20vibrant%20fruit%20flavors%20pink%20wine%20elegant%20service%20restaurant%20photography%20professional%20lighting&width=400&height=300&seq=roseglass2&orientation=landscape'
+      id: 'domaine-des-campaux-cotes-de-provence',
+      name: 'Domaine des Campaux – Côtes de Provence',
+      description: '2024 - A fruity rosé with a dominance of strawberries and red fruits, with a delicate finish and a touch of acidity. Pairing: Butter Chicken Curry',
+      price: 55.00,
+      image: 'https://readdy.ai/api/search-image?query=domaine%20des%20campaux%20c%C3%B4tes%20de%20provence%202024%20rose%20wine%20bottle%20france%20provence&width=400&height=300&seq=rose-french-1&orientation=landscape'
     }
   ];
 
@@ -82,14 +68,14 @@ export default function RoseWinesPage() {
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
 
-            {/* Premium Rosé Wines */}
+            {/* Swiss Rosé Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Premium Rosé Collection</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Swiss Rosé Wines</h2>
+                <p className="text-gray-600">Discover our exquisite selection of Swiss rosé wines, perfect for any occasion.</p>
               </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {roseWines.map((wine) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {swissRoseWines.map((wine) => (
                   <div
                     key={wine.id}
                     className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary"
@@ -104,57 +90,40 @@ export default function RoseWinesPage() {
                           CHF {wine.price.toFixed(2)}
                         </span>
                       </div>
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
-                          <i className="ri-heart-line"></i>
-                          <span>Rosé</span>
-                        </span>
-                      </div>
                     </div>
-
                     <div className="p-6">
                       <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {wine.name}
                       </h3>
-
                       <p className="text-gray-600 leading-relaxed mb-6">
                         {wine.description}
                       </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
-                          <span className="text-sm text-gray-500 font-medium">European Rosé</span>
+                      <button
+                        onClick={() => handleAddToCart(wine)}
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                      >
+                        <div className="w-5 h-5 flex items-center justify-center">
+                          <i className="ri-add-line"></i>
                         </div>
-
-                        <button
-                          onClick={() => handleAddToCart(wine)}
-                          className="text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                        >
-                          <div className="w-5 h-5 flex items-center justify-center">
-                            <i className="ri-add-line"></i>
-                          </div>
-                          <span>Add to Cart</span>
-                        </button>
-                      </div>
+                        <span>Add to Cart</span>
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Rosé by the Glass */}
+            {/* French Rosé Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Rosé by the Glass</h2>
-                <p className="text-gray-600">Perfect for a refreshing start to your meal</p>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">French Rosé Wines</h2>
+                <p className="text-gray-600">Explore our refined selection of French rosé wines.</p>
               </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {roseByGlass.map((wine) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {frenchRoseWines.map((wine) => (
                   <div
                     key={wine.id}
-                    className="bg-gradient-to-br from-primary/50 to-secondary/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border border-primary"
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-secondary"
                   >
                     <div
                       className="h-48 bg-cover bg-center relative"
@@ -162,42 +131,27 @@ export default function RoseWinesPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute top-4 right-4">
-                        <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                           CHF {wine.price.toFixed(2)}
                         </span>
                       </div>
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                          1 dl Glass
-                        </span>
-                      </div>
                     </div>
-
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                         {wine.name}
                       </h3>
-
                       <p className="text-gray-600 leading-relaxed mb-6">
                         {wine.description}
                       </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full" />
-                          <span className="text-sm text-gray-500 font-medium">By Glass</span>
+                      <button
+                        onClick={() => handleAddToCart(wine)}
+                        className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                      >
+                        <div className="w-5 h-5 flex items-center justify-center">
+                          <i className="ri-add-line"></i>
                         </div>
-
-                        <button
-                          onClick={() => handleAddToCart(wine)}
-                          className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 whitespace-nowrap cursor-pointer"
-                        >
-                          <div className="w-5 h-5 flex items-center justify-center">
-                            <i className="ri-add-line"></i>
-                          </div>
-                          <span>Add to Cart</span>
-                        </button>
-                      </div>
+                        <span>Add to Cart</span>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -223,7 +177,7 @@ export default function RoseWinesPage() {
                   <p className="text-gray-600">The acidity in rosé wines helps balance the heat and intensity of our spiced dishes</p>
                 </div>
 
-                <div className="text-center">
+                <div>
                   <div className="w-16 h-16 bg-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-leaf-line text-white text-2xl"></i>
                   </div>
@@ -231,7 +185,7 @@ export default function RoseWinesPage() {
                   <p className="text-gray-600">Rosé provides a refreshing palate cleanser between different curry courses</p>
                 </div>
 
-                <div className="text-center">
+                <div>
                   <div className="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-restaurant-line text-white text-2xl"></i>
                   </div>

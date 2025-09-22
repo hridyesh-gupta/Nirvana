@@ -24,16 +24,16 @@ export const products: Product[] = [
   { id: 'black-pepper-chicken-tikka-main', name: 'Black Pepper Chicken Tikka (Main)', price: 29.00, category: 'Tandoori Grills' },
   { id: 'gilafi-seekh-kebab-starter', name: 'Gilafi Seekh Kebab (Starter)', price: 25.00, category: 'Tandoori Grills' },
   { id: 'gilafi-seekh-kebab-main', name: 'Gilafi Seekh Kebab (Main)', price: 33.00, category: 'Tandoori Grills' },
-  { id: 'salmon-tikka-starter', name: 'Salmon Tikka (Starter)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'salmon-tikka-main', name: 'Salmon Tikka (Main)', price: 35.00, category: 'Tandoori Grills' },
+  { id: 'salmon-tikka-starter', name: 'Fish Filet Tikka (Starter)', price: 25.00, category: 'Tandoori Grills' },
+  { id: 'salmon-tikka-main', name: 'Fish Filet Tikka (Main)', price: 35.00, category: 'Tandoori Grills' },
   { id: 'prawns-tandoori-starter', name: 'Prawns Tandoori (Starter)', price: 29.00, category: 'Tandoori Grills' },
   { id: 'prawns-tandoori-main', name: 'Prawns Tandoori (Main)', price: 39.00, category: 'Tandoori Grills' },
 
   // Salads & Grills of Choice (variants)
-  { id: 'salads-prawns-tandoori-starter', name: 'Prawns Tandoori (Starter)', price: 29.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-prawns-tandoori-main', name: 'Prawns Tandoori (Main)', price: 39.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-the-salmon-tikka-starter', name: 'The Salmon Tikka (Starter)', price: 25.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-the-salmon-tikka-main', name: 'The Salmon Tikka (Main)', price: 35.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-prawns-tandoori-starter', name: 'Prawns Tandoori- Salad (Starter)', price: 29.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-prawns-tandoori-main', name: 'Prawns Tandoori- Salad (Main)', price: 39.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-the-salmon-tikka-starter', name: 'Fish Filet Tikka- Salad (Starter)', price: 25.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-the-salmon-tikka-main', name: 'Fish Filet Tikka- Salad (Main)', price: 35.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-chicken-tikka-black-pepper-starter', name: 'Chicken Tikka Black Pepper (Starter)', price: 22.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-chicken-tikka-black-pepper-main', name: 'Chicken Tikka Black Pepper (Main)', price: 29.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-paneer-tikka-starter', name: 'Paneer Tikka (Starter)', price: 19.00, category: 'Salads & Grills of Choice' },
@@ -110,4 +110,124 @@ export const products: Product[] = [
   { id: 'dessert-ice-swiss-chocolate', name: 'Ice Cream - Swiss Chocolate', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
   { id: 'dessert-ice-vanilla-dream', name: 'Ice Cream - Vanilla Dream', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
   { id: 'dessert-ice-pear', name: 'Ice Cream - Pear', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  ];
+
+  // Swiss Red Wines
+  { id: 'jerome-cruz-10-cl', name: 'Jérôme Cruz – Domaine de Beauvent (10 cl)', price: 11.00, category: 'Swiss Red Wines' },
+  { id: 'jerome-cruz-75-cl', name: 'Jérôme Cruz – Domaine de Beauvent (75 cl)', price: 59.00, category: 'Swiss Red Wines' },
+  { id: 'johan-parmelin-10-cl', name: 'Johan Parmelin – Domaine La Capitaine (10 cl)', price: 12.00, category: 'Swiss Red Wines' },
+  { id: 'johan-parmelin-75-cl', name: 'Johan Parmelin – Domaine La Capitaine (75 cl)', price: 69.00, category: 'Swiss Red Wines' },
+  { id: 'christophe-pillon-10-cl', name: 'Christophe Pillon – Domaine des Balisiers (10 cl)', price: 13.00, category: 'Swiss Red Wines' },
+  { id: 'christophe-pillon-75-cl', name: 'Christophe Pillon – Domaine des Balisiers (75 cl)', price: 79.00, category: 'Swiss Red Wines' },
+  { id: 'domaine-des-bossons-gamareve', name: 'Domaine des Bossons – Gamareve 2022', price: 65.00, category: 'Swiss Red Wines' },
+  { id: 'domaine-des-bossons-pinot-noir', name: 'Domaine des Bossons – Pinot Noir 2023', price: 59.00, category: 'Swiss Red Wines' },
+  { id: 'les-balisiers-dame-noire', name: 'Les Balisiers – Dame Noire', price: 65.00, category: 'Swiss Red Wines' },
+  { id: 'les-balisiers-cuvee-matisse', name: 'Les Balisiers – Cuvée Matisse', price: 79.00, category: 'Swiss Red Wines' },
+
+  // French Red Wines
+  { id: 'bordeaux-le-haut-medoc-de-giscours', name: 'Bordeaux – Le Haut Médoc de Giscours', price: 85.00, category: 'French Red Wines' },
+  { id: 'pic-saint-loup-lavabre', name: 'Pic Saint Loup – Lavabre', price: 95.00, category: 'French Red Wines' },
+  { id: 'chateauneuf-du-pape-telegramme', name: 'Châteauneuf-du-Pape – Télégramme', price: 129.00, category: 'French Red Wines' },
+  { id: 'la-reserve-de-jeanne', name: 'La Réserve de Jeanne – Maison Ventenac', price: 55.00, category: 'French Red Wines' },
+  { id: 'cotes-du-rhone-domaine-la-florane', name: 'Côtes du Rhône – Domaine la Florane', price: 59.00, category: 'French Red Wines' },
+  { id: 'sancerre-rouge-pierre-prieur', name: 'Sancerre Rouge – Pierre Prieur', price: 65.00, category: 'French Red Wines' },
+
+  // World Red Wines
+  { id: 'rioja-doc-rivaey-crianza', name: 'Rioja DOC Rivaey Crianza', price: 69.00, category: 'World Red Wines' },
+  { id: 'cantine-paolini-sicilia-doc-nero-davola', name: 'Cantine Paolini Sicilia DOC Nero d’Avola', price: 65.00, category: 'World Red Wines' },
+  { id: 'diamandes-de-perlilla-malbec-syrah', name: 'Diamandes de Perlilla Malbec–Syrah', price: 59.00, category: 'World Red Wines' },
+  { id: 'montes-reserva-cabernet-sauvignon', name: 'Montes Reserva Cabernet Sauvignon', price: 65.00, category: 'World Red Wines' },
+  { id: 'sula-vineyards-shiraz', name: 'Sula Vineyards Shiraz', price: 49.00, category: 'World Red Wines' },
+  // Swiss Rosé Wines
+  { id: 'oeil-de-perdrix-domaine-des-bossons', name: 'Oeil de Perdrix', price: 49.00, category: 'Swiss Rosé Wines' },
+  { id: 'rose-de-lune-les-balisiers', name: 'Rosé de Lune', price: 49.00, category: 'Swiss Rosé Wines' },
+  // French Rosé Wines
+  { id: 'domaine-des-campaux-cotes-de-provence', name: 'Domaine des Campaux – Côtes de Provence', price: 55.00, category: 'French Rosé Wines' },
+  // Swiss White Wines
+  {
+    id: 'domaine-de-la-deviniere-chasselas-sur-lies-10-cl',
+    name: 'Domaine de la Devinière – Chasselas sur lies (10 cl)',
+    price: 9.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'domaine-de-la-deviniere-chasselas-sur-lies-75-cl',
+    name: 'Domaine de la Devinière – Chasselas sur lies (75 cl)',
+    price: 49.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'domaine-de-beauvent-nature-blanc-10-cl',
+    name: 'Domaine de Beauvent – Nature Blanc (10 cl)',
+    price: 10.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'domaine-de-beauvent-nature-blanc-75-cl',
+    name: 'Domaine de Beauvent – Nature Blanc (75 cl)',
+    price: 59.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'domaine-la-capitaine-cuvee-jeune-prodige-10-cl',
+    name: 'Domaine La Capitaine – Cuvée Jeune Prodige (10 cl)',
+    price: 11.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'domaine-la-capitaine-cuvee-jeune-prodige-75-cl',
+    name: 'Domaine La Capitaine – Cuvée Jeune Prodige (75 cl)',
+    price: 69.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'hirondelle-blanc-les-lolliets-dc',
+    name: 'Hirondelle Blanc, Les Lolliets (dc)',
+    price: 10.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'hirondelle-blanc-les-lolliets-bt',
+    name: 'Hirondelle Blanc, Les Lolliets (bt)',
+    price: 55.00,
+    category: 'Swiss White Wines'
+  },
+  {
+    id: 'aligote-domaine-des-bossons',
+    name: 'Aligoté – Domaine des Bossons',
+    price: 49.00,
+    category: 'Swiss White Wines'
+  },
+  // French White Wines
+  {
+    id: 'ventenac-chardonnay-prejuges',
+    name: 'Ventenac (BIO) Chardonnay – Prejugés Maison Ventenac',
+    price: 51.00,
+    category: 'French White Wines'
+  },
+  {
+    id: 'pouilly-fume-roger-pabiot',
+    name: 'Pouilly Fumé – Roger Pabiot (bt)',
+    price: 79.00,
+    category: 'French White Wines'
+  },
+  // Champagnes
+  { id: 'deutz-brut-classic', name: 'Deutz Brut Classic', price: 95.00, category: 'Champagnes' },
+  { id: 'deutz-brut-rose', name: 'Deutz Brut Rosé', price: 139.00, category: 'Champagnes' },
+  { id: 'gosset-extra-brut', name: 'Gosset Extra Brut', price: 145.00, category: 'Champagnes' },
+  { id: 'gosset-la-grande-cuvee', name: 'Gosset La Grande Cuvée (BT 37.5 DL)', price: 59.00, category: 'Champagnes' },
+  { id: 'veuve-clicquot-cuvee-la-grande-dame', name: 'Veuve Clicquot Cuvée La Grande Dame 2004', price: 299.00, category: 'Champagnes' },
+
+  // Sparkling Wines (Prosecco)
+  {
+    id: 'prosecco-risteri-bresolin-enrico-10-cl',
+    name: 'Prosecco Risseri – Bresolin Enrico (10 cl)',
+    price: 9.00,
+    category: 'Sparkling Wines'
+  },
+  {
+    id: 'prosecco-risteri-bresolin-enrico-75-cl',
+    name: 'Prosecco Risseri – Bresolin Enrico (75 cl)',
+    price: 55.00,
+    category: 'Sparkling Wines'
+  }
+];

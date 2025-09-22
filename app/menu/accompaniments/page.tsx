@@ -85,7 +85,7 @@ export default function AccompanimentsPage() {
       description: 'Aromatic naan topped with fresh garlic and herbs',
       descriptionFr: 'Ail',
       price: 6.00,
-      image: 'https://readdy.ai/api/search-image?query=aromatic%20garlic%20naan%20bread%20topped%20with%20minced%20fresh%20garlic%20cilantro%20and%20butter%20brushed%20surface%20with%20golden%20tandoor%20marks%2C%20fragrant%20and%20appetizing%2C%20traditional%20indian%20bread%20presentation&width=400&height=300&seq=bread3&orientation=landscape'
+      image: '/images/Garlic-Naan.jpg'
     },
     {
       id: 'cheese-naan',

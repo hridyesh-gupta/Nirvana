@@ -42,7 +42,7 @@ export default function MainCoursesPage() {
       price: 39.00,
       description: 'Prawns (shelled) in fine masala curry with coconut flavours',
       frenchDescription: 'Gambas (décortiquées) aux épices; Feuilles de Curry; Lait de Coco',
-      image: 'https://readdy.ai/api/search-image?query=kerala%20prawns%20masala%20shelled%20prawns%20in%20coconut%20curry%20with%20curry%20leaves%20mustard%20seeds%20and%20south%20indian%20spices%20creamy%20white%20coconut%20gravy%20garnished%20with%20fresh%20curry%20leaves%20and%20red%20chilies&width=400&height=300&seq=main2&orientation=landscape'
+      image: '/images/Kerala-Prawns-Masala.jpg'
     },
     {
       id: 'butter-chicken',
@@ -50,7 +50,7 @@ export default function MainCoursesPage() {
       price: 33.00,
       description: 'Grilled chicken, cinnamon creamy almond sauce',
       frenchDescription: 'Suprême Grillé; Sauce à la crème d\'Amandes; Cannelles aux épices',
-      image: 'https://readdy.ai/api/search-image?query=butter%20chicken%20tender%20grilled%20chicken%20pieces%20in%20rich%20creamy%20orange%20tomato%20sauce%20with%20almonds%20and%20cinnamon%20garnished%20with%20fresh%20cream%20swirl%20and%20coriander%20leaves%2C%20luxurious%20orange%20color&width=400&height=300&seq=main3&orientation=landscape'
+      image: '/images/Butter-Chicken.jpg'
     },
     {
       id: 'chicken-tikka-masala',
@@ -69,7 +69,7 @@ export default function MainCoursesPage() {
       price: 32.00,
       description: 'Traditional chicken curry',
       frenchDescription: 'Poulet traditionnel',
-      image: 'https://readdy.ai/api/search-image?query=traditional%20chicken%20curry%20tender%20chicken%20pieces%20in%20authentic%20indian%20spice%20gravy%20with%20onions%20tomatoes%20and%20aromatic%20herbs%20garnished%20with%20fresh%20coriander%2C%20rich%20brown%20curry%20sauce&width=400&height=300&seq=main5&orientation=landscape'
+      image: '/images/Chicken-Korma.jpg'
     },
     {
       id: 'beef-traditional',
@@ -85,7 +85,7 @@ export default function MainCoursesPage() {
       price: 37.00,
       description: 'Traditional lamb curry',
       frenchDescription: 'Agneau traditionnel',
-      image: 'https://readdy.ai/api/search-image?query=traditional%20lamb%20curry%20succulent%20lamb%20pieces%20in%20aromatic%20indian%20curry%20sauce%20with%20whole%20spices%20bay%20leaves%20and%20fresh%20herbs%20slow%20cooked%20for%20tender%20texture%2C%20rich%20brown%20gravy&width=400&height=300&seq=main7&orientation=landscape'
+      image: '/images/Lamb-Vindaloo.jpg'
     },
     {
       id: 'paneer-traditional',

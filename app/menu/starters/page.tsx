@@ -72,7 +72,7 @@ export default function StartersPage() {
       name: 'Nirvana Vegetarian Platter',
       price: 25.00,
       description: 'Onions Bhaji, Samosa, Matar Tikki, Paneer Tikka',
-      image: 'https://readdy.ai/api/search-image?query=assorted%20indian%20vegetarian%20platter%20with%20onion%20bhaji%20samosa%20matar%20tikki%20paneer%20tikka%20arranged%20on%20a%20platter%20with%20chutneys%20and%20salad&width=400&height=300&seq=start12&orientation=landscape',
+      image: '/images/Nirvana-Platter-1-person.jpg',
       variants: [
         { label: 'For one guest', price: 25.00 },
         { label: 'For two guests', price: 35.00 }
@@ -113,8 +113,8 @@ export default function StartersPage() {
     },
     {
       id: 'salmon-tikka',
-      name: 'Salmon Tikka',
-      description: 'Marinated Norwegian salmon filets in seasonal herbs, spicy flavours',
+      name: 'Fish Filet Tikka',
+      description: 'Marinated dorade or bar fish filets in seasonal herbs, spicy flavours',
       image: 'https://readdy.ai/api/search-image?query=salmon%20tikka%20marinated%20norwegian%20salmon%20fillets%20with%20fresh%20herbs%20and%20spices%20grilled%20in%20tandooor%20with%20light%20char%20marks%20served%20with%20cucumber%20ribbons%20and%20herb%20garnish%2C%20orange-pink%20salmon%20color&width=400&height=300&seq=start10&orientation=landscape',
       variants: [
         { label: 'Starter', price: 25.00 },
@@ -136,7 +136,7 @@ export default function StartersPage() {
   const saladsChoice = [
     {
       id: 'salads-prawns-tandoori',
-      name: 'Prawns Tandoori',
+      name: 'Prawns Tandoori (Salad)',
       description: 'Grilled gambas and prawns marinated in spices',
       image: 'https://readdy.ai/api/search-image?query=grilled%20gambas%20and%20prawns%20tandoori%20style%20with%20spices%20served%20with%20fresh%20salad&width=400&height=300&seq=start13&orientation=landscape',
       variants: [
@@ -146,8 +146,8 @@ export default function StartersPage() {
     },
     {
       id: 'salads-the-salmon-tikka',
-      name: 'The Salmon Tikka',
-      description: 'Marinated grilled salmon with fresh salad',
+      name: 'Fish Filet Tikka (Salad)',
+      description: 'Marinated grilled dorade or bar fish with fresh salad',
       image: 'https://readdy.ai/api/search-image?query=marinated%20grilled%20salmon%20with%20fresh%20salad%20herbs%20and%20lemon&width=400&height=300&seq=start14&orientation=landscape',
       variants: [
         { label: 'Starter', price: 25.00 },

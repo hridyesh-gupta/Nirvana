@@ -47,7 +47,7 @@ export default function ThalisBiryaniPage() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=vegetarian%20thali%20nauratan%20mixed%20vegetables%20dal%20baingan%20bharta%20raita%20beautiful%20arrangement%20on%20brass%20plate&width=400&height=250&seq=nauratan1&orientation=landscape"
+                    src="/images/Thali-Nauratan.jpg"
                     alt="Nauratan Thali"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -74,7 +74,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=shikaarpuri%20thali%20with%20chicken%20tikka%20seekh%20kebab%20butter%20chicken%20raita%20nauratan%20rogan%20josh%20rich%20spread%20on%20platter&width=400&height=250&seq=shikaarpuri1&orientation=landscape"
+                    src="/images/Thali-Shikaarpuri.jpg"
                     alt="Shikaarpuri Thali"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -112,7 +112,7 @@ export default function ThalisBiryaniPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=fragrant%20vegetable%20biryani%20with%20basmati%20rice%20mixed%20vegetables%20and%20aromatic%20spices%20served%20with%20raita%20colorful%20presentation&width=400&height=250&seq=vegbiryani2&orientation=landscape"
+                    src="/images/Veg-Byriani.jpg"
                     alt="Vegetarian Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -158,7 +158,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=beef%20biryani%20with%20tender%20beef%20pieces%20and%20fragrant%20basmati%20rice%20rich%20aromas&width=400&height=250&seq=beefbiryani1&orientation=landscape"
+                    src="/images/Beef-Byriani.jpg"
                     alt="Beef Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
