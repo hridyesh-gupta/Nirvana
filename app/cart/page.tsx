@@ -3,26 +3,36 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useCart } from '../../lib/cartStore'; // Assuming cartStore is here
+import { useCart } from '../../lib/cartStore';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import StripeCheckoutModal from '../components/StripeCheckoutModal';
+import { loadStripe } from '@stripe/stripe-js';
+import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js';
+import { fetchClientSecret } from '../actions/stripe';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 export default function CartPage() {
   const { items, updateQuantity, clearCart } = useCart();
-  const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
+  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'cod'>('stripe');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
+  const [showStripeCheckout, setShowStripeCheckout] = useState(false);
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = orderType === 'delivery' ? 3.5 : 0;
   const discount = orderType === 'pickup' ? subtotal * 0.1 : 0;
   const total = subtotal + deliveryFee - discount;
 
-  const handleCheckout = () => {
+  const handleCloseStripeCheckout = () => {
+    setShowStripeCheckout(false);
+  };
+
+  const handleCheckout = async () => {
     if (items.length === 0) return;
     
-    if (paymentMethod === 'razorpay') {
-      // Integrate Razorpay payment
-      alert('Redirecting to Razorpay payment gateway...');
+    if (paymentMethod === 'stripe') {
+      setShowStripeCheckout(true);
     } else {
       // Cash on delivery
       alert('Order placed! You will receive a confirmation email shortly.');
@@ -34,7 +44,6 @@ export default function CartPage() {
       <Navigation/>
       <main className="pt-1">
         <div className="w-full">
-          {/* Centralized Heading for Cart Page */}
           <div className="text-center py-20 px-4 sm:px-6 lg:px-8">
             <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
               Your Cart
@@ -58,13 +67,13 @@ export default function CartPage() {
                     <div key={item.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
                       
                       <div className="flex-1">
-                        <h3 className="font-semibold text-gray-800">{item.name}</h3>
+                        <h3 className="font-semibold text-gray-800">{item.name}{item.selectedSauce && ` (${item.selectedSauce})`}{item.selectedFlavor && ` (${item.selectedFlavor})`}{item.selectedMixOption && ` (${item.selectedMixOption})`}</h3>
                         <p className="text-sm text-gray-600">CHF {item.price}</p>
                       </div>
                       
                       <div className="flex items-center space-x-3">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity - 1, item.selectedSauce, item.selectedFlavor)}
                           className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                         >
                           <i className="ri-subtract-line text-sm"></i>
@@ -73,7 +82,7 @@ export default function CartPage() {
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity + 1, item.selectedSauce, item.selectedFlavor)}
                           className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                         >
                           <i className="ri-add-line text-sm"></i>
@@ -122,14 +131,14 @@ export default function CartPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Payment</label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
-                        onClick={() => setPaymentMethod('razorpay')}
+                        onClick={() => setPaymentMethod('stripe')}
                         className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
-                          paymentMethod === 'razorpay'
+                          paymentMethod === 'stripe'
                             ? 'bg-secondary text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        Online
+                        Online (Stripe)
                       </button>
                       {orderType === 'delivery' && (
                         <button
@@ -173,12 +182,27 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex justify-center">
-                  <button
-                    onClick={handleCheckout}
-                    className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
-                  >
-                    {paymentMethod === 'razorpay' ? 'Pay Now' : 'Place Order (COD)'}
-                  </button>
+                  {!showStripeCheckout && paymentMethod === 'stripe' && (
+                    <button
+                      onClick={handleCheckout}
+                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+                    >
+                      Pay Now (Stripe)
+                    </button>
+                  )}
+                  <StripeCheckoutModal
+                    show={showStripeCheckout && paymentMethod === 'stripe'}
+                    onClose={handleCloseStripeCheckout}
+                    cartItems={items}
+                  />
+                  {paymentMethod === 'cod' && (
+                    <button
+                      onClick={handleCheckout}
+                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+                    >
+                      Place Order (COD)
+                    </button>
+                  )}
                   <button
                     onClick={clearCart}
                     className="w-1/3 mx-auto bg-red-500 hover:bg-red-600 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"

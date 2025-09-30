@@ -3,6 +3,15 @@ export interface Product {
   name: string;
   price: number;
   category: string;
+  image?: string;
+  description?: string;
+  frenchDescription?: string;
+  requiresSauce?: boolean;
+  sauces?: string[];
+  requiresFlavor?: boolean;
+  flavors?: string[];
+  requiresMixOption?: boolean;
+  mixOptions?: string[];
 }
 
 export const products: Product[] = [
@@ -28,6 +37,10 @@ export const products: Product[] = [
   { id: 'salmon-tikka-main', name: 'Fish Filet Tikka (Main)', price: 35.00, category: 'Tandoori Grills' },
   { id: 'prawns-tandoori-starter', name: 'Prawns Tandoori (Starter)', price: 29.00, category: 'Tandoori Grills' },
   { id: 'prawns-tandoori-main', name: 'Prawns Tandoori (Main)', price: 39.00, category: 'Tandoori Grills' },
+  { id: 'nirvana-platter-starter', name: 'Nirvana Platter (Starter)', price: 25.00, category: 'Tandoori Grills' },
+  { id: 'nirvana-platter-main', name: 'Nirvana Platter (Main)', price: 35.00, category: 'Tandoori Grills' },
+  { id: 'tandoori-platter-starter', name: 'Tandoori Platter (Starter)', price: 25.00, category: 'Tandoori Grills' },
+  { id: 'tandoori-platter-main', name: 'Tandoori Platter (Main)', price: 35.00, category: 'Tandoori Grills' },
 
   // Salads & Grills of Choice (variants)
   { id: 'salads-prawns-tandoori-starter', name: 'Prawns Tandoori- Salad (Starter)', price: 29.00, category: 'Salads & Grills of Choice' },
@@ -44,10 +57,99 @@ export const products: Product[] = [
   { id: 'indian-mixed-salad-main', name: 'Indian Mixed Salad (Main)', price: 15.00, category: 'Salads & Grills of Choice' },
 
   // Main Courses - Classic Dishes
-  { id: 'king-prawns-balti', name: 'King Prawns Balti', price: 39.00, category: 'Classic Dishes' },
-  { id: 'kerala-prawns-masala', name: 'Kerala Prawns Masala', price: 39.00, category: 'Classic Dishes' },
-  { id: 'butter-chicken', name: 'Butter Chicken', price: 33.00, category: 'Classic Dishes' },
-  { id: 'chicken-tikka-masala', name: 'Chicken Tikka Masala', price: 33.00, category: 'Classic Dishes' },
+  {
+    id: 'king-prawns-balti',
+    name: 'King Prawns Balti',
+    price: 39.00,
+    category: 'Classic Dishes',
+    description: 'Tomato sauce, fresh herbs with spicy flavours',
+    frenchDescription: 'Gambas sautées à l\'Ail; Sauce Tomate épicée; Herbes Fraîches',
+    image: 'https://readdy.ai/api/search-image?query=king%20prawns%20balti%20large%20succulent%20prawns%20cooked%20in%20rich%20tomato%20sauce%20with%20fresh%20herbs%20and%20aromatic%20spices%20served%20in%20traditional%20balti%20dish%20garnished%20with%20coriander%20and%20green%20chilies%2C%20vibrant%20red%20sauce&width=400&height=300&seq=main1&orientation=landscape'
+  },
+  {
+    id: 'kerala-prawns-masala',
+    name: 'Kerala Prawns Masala',
+    price: 39.00,
+    category: 'Classic Dishes',
+    description: 'Prawns (shelled) in fine masala curry with coconut flavours',
+    frenchDescription: 'Gambas (décortiquées) aux épices; Feuilles de Curry; Lait de Coco',
+    image: '/images/Kerala-Prawns-Masala.jpg'
+  },
+  {
+    id: 'butter-chicken',
+    name: 'Butter Chicken',
+    price: 33.00,
+    category: 'Classic Dishes',
+    description: 'Grilled chicken, cinnamon creamy almond sauce',
+    frenchDescription: 'Suprême Grillé; Sauce à la crème d\'Amandes; Cannelles aux épices',
+    image: '/images/Butter-Chicken.jpg'
+  },
+  {
+    id: 'chicken-tikka-masala',
+    name: 'Chicken Tikka Masala',
+    price: 33.00,
+    category: 'Classic Dishes',
+    description: 'Grilled chicken in tikka masala sauce with ginger, green chilies, coriander',
+    frenchDescription: 'Parts de Suprêmes Grillés; Sauce Tikka Masala; Saveur épicées',
+    image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
+  },
+  {
+    id: 'mixed-daal-tarka',
+    name: 'Mixed Daal Tarka',
+    price: 28.00,
+    category: 'Classic Dishes',
+    description: 'Mixed lentils tempered with spices, mixed with your choice of meat.',
+    frenchDescription: 'Lentilles mixtes tempérées aux épices, mélangées avec votre choix de viande.',
+    image: 'https://readdy.ai/api/search-image?query=mixed%20daal%20tarka%20with%20chicken%20lamb%20or%20beef%20indian%20cuisine&width=400&height=300&seq=daal1&orientation=landscape',
+    requiresMixOption: true,
+    mixOptions: ['Chicken', 'Lamb', 'Beef']
+  },
+
+  // Main Courses - Traditional Dishes (moved from app/menu/main-courses/page.tsx)
+  {
+    id: 'chicken-traditional',
+    name: 'Chicken',
+    price: 32.00,
+    category: 'Traditional Dishes',
+    description: 'Traditional chicken curry',
+    frenchDescription: 'Poulet traditionnel',
+    image: '/images/Chicken-Korma.jpg',
+    requiresSauce: true,
+    sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
+  },
+  {
+    id: 'beef-traditional',
+    name: 'Beef',
+    price: 35.00,
+    category: 'Traditional Dishes',
+    description: 'Traditional beef curry',
+    frenchDescription: 'Bœuf traditionnel',
+    image: 'https://readdy.ai/api/search-image?query=traditional%20beef%20curry%20tender%20beef%20chunks%20in%20rich%20spiced%20gravy%20with%20onions%20ginger%20garlic%20and%20indian%20spices%20slow%20cooked%20to%20perfection%20garnished%20with%20fresh%20herbs%2C%20dark%20rich%20curry%20sauce&width=400&height=300&seq=main6&orientation=landscape',
+    requiresSauce: true,
+    sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
+  },
+  {
+    id: 'lamb-traditional',
+    name: 'Lamb',
+    price: 37.00,
+    category: 'Traditional Dishes',
+    description: 'Traditional lamb curry',
+    frenchDescription: 'Agneau traditionnel',
+    image: '/images/Lamb-Vindaloo.jpg',
+    requiresSauce: true,
+    sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
+  },
+  {
+    id: 'paneer-traditional',
+    name: 'Paneer',
+    price: 25.00,
+    category: 'Traditional Dishes',
+    description: 'Base price',
+    frenchDescription: 'Paneer traditionnel',
+    image: 'https://readdy.ai/api/search-image?query=paneer%20curry%20traditional%20indian%20cottage%20cheese%20cubes%20in%20spiced%20gravy%20with%20tomatoes%20onions%20and%20herbs%20garnished%20with%20coriander&width=400&height=300&seq=main12&orientation=landscape',
+    requiresSauce: true,
+    sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
+  },
 
   // Thalis
   { id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 45.00, category: 'Thalis' },
@@ -103,13 +205,24 @@ export const products: Product[] = [
   { id: 'dessert-dame-blanche', name: 'Dame Blanche', price: 12.00, category: 'Desserts' },
   { id: 'dessert-sorbets-alcoholic', name: 'Sorbets and Alcoholic Ice Creams', price: 14.00, category: 'Desserts' },
   // Desserts - Individual Ice Cream Flavours (7)
-  { id: 'dessert-ice-raspberry-strawberry', name: 'Ice Cream - Raspberry & Strawberry', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-passion-mango', name: 'Ice Cream - Passion fruit & Mango', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-lemon-lime', name: 'Ice Cream - Lemon & Lime', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-espresso-crunch', name: 'Ice Cream - Espresso Crunch', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-swiss-chocolate', name: 'Ice Cream - Swiss Chocolate', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-vanilla-dream', name: 'Ice Cream - Vanilla Dream', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
-  { id: 'dessert-ice-pear', name: 'Ice Cream - Pear', price: 6.00, category: 'Desserts - Ice Cream Flavours' },
+  {
+    id: 'dessert-ice-cream-flavours',
+    name: 'Ice Cream Flavours',
+    price: 6.00, // Base price for a single scoop
+    category: 'Desserts',
+    description: 'Choose from Raspberry & Strawberry, Passion fruit & Mango, Lemon & Lime, Espresso Crunch, Swiss Chocolate, Vanilla Dream, Pear',
+    image: 'https://readdy.ai/api/search-image?query=assorted%20ice%20cream%20scoops%20raspberry%20strawberry%20passion%20fruit%20mango%20lemon%20lime%20espresso%20chocolate%20vanilla%20pear&width=400&height=250&seq=iceflavours1&orientation=landscape',
+    requiresFlavor: true,
+    flavors: [
+      'Raspberry & Strawberry',
+      'Passion fruit & Mango',
+      'Lemon & Lime',
+      'Espresso Crunch',
+      'Swiss Chocolate',
+      'Vanilla Dream',
+      'Pear',
+    ],
+  },
 
   // Swiss Red Wines
   { id: 'jerome-cruz-10-cl', name: 'Jérôme Cruz – Domaine de Beauvent (10 cl)', price: 11.00, category: 'Swiss Red Wines' },

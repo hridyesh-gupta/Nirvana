@@ -6,6 +6,9 @@ import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
+import SauceSelectionModal from '../../components/SauceSelectionModal';
+import { products, Product } from '../../../lib/products';
+import MixOptionSelectionModal from '../../components/MixOptionSelectionModal';
 
 interface CartItem {
   id: string;
@@ -13,89 +16,36 @@ interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  selectedSauce?: string; // Add this line
 }
 
 export default function MainCoursesPage() {
   const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showSauceSelectionModal, setShowSauceSelectionModal] = useState(false);
+  const [selectedDishForSauce, setSelectedDishForSauce] = useState<any | null>(null);
+  const [showMixOptionSelectionModal, setShowMixOptionSelectionModal] = useState(false);
+  const [selectedDishForMixOption, setSelectedDishForMixOption] = useState<Product | null>(null);
 
-  const handleAddToCart = (item: any) => {
-    addItem(item);
+  const handleAddToCart = (item: Product, selectedSauce: string | null = null, selectedFlavor: string | null = null, selectedMixOption: string | null = null) => {
+    if (item.requiresSauce && !selectedSauce) {
+      setSelectedDishForSauce(item);
+      setShowSauceSelectionModal(true);
+    } else if (item.requiresMixOption && !selectedMixOption) {
+      setSelectedDishForMixOption(item);
+      setShowMixOptionSelectionModal(true);
+    } else {
+      addItem({ ...item, selectedSauce: selectedSauce || undefined, selectedFlavor: selectedFlavor || undefined, selectedMixOption: selectedMixOption || undefined });
+    }
   };
 
-  const handleUpdateQuantity = (id: string, quantity: number) => {
-    updateQuantity(id, quantity);
+  const handleUpdateQuantity = (id: string, quantity: number, selectedSauce?: string, selectedFlavor?: string, selectedMixOption?: string) => {
+    updateQuantity(id, quantity, selectedSauce, selectedFlavor, selectedMixOption);
   };
 
-  const classicDishes = [
-    {
-      id: 'king-prawns-balti',
-      name: 'King Prawns Balti',
-      price: 39.00,
-      description: 'Tomato sauce, fresh herbs with spicy flavours',
-      frenchDescription: 'Gambas sautées à l\'Ail; Sauce Tomate épicée; Herbes Fraîches',
-      image: 'https://readdy.ai/api/search-image?query=king%20prawns%20balti%20large%20succulent%20prawns%20cooked%20in%20rich%20tomato%20sauce%20with%20fresh%20herbs%20and%20aromatic%20spices%20served%20in%20traditional%20balti%20dish%20garnished%20with%20coriander%20and%20green%20chilies%2C%20vibrant%20red%20sauce&width=400&height=300&seq=main1&orientation=landscape'
-    },
-    {
-      id: 'kerala-prawns-masala',
-      name: 'Kerala Prawns Masala',
-      price: 39.00,
-      description: 'Prawns (shelled) in fine masala curry with coconut flavours',
-      frenchDescription: 'Gambas (décortiquées) aux épices; Feuilles de Curry; Lait de Coco',
-      image: '/images/Kerala-Prawns-Masala.jpg'
-    },
-    {
-      id: 'butter-chicken',
-      name: 'Butter Chicken',
-      price: 33.00,
-      description: 'Grilled chicken, cinnamon creamy almond sauce',
-      frenchDescription: 'Suprême Grillé; Sauce à la crème d\'Amandes; Cannelles aux épices',
-      image: '/images/Butter-Chicken.jpg'
-    },
-    {
-      id: 'chicken-tikka-masala',
-      name: 'Chicken Tikka Masala',
-      price: 33.00,
-      description: 'Grilled chicken in tikka masala sauce with ginger, green chilies, coriander',
-      frenchDescription: 'Parts de Suprêmes Grillés; Sauce Tikka Masala; Saveur épicées',
-      image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
-    }
-  ];
+  const classicDishes = products.filter(product => product.category === 'Classic Dishes');
 
-  const traditionalDishes = [
-    {
-      id: 'chicken-traditional',
-      name: 'Chicken',
-      price: 32.00,
-      description: 'Traditional chicken curry',
-      frenchDescription: 'Poulet traditionnel',
-      image: '/images/Chicken-Korma.jpg'
-    },
-    {
-      id: 'beef-traditional',
-      name: 'Beef',
-      price: 35.00,
-      description: 'Traditional beef curry',
-      frenchDescription: 'Bœuf traditionnel',
-      image: 'https://readdy.ai/api/search-image?query=traditional%20beef%20curry%20tender%20beef%20chunks%20in%20rich%20spiced%20gravy%20with%20onions%20ginger%20garlic%20and%20indian%20spices%20slow%20cooked%20to%20perfection%20garnished%20with%20fresh%20herbs%2C%20dark%20rich%20curry%20sauce&width=400&height=300&seq=main6&orientation=landscape'
-    },
-    {
-      id: 'lamb-traditional',
-      name: 'Lamb',
-      price: 37.00,
-      description: 'Traditional lamb curry',
-      frenchDescription: 'Agneau traditionnel',
-      image: '/images/Lamb-Vindaloo.jpg'
-    },
-    {
-      id: 'paneer-traditional',
-      name: 'Paneer',
-      price: 25.00,
-      description: 'Base price',
-      frenchDescription: 'Paneer traditionnel',
-      image: 'https://readdy.ai/api/search-image?query=paneer%20curry%20traditional%20indian%20cottage%20cheese%20cubes%20in%20spiced%20gravy%20with%20tomatoes%20onions%20and%20herbs%20garnished%20with%20coriander&width=400&height=300&seq=main12&orientation=landscape'
-    }
-  ];
+  const traditionalDishes = products.filter(product => product.category === 'Traditional Dishes');
 
   const chefSpecials = [
     {
@@ -154,7 +104,7 @@ export default function MainCoursesPage() {
                 {/* <div className="text-lg text-primary">Classic Dishes</div> */}
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {classicDishes.map((item) => (
                   <div key={item.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary">
                     <div
@@ -331,6 +281,32 @@ export default function MainCoursesPage() {
         onUpdateQuantity={handleUpdateQuantity}
         onClearCart={clearCart}
       />
+
+      {showSauceSelectionModal && selectedDishForSauce && (
+        <SauceSelectionModal
+          dish={selectedDishForSauce}
+          onClose={() => setShowSauceSelectionModal(false)}
+          onSelectSauce={(sauce) => {
+            handleAddToCart(selectedDishForSauce, sauce);
+            setShowSauceSelectionModal(false);
+            setSelectedDishForSauce(null);
+          }}
+          sauces={selectedDishForSauce.sauces || []}
+        />
+      )}
+
+      {showMixOptionSelectionModal && selectedDishForMixOption && (
+        <MixOptionSelectionModal
+          dish={selectedDishForMixOption}
+          onClose={() => setShowMixOptionSelectionModal(false)}
+          onSelectMixOption={(mixOption) => {
+            handleAddToCart(selectedDishForMixOption, null, null, mixOption);
+            setShowMixOptionSelectionModal(false);
+            setSelectedDishForMixOption(null);
+          }}
+          mixOptions={selectedDishForMixOption.mixOptions || []}
+        />
+      )}
     </div>
   );
 }

@@ -130,6 +130,26 @@ export default function StartersPage() {
         { label: 'Starter', price: 29.00 },
         { label: 'Main', price: 39.00 }
       ]
+    },
+    {
+      id: 'nirvana-platter',
+      name: 'Nirvana Platter',
+      description: 'Includes Samosa, Matar Tikki, Seekh Kebab, Black Pepper Chicken Tikka',
+      image: '/images/Nirvana-Platter-1-person.jpg',
+      variants: [
+        { label: 'Starter', price: 25.00 },
+        { label: 'Main', price: 35.00 }
+      ]
+    },
+    {
+      id: 'tandoori-platter',
+      name: 'Tandoori Platter',
+      description: 'Includes Seekh Kebab, Black Pepper Chicken Tikka, Prawns Tandoori, Paneer Tikka',
+      image: 'https://readdy.ai/api/search-image?query=tandoori%20prawns%20large%20king%20prawns%20marinated%20in%20spicy%20yogurt%20marinade%20grilled%20in%20tandoor%20with%20char%20marks%20served%20on%20banana%20leaf%20with%20lemon%20wedges%20and%20green%20chutney%2C%20vibrant%20orange-red%20color&width=400&height=300&seq=start11&orientation=landscape',
+      variants: [
+        { label: 'Starter', price: 25.00 },
+        { label: 'Main', price: 35.00 }
+      ]
     }
   ];
 

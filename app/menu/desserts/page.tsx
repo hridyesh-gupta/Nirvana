@@ -6,19 +6,29 @@ import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
-import { Product } from '@/lib/products';
+import { products, Product } from '../../../lib/products';
+import IceCreamFlavorSelectionModal from '../../components/IceCreamFlavorSelectionModal';
 
 export default function DessertsPage() {
   const { items: cartItems, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showFlavorSelectionModal, setShowFlavorSelectionModal] = useState(false);
+  const [selectedIceCreamForFlavor, setSelectedIceCreamForFlavor] = useState<Product | null>(null);
 
-  const handleAddToCart = (item: Product) => {
-    addItem(item);
+  const handleAddToCart = (item: Product, selectedFlavor: string | null = null) => {
+    if (item.requiresFlavor && !selectedFlavor) {
+      setSelectedIceCreamForFlavor(item);
+      setShowFlavorSelectionModal(true);
+    } else {
+      addItem({ ...item, selectedFlavor: selectedFlavor || undefined });
+    }
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
     updateQuantity(id, quantity);
   };
+
+  const desserts = products.filter(product => product.category === 'Desserts');
 
   return (
     <div className="min-h-screen bg-white">
@@ -334,7 +344,7 @@ export default function DessertsPage() {
                   </div>
                   <p className="text-gray-600 mb-4">Raspberry & Strawberry, Passion fruit & mango, Lemon and lime, Espresso Crunch, Swiss Chocolate, Vanilla Dream, Pear</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'dessert-ice-cream-flavours', name: 'Ice Cream Flavours', price: 16.00, category: 'Desserts' })}
+                    onClick={() => handleAddToCart(desserts.find(d => d.id === 'dessert-ice-cream-flavours') as Product)}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -387,6 +397,19 @@ export default function DessertsPage() {
         onUpdateQuantity={handleUpdateQuantity}
         onClearCart={clearCart}
       />
+
+      {showFlavorSelectionModal && selectedIceCreamForFlavor && (
+        <IceCreamFlavorSelectionModal
+          dish={selectedIceCreamForFlavor}
+          onClose={() => setShowFlavorSelectionModal(false)}
+          onSelectFlavor={(flavor) => {
+            handleAddToCart(selectedIceCreamForFlavor, flavor);
+            setShowFlavorSelectionModal(false);
+            setSelectedIceCreamForFlavor(null);
+          }}
+          flavors={selectedIceCreamForFlavor.flavors || []}
+        />
+      )}
     </div>
   );
 }

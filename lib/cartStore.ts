@@ -8,6 +8,9 @@ export interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  selectedSauce?: string; // Add this line
+  selectedFlavor?: string; // Add this line
+  selectedMixOption?: string; // Add this line
   // image: string; // Removed image property
 }
 
@@ -47,8 +50,14 @@ class CartStore {
     return this.items.reduce((sum, item) => sum + item.quantity, 0);
   }
 
-  addItem(item: Omit<CartItem, 'quantity'>) {
-    const existingIndex = this.items.findIndex(cartItem => cartItem.id === item.id);
+  addItem(item: Omit<CartItem, 'quantity'> & { selectedSauce?: string; selectedFlavor?: string; selectedMixOption?: string }) {
+    const existingIndex = this.items.findIndex(
+      (cartItem) => 
+        cartItem.id === item.id && 
+        cartItem.selectedSauce === item.selectedSauce &&
+        cartItem.selectedFlavor === item.selectedFlavor &&
+        cartItem.selectedMixOption === item.selectedMixOption
+    );
     
     if (existingIndex >= 0) {
       this.items[existingIndex].quantity += 1;
@@ -60,11 +69,23 @@ class CartStore {
     this.notify();
   }
 
-  updateQuantity(id: string, quantity: number) {
+  updateQuantity(id: string, quantity: number, selectedSauce: string | null = null, selectedFlavor: string | null = null, selectedMixOption: string | null = null) {
     if (quantity <= 0) {
-      this.items = this.items.filter(item => item.id !== id);
+      this.items = this.items.filter(
+        (cartItem) => 
+          !(cartItem.id === id && 
+            cartItem.selectedSauce === selectedSauce &&
+            cartItem.selectedFlavor === selectedFlavor &&
+            cartItem.selectedMixOption === selectedMixOption)
+      );
     } else {
-      const itemIndex = this.items.findIndex(item => item.id === id);
+      const itemIndex = this.items.findIndex(
+        (cartItem) => 
+          cartItem.id === id && 
+          cartItem.selectedSauce === selectedSauce &&
+          cartItem.selectedFlavor === selectedFlavor &&
+          cartItem.selectedMixOption === selectedMixOption
+      );
       if (itemIndex >= 0) {
         this.items[itemIndex].quantity = quantity;
       }
@@ -101,7 +122,7 @@ export function useCart() {
     items,
     itemCount,
     addItem: (item: Omit<CartItem, 'quantity'>) => cartStore.addItem(item),
-    updateQuantity: (id: string, quantity: number) => cartStore.updateQuantity(id, quantity),
+    updateQuantity: (id: string, quantity: number, selectedSauce?: string, selectedFlavor?: string, selectedMixOption?: string) => cartStore.updateQuantity(id, quantity, selectedSauce, selectedFlavor, selectedMixOption),
     clearCart: () => cartStore.clearCart()
   };
 }
