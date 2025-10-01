@@ -2,11 +2,13 @@ import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-06-20',
+  apiVersion: '2025-08-27.basil',
 });
 
-export default async function Return({ searchParams }: { searchParams: { session_id: string } }) {
-  const { session_id } = searchParams;
+export default async function Return({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = await searchParams;
+  const sessionIdParam = params.session_id;
+  const session_id = Array.isArray(sessionIdParam) ? sessionIdParam[0] : sessionIdParam;
 
   if (!session_id) {
     redirect('/'); // Redirect to home if no session ID

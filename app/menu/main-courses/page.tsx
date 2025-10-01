@@ -50,6 +50,7 @@ export default function MainCoursesPage() {
   const chefSpecials = [
     {
       id: 'lamb-chops',
+      category: 'Chef Specials',
       name: 'Lamb Chops',
       price: 48.00,
       description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
@@ -58,6 +59,7 @@ export default function MainCoursesPage() {
     },
     {
       id: 'lamb-shank',
+      category: 'Chef Specials',
       name: 'Lamb Shank',
       price: 48.00,
       description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
@@ -66,6 +68,7 @@ export default function MainCoursesPage() {
     },
     {
       id: 'grilled-sea-bream',
+      category: 'Chef Specials',
       name: 'Grilled Sea Bream Filets',
       price: 45.00,
       description: 'Garnished with coconut sauce',
@@ -74,6 +77,7 @@ export default function MainCoursesPage() {
     },
     {
       id: 'omble-chevalier',
+      category: 'Chef Specials',
       name: 'Omble Chevalier',
       price: 49.00,
       description: 'Grilled Omble Chevalier filets with curry sauce',
