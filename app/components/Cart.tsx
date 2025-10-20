@@ -7,7 +7,7 @@ interface CartProps {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[]; // Changed from any[] to CartItem[]
-  onUpdateQuantity: (id: string, quantity: number, sauce?: string) => void;
+  onUpdateQuantity: (id: string, quantity: number, selectedSauce?: string, selectedFlavor?: string, selectedMixOption?: string) => void;
   onClearCart: () => void; // Add onClearCart prop
 }
 
@@ -70,7 +70,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                   
                   <div className="flex items-center space-x-3">
                     <button
-                      onClick={() => onUpdateQuantity(item.id, item.quantity - 1, item.selectedSauce)}
+                      onClick={() => onUpdateQuantity(item.id, item.quantity - 1, item.selectedSauce, item.selectedFlavor, item.selectedMixOption)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                     >
                       <i className="ri-subtract-line text-sm"></i>
@@ -79,7 +79,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                       {item.quantity}
                     </span>
                     <button
-                      onClick={() => onUpdateQuantity(item.id, item.quantity + 1, item.selectedSauce)}
+                      onClick={() => onUpdateQuantity(item.id, item.quantity + 1, item.selectedSauce, item.selectedFlavor, item.selectedMixOption)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                     >
                       <i className="ri-add-line text-sm"></i>

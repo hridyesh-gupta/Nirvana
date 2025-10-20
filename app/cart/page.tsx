@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../lib/cartStore';
 import Navigation from '../components/Navigation';
@@ -18,11 +18,130 @@ export default function CartPage() {
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'cod'>('stripe');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
   const [showStripeCheckout, setShowStripeCheckout] = useState(false);
+  
+  // Customer information state
+  const [customerInfo, setCustomerInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    street: '',
+    city: '',
+    postalCode: '',
+    specialInstructions: ''
+  });
+  
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [hasAttemptedCheckout, setHasAttemptedCheckout] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isProcessingOrder, setIsProcessingOrder] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = orderType === 'delivery' ? 3.5 : 0;
   const discount = orderType === 'pickup' ? subtotal * 0.1 : 0;
   const total = subtotal + deliveryFee - discount;
+
+  // Order context object
+  const orderContext = {
+    orderType,
+    paymentMethod,
+    subtotal,
+    deliveryFee,
+    discount,
+    total,
+  };
+
+  // Validation functions
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    // International phone format: + followed by country code (1-3 digits) and 7-14 digits total
+    // Accept both + and 00 prefixes, and local Swiss numbers (0XXXXXXXXX)
+    // Note: For more robust international phone validation (format verification per country, 
+    // mobile vs landline detection, etc.), consider using libphonenumber-js library
+    
+    // Comment 1: Broader sanitization - remove all non-digit characters except + at start
+    let cleanPhone = phone.replace(/[^\d+]/g, '');
+    
+    // Comment 2: Normalize 00 prefix to + for international numbers
+    if (cleanPhone.startsWith('00')) {
+      cleanPhone = '+' + cleanPhone.substring(2);
+    }
+    
+    // Enforce single leading plus: strip extra + signs to avoid false negatives
+    if (cleanPhone.startsWith('+')) {
+      cleanPhone = '+' + cleanPhone.slice(1).replace(/\+/g, '');
+    } else {
+      cleanPhone = cleanPhone.replace(/\+/g, '');
+    }
+    
+    // Comment 3: Support both international (+) and local Swiss (0) formats
+    const internationalRegex = /^\+[1-9]\d{9,14}$/;
+    const swissLocalRegex = /^0\d{9}$/;
+    
+    return internationalRegex.test(cleanPhone) || swissLocalRegex.test(cleanPhone);
+  };
+
+  // Pure function that returns errors without side effects
+  const getErrors = (customerInfo: { name: string; email: string; phone: string; street: string; city: string; postalCode: string; specialInstructions: string }, orderType: 'delivery' | 'pickup'): Record<string, string> => {
+    const errors: Record<string, string> = {};
+    
+    // Required fields for all orders
+    if (!customerInfo.name.trim()) {
+      errors.name = 'Name is required';
+    }
+    
+    if (!customerInfo.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!validateEmail(customerInfo.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    
+    if (!customerInfo.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (!validatePhone(customerInfo.phone)) {
+      errors.phone = 'Please enter a valid phone number (+ or 00 for international, 0 for Swiss local)';
+    }
+    
+    // Address fields required only for delivery
+    if (orderType === 'delivery') {
+      if (!customerInfo.street.trim()) {
+        errors.street = 'Street address is required for delivery';
+      }
+      
+      if (!customerInfo.city.trim()) {
+        errors.city = 'City is required for delivery';
+      }
+      
+      if (!customerInfo.postalCode.trim()) {
+        errors.postalCode = 'Postal code is required for delivery';
+      }
+    }
+    
+    return errors;
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setCustomerInfo(prev => ({ ...prev, [field]: value }));
+    // Mark field as touched
+    setTouched(prev => ({ ...prev, [field]: true }));
+    // Clear order error when user modifies form
+    setOrderError(null);
+  };
+
+  const handleFieldBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  };
+
+  // Compute form validity without mutating formErrors
+  useEffect(() => {
+    const errors = getErrors(customerInfo, orderType);
+    setIsFormValid(Object.keys(errors).length === 0);
+  }, [customerInfo, orderType]);
 
   const handleCloseStripeCheckout = () => {
     setShowStripeCheckout(false);
@@ -31,12 +150,88 @@ export default function CartPage() {
   const handleCheckout = async () => {
     if (items.length === 0) return;
     
+    // Mark that user has attempted checkout
+    setHasAttemptedCheckout(true);
+    
+    // Get current errors and set them
+    const errors = getErrors(customerInfo, orderType);
+    setFormErrors(errors);
+    
+    // If form is invalid, don't proceed
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+    
     if (paymentMethod === 'stripe') {
       setShowStripeCheckout(true);
     } else {
-      // Cash on delivery
-      alert('Order placed! You will receive a confirmation email shortly.');
+      // Cash on delivery - create order via API
+      setIsProcessingOrder(true);
+      setOrderError(null);
+      
+      try {
+        const response = await fetch('/api/orders/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            customerInfo,
+            cartItems: items,
+            orderContext
+          })
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          // Clear the cart
+          clearCart();
+          // Reset customer info form
+          setCustomerInfo({
+            name: '',
+            email: '',
+            phone: '',
+            street: '',
+            city: '',
+            postalCode: '',
+            specialInstructions: ''
+          });
+          setFormErrors({});
+          setHasAttemptedCheckout(false);
+          setTouched({});
+          // Show success message
+          alert(`Order placed successfully! Order number: ${result.orderNumber}. You will receive a confirmation email shortly.`);
+        } else {
+          const errorData = await response.json();
+          setOrderError(errorData.error || 'Failed to create order. Please try again.');
+          console.error('Order creation failed:', errorData);
+        }
+      } catch (error) {
+        setOrderError('Network error. Please check your connection and try again.');
+        console.error('Network error during order creation:', error);
+      } finally {
+        setIsProcessingOrder(false);
+      }
     }
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+    // Reset customer info when cart is cleared
+    setCustomerInfo({
+      name: '',
+      email: '',
+      phone: '',
+      street: '',
+      city: '',
+      postalCode: '',
+      specialInstructions: ''
+    });
+    setFormErrors({});
+    setHasAttemptedCheckout(false);
+    setTouched({});
+    setIsProcessingOrder(false);
+    setOrderError(null);
   };
 
   return (
@@ -73,7 +268,7 @@ export default function CartPage() {
                       
                       <div className="flex items-center space-x-3">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1, item.selectedSauce, item.selectedFlavor)}
+                          onClick={() => updateQuantity(item.id, item.quantity - 1, item.selectedSauce, item.selectedFlavor, item.selectedMixOption)}
                           className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                         >
                           <i className="ri-subtract-line text-sm"></i>
@@ -82,7 +277,7 @@ export default function CartPage() {
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1, item.selectedSauce, item.selectedFlavor)}
+                          onClick={() => updateQuantity(item.id, item.quantity + 1, item.selectedSauce, item.selectedFlavor, item.selectedMixOption)}
                           className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center cursor-pointer"
                         >
                           <i className="ri-add-line text-sm"></i>
@@ -105,7 +300,10 @@ export default function CartPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Order Type</label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
-                        onClick={() => setOrderType('delivery')}
+                        onClick={() => {
+                          setOrderType('delivery');
+                          setOrderError(null);
+                        }}
                         className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                           orderType === 'delivery'
                             ? 'bg-primary text-white'
@@ -115,7 +313,10 @@ export default function CartPage() {
                         Delivery
                       </button>
                       <button
-                        onClick={() => setOrderType('pickup')}
+                        onClick={() => {
+                          setOrderType('pickup');
+                          setOrderError(null);
+                        }}
                         className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
                           orderType === 'pickup'
                             ? 'bg-primary text-white'
@@ -140,7 +341,7 @@ export default function CartPage() {
                       >
                         Online (Stripe)
                       </button>
-                      {orderType === 'delivery' && (
+                      {(
                         <button
                           onClick={() => setPaymentMethod('cod')}
                           className={`py-2 px-3 rounded-lg text-sm font-medium transition-all cursor-pointer ${
@@ -153,6 +354,143 @@ export default function CartPage() {
                         </button>
                       )}
                     </div>
+                  </div>
+                </div>
+
+                {/* Customer Information Form */}
+                <div className="space-y-6 border-t border-gray-200 pt-6">
+                  <h3 className="text-lg font-semibold text-gray-800">Customer Information</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        value={customerInfo.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        onBlur={() => handleFieldBlur('name')}
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                        placeholder="Enter your full name"
+                      />
+                      {(touched.name || hasAttemptedCheckout) && formErrors.name && (
+                        <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        value={customerInfo.email}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        onBlur={() => handleFieldBlur('email')}
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                        placeholder="Enter your email address"
+                      />
+                      {(touched.email || hasAttemptedCheckout) && formErrors.email && (
+                        <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+                      )}
+                    </div>
+
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        value={customerInfo.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        onBlur={() => handleFieldBlur('phone')}
+                        className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                        placeholder="e.g., +41 12 345 67 89, 00 41 12 345 67 89, or 012 345 67 89"
+                      />
+                      {(touched.phone || hasAttemptedCheckout) && formErrors.phone && (
+                        <p className="text-red-500 text-sm mt-1">{formErrors.phone}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Delivery Address Section - Only show for delivery orders */}
+                  {orderType === 'delivery' && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold text-gray-800">Delivery Address</h3>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Street Address *
+                        </label>
+                        <input
+                          type="text"
+                          value={customerInfo.street}
+                          onChange={(e) => handleInputChange('street', e.target.value)}
+                          onBlur={() => handleFieldBlur('street')}
+                          className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                          placeholder="Enter street address"
+                        />
+                        {(touched.street || hasAttemptedCheckout) && formErrors.street && (
+                          <p className="text-red-500 text-sm mt-1">{formErrors.street}</p>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            City *
+                          </label>
+                          <input
+                            type="text"
+                            value={customerInfo.city}
+                            onChange={(e) => handleInputChange('city', e.target.value)}
+                            onBlur={() => handleFieldBlur('city')}
+                            className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                            placeholder="Enter city"
+                          />
+                          {(touched.city || hasAttemptedCheckout) && formErrors.city && (
+                            <p className="text-red-500 text-sm mt-1">{formErrors.city}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Postal Code *
+                          </label>
+                          <input
+                            type="text"
+                            value={customerInfo.postalCode}
+                            onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                            onBlur={() => handleFieldBlur('postalCode')}
+                            className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                            placeholder="Enter postal code"
+                          />
+                          {(touched.postalCode || hasAttemptedCheckout) && formErrors.postalCode && (
+                            <p className="text-red-500 text-sm mt-1">{formErrors.postalCode}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Special Instructions */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Special Instructions ({customerInfo.specialInstructions.length}/500)
+                    </label>
+                    <textarea
+                      value={customerInfo.specialInstructions}
+                      onChange={(e) => {
+                        if (e.target.value.length <= 500) {
+                          handleInputChange('specialInstructions', e.target.value);
+                        }
+                      }}
+                      rows={3}
+                      maxLength={500}
+                      className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all resize-none"
+                      placeholder="Any special delivery instructions, dietary requirements, or notes..."
+                    />
                   </div>
                 </div>
 
@@ -181,11 +519,26 @@ export default function CartPage() {
                   </div>
                 </div>
 
+                {/* Form validation message */}
+                {hasAttemptedCheckout && !isFormValid && items.length > 0 && (
+                  <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
+                    Please fill in all required customer information to proceed with checkout.
+                  </div>
+                )}
+
+                {/* Order error message */}
+                {orderError && (
+                  <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
+                    <strong>Order Failed:</strong> {orderError}
+                  </div>
+                )}
+
                 <div className="flex justify-center">
                   {!showStripeCheckout && paymentMethod === 'stripe' && (
                     <button
                       onClick={handleCheckout}
-                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+                      disabled={!isFormValid || items.length === 0}
+                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       Pay Now (Stripe)
                     </button>
@@ -194,17 +547,27 @@ export default function CartPage() {
                     show={showStripeCheckout && paymentMethod === 'stripe'}
                     onClose={handleCloseStripeCheckout}
                     cartItems={items}
+                    customerInfo={customerInfo}
+                    orderContext={orderContext}
                   />
                   {paymentMethod === 'cod' && (
                     <button
                       onClick={handleCheckout}
-                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
+                      disabled={!isFormValid || items.length === 0 || isProcessingOrder}
+                      className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
-                      Place Order (COD)
+                      {isProcessingOrder ? (
+                        <span className="flex items-center justify-center">
+                          <i className="ri-loader-4-line animate-spin mr-2"></i>
+                          Processing Order...
+                        </span>
+                      ) : (
+                        'Place Order (COD)'
+                      )}
                     </button>
                   )}
                   <button
-                    onClick={clearCart}
+                    onClick={handleClearCart}
                     className="w-1/3 mx-auto bg-red-500 hover:bg-red-600 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
                   >
                     Clear Cart

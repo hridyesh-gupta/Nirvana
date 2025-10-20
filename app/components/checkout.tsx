@@ -6,7 +6,6 @@ import {
 } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { CartItem } from '../../lib/cartStore'
-import { fetchClientSecret } from '../actions/stripe'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
 
@@ -20,11 +19,21 @@ export default function Checkout() {
       return []
     }
   }
+
+  // Create a wrapper function that handles the fetchClientSecret call
+  const fetchClientSecretWrapper = async () => {
+    const cartItems = getCartItemsFromLocalStorage()
+    
+    // For now, return a placeholder - this component needs to be integrated with the full checkout flow
+    // that includes customer info and order context
+    throw new Error('This checkout component needs to be integrated with the full checkout flow')
+  }
+
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider
         stripe={stripePromise}
-        options={{ fetchClientSecret: () => fetchClientSecret(getCartItemsFromLocalStorage()) }}
+        options={{ fetchClientSecret: fetchClientSecretWrapper }}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

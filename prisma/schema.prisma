@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderType {
+  delivery
+  pickup
+}
+
+enum PaymentMethod {
+  stripe
+  cod
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  failed
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  preparing
+  out_for_delivery
+  delivered
+  cancelled
+}
+
+model Order {
+  id                String        @id @default(uuid())
+  orderNumber       String        @unique @db.VarChar(50)
+  customerName      String        @db.VarChar(255)
+  customerEmail     String        @db.VarChar(320)
+  customerPhone     String        @db.VarChar(20)
+  deliveryAddress   String?       @db.VarChar(500)
+  city              String?       @db.VarChar(100)
+  postalCode        String?       @db.VarChar(20)
+  orderType         OrderType
+  paymentMethod     PaymentMethod
+  paymentStatus     PaymentStatus @default(pending)
+  stripeSessionId   String?       @unique @db.VarChar(255)
+  subtotal          Decimal       @db.Decimal(10, 2)
+  deliveryFee       Decimal       @default(0) @db.Decimal(10, 2)
+  discount          Decimal       @default(0) @db.Decimal(10, 2)
+  total             Decimal       @db.Decimal(10, 2)
+  status            OrderStatus   @default(pending)
+  specialInstructions String?     @db.VarChar(1000)
+  items             OrderItem[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@map("orders")
+  @@index([customerEmail])
+  @@index([createdAt])
+  @@index([status])
+}
+
+model OrderItem {
+  id                String   @id @default(uuid())
+  orderId           String
+  order             Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId         String   @db.VarChar(100)
+  productName       String   @db.VarChar(255)
+  price             Decimal  @db.Decimal(10, 2)
+  quantity          Int
+  selectedSauce     String?  @db.VarChar(100)
+  selectedFlavor    String?  @db.VarChar(100)
+  selectedMixOption String?  @db.VarChar(100)
+  createdAt         DateTime @default(now())
+
+  @@index([orderId])
+}

@@ -69,7 +69,7 @@ class CartStore {
     this.notify();
   }
 
-  updateQuantity(id: string, quantity: number, selectedSauce: string | null = null, selectedFlavor: string | null = null, selectedMixOption: string | null = null) {
+  updateQuantity(id: string, quantity: number, selectedSauce?: string, selectedFlavor?: string, selectedMixOption?: string) {
     if (quantity <= 0) {
       this.items = this.items.filter(
         (cartItem) => 

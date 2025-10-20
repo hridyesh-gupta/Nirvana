@@ -3,12 +3,15 @@
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { fetchClientSecret } from '../actions/stripe';
+import type { CartItem, CustomerInfo, OrderContext } from '../actions/stripe';
 import { useEffect } from 'react';
 
 interface StripeCheckoutModalProps {
   show: boolean;
   onClose: () => void;
-  cartItems: any[]; // You might want to define a more specific type for cartItems
+  cartItems: CartItem[];
+  customerInfo: CustomerInfo;
+  orderContext: OrderContext;
 }
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
@@ -17,6 +20,8 @@ export default function StripeCheckoutModal({
   show,
   onClose,
   cartItems,
+  customerInfo,
+  orderContext,
 }: StripeCheckoutModalProps) {
   useEffect(() => {
     if (show) {
@@ -43,7 +48,7 @@ export default function StripeCheckoutModal({
         <h2 className="text-2xl font-semibold mb-4 text-center">Complete Your Purchase</h2>
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
-          options={{ fetchClientSecret: () => fetchClientSecret(cartItems) }}
+          options={{ fetchClientSecret: () => fetchClientSecret(cartItems, customerInfo, orderContext) }}
         >
           <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
