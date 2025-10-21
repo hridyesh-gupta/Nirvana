@@ -310,6 +310,98 @@ server {
 
 **Important**: `NEXT_PUBLIC_*` variables are embedded into the JavaScript bundle at build time and cannot be changed without rebuilding. Other variables can be changed by restarting the server.
 
+## 4b. Build Script Options
+
+The project includes three different build scripts to handle various deployment scenarios and troubleshooting needs.
+
+### Available Build Scripts
+
+#### 1. Standard Build (`npm run build`)
+- **Purpose**: Standard production build with static optimization
+- **Use case**: Normal production deployments
+- **Behavior**: 
+  - Optimizes static pages and pre-renders where possible
+  - Dynamic routes (marked with `force-dynamic`) are skipped during build
+  - Should complete in 2-5 minutes depending on project size
+- **When to use**: Default choice for production deployments
+
+#### 2. Compile Mode (`npm run build:compile`)
+- **Purpose**: Emergency fallback if standard build hangs despite all fixes
+- **Use case**: When standard build hangs at "Collecting page data" phase
+- **Behavior**:
+  - Completely skips the "Collecting page data" phase
+  - No pages are pre-rendered; all render on first request
+  - Faster build times but slower first page loads
+- **Trade-off**: First request to each page has cold start delay
+- **When to use**: 
+  - If `npm run build` still hangs after implementing all fixes
+  - For CI/CD pipelines where build speed is critical
+  - For environments where database is not accessible during build
+  - As a temporary workaround while investigating persistent build issues
+
+#### 3. Debug Mode (`npm run build:debug`)
+- **Purpose**: Diagnostic tool to verify route configuration
+- **Use case**: Troubleshooting build issues and verifying configuration
+- **Behavior**:
+  - Shows which routes are static (○) vs dynamic (λ)
+  - Displays route segment config like `[force-dynamic]` and `[revalidate: 0]`
+  - Provides detailed build phase information
+- **When to use**:
+  - To verify that all Prisma-using routes are correctly marked as dynamic
+  - To diagnose which route is causing build to hang (if timeout error occurs)
+  - To confirm that the previous fixes are working as expected
+  - Before deploying to production, to validate build configuration
+
+### Debug Output Verification
+
+After running `npm run build:debug`, verify the following routes show the correct configuration:
+
+**Expected output for dynamic routes:**
+```
+λ /orders/[id]                         (Server) [force-dynamic]
+λ /return                              (Server) [force-dynamic]
+λ /api/health                          (Server) [force-dynamic]
+λ /api/orders/create                   (Server) [force-dynamic]
+λ /api/webhooks                        (Server) [force-dynamic]
+```
+
+**Key indicators:**
+- `λ` symbol indicates dynamic routes (Server-side rendering)
+- `[force-dynamic]` confirms the configuration is applied
+- No routes using Prisma should show `○` (static) symbol
+
+### Troubleshooting Decision Tree
+
+#### If build hangs at "Collecting page data":
+1. **First step**: Run `npm run build:debug` to see which route is being analyzed when it hangs
+2. **Check route configuration**: Verify that route uses Prisma and has `export const dynamic = 'force-dynamic'`
+3. **Check database configuration**: Verify `lib/db.ts` has build-time detection logic
+4. **If issue persists**: Use `npm run build:compile` as temporary workaround
+5. **Report issue**: Include debug output for further investigation
+
+#### If build times out after 120 seconds:
+1. **Error message**: Will show which route exceeded timeout
+2. **Check route configuration**: Verify route has `force-dynamic` and `revalidate = 0` configured
+3. **If route should be static**: Investigate why it's taking so long
+4. **If route should be dynamic**: Ensure configuration is correct
+5. **Consider timeout adjustment**: Increase `staticPageGenerationTimeout` in `next.config.ts` if legitimate static generation is slow
+
+### Performance Expectations
+
+- **Standard build**: Should complete in 2-5 minutes
+- **"Collecting page data" phase**: Should take 10-30 seconds
+- **If "Collecting page data" takes longer than 60 seconds**: Something is wrong
+- **Compile mode build**: Should complete in 1-3 minutes (faster than standard)
+- **Debug mode**: Adds 10-20% overhead compared to standard build
+
+### CI/CD Recommendations
+
+- **Production pipelines**: Use `npm run build` in production CI/CD pipelines
+- **Build timeout**: Set build timeout in CI/CD to 10 minutes (allows for network delays)
+- **Frequent timeouts**: If builds frequently timeout, investigate and fix root cause rather than using compile mode
+- **Configuration validation**: Run `npm run build:debug` in a separate CI job to validate configuration
+- **Performance optimization**: Consider caching `node_modules` and `.next/cache` to speed up builds
+
 ### Troubleshooting Standalone Builds
 
 #### Issue: "Cannot find module" errors

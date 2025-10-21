@@ -6,6 +6,7 @@ import Link from 'next/link';
 import RefreshButton from '../components/RefreshButton';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function Return({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const resolvedSearchParams = await searchParams;

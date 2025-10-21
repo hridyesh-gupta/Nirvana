@@ -4,6 +4,7 @@ import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from '@/lib/em
 import type { CartItem } from '@/lib/cartStore'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 // Helper function to generate unique order number
 function generateOrderNumber() {

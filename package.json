@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development next dev -H 0.0.0.0 -p 3000",
     "build": "cross-env SKIP_DB_CONNECT=1 prisma generate && next build",
+    "build:compile": "cross-env SKIP_DB_CONNECT=1 prisma generate && next build --experimental-build-mode compile",
+    "build:debug": "cross-env SKIP_DB_CONNECT=1 prisma generate && next build --debug",
     "postbuild": "node scripts/copy-standalone-files.js",
     "start": "next start -H 0.0.0.0 -p 3000",
     "start:standalone": "node .next/standalone/server.js",

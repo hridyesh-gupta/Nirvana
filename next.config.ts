@@ -55,6 +55,12 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['framer-motion', 'recharts'],
   },
   
+  // Build timeout configuration to prevent indefinite hanging during "Collecting page data" phase
+  // 120 seconds is a reasonable timeout for static page generation
+  // Build will fail with clear error if any page exceeds this timeout
+  // Note: Dynamic routes with 'force-dynamic' are skipped and don't count against this timeout
+  staticPageGenerationTimeout: 120,
+  
   // Image optimization (disabled for compatibility with static hosting/CDN)
   images: {
     unoptimized: true, // Keep disabled for compatibility with static hosting
