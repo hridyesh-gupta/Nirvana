@@ -147,6 +147,194 @@ vercel --prod
 curl https://yourdomain.com/api/webhooks
 ```
 
+## 4a. Standalone Build Deployment (Alternative to Vercel)
+
+### What is Standalone Build?
+The project now uses `output: 'standalone'` in `next.config.ts`, which creates a self-contained build in the `.next/standalone` directory. This provides:
+- **Smaller deployment size** (~80% reduction compared to default builds)
+- **Faster cold starts** with minimal Node.js server
+- **Docker-friendly** deployment option
+- **Self-contained** with only necessary dependencies
+
+### Standalone Build Instructions
+
+#### 1. Build the standalone application
+```bash
+# Generate Prisma client and build (automatically copies static files via postbuild script)
+npm run build
+
+# The standalone server will be created at:
+# .next/standalone/server.js
+# Static files are automatically copied via postbuild script
+```
+
+#### 2. Copy required static files (automatic)
+```bash
+# Files are automatically copied via postbuild script, but manual copy is also available:
+# Copy static files to standalone directory
+cp -r .next/static .next/standalone/.next/static
+
+# Copy public files to standalone directory
+cp -r public .next/standalone/public
+```
+
+#### 3. Start the standalone server
+```bash
+# Preferred method: Use the npm script (automatically copies static files)
+npm run start:standalone
+
+# Or manually navigate to standalone directory
+cd .next/standalone
+node server.js
+
+# Or with custom port
+PORT=8080 node server.js
+```
+
+### Docker Deployment Example
+
+#### Multi-stage Dockerfile structure:
+```dockerfile
+# Build stage
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npx prisma generate
+RUN npm run build
+
+# Runtime stage
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+EXPOSE 3000
+CMD ["node", "server.js"]
+```
+
+#### Docker deployment commands:
+```bash
+# Build Docker image
+docker build -t nirvana-restaurant .
+
+# Run with environment variables
+docker run -p 3000:3000 \
+  -e DATABASE_URL="mysql://..." \
+  -e STRIPE_SECRET_KEY="sk_live_..." \
+  nirvana-restaurant
+```
+
+### VPS/Dedicated Server Deployment
+
+#### 1. Upload standalone build
+```bash
+# Upload the .next/standalone directory to your server
+scp -r .next/standalone user@your-server:/opt/nirvana/
+```
+
+#### 2. Set up environment variables
+```bash
+# Create .env file on server
+nano /opt/nirvana/.env
+
+# Add all required environment variables:
+DATABASE_URL="mysql://..."
+STRIPE_SECRET_KEY="sk_live_..."
+# ... (all other variables)
+```
+
+#### 3. Configure process manager (PM2)
+```bash
+# Install PM2 globally
+npm install -g pm2
+
+# Create PM2 ecosystem file
+cat > ecosystem.config.js << EOF
+module.exports = {
+  apps: [{
+    name: 'nirvana-restaurant',
+    script: 'server.js',
+    cwd: '/opt/nirvana',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 3000
+    }
+  }]
+}
+EOF
+
+# Start application
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup
+```
+
+#### 4. Configure reverse proxy (nginx)
+```nginx
+server {
+    listen 80;
+    server_name nirvana-geneve.ch;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+### Environment Variables for Standalone Builds
+
+#### Build-time variables (must be set during `npm run build`):
+- `DATABASE_URL` - Required for Prisma client generation
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Embedded in client code
+- `NEXT_PUBLIC_APP_URL` - Embedded in client code
+- `NEXT_PUBLIC_DELIVERY_FEE` - Embedded in client code
+- `NEXT_PUBLIC_MIN_ORDER_AMOUNT` - Embedded in client code
+
+#### Runtime-only variables (set when running `node server.js`):
+- `STRIPE_SECRET_KEY` - Server-side Stripe operations
+- `STRIPE_WEBHOOK_SECRET` - Webhook signature verification
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` - Email configuration
+- `SMTP_FROM_NAME`, `SMTP_FROM_EMAIL` - Email sender configuration
+- `OWNER_EMAIL` - Order notification recipient
+- `INTERNAL_API_KEY` - API authentication
+
+**Important**: `NEXT_PUBLIC_*` variables are embedded into the JavaScript bundle at build time and cannot be changed without rebuilding. Other variables can be changed by restarting the server.
+
+### Troubleshooting Standalone Builds
+
+#### Issue: "Cannot find module" errors
+**Solution**: Ensure all dependencies are in `dependencies`, not `devDependencies` in `package.json`
+
+#### Issue: Static files not loading
+**Solution**: Copy `.next/static` and `public` directories to standalone directory
+```bash
+cp -r .next/static .next/standalone/.next/static
+cp -r public .next/standalone/public
+```
+
+#### Issue: Environment variables not working
+**Solution**: Check they're set in the runtime environment, not just build environment
+```bash
+# Verify environment variables are available
+node -e "console.log(process.env.DATABASE_URL)"
+```
+
+#### Issue: Port conflicts
+**Solution**: Set PORT environment variable
+```bash
+PORT=8080 node server.js
+```
+
 ## 5. Testing Checklist
 
 ### Stripe Payment Testing
@@ -279,6 +467,19 @@ SELECT stripeSessionId, COUNT(*) FROM orders GROUP BY stripeSessionId HAVING COU
 - Document recovery procedures
 
 ## 10. Troubleshooting Common Issues
+
+### Build hanging at "Collecting page data"
+**Solution**: Ensure dynamic routes have proper configuration
+- Verify `export const dynamic = 'force-dynamic'` is added to `/app/orders/[id]/page.tsx`
+- Verify `export const dynamic = 'force-dynamic'` is added to `/app/return/page.tsx`
+- Check that `lib/db.ts` has build-time detection to prevent database connections during build
+- Ensure `DATABASE_URL` has connection timeout parameters: `?connect_timeout=10&pool_timeout=10&connection_limit=5`
+
+### Database connection timeout during build
+**Solution**: Verify PrismaClient configuration
+- Check that `lib/db.ts` has build-time detection (`process.env.NEXT_PHASE === 'phase-production-build'`)
+- Verify connection timeout configuration in `DATABASE_URL`
+- Ensure no eager database connections during build phase
 
 ### Emails not sending
 - Check SMTP credentials
