@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import Link from 'next/link';
 import RefreshButton from '../components/RefreshButton';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Return({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const resolvedSearchParams = await searchParams;
   const sessionIdParam = resolvedSearchParams?.session_id;

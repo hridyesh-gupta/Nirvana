@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface OrderTrackingPageProps {
   params: Promise<{
     id: string;
