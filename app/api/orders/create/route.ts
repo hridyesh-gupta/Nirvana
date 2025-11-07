@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from '@/lib/email'
+import { sendOrderConfirmationEmailDirect, sendOwnerNotificationEmailDirect } from '@/lib/emailService'
 import type { CartItem } from '@/lib/cartStore'
 
 export const runtime = 'nodejs'
@@ -178,17 +178,57 @@ export async function POST(req: NextRequest) {
 
     // Send email notifications (don't fail the API if emails fail)
     try {
-      await sendOrderConfirmationEmail(orderData)
-      console.log('Order confirmation email sent successfully')
+      const emailResult = await sendOrderConfirmationEmailDirect(orderData)
+      if (emailResult.success) {
+        console.log('Order confirmation email sent successfully')
+      } else {
+        console.error('Failed to send order confirmation email:', {
+          orderNumber: orderData.orderNumber,
+          customerEmail: orderData.customerEmail,
+          error: emailResult.error,
+          suggestion: 'Check SMTP configuration if error persists',
+          timestamp: new Date().toISOString()
+        })
+      }
     } catch (emailError) {
-      console.error('Failed to send order confirmation email:', emailError)
+      console.error('Failed to send order confirmation email:', {
+        orderNumber: orderData.orderNumber,
+        customerEmail: orderData.customerEmail,
+        error: emailError instanceof Error ? {
+          message: emailError.message,
+          stack: emailError.stack
+        } : emailError,
+        suggestion: 'Check SMTP configuration if error persists',
+        timestamp: new Date().toISOString()
+      })
     }
 
+    const ownerEmail = process.env.OWNER_EMAIL || 'orders@nirvana-geneve.ch';
+    if (!process.env.OWNER_EMAIL) {
+      console.warn('OWNER_EMAIL environment variable is not configured. Using fallback:', ownerEmail)
+    }
     try {
-      await sendOwnerNotificationEmail(orderData)
-      console.log('Owner notification email sent successfully')
+      const emailResult = await sendOwnerNotificationEmailDirect(orderData)
+      if (emailResult.success) {
+        console.log('Owner notification email sent successfully')
+      } else {
+        console.error('Failed to send owner notification email:', {
+          orderNumber: orderData.orderNumber,
+          ownerEmail,
+          error: emailResult.error,
+          timestamp: new Date().toISOString()
+        })
+      }
     } catch (emailError) {
-      console.error('Failed to send owner notification email:', emailError)
+      console.error('Failed to send owner notification email:', {
+        orderNumber: orderData.orderNumber,
+        ownerEmail,
+        error: emailError instanceof Error ? {
+          message: emailError.message,
+          stack: emailError.stack
+        } : emailError,
+        timestamp: new Date().toISOString()
+      })
     }
 
     // Return success response

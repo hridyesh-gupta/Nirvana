@@ -15,9 +15,15 @@ const getBaseUrl = (): string => {
  * Send order confirmation email to customer
  * @param orderData - Order information to include in the confirmation email
  * @returns Promise with email sending result
+ * @note **Note:** This function makes an HTTP request and is intended for client-side use. For server-side use (e.g., in API routes), use `sendOrderConfirmationEmailDirect` from `@/lib/emailService` instead.
  */
 export const sendOrderConfirmationEmail = async (orderData: OrderEmailData): Promise<{ success: boolean; error?: string; messageId?: string }> => {
   try {
+    // Warn if used on server-side
+    if (typeof window === 'undefined') {
+      console.warn('Warning: Using HTTP-based email function on server-side. Consider using sendOrderConfirmationEmailDirect for better performance.');
+    }
+    
     console.log('Sending order confirmation email:', {
       orderNumber: orderData.orderNumber,
       customerEmail: orderData.customerEmail,
@@ -60,9 +66,15 @@ export const sendOrderConfirmationEmail = async (orderData: OrderEmailData): Pro
  * Send order notification email to restaurant owner
  * @param orderData - Order information to include in the notification email
  * @returns Promise with email sending result
+ * @note **Note:** This function makes an HTTP request and is intended for client-side use. For server-side use (e.g., in API routes), use `sendOwnerNotificationEmailDirect` from `@/lib/emailService` instead.
  */
 export const sendOwnerNotificationEmail = async (orderData: OrderEmailData): Promise<{ success: boolean; error?: string; messageId?: string }> => {
   try {
+    // Warn if used on server-side
+    if (typeof window === 'undefined') {
+      console.warn('Warning: Using HTTP-based email function on server-side. Consider using sendOwnerNotificationEmailDirect for better performance.');
+    }
+    
     console.log('Sending owner notification email:', {
       orderNumber: orderData.orderNumber,
       customerName: orderData.customerName,

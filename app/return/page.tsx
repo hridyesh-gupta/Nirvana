@@ -124,19 +124,6 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                         <span className="text-gray-600">Order Type:</span>
                         <span className="font-medium text-gray-800 capitalize">{order.orderType}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Status:</span>
-                        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          order.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                          order.status === 'confirmed' ? 'bg-blue-100 text-blue-800' :
-                          order.status === 'preparing' ? 'bg-orange-100 text-orange-800' :
-                          order.status === 'out_for_delivery' ? 'bg-purple-100 text-purple-800' :
-                          order.status === 'delivered' ? 'bg-green-100 text-green-800' :
-                          'bg-red-100 text-red-800'
-                        }`}>
-                          {order.status.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
-                        </span>
-                      </div>
                     </div>
                   </div>
 
@@ -331,11 +318,12 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                 >
                   View Menu
                 </Link>
-                {order?.id && (
-                  <Link href={`/orders/${order.id}`} className="px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
-                    Track Order
-                  </Link>
-                )}
+                <Link 
+                  href="/contact" 
+                  className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-300 hover:scale-105 shadow-lg"
+                >
+                  Contact Us
+                </Link>
               </div>
             </div>
           </div>

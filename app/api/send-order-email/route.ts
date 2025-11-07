@@ -9,14 +9,40 @@ export async function POST(request: NextRequest) {
     const internalKey = request.headers.get('X-Internal-Key');
     const expectedKey = process.env.INTERNAL_API_KEY;
     
-    if (expectedKey && internalKey !== expectedKey) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Unauthorized: Invalid internal API key' 
-        },
-        { status: 401 }
-      );
+    // Enforce authentication unconditionally in production
+    if (process.env.NODE_ENV === 'production') {
+      if (!expectedKey) {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Server misconfiguration: INTERNAL_API_KEY is required in production' 
+          },
+          { status: 500 }
+        );
+      }
+      
+      if (internalKey !== expectedKey) {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Unauthorized: Invalid internal API key' 
+          },
+          { status: 401 }
+        );
+      }
+    } else {
+      // Development mode: warn if key is missing but allow requests for local testing
+      if (!expectedKey) {
+        console.warn('Warning: INTERNAL_API_KEY is not set. Allowing unauthenticated access in development mode.');
+      } else if (internalKey !== expectedKey) {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Unauthorized: Invalid internal API key' 
+          },
+          { status: 401 }
+        );
+      }
     }
 
     const body = await request.json();

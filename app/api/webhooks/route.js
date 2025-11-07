@@ -3,13 +3,26 @@ import { headers } from 'next/headers'
 
 import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
-import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from '@/lib/email'
+import { sendOrderConfirmationEmailDirect, sendOwnerNotificationEmailDirect, verifyEmailConfiguration } from '@/lib/emailService'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2024-06-20',
+})
+
+// Verify SMTP configuration on startup
+verifyEmailConfiguration().then(result => {
+  if (!result.configured) {
+    console.warn('SMTP is not configured. Email sending will be logged to console only.')
+  } else if (result.configured && !result.verified) {
+    console.warn('SMTP configuration verification failed:', result.error)
+  } else if (result.configured && result.verified) {
+    console.log('SMTP configuration verified successfully')
+  }
+}).catch(err => {
+  console.error('Error verifying SMTP configuration:', err)
 })
 
 // Helper function to deserialize cart items from batched metadata
@@ -249,39 +262,84 @@ export async function POST(req) {
             console.log('Order created successfully:', order.orderNumber)
             
             // Prepare order data for emails
+            // Format delivery address as a single string when order type is delivery and all parts are present
+            const deliveryAddress = order.orderType === 'delivery' && order.deliveryAddress && order.city && order.postalCode
+              ? `${order.deliveryAddress}, ${order.city}, ${order.postalCode}`
+              : order.orderType === 'delivery' && order.deliveryAddress
+              ? order.deliveryAddress
+              : undefined;
+            
             const orderData = {
               orderNumber: order.orderNumber,
               customerName: order.customerName,
               customerEmail: order.customerEmail,
               customerPhone: order.customerPhone,
-              deliveryAddress: order.deliveryAddress,
-              city: order.city,
-              postalCode: order.postalCode,
+              deliveryAddress,
               orderType: order.orderType,
               paymentMethod: order.paymentMethod,
+              paymentStatus: order.paymentStatus,
               subtotal: order.subtotal,
               deliveryFee: order.deliveryFee,
               discount: order.discount,
               total: order.total,
               specialInstructions: order.specialInstructions,
-              items: cartItems
+              items: cartItems,
+              createdAt: order.createdAt
             }
             
             // Send email notifications (don't fail webhook if emails fail)
             const emailStartTime = Date.now();
             try {
-              await sendOrderConfirmationEmail(orderData)
-              console.log('Customer email sent in', Date.now() - emailStartTime, 'ms');
+              const emailResult = await sendOrderConfirmationEmailDirect(orderData)
+              if (emailResult.success) {
+                console.log('Customer email sent in', Date.now() - emailStartTime, 'ms');
+              } else {
+                console.error('Customer email failed after', Date.now() - emailStartTime, 'ms:', {
+                  orderNumber: orderData.orderNumber,
+                  customerEmail: orderData.customerEmail,
+                  error: emailResult.error,
+                  timestamp: new Date().toISOString()
+                })
+              }
             } catch (emailError) {
-              console.error('Customer email failed after', Date.now() - emailStartTime, 'ms:', emailError)
+              console.error('Customer email failed after', Date.now() - emailStartTime, 'ms:', {
+                orderNumber: orderData.orderNumber,
+                customerEmail: orderData.customerEmail,
+                error: emailError instanceof Error ? {
+                  message: emailError.message,
+                  stack: emailError.stack
+                } : emailError,
+                timestamp: new Date().toISOString()
+              })
             }
             
             const ownerEmailStartTime = Date.now();
+            const ownerEmail = process.env.OWNER_EMAIL || 'orders@nirvana-geneve.ch';
+            if (!process.env.OWNER_EMAIL) {
+              console.warn('OWNER_EMAIL environment variable is not configured. Using fallback:', ownerEmail)
+            }
             try {
-              await sendOwnerNotificationEmail(orderData)
-              console.log('Owner email sent in', Date.now() - ownerEmailStartTime, 'ms');
+              const emailResult = await sendOwnerNotificationEmailDirect(orderData)
+              if (emailResult.success) {
+                console.log('Owner email sent in', Date.now() - ownerEmailStartTime, 'ms');
+              } else {
+                console.error('Owner email failed after', Date.now() - ownerEmailStartTime, 'ms:', {
+                  orderNumber: orderData.orderNumber,
+                  ownerEmail,
+                  error: emailResult.error,
+                  timestamp: new Date().toISOString()
+                })
+              }
             } catch (emailError) {
-              console.error('Owner email failed after', Date.now() - ownerEmailStartTime, 'ms:', emailError)
+              console.error('Owner email failed after', Date.now() - ownerEmailStartTime, 'ms:', {
+                orderNumber: orderData.orderNumber,
+                ownerEmail,
+                error: emailError instanceof Error ? {
+                  message: emailError.message,
+                  stack: emailError.stack
+                } : emailError,
+                timestamp: new Date().toISOString()
+              })
             }
             
             console.log('Order processing completed successfully for:', order.orderNumber)

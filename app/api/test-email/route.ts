@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOrderConfirmationEmail, sendOwnerNotificationEmail } from '@/lib/email';
+import { sendOrderConfirmationEmailDirect, sendOwnerNotificationEmailDirect, isEmailConfigured } from '@/lib/emailService';
 import { OrderEmailData } from '@/lib/types/order';
 
 interface TestEmailRequest {
   to: string;
   type: 'customer' | 'owner';
+  useDirect?: boolean; // Default: true
 }
 
 // Mock order data for testing
@@ -66,7 +68,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Parse request body
     const body: TestEmailRequest = await request.json();
-    const { to, type } = body;
+    const { to, type, useDirect = true } = body;
 
     // Validate request
     if (!to || !type) {
@@ -100,15 +102,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       mockOrderData.customerEmail = to;
     }
 
-    console.log(`Sending test ${type} email to:`, to);
+    console.log(`Sending test ${type} email to:`, to, `using ${useDirect ? 'direct' : 'HTTP'} method`);
 
     // Send appropriate email
     let result;
+    const method = useDirect ? 'direct' : 'HTTP';
+    
     if (type === 'customer') {
-      result = await sendOrderConfirmationEmail(mockOrderData);
+      if (useDirect) {
+        result = await sendOrderConfirmationEmailDirect(mockOrderData);
+      } else {
+        result = await sendOrderConfirmationEmail(mockOrderData);
+      }
     } else {
-      result = await sendOwnerNotificationEmail(mockOrderData);
+      if (useDirect) {
+        result = await sendOwnerNotificationEmailDirect(mockOrderData);
+      } else {
+        result = await sendOwnerNotificationEmail(mockOrderData);
+      }
     }
+
+    // Get diagnostic information
+    const smtpConfigured = isEmailConfigured();
+    const ownerEmail = process.env.OWNER_EMAIL || 'orders@nirvana-geneve.ch';
+    const timestamp = new Date().toISOString();
 
     if (result.success) {
       return NextResponse.json({
@@ -116,13 +133,25 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         messageId: result.messageId,
         message: `Test ${type} email sent successfully to ${to}`,
         orderNumber: mockOrderData.orderNumber,
+        diagnostics: {
+          method,
+          smtpConfigured,
+          ownerEmail,
+          timestamp
+        }
       });
     } else {
       return NextResponse.json(
         { 
           success: false, 
           error: result.error || 'Failed to send test email',
-          message: `Test ${type} email failed: ${result.error}` 
+          message: `Test ${type} email failed: ${result.error}`,
+          diagnostics: {
+            method,
+            smtpConfigured,
+            ownerEmail,
+            timestamp
+          }
         },
         { status: 500 }
       );
