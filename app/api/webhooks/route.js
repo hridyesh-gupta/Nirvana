@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import Stripe from 'stripe'
 import { prisma } from '@/lib/db'
 import { sendOrderConfirmationEmailDirect, sendOwnerNotificationEmailDirect, verifyEmailConfiguration } from '@/lib/emailService'
+import { getZoneByZipcode } from '@/lib/deliveryZones'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -53,23 +54,32 @@ function deserializeCartItems(metadata) {
 // Helper function to parse delivery address
 function parseDeliveryAddress(addressString, orderType) {
   if (orderType === 'pickup') {
-    return { street: null, city: null, postalCode: null }
+    return { zipcode: null, street: null, city: null, postalCode: null }
   }
   
   try {
     if (!addressString) {
-      return { street: null, city: null, postalCode: null }
+      return { zipcode: null, street: null, city: null, postalCode: null }
     }
     
-    const parts = addressString.split(',').map(part => part.trim())
+    let zipcode = null
+    let remainingAddress = addressString
+
+    if (addressString.includes(' - ')) {
+      const [zipPart, rest] = addressString.split(' - ')
+      zipcode = zipPart?.trim() || null
+      remainingAddress = (rest || '').trim()
+    }
+
+    const parts = remainingAddress.split(',').map(part => part.trim())
     const street = parts[0] || null
     const city = parts[1] || null
     const postalCode = parts[2] || null
     
-    return { street, city, postalCode }
+    return { zipcode: zipcode || null, street, city, postalCode }
   } catch (error) {
     console.error('Error parsing delivery address:', error)
-    return { street: null, city: null, postalCode: null }
+    return { zipcode: null, street: null, city: null, postalCode: null }
   }
 }
 
@@ -184,11 +194,39 @@ export async function POST(req) {
             const cartItems = deserializeCartItems(session.metadata)
             console.log('Deserialized cart items:', cartItems.length)
             
-            // Parse delivery address
-            const { street, city, postalCode } = parseDeliveryAddress(
+            const metadataZipcode = session.metadata.zipcode?.trim() || null
+            const parsedAddress = parseDeliveryAddress(
               session.metadata.deliveryAddress,
               session.metadata.orderType
             )
+            const zipcode = metadataZipcode || parsedAddress.zipcode
+            const { street, city, postalCode } = parsedAddress
+
+            console.log('Parsed delivery info:', { zipcode, street, city, postalCode })
+
+            let persistedDeliveryFee = deliveryFee
+
+            // Validate delivery fee matches zone (if zipcode provided)
+            if (session.metadata.orderType === 'delivery' && zipcode) {
+              const zoneInfo = getZoneByZipcode(zipcode)
+
+              if (zoneInfo) {
+                const epsilon = 0.01
+
+                if (Math.abs(deliveryFee - zoneInfo.deliveryFee) > epsilon) {
+                  console.warn('Delivery fee mismatch:', {
+                    expected: zoneInfo.deliveryFee,
+                    received: deliveryFee,
+                    zipcode,
+                    zone: zoneInfo.zone
+                  })
+                }
+
+                persistedDeliveryFee = zoneInfo.deliveryFee
+              } else {
+                console.warn('Zipcode not found in delivery zones:', zipcode)
+              }
+            }
             
             // Generate unique order number
             const orderNumber = generateOrderNumber()
@@ -217,12 +255,13 @@ export async function POST(req) {
                     deliveryAddress: street,
                     city,
                     postalCode,
+                    zipcode,
                     orderType: session.metadata.orderType,
                     paymentMethod: session.metadata.paymentMethod,
                     paymentStatus,
                     stripeSessionId: session.id,
                     subtotal,
-                    deliveryFee,
+                    deliveryFee: persistedDeliveryFee,
                     discount,
                     total,
                     specialInstructions: session.metadata.specialInstructions || null,

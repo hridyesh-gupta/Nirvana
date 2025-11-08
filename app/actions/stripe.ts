@@ -24,6 +24,7 @@ export interface CustomerInfo {
   street: string;
   city: string;
   postalCode: string;
+  zipcode: string;
   specialInstructions: string;
 }
 
@@ -81,7 +82,7 @@ function formatDeliveryAddress(customerInfo: CustomerInfo, orderType: 'delivery'
   if (orderType === 'pickup') {
     return '';
   }
-  const address = `${customerInfo.street}, ${customerInfo.city}, ${customerInfo.postalCode}`;
+  const address = `${customerInfo.zipcode} - ${customerInfo.street}, ${customerInfo.city}, ${customerInfo.postalCode}`;
   return address.length > 500 ? address.substring(0, 500) : address;
 }
 
@@ -124,6 +125,7 @@ export async function fetchClientSecret(
       customerEmail: customerInfo.email,
       customerPhone: customerInfo.phone,
       deliveryAddress: deliveryAddress,
+      zipcode: customerInfo.zipcode,
       orderType: orderContext.orderType,
       paymentMethod: orderContext.paymentMethod,
       subtotal: orderContext.subtotal.toFixed(2),

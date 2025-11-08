@@ -10,6 +10,7 @@ import StripeCheckoutModal from '../components/StripeCheckoutModal';
 import { loadStripe } from '@stripe/stripe-js';
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js';
 import { fetchClientSecret } from '../actions/stripe';
+import { DELIVERY_ZONES, getDeliveryFeeByZone, getZoneByZipcode, validateMinimumOrder } from '../../lib/deliveryZones';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
@@ -24,6 +25,7 @@ export default function CartPage() {
     name: '',
     email: '',
     phone: '',
+    zipcode: '',
     street: '',
     city: '',
     postalCode: '',
@@ -36,9 +38,18 @@ export default function CartPage() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isProcessingOrder, setIsProcessingOrder] = useState(false);
   const [orderError, setOrderError] = useState<string | null>(null);
+  const [minimumOrderError, setMinimumOrderError] = useState<string | null>(null);
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const deliveryFee = orderType === 'delivery' ? 3.5 : 0;
+  const deliveryFee = orderType === 'delivery'
+    ? (() => {
+        if (!customerInfo.zipcode) {
+          return 0;
+        }
+        const zoneInfo = getZoneByZipcode(customerInfo.zipcode);
+        return zoneInfo ? getDeliveryFeeByZone(zoneInfo.zone) : 0;
+      })()
+    : 0;
   const discount = orderType === 'pickup' ? subtotal * 0.1 : 0;
   const total = subtotal + deliveryFee - discount;
 
@@ -87,7 +98,7 @@ export default function CartPage() {
   };
 
   // Pure function that returns errors without side effects
-  const getErrors = (customerInfo: { name: string; email: string; phone: string; street: string; city: string; postalCode: string; specialInstructions: string }, orderType: 'delivery' | 'pickup'): Record<string, string> => {
+  const getErrors = (customerInfo: { name: string; email: string; phone: string; zipcode: string; street: string; city: string; postalCode: string; specialInstructions: string }, orderType: 'delivery' | 'pickup'): Record<string, string> => {
     const errors: Record<string, string> = {};
     
     // Required fields for all orders
@@ -109,6 +120,9 @@ export default function CartPage() {
     
     // Address fields required only for delivery
     if (orderType === 'delivery') {
+      if (!customerInfo.zipcode.trim()) {
+        errors.zipcode = 'Zipcode is required for delivery';
+      }
       if (!customerInfo.street.trim()) {
         errors.street = 'Street address is required for delivery';
       }
@@ -143,6 +157,33 @@ export default function CartPage() {
     setIsFormValid(Object.keys(errors).length === 0);
   }, [customerInfo, orderType]);
 
+  useEffect(() => {
+    if (orderType !== 'delivery') {
+      setMinimumOrderError(null);
+      return;
+    }
+
+    if (!customerInfo.zipcode) {
+      setMinimumOrderError(null);
+      return;
+    }
+
+    const zoneInfo = getZoneByZipcode(customerInfo.zipcode);
+    if (!zoneInfo) {
+      setMinimumOrderError(null);
+      return;
+    }
+
+    const validation = validateMinimumOrder(zoneInfo.zone, subtotal);
+    if (!validation.isValid) {
+      setMinimumOrderError(
+        `Minimum order for this zone is CHF ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
+      );
+    } else {
+      setMinimumOrderError(null);
+    }
+  }, [customerInfo.zipcode, subtotal, orderType]);
+
   const handleCloseStripeCheckout = () => {
     setShowStripeCheckout(false);
   };
@@ -160,6 +201,19 @@ export default function CartPage() {
     // If form is invalid, don't proceed
     if (Object.keys(errors).length > 0) {
       return;
+    }
+
+    if (orderType === 'delivery' && customerInfo.zipcode) {
+      const zoneInfo = getZoneByZipcode(customerInfo.zipcode);
+      if (zoneInfo) {
+        const validation = validateMinimumOrder(zoneInfo.zone, subtotal);
+        if (!validation.isValid) {
+          setMinimumOrderError(
+            `Minimum order for this zone is CHF ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
+          );
+          return;
+        }
+      }
     }
     
     if (paymentMethod === 'stripe') {
@@ -191,6 +245,7 @@ export default function CartPage() {
             name: '',
             email: '',
             phone: '',
+            zipcode: '',
             street: '',
             city: '',
             postalCode: '',
@@ -199,6 +254,7 @@ export default function CartPage() {
           setFormErrors({});
           setHasAttemptedCheckout(false);
           setTouched({});
+          setMinimumOrderError(null);
           // Show success message
           alert(`Order placed successfully! Order number: ${result.orderNumber}. You will receive a confirmation email shortly.`);
         } else {
@@ -222,6 +278,7 @@ export default function CartPage() {
       name: '',
       email: '',
       phone: '',
+      zipcode: '',
       street: '',
       city: '',
       postalCode: '',
@@ -232,6 +289,7 @@ export default function CartPage() {
     setTouched({});
     setIsProcessingOrder(false);
     setOrderError(null);
+    setMinimumOrderError(null);
   };
 
   return (
@@ -421,6 +479,37 @@ export default function CartPage() {
                       
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Delivery Zipcode *
+                        </label>
+                        <select
+                          value={customerInfo.zipcode}
+                          onChange={(e) => handleInputChange('zipcode', e.target.value)}
+                          onBlur={() => handleFieldBlur('zipcode')}
+                          className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                        >
+                          <option value="" disabled>
+                            Select your zipcode
+                          </option>
+                          {DELIVERY_ZONES.map((zoneInfo) => (
+                            <optgroup
+                              key={zoneInfo.zone}
+                              label={`Zone ${zoneInfo.zone} - Min Order CHF ${zoneInfo.minimumOrder.toFixed(2)}, Delivery CHF ${zoneInfo.deliveryFee.toFixed(2)}`}
+                            >
+                              {zoneInfo.zipcodes.map((zipcode) => (
+                                <option key={zipcode} value={zipcode}>
+                                  {zipcode}
+                                </option>
+                              ))}
+                            </optgroup>
+                          ))}
+                        </select>
+                        {(touched.zipcode || hasAttemptedCheckout) && formErrors.zipcode && (
+                          <p className="text-red-500 text-sm mt-1">{formErrors.zipcode}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
                           Street Address *
                         </label>
                         <input
@@ -519,6 +608,12 @@ export default function CartPage() {
                   </div>
                 </div>
 
+                {minimumOrderError && (
+                  <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
+                    Minimum order requirement not met: {minimumOrderError}
+                  </div>
+                )}
+
                 {/* Form validation message */}
                 {hasAttemptedCheckout && !isFormValid && items.length > 0 && (
                   <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
@@ -537,7 +632,7 @@ export default function CartPage() {
                   {!showStripeCheckout && paymentMethod === 'stripe' && (
                     <button
                       onClick={handleCheckout}
-                      disabled={!isFormValid || items.length === 0}
+                      disabled={!isFormValid || items.length === 0 || !!minimumOrderError}
                       className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       Pay Now (Stripe)
@@ -553,7 +648,7 @@ export default function CartPage() {
                   {paymentMethod === 'cod' && (
                     <button
                       onClick={handleCheckout}
-                      disabled={!isFormValid || items.length === 0 || isProcessingOrder}
+                      disabled={!isFormValid || items.length === 0 || isProcessingOrder || !!minimumOrderError}
                       className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       {isProcessingOrder ? (

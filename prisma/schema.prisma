@@ -44,6 +44,7 @@ model Order {
   deliveryAddress   String?       @db.VarChar(500)
   city              String?       @db.VarChar(100)
   postalCode        String?       @db.VarChar(20)
+  zipcode           String?       @db.VarChar(20)
   orderType         OrderType
   paymentMethod     PaymentMethod
   paymentStatus     PaymentStatus @default(pending)

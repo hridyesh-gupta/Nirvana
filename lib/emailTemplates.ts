@@ -1,6 +1,46 @@
 // Email template generation for order confirmations and notifications
 import { OrderEmailData } from './types/order';
 
+const renderDeliveryAddress = (
+  orderData: OrderEmailData,
+  audience: 'customer' | 'owner',
+  format: 'html' | 'text'
+): string => {
+  if (orderData.orderType !== 'delivery' || !orderData.deliveryAddress) {
+    return '';
+  }
+
+  if (format === 'html') {
+    if (audience === 'customer') {
+      return `
+            <!-- Delivery Address -->
+            <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
+                <h3 style="color: #28a745; margin: 0 0 10px 0; font-size: 18px;">Delivery Address</h3>
+                ${orderData.zipcode ? `<p style="margin: 0 0 8px 0; color: #28a745; font-weight: bold; font-size: 16px;">📍 Delivery Zone: ${orderData.zipcode}</p>` : ''}
+                <p style="margin: 0; color: #333333; line-height: 1.5;">${orderData.deliveryAddress}</p>
+            </div>
+            `;
+    }
+
+    return `
+            <!-- Delivery Address (Highlighted) -->
+            <div style="background-color: #f8d7da; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #dc3545;">
+                <h3 style="color: #721c24; margin: 0 0 10px 0; font-size: 18px;">📍 Delivery Address</h3>
+                ${orderData.zipcode ? `<p style="margin: 0 0 10px 0; color: #721c24; font-weight: bold; font-size: 18px;">🏷️ DELIVERY ZONE: ${orderData.zipcode}</p>
+                <p style="margin: 0 0 10px 0; color: #721c24; font-size: 14px; font-style: italic;">Zone determines delivery fee and minimum order</p>` : ''}
+                <p style="margin: 0; color: #721c24; line-height: 1.5; font-size: 16px; font-weight: bold;">${orderData.deliveryAddress}</p>
+                <p style="margin: 10px 0 0 0; color: #721c24; font-size: 14px;">📋 Copy this address for delivery driver</p>
+            </div>
+            `;
+  }
+
+  if (audience === 'customer') {
+    return `${orderData.zipcode ? `Delivery Zone: ${orderData.zipcode}\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
+  }
+
+  return `${orderData.zipcode ? `DELIVERY ZONE: ${orderData.zipcode}\n(Zone determines delivery fee and minimum order)\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
+};
+
 /**
  * Generate HTML email template for customer order confirmation
  * @param orderData - Order information to include in the email
@@ -62,13 +102,7 @@ export const generateCustomerOrderEmail = (orderData: OrderEmailData): string =>
                 </span>
             </div>
 
-            ${orderData.orderType === 'delivery' && orderData.deliveryAddress ? `
-            <!-- Delivery Address -->
-            <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
-                <h3 style="color: #28a745; margin: 0 0 10px 0; font-size: 18px;">Delivery Address</h3>
-                <p style="margin: 0; color: #333333; line-height: 1.5;">${orderData.deliveryAddress}</p>
-            </div>
-            ` : ''}
+            ${renderDeliveryAddress(orderData, 'customer', 'html')}
 
             <!-- Order Items -->
             <div style="margin-bottom: 25px;">
@@ -236,14 +270,7 @@ export const generateOwnerNotificationEmail = (orderData: OrderEmailData): strin
                 </span>
             </div>
 
-            ${orderData.orderType === 'delivery' && orderData.deliveryAddress ? `
-            <!-- Delivery Address (Highlighted) -->
-            <div style="background-color: #f8d7da; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #dc3545;">
-                <h3 style="color: #721c24; margin: 0 0 10px 0; font-size: 18px;">📍 Delivery Address</h3>
-                <p style="margin: 0; color: #721c24; line-height: 1.5; font-size: 16px; font-weight: bold;">${orderData.deliveryAddress}</p>
-                <p style="margin: 10px 0 0 0; color: #721c24; font-size: 14px;">📋 Copy this address for delivery driver</p>
-            </div>
-            ` : ''}
+            ${renderDeliveryAddress(orderData, 'owner', 'html')}
 
             <!-- Order Items -->
             <div style="margin-bottom: 25px;">
@@ -361,7 +388,7 @@ Email: ${orderData.customerEmail}
 Phone: ${orderData.customerPhone}
 Order Type: ${orderData.orderType.toUpperCase()}
 
-${orderData.orderType === 'delivery' && orderData.deliveryAddress ? `Delivery Address: ${orderData.deliveryAddress}` : ''}
+${renderDeliveryAddress(orderData, 'customer', 'text')}
 
 ORDER ITEMS:
 ${orderData.items.map(item => 
@@ -408,7 +435,7 @@ Phone: ${orderData.customerPhone}
 Email: ${orderData.customerEmail}
 
 Order Type: ${orderData.orderType.toUpperCase()}
-${orderData.orderType === 'delivery' && orderData.deliveryAddress ? `Delivery Address: ${orderData.deliveryAddress}` : ''}
+${renderDeliveryAddress(orderData, 'owner', 'text')}
 
 ORDER ITEMS:
 ${orderData.items.map(item => 

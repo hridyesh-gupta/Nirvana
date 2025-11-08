@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { sendOrderConfirmationEmailDirect, sendOwnerNotificationEmailDirect } from '@/lib/emailService'
+import { getZoneByZipcode, validateMinimumOrder } from '@/lib/deliveryZones'
 import type { CartItem } from '@/lib/cartStore'
 
 export const runtime = 'nodejs'
@@ -79,6 +80,13 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         )
       }
+
+      if (!customerInfo.zipcode || String(customerInfo.zipcode).trim() === '') {
+        return NextResponse.json(
+          { error: 'Zipcode is required for delivery orders' },
+          { status: 400 }
+        )
+      }
     }
 
     // Validate numeric values
@@ -92,7 +100,38 @@ export async function POST(req: NextRequest) {
 
     // Server-side total validation to prevent tampering
     const computedSubtotal = cartItems.reduce((sum: number, i: CartItem) => sum + Number(i.price) * Number(i.quantity), 0);
-    const expectedDeliveryFee = orderContext.orderType === 'delivery' ? 3.5 : 0;
+    let expectedDeliveryFee = 0;
+    let zoneInfo = null;
+
+    if (orderContext.orderType === 'delivery') {
+      zoneInfo = getZoneByZipcode(customerInfo.zipcode);
+
+      if (!zoneInfo) {
+        return NextResponse.json(
+          { error: 'Invalid zipcode. This area is not in our delivery zones.' },
+          { status: 400 }
+        )
+      }
+
+      const { isValid, minimumRequired } = validateMinimumOrder(zoneInfo.zone, computedSubtotal);
+
+      if (!isValid) {
+        console.error('Zone validation failed:', {
+          zipcode: customerInfo.zipcode,
+          subtotal: computedSubtotal,
+          minimumRequired
+        })
+
+        return NextResponse.json(
+          {
+            error: `Minimum order requirement not met. This zone requires a minimum order of CHF ${minimumRequired}. Your current subtotal is CHF ${computedSubtotal}.`
+          },
+          { status: 400 }
+        )
+      }
+
+      expectedDeliveryFee = zoneInfo.deliveryFee;
+    }
     const expectedDiscount = orderContext.orderType === 'pickup' ? computedSubtotal * 0.1 : 0;
     const computedTotal = computedSubtotal + expectedDeliveryFee - expectedDiscount;
 
@@ -116,13 +155,14 @@ export async function POST(req: NextRequest) {
           deliveryAddress: orderContext.orderType === 'delivery' ? customerInfo.street : null,
           city: orderContext.orderType === 'delivery' ? customerInfo.city : null,
           postalCode: orderContext.orderType === 'delivery' ? customerInfo.postalCode : null,
+          zipcode: orderContext.orderType === 'delivery' ? customerInfo.zipcode : null,
           orderType: orderContext.orderType,
           paymentMethod: 'cod',
           paymentStatus: 'pending',
           stripeSessionId: null,
           subtotal,
-          deliveryFee,
-          discount,
+          deliveryFee: expectedDeliveryFee,
+          discount: expectedDiscount,
           total,
           specialInstructions: customerInfo.specialInstructions || null,
           status: 'pending'
