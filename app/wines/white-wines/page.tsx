@@ -129,11 +129,11 @@ export default function WhiteWinesPage() {
                         <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                           {wine.name}
                         </h3>
-                        {!('variants' in wine) && (
+                        {/* {!('variants' in wine) && (
                           <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                             CHF {wine.price.toFixed(2)}
                           </span>
-                        )}
+                        )} */}
                       </div>
                       <p className="text-gray-600 mb-6">{wine.description}</p>
                       {('variants' in wine) ? (

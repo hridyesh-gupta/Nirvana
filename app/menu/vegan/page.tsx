@@ -53,12 +53,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Baignan Bartha</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 24.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Classic Smoked 'Brenjals'</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-baingan-bartha', name: 'Baignan Bartha', price: 24.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-baingan-bartha', name: 'Baignan Bartha', price: 21.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -77,12 +77,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Bhindi Masala</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 24.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Simmered 'Lady Fingers' with Onions; Cumin; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-bhindi-masala', name: 'Bhindi Masala', price: 24.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-bhindi-masala', name: 'Bhindi Masala', price: 21.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -101,12 +101,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Daal Tarka</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 22.00
+                      CHF 19.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Indian Style; Yellow Lentils; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-daal-tarka', name: 'Daal Tarka', price: 22.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-daal-tarka', name: 'Daal Tarka', price: 19.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -125,12 +125,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Chana Masala</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 22.00
+                      CHF 19.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Traditional Chickpeas Masala; Curry; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-chana-masala', name: 'Chana Masala', price: 22.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-chana-masala', name: 'Chana Masala', price: 19.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -149,12 +149,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Palak Aloo</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 24.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Simmered Potatoes; Spinach</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-palak-aloo', name: 'Palak Aloo', price: 24.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-palak-aloo', name: 'Palak Aloo', price: 21.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -173,12 +173,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Aloo Gobi</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 24.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Simmered Potatoes; Cauliflowers; Coriander</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-aloo-gobi', name: 'Aloo Gobi', price: 24.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-aloo-gobi', name: 'Aloo Gobi', price: 21.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -197,12 +197,12 @@ export default function VeganPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Dam Aloo</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 22.00
+                      CHF 19.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">Baby Potatoes cooked with Curmin; Curry Leaves</p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'vegan-dam-aloo', name: 'Dam Aloo', price: 22.00, category: 'Vegan Curries' })}
+                    onClick={() => handleAddToCart({ id: 'vegan-dam-aloo', name: 'Dam Aloo', price: 19.00, category: 'Vegan Curries' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">

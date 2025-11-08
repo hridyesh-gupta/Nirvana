@@ -35,9 +35,16 @@ export default function MixOptionSelectionModal({ dish, onClose, onSelectMixOpti
             defaultValue=""
           >
             <option value="" disabled>Select a mix option</option>
-            {mixOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
-            ))}
+            {mixOptions.map((option) => {
+              const price = dish.mixOptionPrices && dish.mixOptionPrices[option] !== undefined 
+                ? dish.mixOptionPrices[option] 
+                : dish.price;
+              return (
+                <option key={option} value={option}>
+                  {option} - CHF {price.toFixed(2)}
+                </option>
+              );
+            })}
           </select>
         </div>
         <button

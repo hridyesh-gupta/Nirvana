@@ -30,7 +30,7 @@ export default function ThalisBiryaniPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Thalis & Biryani
+                Thalis & Byriani
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Traditional complete meals and aromatic rice dishes
@@ -54,7 +54,7 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Nauratan</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 45.00
+                      CHF 35.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-1">(Vegetarian Thali)</p>
@@ -62,7 +62,7 @@ export default function ThalisBiryaniPage() {
                     Samosa; Raita; Nauratan (mixed vegetables); Dal; Baignan Bartha
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 45.00, category: 'Thalis' })}
+                    onClick={() => handleAddToCart({ id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 35.00, category: 'Thalis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -81,14 +81,14 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Shikaarpuri</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 55.00
+                      CHF 39.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
                     Chicken Tikka; Seekh Kebab; Butter Chicken; Raita; Nauratan (mixed vegetables); Rogan Josh; Lamb cooked with Kashmiri spicy flavours
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 55.00, category: 'Thalis' })}
+                    onClick={() => handleAddToCart({ id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 39.00, category: 'Thalis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -100,7 +100,7 @@ export default function ThalisBiryaniPage() {
               </div>
             </div>
 
-            {/* Biryani Section */}
+            {/* Byriani Section */}
             <div>
               <h2 className="text-4xl font-bold text-center mb-12 text-primary">
                 Byrianis
@@ -119,11 +119,11 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Vegetarian Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 29.00
+                      CHF 25.00
                     </span>
                   </div>
                   <button
-                    onClick={() => handleAddToCart({ id: 'byriani-veg', name: 'Vegetarian Byriani', price: 29.00, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-veg', name: 'Vegetarian Byriani', price: 25.00, category: 'Byrianis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -142,11 +142,11 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Chicken Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 35.00
+                      CHF 32.00
                     </span>
                   </div>
                   <button
-                    onClick={() => handleAddToCart({ id: 'byriani-chicken', name: 'Chicken Byriani', price: 35.00, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-chicken', name: 'Chicken Byriani', price: 32.00, category: 'Byrianis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -169,7 +169,7 @@ export default function ThalisBiryaniPage() {
                     </span>
                   </div>
                   <button
-                    onClick={() => handleAddToCart({ id: 'byriani-beef', name: 'Beef Byriani', price: 37.00, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-beef', name: 'Beef Byriani', price: 37.00, category: 'Byrianis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -188,11 +188,11 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Lamb Byriani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 39.00
+                      CHF 35.00
                     </span>
                   </div>
                   <button
-                    onClick={() => handleAddToCart({ id: 'byriani-lamb', name: 'Lamb Byriani', price: 39.00, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-lamb', name: 'Lamb Byriani', price: 35.00, category: 'Byrianis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -211,11 +211,11 @@ export default function ThalisBiryaniPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Shelled King Prawns</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 45.00
+                      CHF 39.00
                     </span>
                   </div>
                   <button
-                    onClick={() => handleAddToCart({ id: 'byriani-king-prawns', name: 'Shelled King Prawns Byriani', price: 45.00, category: 'Biryani' })}
+                    onClick={() => handleAddToCart({ id: 'byriani-king-prawns', name: 'Shelled King Prawns Byriani', price: 39.00, category: 'Byrianis' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -234,7 +234,7 @@ export default function ThalisBiryaniPage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-bowl-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">Order Your Favorite Thali or Biryani</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">Order Your Favorite Thali or Byriani</h2>
                 <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                   Experience the authentic taste of traditional Indian complete meals and aromatic rice dishes.
                 </p>

@@ -12,12 +12,15 @@ export interface Product {
   flavors?: string[];
   requiresMixOption?: boolean;
   mixOptions?: string[];
+  mixOptionPrices?: Record<string, number>; // Map mix option names to prices
 }
 
 export const products: Product[] = [
   // Vegetarian Starters - Vegetarian
+  { id: 'veggie-soup', name: 'Veggie Soup', price: 9.00, category: 'Vegetarian Starters' },
+  { id: 'daal-soup', name: 'Daal Soup', price: 9.00, category: 'Vegetarian Starters' },
   { id: 'onions-bhaji', name: 'Onions Bhaji', price: 15.00, category: 'Vegetarian Starters' },
-  { id: 'matar-tiki', name: 'Matar Tiki', price: 15.00, category: 'Vegetarian Starters' },
+  { id: 'matar-Tikki', name: 'Matar Tikki', price: 15.00, category: 'Vegetarian Starters' },
   { id: 'traditional-samosa', name: 'Traditional Samosa', price: 15.00, category: 'Vegetarian Starters' },
   { id: 'raita', name: 'Raita', price: 15.00, category: 'Vegetarian Starters' },
   { id: 'raita-aubergines', name: 'Raita Aubergines', price: 17.00, category: 'Vegetarian Starters' },
@@ -27,40 +30,48 @@ export const products: Product[] = [
   { id: 'nirvana-veg-platter-for-two-guests', name: 'Nirvana Vegetarian Platter (For two guests)', price: 35.00, category: 'Vegetarian Starters' },
 
   // Tandoori Grills with variants (Starter/Main)
-  { id: 'chicken-tandoori-starter', name: 'Chicken Tandoori (Starter)', price: 15.00, category: 'Tandoori Grills' },
-  { id: 'chicken-tandoori-main', name: 'Chicken Tandoori (Main)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'black-pepper-chicken-tikka-starter', name: 'Black Pepper Chicken Tikka (Starter)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'black-pepper-chicken-tikka-main', name: 'Black Pepper Chicken Tikka (Main)', price: 29.00, category: 'Tandoori Grills' },
-  { id: 'gilafi-seekh-kebab-starter', name: 'Gilafi Seekh Kebab (Starter)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'gilafi-seekh-kebab-main', name: 'Gilafi Seekh Kebab (Main)', price: 33.00, category: 'Tandoori Grills' },
+  // { id: 'chicken-tandoori-starter', name: 'Chicken Tandoori (Starter)', price: 15.00, category: 'Tandoori Grills' },
+  // { id: 'chicken-tandoori-main', name: 'Chicken Tandoori (Main)', price: 25.00, category: 'Tandoori Grills' },
+  { id: 'chicken-tandoori', name: 'Chicken Tandoori', price: 16.00, category: 'Tandoori Grills' },
+  // { id: 'black-pepper-chicken-tikka-starter', name: 'Black Pepper Chicken Tikka (Starter)', price: 25.00, category: 'Tandoori Grills' },
+  // { id: 'black-pepper-chicken-tikka-main', name: 'Black Pepper Chicken Tikka (Main)', price: 29.00, category: 'Tandoori Grills' },
+  { id: 'black-pepper-chicken-tikka', name: 'Black Pepper Chicken Tikka', price: 25.00, category: 'Tandoori Grills' },
+  // { id: 'gilafi-seekh-kebab-starter', name: 'Gilafi Seekh Kebab (Starter)', price: 25.00, category: 'Tandoori Grills' },
+  // { id: 'gilafi-seekh-kebab-main', name: 'Gilafi Seekh Kebab (Main)', price: 33.00, category: 'Tandoori Grills' },
+  { id: 'gilafi-seekh-kebab', name: 'Gilafi Seekh Kebab', price: 21.00, category: 'Tandoori Grills' },
   { id: 'salmon-tikka-starter', name: 'Fish Filet Tikka (Starter)', price: 25.00, category: 'Tandoori Grills' },
   { id: 'salmon-tikka-main', name: 'Fish Filet Tikka (Main)', price: 35.00, category: 'Tandoori Grills' },
-  { id: 'prawns-tandoori-starter', name: 'Prawns Tandoori (Starter)', price: 29.00, category: 'Tandoori Grills' },
-  { id: 'prawns-tandoori-main', name: 'Prawns Tandoori (Main)', price: 39.00, category: 'Tandoori Grills' },
-  { id: 'nirvana-platter-starter', name: 'Nirvana Platter (Starter)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'nirvana-platter-main', name: 'Nirvana Platter (Main)', price: 35.00, category: 'Tandoori Grills' },
-  { id: 'tandoori-platter-starter', name: 'Tandoori Platter (Starter)', price: 25.00, category: 'Tandoori Grills' },
-  { id: 'tandoori-platter-main', name: 'Tandoori Platter (Main)', price: 35.00, category: 'Tandoori Grills' },
+  // { id: 'prawns-tandoori-starter', name: 'Prawns Tandoori (Starter)', price: 29.00, category: 'Tandoori Grills' },
+  // { id: 'prawns-tandoori-main', name: 'Prawns Tandoori (Main)', price: 39.00, category: 'Tandoori Grills' },
+  { id: 'prawns-tandoori', name: 'Prawns Tandoori', price: 27.00, category: 'Tandoori Grills' },
+  { id: 'nirvana-platter-starter', name: 'Nirvana Platter (Starter)', price: 21.00, category: 'Tandoori Grills' },
+  { id: 'nirvana-platter-main', name: 'Nirvana Platter (Main)', price: 29.00, category: 'Tandoori Grills' },
+  { id: 'tandoori-platter-starter', name: 'Tandoori Platter (Starter)', price: 22.00, category: 'Tandoori Grills' },
+  { id: 'tandoori-platter-main', name: 'Tandoori Platter (Main)', price: 29.00, category: 'Tandoori Grills' },
+  { id: 'chicken-soup', name: 'Chicken Soup', price: 13.00, category: 'Tandoori Grills' },
 
   // Salads & Grills of Choice (variants)
   { id: 'salads-prawns-tandoori-starter', name: 'Prawns Tandoori- Salad (Starter)', price: 29.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-prawns-tandoori-main', name: 'Prawns Tandoori- Salad (Main)', price: 39.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-the-salmon-tikka-starter', name: 'Fish Filet Tikka- Salad (Starter)', price: 25.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-the-salmon-tikka-main', name: 'Fish Filet Tikka- Salad (Main)', price: 35.00, category: 'Salads & Grills of Choice' },
+  // { id: 'salads-the-salmon-tikka-starter', name: 'Fish Filet Tikka- Salad (Starter)', price: 25.00, category: 'Salads & Grills of Choice' },
+  // { id: 'salads-the-salmon-tikka-main', name: 'Fish Filet Tikka- Salad (Main)', price: 35.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-the-salmon-tikka', name: 'Fish Filet Tikka- Salad', price: 27.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-chicken-tikka-black-pepper-starter', name: 'Chicken Tikka Black Pepper (Starter)', price: 22.00, category: 'Salads & Grills of Choice' },
   { id: 'salads-chicken-tikka-black-pepper-main', name: 'Chicken Tikka Black Pepper (Main)', price: 29.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-paneer-tikka-starter', name: 'Paneer Tikka (Starter)', price: 19.00, category: 'Salads & Grills of Choice' },
-  { id: 'salads-paneer-tikka-main', name: 'Paneer Tikka (Main)', price: 25.00, category: 'Salads & Grills of Choice' },
+  // { id: 'salads-paneer-tikka-starter', name: 'Paneer Tikka (Starter)', price: 19.00, category: 'Salads & Grills of Choice' },
+  // { id: 'salads-paneer-tikka-main', name: 'Paneer Tikka (Main)', price: 25.00, category: 'Salads & Grills of Choice' },
+  { id: 'salads-paneer-tikka', name: 'Paneer Tikka- Salad', price: 14.00, category: 'Salads & Grills of Choice' },
   { id: 'fresh-mixed-salad-starter', name: 'Fresh Mixed Salad (Starter)', price: 10.00, category: 'Salads & Grills of Choice' },
   { id: 'fresh-mixed-salad-main', name: 'Fresh Mixed Salad (Main)', price: 15.00, category: 'Salads & Grills of Choice' },
-  { id: 'indian-mixed-salad-starter', name: 'Indian Mixed Salad (Starter)', price: 10.00, category: 'Salads & Grills of Choice' },
-  { id: 'indian-mixed-salad-main', name: 'Indian Mixed Salad (Main)', price: 15.00, category: 'Salads & Grills of Choice' },
+  // { id: 'indian-mixed-salad-starter', name: 'Indian Mixed Salad (Starter)', price: 10.00, category: 'Salads & Grills of Choice' },
+  // { id: 'indian-mixed-salad-main', name: 'Indian Mixed Salad (Main)', price: 15.00, category: 'Salads & Grills of Choice' },
+  { id: 'indian-mixed-salad', name: 'Indian Mixed Salad- Salad', price: 9.00, category: 'Salads & Grills of Choice' },
 
   // Main Courses - Classic Dishes
   {
     id: 'king-prawns-balti',
     name: 'King Prawns Balti',
-    price: 39.00,
+    price: 29.00,
     category: 'Classic Dishes',
     description: 'Tomato sauce, fresh herbs with spicy flavours',
     frenchDescription: 'Gambas sautées à l\'Ail; Sauce Tomate épicée; Herbes Fraîches',
@@ -69,7 +80,7 @@ export const products: Product[] = [
   {
     id: 'kerala-prawns-masala',
     name: 'Kerala Prawns Masala',
-    price: 39.00,
+    price: 29.00,
     category: 'Classic Dishes',
     description: 'Prawns (shelled) in fine masala curry with coconut flavours',
     frenchDescription: 'Gambas (décortiquées) aux épices; Feuilles de Curry; Lait de Coco',
@@ -78,7 +89,7 @@ export const products: Product[] = [
   {
     id: 'butter-chicken',
     name: 'Butter Chicken',
-    price: 33.00,
+    price: 29.00,
     category: 'Classic Dishes',
     description: 'Grilled chicken, cinnamon creamy almond sauce',
     frenchDescription: 'Suprême Grillé; Sauce à la crème d\'Amandes; Cannelles aux épices',
@@ -87,7 +98,7 @@ export const products: Product[] = [
   {
     id: 'chicken-tikka-masala',
     name: 'Chicken Tikka Masala',
-    price: 33.00,
+    price: 29.00,
     category: 'Classic Dishes',
     description: 'Grilled chicken in tikka masala sauce with ginger, green chilies, coriander',
     frenchDescription: 'Parts de Suprêmes Grillés; Sauce Tikka Masala; Saveur épicées',
@@ -102,14 +113,37 @@ export const products: Product[] = [
     frenchDescription: 'Lentilles mixtes tempérées aux épices, mélangées avec votre choix de viande.',
     image: 'https://readdy.ai/api/search-image?query=mixed%20daal%20tarka%20with%20chicken%20lamb%20or%20beef%20indian%20cuisine&width=400&height=300&seq=daal1&orientation=landscape',
     requiresMixOption: true,
-    mixOptions: ['Chicken', 'Lamb', 'Beef']
+    mixOptions: ['Chicken', 'Lamb', 'Beef'],
+    mixOptionPrices: {
+      'Chicken': 28.00,
+      'Lamb': 29.00,
+      'Beef': 29.00
+    }
+  },
+  {
+    id: 'matar-keema',
+    name: 'Matar Keema',
+    price: 29.00,
+    category: 'Classic Dishes',
+    description: 'Green peas sauce with spices',
+    frenchDescription: 'Pois Vert Sauce épicée',
+    image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
+  },
+  {
+    id: 'chicken-nariyal',
+    name: 'Chicken Nariyal',
+    price: 28.00,
+    category: 'Classic Dishes',
+    description: 'Chicken sauce with coconut',
+    frenchDescription: 'Poulet Sauce à la Coco',
+    image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
   },
 
   // Main Courses - Traditional Dishes (moved from app/menu/main-courses/page.tsx)
   {
     id: 'chicken-traditional',
     name: 'Chicken',
-    price: 32.00,
+    price: 27.00,
     category: 'Traditional Dishes',
     description: 'Traditional chicken curry',
     frenchDescription: 'Poulet traditionnel',
@@ -120,7 +154,7 @@ export const products: Product[] = [
   {
     id: 'beef-traditional',
     name: 'Beef',
-    price: 35.00,
+    price: 29.00,
     category: 'Traditional Dishes',
     description: 'Traditional beef curry',
     frenchDescription: 'Bœuf traditionnel',
@@ -131,7 +165,7 @@ export const products: Product[] = [
   {
     id: 'lamb-traditional',
     name: 'Lamb',
-    price: 37.00,
+    price: 29.00,
     category: 'Traditional Dishes',
     description: 'Traditional lamb curry',
     frenchDescription: 'Agneau traditionnel',
@@ -142,7 +176,7 @@ export const products: Product[] = [
   {
     id: 'paneer-traditional',
     name: 'Paneer',
-    price: 25.00,
+    price: 21.00,
     category: 'Traditional Dishes',
     description: 'Base price',
     frenchDescription: 'Paneer traditionnel',
@@ -151,46 +185,90 @@ export const products: Product[] = [
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
   },
 
+  //Chef's Specials
+  {
+    id: 'lamb-chops',
+    category: 'Chef\'s Specials',
+    name: 'Lamb Chops',
+    price: 32.00,
+    description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
+    frenchDescription: 'En Marinade Grillées (~300g) - Sauce au Choix : Rogan; Vindaloo; Korma; Jalfrezi; Madras',
+    image: 'https://readdy.ai/api/search-image?query=grilled%20lamb%20chops%20marinated%20lamb%20chops%20with%20perfect%20char%20marks%20served%20on%20sizzling%20platter%20with%20choice%20of%20curry%20sauce%20and%20grilled%20vegetables%20garnished%20with%20rosemary%20and%20lemon%20wedges&width=400&height=300&seq=main8&orientation=landscape'
+  },
+  {
+    id: 'lamb-shank',
+    category: 'Chef\'s Specials',
+    name: 'Lamb Shank',
+    price: 32.00,
+    description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
+    frenchDescription: 'Souris d\'Agneau cuite à basse température; curry traditionnel du Cachemire',
+    image: 'https://readdy.ai/api/search-image?query=slow%20cooked%20lamb%20shank%20tender%20lamb%20shank%20in%20traditional%20kashmiri%20sauce%20with%20aromatic%20herbs%20and%20spices%20fall-off-the-bone%20texture%20garnished%20with%20saffron%20and%20almonds%2C%20rich%20reddish%20curry&width=400&height=300&seq=main9&orientation=landscape'
+  },
+  {
+    id: 'grilled-sea-bream',
+    category: 'Chef\'s Specials',
+    name: 'Grilled Sea Bream Filets',
+    price: 32.00,
+    description: 'Garnished with coconut sauce',
+    frenchDescription: 'Filet de Dorade Grillés; Sauce à la Noix de Coco',
+    image: 'https://readdy.ai/api/search-image?query=grilled%20sea%20bream%20fillets%20perfectly%20cooked%20fish%20with%20light%20char%20marks%20served%20with%20creamy%20coconut%20curry%20sauce%20garnished%20with%20curry%20leaves%20and%20lime%20wedges%2C%20white%20fish%20with%20coconut%20cream&width=400&height=300&seq=main10&orientation=landscape'
+  },
+  {
+    id: 'omble-chevalier',
+    category: 'Chef\'s Specials',
+    name: 'Omble Chevalier',
+    price: 49.00,
+    description: 'Grilled Omble Chevalier filets with curry sauce',
+    frenchDescription: 'Filet d\'Omble Chevalier Grillés à l\'uni latéral, sauce au curry - selon arrivage de la Pêche',
+    image: 'https://readdy.ai/api/search-image?query=grilled%20omble%20chevalier%20arctic%20char%20fillets%20with%20golden%20crust%20served%20with%20aromatic%20curry%20sauce%20and%20seasonal%20vegetables%20garnished%20with%20microgreens%20and%20lemon%2C%20premium%20fish%20presentation&width=400&height=300&seq=main11&orientation=landscape'
+  },
+
   // Thalis
-  { id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 45.00, category: 'Thalis' },
-  { id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 55.00, category: 'Thalis' },
+  { id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 35.00, category: 'Thalis' },
+  { id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 39.00, category: 'Thalis' },
 
   // Byrianis (keep spelling consistent with menu)
-  { id: 'byriani-veg', name: 'Vegetarian Byriani', price: 29.00, category: 'Byrianis' },
-  { id: 'byriani-chicken', name: 'Chicken Byriani', price: 35.00, category: 'Byrianis' },
+  { id: 'byriani-veg', name: 'Vegetarian Byriani', price: 25.00, category: 'Byrianis' },
+  { id: 'byriani-chicken', name: 'Chicken Byriani', price: 32.00, category: 'Byrianis' },
   { id: 'byriani-beef', name: 'Beef Byriani', price: 37.00, category: 'Byrianis' },
-  { id: 'byriani-lamb', name: 'Lamb Byriani', price: 39.00, category: 'Byrianis' },
-  { id: 'byriani-king-prawns', name: 'Shelled King Prawns Byriani', price: 45.00, category: 'Byrianis' },
+  { id: 'byriani-lamb', name: 'Lamb Byriani', price: 35.00, category: 'Byrianis' },
+  { id: 'byriani-king-prawns', name: 'Shelled King Prawns Byriani', price: 39.00, category: 'Byrianis' },
 
   // Vegetarian - Paneer Specialties
-  { id: 'veg-matar-paneer', name: 'Matar Paneer', price: 25.00, category: 'Paneer Specialties' },
-  { id: 'veg-palak-paneer', name: 'Palak Paneer', price: 25.00, category: 'Paneer Specialties' },
-  { id: 'veg-paneer-makhani', name: 'Paneer Makhani', price: 22.00, category: 'Paneer Specialties' },
-  { id: 'veg-paneer-tikka-masala', name: 'Paneer Tikka Masala', price: 22.00, category: 'Paneer Specialties' },
+  { id: 'veg-matar-paneer', name: 'Matar Paneer', price: 21.00, category: 'Paneer Specialties' },
+  { id: 'veg-palak-paneer', name: 'Palak Paneer', price: 21.00, category: 'Paneer Specialties' },
+  { id: 'veg-paneer-makhani', name: 'Paneer Makhani', price: 21.00, category: 'Paneer Specialties' },
+  { id: 'veg-paneer-tikka-masala', name: 'Paneer Tikka Masala', price: 21.00, category: 'Paneer Specialties' },
+  { id: 'sabzi-nariyal', name: 'Sabzi Nariyal', price: 28.00, category: 'Coconut Specialties' },
 
   // Vegan - Vegan Curries
-  { id: 'vegan-baingan-bartha', name: 'Baignan Bartha', price: 24.00, category: 'Vegan Curries' },
-  { id: 'vegan-bhindi-masala', name: 'Bhindi Masala', price: 24.00, category: 'Vegan Curries' },
-  { id: 'vegan-daal-tarka', name: 'Daal Tarka', price: 22.00, category: 'Vegan Curries' },
-  { id: 'vegan-chana-masala', name: 'Chana Masala', price: 22.00, category: 'Vegan Curries' },
-  { id: 'vegan-palak-aloo', name: 'Palak Aloo', price: 24.00, category: 'Vegan Curries' },
-  { id: 'vegan-aloo-gobi', name: 'Aloo Gobi', price: 24.00, category: 'Vegan Curries' },
-  { id: 'vegan-dam-aloo', name: 'Dam Aloo', price: 22.00, category: 'Vegan Curries' },
+  { id: 'vegan-baingan-bartha', name: 'Baignan Bartha', price: 21.00, category: 'Vegan Curries' },
+  { id: 'vegan-bhindi-masala', name: 'Bhindi Masala', price: 21.00, category: 'Vegan Curries' },
+  { id: 'vegan-daal-tarka', name: 'Daal Tarka', price: 19.00, category: 'Vegan Curries' },
+  { id: 'vegan-chana-masala', name: 'Chana Masala', price: 19.00, category: 'Vegan Curries' },
+  { id: 'vegan-palak-aloo', name: 'Palak Aloo', price: 21.00, category: 'Vegan Curries' },
+  { id: 'vegan-aloo-gobi', name: 'Aloo Gobi', price: 21.00, category: 'Vegan Curries' },
+  { id: 'vegan-dam-aloo', name: 'Dam Aloo', price: 19.00, category: 'Vegan Curries' },
 
   // Accompaniments - Rice
-  { id: 'kashmiri-rice', name: 'Kashmiri', price: 10.00, category: 'Accompaniments - Rice' },
-  { id: 'saffron-rice', name: 'Saffron', price: 8.00, category: 'Accompaniments - Rice' },
-  { id: 'pullao-rice', name: 'Pulao', price: 6.00, category: 'Accompaniments - Rice' },
-  { id: 'plain-rice', name: 'Plain', price: 4.00, category: 'Accompaniments - Rice' },
+  { id: 'kashmiri-rice', name: 'Kashmiri Rice', price: 7.00, category: 'Accompaniments - Rice' },
+  { id: 'saffron-rice', name: 'Saffron Rice', price: 7.00, category: 'Accompaniments - Rice' },
+  { id: 'pullao-rice', name: 'Pulao', price: 5.00, category: 'Accompaniments - Rice' },
+  { id: 'plain-rice', name: 'Plain Rice', price: 4.00, category: 'Accompaniments - Rice' },
 
   // Accompaniments - Breads
-  { id: 'plain-naan', name: 'Plain', price: 4.00, category: 'Accompaniments - Breads' },
-  { id: 'chilli-naan', name: 'Chilli', price: 6.00, category: 'Accompaniments - Breads' },
-  { id: 'garlic-naan', name: 'Garlic', price: 6.00, category: 'Accompaniments - Breads' },
-  { id: 'cheese-naan', name: 'Cheese', price: 8.00, category: 'Accompaniments - Breads' },
-  { id: 'cheese-chilli-naan', name: 'Cheese, Chilli', price: 9.00, category: 'Accompaniments - Breads' },
-  { id: 'cheese-garlic-naan', name: 'Cheese, Garlic', price: 9.00, category: 'Accompaniments - Breads' },
-  { id: 'roti-paratha', name: 'Roti Paratha', price: 6.00, category: 'Accompaniments - Breads' },
+  { id: 'plain-naan', name: 'Plain Naan', price: 4.00, category: 'Accompaniments - Breads' },
+  { id: 'chilli-naan', name: 'Chilli Naan', price: 5.00, category: 'Accompaniments - Breads' },
+  { id: 'garlic-naan', name: 'Garlic Naan', price: 5.00, category: 'Accompaniments - Breads' },
+  { id: 'vegetarian-naan', name: 'Vegetarian', price: 7.00, category: 'Accompaniments - Breads' },
+  { id: 'veggie-naan', name: 'Veggie Naan', price: 8.00, category: 'Accompaniments - Breads' },
+  { id: 'butter-naan', name: 'Butter Naan', price: 6.00, category: 'Accompaniments - Breads' },
+  { id: 'cheese-naan', name: 'Cheese Naan', price: 6.00, category: 'Accompaniments - Breads' },
+  { id: 'cheese-chilli-naan', name: 'Cheese, Chilli Naan', price: 7.00, category: 'Accompaniments - Breads' },
+  { id: 'cheese-garlic-naan', name: 'Cheese, Garlic Naan', price: 7.00, category: 'Accompaniments - Breads' },
+  { id: 'roti-paratha', name: 'Roti Paratha', price: 4.00, category: 'Accompaniments - Breads' },
+  { id: 'keema-naan', name: 'Keema Naan', price: 10.00, category: 'Accompaniments - Breads' },
+
 
   // Desserts
   { id: 'dessert-kheer', name: 'Kheer', price: 8.00, category: 'Desserts' },

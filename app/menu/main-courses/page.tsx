@@ -35,7 +35,12 @@ export default function MainCoursesPage() {
       setSelectedDishForMixOption(item);
       setShowMixOptionSelectionModal(true);
     } else {
-      addItem({ ...item, selectedSauce: selectedSauce || undefined, selectedFlavor: selectedFlavor || undefined, selectedMixOption: selectedMixOption || undefined });
+      // Calculate price based on mix option if available
+      let finalPrice = item.price;
+      if (selectedMixOption && item.mixOptionPrices && item.mixOptionPrices[selectedMixOption] !== undefined) {
+        finalPrice = item.mixOptionPrices[selectedMixOption];
+      }
+      addItem({ ...item, price: finalPrice, selectedSauce: selectedSauce || undefined, selectedFlavor: selectedFlavor || undefined, selectedMixOption: selectedMixOption || undefined });
     }
   };
 
@@ -50,34 +55,34 @@ export default function MainCoursesPage() {
   const chefSpecials = [
     {
       id: 'lamb-chops',
-      category: 'Chef Specials',
+      category: 'Chef\'s Specials',
       name: 'Lamb Chops',
-      price: 48.00,
+      price: 32.00,
       description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
       frenchDescription: 'En Marinade Grillées (~300g) - Sauce au Choix : Rogan; Vindaloo; Korma; Jalfrezi; Madras',
       image: 'https://readdy.ai/api/search-image?query=grilled%20lamb%20chops%20marinated%20lamb%20chops%20with%20perfect%20char%20marks%20served%20on%20sizzling%20platter%20with%20choice%20of%20curry%20sauce%20and%20grilled%20vegetables%20garnished%20with%20rosemary%20and%20lemon%20wedges&width=400&height=300&seq=main8&orientation=landscape'
     },
     {
       id: 'lamb-shank',
-      category: 'Chef Specials',
+      category: 'Chef\'s Specials',
       name: 'Lamb Shank',
-      price: 48.00,
+      price: 32.00,
       description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
       frenchDescription: 'Souris d\'Agneau cuite à basse température; curry traditionnel du Cachemire',
       image: 'https://readdy.ai/api/search-image?query=slow%20cooked%20lamb%20shank%20tender%20lamb%20shank%20in%20traditional%20kashmiri%20sauce%20with%20aromatic%20herbs%20and%20spices%20fall-off-the-bone%20texture%20garnished%20with%20saffron%20and%20almonds%2C%20rich%20reddish%20curry&width=400&height=300&seq=main9&orientation=landscape'
     },
     {
       id: 'grilled-sea-bream',
-      category: 'Chef Specials',
+      category: 'Chef\'s Specials',
       name: 'Grilled Sea Bream Filets',
-      price: 45.00,
+      price: 32.00,
       description: 'Garnished with coconut sauce',
       frenchDescription: 'Filet de Dorade Grillés; Sauce à la Noix de Coco',
       image: 'https://readdy.ai/api/search-image?query=grilled%20sea%20bream%20fillets%20perfectly%20cooked%20fish%20with%20light%20char%20marks%20served%20with%20creamy%20coconut%20curry%20sauce%20garnished%20with%20curry%20leaves%20and%20lime%20wedges%2C%20white%20fish%20with%20coconut%20cream&width=400&height=300&seq=main10&orientation=landscape'
     },
     {
       id: 'omble-chevalier',
-      category: 'Chef Specials',
+      category: 'Chef\'s Specials',
       name: 'Omble Chevalier',
       price: 49.00,
       description: 'Grilled Omble Chevalier filets with curry sauce',

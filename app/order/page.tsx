@@ -34,7 +34,12 @@ export default function OrderPage() {
       setSelectedDishForMixOption(item);
       setShowMixOptionSelectionModal(true);
     } else {
-      addItem({ ...item, selectedSauce: selectedSauce || undefined, selectedFlavor: selectedFlavor || undefined, selectedMixOption: selectedMixOption || undefined });
+      // Calculate price based on mix option if available
+      let finalPrice = item.price;
+      if (selectedMixOption && item.mixOptionPrices && item.mixOptionPrices[selectedMixOption] !== undefined) {
+        finalPrice = item.mixOptionPrices[selectedMixOption];
+      }
+      addItem({ ...item, price: finalPrice, selectedSauce: selectedSauce || undefined, selectedFlavor: selectedFlavor || undefined, selectedMixOption: selectedMixOption || undefined });
     }
   };
 

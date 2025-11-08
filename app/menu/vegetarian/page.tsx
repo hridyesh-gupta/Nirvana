@@ -53,14 +53,14 @@ export default function VegetarianPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Matar Paneer</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 25.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
                     Creamy green peas sauce, onions, ginger, masala
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'veg-matar-paneer', name: 'Matar Paneer', price: 25.00, category: 'Paneer Specialties' })}
+                    onClick={() => handleAddToCart({ id: 'veg-matar-paneer', name: 'Matar Paneer', price: 21.00, category: 'Paneer Specialties' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -79,14 +79,14 @@ export default function VegetarianPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Palak Paneer</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 25.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
                     Simmered spinach; paneer; spices; coriander
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'veg-palak-paneer', name: 'Palak Paneer', price: 25.00, category: 'Paneer Specialties' })}
+                    onClick={() => handleAddToCart({ id: 'veg-palak-paneer', name: 'Palak Paneer', price: 21.00, category: 'Paneer Specialties' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -105,14 +105,14 @@ export default function VegetarianPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-primary">Paneer Makhani</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
-                      CHF 22.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
                     Cheese in a cinnamon creamy sauce
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'veg-paneer-makhani', name: 'Paneer Makhani', price: 22.00, category: 'Paneer Specialties' })}
+                    onClick={() => handleAddToCart({ id: 'veg-paneer-makhani', name: 'Paneer Makhani', price: 21.00, category: 'Paneer Specialties' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
@@ -131,15 +131,46 @@ export default function VegetarianPage() {
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-semibold text-secondary">Paneer Tikka Masala</h3>
                     <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-secondary to-primary">
-                      CHF 22.00
+                      CHF 21.00
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
                     Grilled cheese served in a medium spicy sauce
                   </p>
                   <button
-                    onClick={() => handleAddToCart({ id: 'veg-paneer-tikka-masala', name: 'Paneer Tikka Masala', price: 22.00, category: 'Paneer Specialties' })}
+                    onClick={() => handleAddToCart({ id: 'veg-paneer-tikka-masala', name: 'Paneer Tikka Masala', price: 21.00, category: 'Paneer Specialties' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <i className="ri-add-line"></i>
+                    </div>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+              <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
+                Coconut Specialties
+              </h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
+                  <img
+                    src="/images/sabzi-nariyal.jpg"
+                    alt="Sabzi Nariyal"
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-semibold text-primary">Sabzi Nariyal</h3>
+                    <span className="text-white px-3 py-1 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-secondary">
+                      CHF 22.00
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">
+                    Rich coconut-based vegetable curry
+                  </p>
+                  <button
+                    onClick={() => handleAddToCart({ id: 'sabzi-naariyal', name: 'Sabzi Nariyal', price: 22.00, category: 'Coconut Specialties' })}
+                    className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                   >
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>

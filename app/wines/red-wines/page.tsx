@@ -201,11 +201,11 @@ export default function RedWinesPage() {
                         <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                           {wine.name}
                         </h3>
-                        {!('variants' in wine) && (
+                        {/* {!('variants' in wine) && (
                           <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                             CHF {wine.price.toFixed(2)}
                           </span>
-                        )}
+                        )} */}
                       </div>
                       <p className="text-gray-600 mb-6">{wine.description}</p>
                       {('variants' in wine) ? (
@@ -282,15 +282,17 @@ export default function RedWinesPage() {
                   <div key={wine.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105 border-2 border-primary">
                     <div className="h-48 bg-cover bg-center relative" style={{ backgroundImage: `url(${wine.image})` }}>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute top-4 right-4">
+                        <span className="text-white px-4 py-2 rounded-full font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
+                          CHF {wine.price.toFixed(2)}
+                        </span>
+                      </div>  
                     </div>
                     <div className="p-6">
                       <div className="flex justify-between items-start mb-4">
                         <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                           {wine.name}
                         </h3>
-                        <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
-                          CHF {wine.price.toFixed(2)}
-                        </span>
                       </div>
                       <p className="text-gray-600 mb-6">{wine.description}</p>
                       <button

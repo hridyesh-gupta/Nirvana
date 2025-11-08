@@ -30,18 +30,18 @@ export default function AccompanimentsPage() {
   const riceOptions = [
     {
       id: 'kashmiri-rice',
-      name: 'Kashmiri',
+      name: 'Kashmiri Rice',
       description: 'Saffron rice with dry fruits and nuts',
       descriptionFr: 'Safran; Fruits Secs',
-      price: 10.00,
+      price: 7.00,
       image: 'https://readdy.ai/api/search-image?query=aromatic%20kashmiri%20rice%20with%20golden%20saffron%20threads%20mixed%20with%20colorful%20dry%20fruits%20almonds%20raisins%20and%20cashews%20garnished%20with%20pistachios%20served%20in%20elegant%20bowl%2C%20rich%20golden%20yellow%20color%2C%20luxury%20presentation&width=400&height=300&seq=rice1&orientation=landscape'
     },
     {
       id: 'saffron-rice',
-      name: 'Saffron',
+      name: 'Saffron Rice',
       description: 'Fragrant basmati rice infused with premium saffron',
       descriptionFr: 'Safran',
-      price: 8.00,
+      price: 7.00,
       image: 'https://readdy.ai/api/search-image?query=premium%20saffron%20rice%20with%20golden%20basmati%20rice%20grains%20infused%20with%20saffron%20threads%20garnished%20with%20few%20saffron%20strands%20on%20top%2C%20beautiful%20golden%20yellow%20color%2C%20elegant%20indian%20restaurant%20presentation&width=400&height=300&seq=rice2&orientation=landscape'
     },
     {
@@ -49,12 +49,12 @@ export default function AccompanimentsPage() {
       name: 'Pulao',
       description: 'Aromatic rice with green peas, herbs, and spices',
       descriptionFr: 'Petits Pois; Herbes; Épices',
-      price: 6.00,
+      price: 5.00,
       image: 'https://readdy.ai/api/search-image?query=delicious%20pullao%20rice%20with%20basmati%20rice%20green%20peas%20whole%20spices%20like%20cardamom%20cinnamon%20bay%20leaves%20garnished%20with%20fried%20onions%20and%20fresh%20herbs%2C%20colorful%20and%20aromatic%2C%20traditional%20indian%20style&width=400&height=300&seq=rice3&orientation=landscape'
     },
     {
       id: 'plain-rice',
-      name: 'Plain',
+      name: 'Plain Rice',
       description: 'Steamed basmati rice, perfectly cooked and fluffy',
       descriptionFr: 'Nature',
       price: 4.00,
@@ -65,7 +65,7 @@ export default function AccompanimentsPage() {
   const breadOptions = [
     {
       id: 'plain-naan',
-      name: 'Plain',
+      name: 'Plain Naan',
       description: 'Traditional Indian bread baked in tandoor',
       descriptionFr: 'Nature',
       price: 4.00,
@@ -73,42 +73,64 @@ export default function AccompanimentsPage() {
     },
     {
       id: 'chilli-naan',
-      name: 'Chilli',
+      name: 'Chilli Naan',
       description: 'Spicy naan bread with green chilies and herbs',
       descriptionFr: 'Naan au piment',
-      price: 6.00,
+      price: 5.00,
       image: 'https://readdy.ai/api/search-image?query=spicy%20chilli%20naan%20bread%20with%20visible%20green%20chili%20pieces%20and%20herbs%20baked%20in%20tandoor%20with%20golden%20brown%20spots%20garnished%20with%20fresh%20cilantro%2C%20appetizing%20texture%20with%20slight%20char%20marks&width=400&height=300&seq=bread2&orientation=landscape'
     },
     {
       id: 'garlic-naan',
-      name: 'Garlic',
+      name: 'Garlic Naan',
       description: 'Aromatic naan topped with fresh garlic and herbs',
       descriptionFr: 'Ail',
-      price: 6.00,
+      price: 5.00,
       image: '/images/Garlic-Naan.jpg'
     },
     {
+      id: 'vegetarian-naan',
+      name: 'Vegetarian',
+      description: 'Contains Potatoes, Herbs, and Spices  ',
+      descriptionFr: 'Contient Des Pommes De Terre, Herbes, et Épices',
+      price: 7.00,
+      image: '/images/Vegetarian-Naan.jpg'
+    },
+    { 
+      id: 'veggie-naan', 
+      name: 'Veggie Naan', 
+      description:'Vegetable Stuffed naan',
+      price: 8.00, 
+      image:'' 
+    },
+    { 
+      id: 'butter-naan', 
+      name: 'Butter Naan',
+      description:'Freshly baked light buttered naan',
+      price: 6.00, 
+      image: '' 
+    },
+    {
       id: 'cheese-naan',
-      name: 'Cheese',
+      name: 'Cheese Naan',
       description: 'Stuffed naan with melted cheese filling',
       descriptionFr: 'Naan au fromage',
-      price: 8.00,
+      price: 6.00,
       image: 'https://readdy.ai/api/search-image?query=delicious%20cheese%20naan%20bread%20with%20melted%20cheese%20slightly%20oozing%20from%20sides%20golden%20brown%20tandoor%20marks%20brushed%20with%20butter%20and%20garnished%20with%20cilantro%2C%20indulgent%20and%20appetizing%20presentation&width=400&height=300&seq=bread4&orientation=landscape'
     },
     {
       id: 'cheese-chilli-naan',
-      name: 'Cheese, Chilli',
+      name: 'Cheese, Chilli Naan',
       description: 'Spicy cheese-stuffed naan with chilies',
       descriptionFr: 'Naan au fromage et au piment',
-      price: 9.00,
+      price: 7.00,
       image: 'https://readdy.ai/api/search-image?query=spicy%20cheese%20and%20chilli%20naan%20with%20melted%20cheese%20filling%20and%20green%20chili%20pieces%20golden%20tandoor%20surface%20brushed%20with%20herb%20butter%2C%20fusion%20of%20cheese%20and%20spice%2C%20appetizing%20restaurant%20style&width=400&height=300&seq=bread5&orientation=landscape'
     },
     {
       id: 'cheese-garlic-naan',
-      name: 'Cheese, Garlic',
+      name: 'Cheese, Garlic Naan',
       description: 'Rich naan stuffed with cheese and topped with garlic',
       descriptionFr: 'Naan au fromage et à l\'ail',
-      price: 9.00,
+      price: 7.00,
       image: 'https://readdy.ai/api/search-image?query=rich%20cheese%20and%20garlic%20naan%20with%20melted%20cheese%20filling%20topped%20with%20minced%20garlic%20and%20cilantro%20golden%20brown%20tandoor%20marks%20butter%20brushed%20surface%2C%20gourmet%20indian%20bread%20presentation&width=400&height=300&seq=bread6&orientation=landscape'
     },
     {
@@ -116,8 +138,15 @@ export default function AccompanimentsPage() {
       name: 'Roti Paratha',
       description: 'Whole wheat grain butter bread, layered and flaky',
       descriptionFr: 'Blé complet au beurre',
-      price: 6.00,
+      price: 4.00,
       image: 'https://readdy.ai/api/search-image?query=traditional%20roti%20paratha%20whole%20wheat%20layered%20flatbread%20with%20visible%20flaky%20layers%20brushed%20with%20butter%20golden%20brown%20color%20served%20on%20rustic%20wooden%20board%2C%20authentic%20indian%20home%20style%20bread&width=400&height=300&seq=bread7&orientation=landscape'
+    },
+    { 
+      id: 'keema-naan', 
+      name: 'Keema Naan', 
+      description: 'Fluffy naan filled with flavorful keema',
+      price: 10.00, 
+      image: '' 
     }
   ];
 

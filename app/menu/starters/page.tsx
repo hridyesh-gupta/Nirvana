@@ -25,38 +25,50 @@ export default function StartersPage() {
   };
 
   const vegetarianStarters = [
+    { id: 'veggie-soup', 
+      name: 'Veggie Soup', 
+      price: 9.00, 
+      description: 'Vegetable Soup', 
+      image:'' },
+    {
+      id: 'daal-soup',
+      name: 'Daal Soup',
+      price: 9.00,
+      description: 'Lentil soup',
+      image: 'https://readdy.ai/api/search-image?query=daal%20soup%20with%20lentils%20and%20spices%20served%20with%20fresh%20coriander%20leaves%20and%20aromatic%20spices%20in%20white%20bowl%20garnished%20with%20mint%20leaves%20and%20black%20mustard%20seeds%2C%20cooling%20white%20and%20green%20colors&width=400&height=300&seq=start4&orientation=landscape'
+    },
     {
       id: 'onions-bhaji',
       name: 'Onions Bhaji',
-      price: 15.00,
+      price: 9.00,
       description: 'Fried onions',
       image: 'https://readdy.ai/api/search-image?query=crispy%20onion%20bhaji%20golden%20fried%20onion%20fritters%20with%20chickpea%20batter%20and%20aromatic%20spices%20served%20hot%20with%20mint%20chutney%20garnished%20with%20fresh%20coriander%20leaves%2C%20appetizing%20golden%20brown%20color&width=400&height=300&seq=start1&orientation=landscape'
     },
     {
-      id: 'matar-tiki',
-      name: 'Matar Tiki',
-      price: 15.00,
+      id: 'matar-Tikki',
+      name: 'Matar Tikki',
+      price: 10.00,
       description: 'Fried green peas, potatoes, bread crumbs',
       image: 'https://readdy.ai/api/search-image?query=crispy%20matar%20tiki%20green%20pea%20and%20potato%20cutlets%20coated%20with%20golden%20breadcrumbs%20served%20with%20tamarind%20chutney%20and%20mint%20sauce%20garnished%20with%20chopped%20onions%20and%20coriander%2C%20appetizing%20golden%20exterior&width=400&height=300&seq=start2&orientation=landscape'
     },
     {
       id: 'traditional-samosa',
       name: 'Traditional Samosa',
-      price: 15.00,
+      price: 10.00,
       description: 'Stuffed with potatoes, curry leaves, herbs',
       image: 'https://readdy.ai/api/search-image?query=traditional%20samosas%20golden%20triangular%20pastries%20stuffed%20with%20spiced%20potatoes%20curry%20leaves%20and%20fresh%20herbs%20served%20with%20tangy%20tamarind%20chutney%20and%20mint%20sauce%2C%20crispy%20golden%20brown%20exterior&width=400&height=300&seq=start3&orientation=landscape'
     },
     {
       id: 'raita',
       name: 'Raita',
-      price: 15.00,
+      price: 8.00,
       description: 'Yoghurt, cucumbers, fresh coriander, spices',
       image: 'https://readdy.ai/api/search-image?query=fresh%20raita%20yogurt%20cucumber%20salad%20with%20diced%20cucumbers%20fresh%20coriander%20leaves%20and%20aromatic%20spices%20in%20white%20bowl%20garnished%20with%20mint%20leaves%20and%20black%20mustard%20seeds%2C%20cooling%20white%20and%20green%20colors&width=400&height=300&seq=start4&orientation=landscape'
     },
     {
       id: 'raita-aubergines',
       name: 'Raita Aubergines',
-      price: 17.00,
+      price: 12.00,
       description: 'Tandoori smoked brinjals with yoghurt, herbs, spices',
       image: 'https://readdy.ai/api/search-image?query=smoky%20baingan%20raita%20with%20tandoori%20roasted%20eggplant%20mixed%20with%20creamy%20yogurt%20fresh%20herbs%20and%20aromatic%20spices%20garnished%20with%20pomegranate%20seeds%20and%20mint%20leaves%2C%20creamy%20texture%20with%20charred%20eggplant%20pieces&width=400&height=300&seq=start5&orientation=landscape'
     },
@@ -74,8 +86,8 @@ export default function StartersPage() {
       description: 'Onions Bhaji, Samosa, Matar Tikki, Paneer Tikka',
       image: '/images/Nirvana-Platter-1-person.jpg',
       variants: [
-        { label: 'For one guest', price: 25.00 },
-        { label: 'For two guests', price: 35.00 }
+        { label: 'For one guest', price: 19.00 },
+        { label: 'For two guests', price: 27.00 }
       ]
     }
   ];
@@ -84,32 +96,38 @@ export default function StartersPage() {
     {
       id: 'chicken-tandoori',
       name: 'Chicken Tandoori',
+      price: 16.00,
       description: 'Marinated chicken grilled in tandoor',
       image: 'https://readdy.ai/api/search-image?query=tandoori%20chicken%20leg%20pieces%20marinated%20in%20yogurt%20and%20spices%20with%20vibrant%20red%20color%20from%20tandoori%20masala%20grilled%20in%20clay%20oven%20with%20char%20marks%20served%20with%20sliced%20onions%20and%20lemon%20wedges&width=400&height=300&seq=start7&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 15.00 },
-        { label: 'Main', price: 25.00 }
-      ]
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 15.00 },
+      //   { label: 'Main', price: 25.00 }
+      // ]
     },
     {
       id: 'black-pepper-chicken-tikka',
       name: 'Black Pepper Chicken Tikka',
+      price: 25.00,
       description: 'Black pepper marinated, grilled chicken breast',
-      image: 'https://readdy.ai/api/search-image?query=black%20pepper%20chicken%20tikka%20grilled%20chicken%20breast%20pieces%20marinated%20with%20crushed%20black%20pepper%20and%20aromatic%20spices%20cooked%20in%20tandoor%20with%20char%20marks%20served%20on%20sizzling%20platter%20with%20bell%20peppers&width=400&height=300&seq=start8&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 25.00 },
-        { label: 'Main', price: 29.00 }
-      ]
+      image: 'https://readdy.ai/api/search-image?query=black%20pepper%20chicken%20tikka%20grilled%20chicken%20breast%20pieces%20marinated%20with%20crushed%20black%20pepper%20and%20aromatic%20spices%20cooked%20in%20tandoor%20with%20char%20marks%20served%20on%20sizzling%20platter%20with%20bell%20peppers&width=400&height=300&seq=start8&orientation=landscape'
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 25.00 },
+      //   { label: 'Main', price: 29.00 }
+      // ]
     },
     {
       id: 'gilafi-seekh-kebab',
       name: 'Gilafi Seekh Kebab',
+      price: 21.00,
       description: 'Minced lamb kebab',
-      image: 'https://readdy.ai/api/search-image?query=gilafi%20seekh%20kebab%20minced%20lamb%20skewers%20wrapped%20with%20colorful%20bell%20pepper%20strips%20grilled%20in%20tandoor%20oven%20served%20on%20metal%20skewers%20with%20sliced%20red%20onions%20and%20mint%20chutney%2C%20appetizing%20presentation&width=400&height=300&seq=start9&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 25.00 },
-        { label: 'Main', price: 33.00 }
-      ]
+      image: 'https://readdy.ai/api/search-image?query=gilafi%20seekh%20kebab%20minced%20lamb%20skewers%20wrapped%20with%20colorful%20bell%20pepper%20strips%20grilled%20in%20tandoor%20oven%20served%20on%20metal%20skewers%20with%20sliced%20red%20onions%20and%20mint%20chutney%2C%20appetizing%20presentation&width=400&height=300&seq=start9&orientation=landscape'
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 25.00 },
+      //   { label: 'Main', price: 33.00 }
+      // ]
     },
     {
       id: 'salmon-tikka',
@@ -124,12 +142,14 @@ export default function StartersPage() {
     {
       id: 'prawns-tandoori',
       name: 'Prawns Tandoori',
+      price: 27.00,
       description: 'Grilled king prawns marinated, spicy flavours (shelled pieces)',
-      image: 'https://readdy.ai/api/search-image?query=tandoori%20prawns%20large%20king%20prawns%20marinated%20in%20spicy%20yogurt%20marinade%20grilled%20in%20tandoor%20with%20char%20marks%20served%20on%20banana%20leaf%20with%20lemon%20wedges%20and%20green%20chutney%2C%20vibrant%20orange-red%20color&width=400&height=300&seq=start11&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 29.00 },
-        { label: 'Main', price: 39.00 }
-      ]
+      image: 'https://readdy.ai/api/search-image?query=tandoori%20prawns%20large%20king%20prawns%20marinated%20in%20spicy%20yogurt%20marinade%20grilled%20in%20tandoor%20with%20char%20marks%20served%20on%20banana%20leaf%20with%20lemon%20wedges%20and%20green%20chutney%2C%20vibrant%20orange-red%20color&width=400&height=300&seq=start11&orientation=landscape'
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 29.00 },
+      //   { label: 'Main', price: 39.00 }
+      // ]
     },
     {
       id: 'nirvana-platter',
@@ -137,8 +157,8 @@ export default function StartersPage() {
       description: 'Includes Samosa, Matar Tikki, Seekh Kebab, Black Pepper Chicken Tikka',
       image: '/images/Nirvana-Platter-1-person.jpg',
       variants: [
-        { label: 'Starter', price: 25.00 },
-        { label: 'Main', price: 35.00 }
+        { label: 'Starter', price: 21.00 },
+        { label: 'Main', price: 29.00 }
       ]
     },
     {
@@ -147,10 +167,15 @@ export default function StartersPage() {
       description: 'Includes Seekh Kebab, Black Pepper Chicken Tikka, Prawns Tandoori, Paneer Tikka',
       image: 'https://readdy.ai/api/search-image?query=tandoori%20prawns%20large%20king%20prawns%20marinated%20in%20spicy%20yogurt%20marinade%20grilled%20in%20tandoor%20with%20char%20marks%20served%20on%20banana%20leaf%20with%20lemon%20wedges%20and%20green%20chutney%2C%20vibrant%20orange-red%20color&width=400&height=300&seq=start11&orientation=landscape',
       variants: [
-        { label: 'Starter', price: 25.00 },
-        { label: 'Main', price: 35.00 }
+        { label: 'Starter', price: 22.00 },
+        { label: 'Main', price: 29.00 }
       ]
-    }
+    },
+    { id: 'chicken-soup', 
+      name: 'Chicken Soup', 
+      price: 13.00, 
+      description: 'Perfectly seasoned chicken soup', 
+      image:'' },
   ];
 
   const saladsChoice = [
@@ -167,12 +192,14 @@ export default function StartersPage() {
     {
       id: 'salads-the-salmon-tikka',
       name: 'Fish Filet Tikka (Salad)',
+      price: 27.00,
       description: 'Marinated grilled dorade or bar fish with fresh salad',
       image: 'https://readdy.ai/api/search-image?query=marinated%20grilled%20salmon%20with%20fresh%20salad%20herbs%20and%20lemon&width=400&height=300&seq=start14&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 25.00 },
-        { label: 'Main', price: 35.00 }
-      ]
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 27.00 },
+      //   { label: 'Main', price: 37.00 }
+      // ]
     },
     {
       id: 'salads-chicken-tikka-black-pepper',
@@ -187,12 +214,14 @@ export default function StartersPage() {
     {
       id: 'salads-paneer-tikka',
       name: 'Paneer Tikka',
+      price: 14.00,
       description: 'Grilled marinated Indian cheese',
       image: 'https://readdy.ai/api/search-image?query=grilled%20paneer%20tikka%20served%20with%20fresh%20salad&width=400&height=300&seq=start16&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 19.00 },
-        { label: 'Main', price: 25.00 }
-      ]
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 19.00 },
+      //   { label: 'Main', price: 25.00 }
+      // ]
     },
     {
       id: 'fresh-mixed-salad',
@@ -207,12 +236,14 @@ export default function StartersPage() {
     {
       id: 'indian-mixed-salad',
       name: 'Indian Mixed Salad',
+      price: 9.00,
       description: 'Made with cucumber, green chilli, onions, and tomatoes',
       image: 'https://readdy.ai/api/search-image?query=indian%20mixed%20salad%20with%20cucumber%20green%20chilli%20onions%20tomatoes&width=400&height=300&seq=start18&orientation=landscape',
-      variants: [
-        { label: 'Starter', price: 10.00 },
-        { label: 'Main', price: 15.00 }
-      ]
+      // While uncommenting also include comma after image line
+      // variants: [
+      //   { label: 'Starter', price: 10.00 },
+      //   { label: 'Main', price: 15.00 }
+      // ]
     }
   ];
 
@@ -258,11 +289,11 @@ export default function StartersPage() {
                         <h3 className="text-xl font-semibold text-gray-800 transition-colors text-primary">
                           {item.name}
                         </h3>
-                        {!('variants' in item) && (
+                        {/* {!('variants' in item) && (
                           <span className="text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary to-secondary">
                             CHF {item.price.toFixed(2)}
                           </span>
-                        )}
+                        )} */}
                       </div>
                       
                       <div className="space-y-2 mb-6">
@@ -330,18 +361,28 @@ export default function StartersPage() {
                         <p className="text-gray-600">{item.description}</p>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-3">
-                        {(item as any).variants.map((v: any) => (
-                          <button
-                            key={v.label}
-                            onClick={() => handleAddVariant(item.id, item.name, v.label, v.price)}
-                            className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                          >
-                            <span>Add {v.label}</span>
-                            <span className="font-bold">CHF {v.price.toFixed(2)}</span>
-                          </button>
-                        ))}
-                      </div>
+                      {('variants' in item && (item as any).variants) ? (
+                        <div className="grid grid-cols-1 gap-3">
+                          {(item as any).variants.map((v: any) => (
+                            <button
+                              key={v.label}
+                              onClick={() => handleAddVariant(item.id, item.name, v.label, v.price)}
+                              className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                            >
+                              <span>Add {v.label}</span>
+                              <span className="font-bold">CHF {v.price.toFixed(2)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleAddToCart({ id: item.id, name: item.name, price: item.price || 0 })}
+                          className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                        >
+                          <span>Add to Cart</span>
+                          <span className="font-bold">CHF {(item.price || 0).toFixed(2)}</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -374,18 +415,28 @@ export default function StartersPage() {
                         <p className="text-gray-600">{item.description}</p>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-3">
-                        {(item as any).variants.map((v: any) => (
-                          <button
-                            key={v.label}
-                            onClick={() => handleAddVariant(item.id, item.name, v.label, v.price)}
-                            className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
-                          >
-                            <span>Add {v.label}</span>
-                            <span className="font-bold">CHF {v.price.toFixed(2)}</span>
-                          </button>
-                        ))}
-                      </div>
+                      {('variants' in item && (item as any).variants) ? (
+                        <div className="grid grid-cols-1 gap-3">
+                          {(item as any).variants.map((v: any) => (
+                            <button
+                              key={v.label}
+                              onClick={() => handleAddVariant(item.id, item.name, v.label, v.price)}
+                              className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                            >
+                              <span>Add {v.label}</span>
+                              <span className="font-bold">CHF {v.price.toFixed(2)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleAddToCart({ id: item.id, name: item.name, price: item.price || 0 })}
+                          className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
+                        >
+                          <span>Add to Cart</span>
+                          <span className="font-bold">CHF {(item.price || 0).toFixed(2)}</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}

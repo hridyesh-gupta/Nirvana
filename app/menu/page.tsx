@@ -57,7 +57,7 @@ export default function MenuPage() {
                       <div className="font-medium">Main Courses</div>
                     </Link>
                     <Link href="/menu/thalis-biryani" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
-                      <div className="font-medium">Thalis & Biryani</div>
+                      <div className="font-medium">Thalis & Byriani</div>
                     </Link>
                     <Link href="/menu/vegetarian" className="flex items-center justify-center text-center p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer hover:shadow-md border-transparent bg-gradient-to-r from-primary to-secondary text-white">
                       <div className="font-medium">Vegetarian</div>
