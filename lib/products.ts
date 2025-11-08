@@ -110,8 +110,7 @@ export const products: Product[] = [
     price: 28.00,
     category: 'Classic Dishes',
     description: 'Mixed lentils tempered with spices, mixed with your choice of meat.',
-    frenchDescription: 'Lentilles mixtes tempérées aux épices, mélangées avec votre choix de viande.',
-    image: 'https://readdy.ai/api/search-image?query=mixed%20daal%20tarka%20with%20chicken%20lamb%20or%20beef%20indian%20cuisine&width=400&height=300&seq=daal1&orientation=landscape',
+    image: '',
     requiresMixOption: true,
     mixOptions: ['Chicken', 'Lamb', 'Beef'],
     mixOptionPrices: {
