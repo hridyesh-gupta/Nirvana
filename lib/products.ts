@@ -169,7 +169,7 @@ export const products: Product[] = [
     price: 21.00,
     category: 'Traditional Dishes',
     description: 'Base price',
-    image: 'https://readdy.ai/api/search-image?query=paneer%20curry%20traditional%20indian%20cottage%20cheese%20cubes%20in%20spiced%20gravy%20with%20tomatoes%20onions%20and%20herbs%20garnished%20with%20coriander&width=400&height=300&seq=main12&orientation=landscape',
+    image: '',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
   },
@@ -274,7 +274,7 @@ export const products: Product[] = [
     price: 6.00, // Base price for a single scoop
     category: 'Desserts',
     description: 'Choose from Raspberry & Strawberry, Passion fruit & Mango, Lemon & Lime, Espresso Crunch, Swiss Chocolate, Vanilla Dream, Pear',
-    image: 'https://readdy.ai/api/search-image?query=assorted%20ice%20cream%20scoops%20raspberry%20strawberry%20passion%20fruit%20mango%20lemon%20lime%20espresso%20chocolate%20vanilla%20pear&width=400&height=250&seq=iceflavours1&orientation=landscape',
+    image: '',
     requiresFlavor: true,
     flavors: [
       'Raspberry & Strawberry',

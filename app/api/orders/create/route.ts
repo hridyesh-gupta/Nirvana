@@ -45,16 +45,6 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Validate phone format (Swiss format)
-    const cleanPhone = customerInfo.phone.replace(/[\s-]/g, '');
-    const phoneRegex = /^(\+41\d{9}|0\d{9})$/;
-    if (!phoneRegex.test(cleanPhone)) {
-      return NextResponse.json(
-        { error: 'Invalid phone format. Please use Swiss phone number format' },
-        { status: 400 }
-      )
-    }
-
     // Validate cart items
     if (!Array.isArray(cartItems) || cartItems.length === 0) {
       return NextResponse.json(

@@ -37,7 +37,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-de-la-deviniere-chasselas-sur-lies',
       name: 'Domaine de la Devinière – Chasselas sur lies',
       description: 'Willy & Camille Cretegny (Satigny, Geneva) 2017 - A very precise, luminous, slightly oxidative style.',
-      image: 'https://readdy.ai/api/search-image?query=domaine%20de%20la%20devini%C3%A8re%20chasselas%20sur%20lies%20white%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=white-swiss-1&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 9.00 },
         { label: '75 cl', price: 49.00 }
@@ -47,7 +47,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-de-beauvent-nature-blanc',
       name: 'Domaine de Beauvent – Nature Blanc',
       description: 'Jérôme Cruz (Bernex, Geneva) 2021 - Chardonnay 13.5% vol. Natural wine, no added sulfur, aged one year on lees.',
-      image: 'https://readdy.ai/api/search-image?query=domaine%20de%20beauvent%20nature%20blanc%20white%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=white-swiss-2&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 10.00 },
         { label: '75 cl', price: 59.00 }
@@ -57,7 +57,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-la-capitaine-cuvee-jeune-prodige',
       name: 'Domaine La Capitaine – Cuvée Jeune Prodige',
       description: 'Johann Parmelin (Begnins, La Côte) 2020 - Sauvignon, Pinot Gris, Viognier, Muscat. Very aromatic and expressive, a gastronomic wine, persistent finish with freshness.',
-      image: 'https://readdy.ai/api/search-image?query=domaine%20la%20capitaine%20cuv%C3%A9e%20jeune%20prodige%20white%20wine%20bottle%20switzerland&width=400&height=300&seq=white-swiss-3&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 11.00 },
         { label: '75 cl', price: 69.00 }
@@ -67,7 +67,7 @@ export default function WhiteWinesPage() {
       id: 'hirondelle-blanc-les-lolliets',
       name: 'Hirondelle Blanc, Les Lolliets',
       description: 'Geneva (Raphael Dunand à Soral, Geneva) 2022 - Dry and fruity wine, delicate aromas of white fruits and white flowers, supple and balanced on the palate, persistent finish. Pairing: Kerala Prawns Masala',
-      image: 'https://readdy.ai/api/search-image?query=hirondelle%20blanc%20les%20lolliets%20white%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=white-swiss-4&orientation=landscape',
+      image: '',
       variants: [
         { label: 'dc', price: 10.00 },
         { label: 'bt', price: 55.00 }
@@ -78,7 +78,7 @@ export default function WhiteWinesPage() {
       name: 'Aligoté – Domaine des Bossons',
       description: '2023 - Gentle bitterness, great freshness, surprising finesse and fruit.',
       price: 49.00,
-      image: 'https://readdy.ai/api/search-image?query=aligot%C3%A9%20domaine%20des%20bossons%202023%20white%20wine%20bottle%20switzerland&width=400&height=300&seq=white-swiss-5&orientation=landscape'
+      image: ''
     }
   ];
 
@@ -88,14 +88,14 @@ export default function WhiteWinesPage() {
       name: 'Ventenac (BIO) Chardonnay – Prejugés Maison Ventenac',
       description: '2023 - Aromas of white flowers, apple, and pear, with a delicate and fresh balance. Pairing: Butter Chicken Masala',
       price: 51.00,
-      image: 'https://readdy.ai/api/search-image?query=ventenac%20chardonnay%20prejuges%20maison%20ventenac%202023%20white%20wine%20bottle%20france%20organic&width=400&height=300&seq=white-french-1&orientation=landscape'
+      image: ''
     },
     {
       id: 'pouilly-fume-roger-pabiot',
       name: 'Pouilly Fumé – Roger Pabiot (bt)',
       description: 'Vallée de la Loire 2022 - Expressive notes of citrus fruits, delicate minerality, and an aromatic persistence characteristic of Sauvignon Blanc grown in this terroir. Pairing: Kerala Prawn Masala, King Prawn Balti',
       price: 79.00,
-      image: 'https://readdy.ai/api/search-image?query=pouilly%20fum%C3%A9%20roger%20pabiot%202022%20white%20wine%20bottle%20france%20loire%20valley&width=400&height=300&seq=white-french-2&orientation=landscape'
+      image: ''
     }
   ];
 

@@ -93,7 +93,7 @@ export default function AccompanimentsPage() {
       description: 'Contains Potatoes, Herbs, and Spices  ',
       descriptionFr: 'Contient Des Pommes De Terre, Herbes, et Épices',
       price: 7.00,
-      image: '/images/Vegetarian-Naan.jpg'
+      image: ''
     },
     { 
       id: 'veggie-naan', 

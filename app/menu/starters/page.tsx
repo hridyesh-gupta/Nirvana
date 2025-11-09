@@ -35,7 +35,7 @@ export default function StartersPage() {
       name: 'Daal Soup',
       price: 9.00,
       description: 'Lentil soup',
-      image: 'https://readdy.ai/api/search-image?query=daal%20soup%20with%20lentils%20and%20spices%20served%20with%20fresh%20coriander%20leaves%20and%20aromatic%20spices%20in%20white%20bowl%20garnished%20with%20mint%20leaves%20and%20black%20mustard%20seeds%2C%20cooling%20white%20and%20green%20colors&width=400&height=300&seq=start4&orientation=landscape'
+      image: ''
     },
     {
       id: 'onions-bhaji',
@@ -84,7 +84,7 @@ export default function StartersPage() {
       name: 'Nirvana Vegetarian Platter',
       price: 25.00,
       description: 'Onions Bhaji, Samosa, Matar Tikki, Paneer Tikka',
-      image: '/images/Nirvana-Platter-1-person.jpg',
+      image: '',
       variants: [
         { label: 'For one guest', price: 19.00 },
         { label: 'For two guests', price: 27.00 }
@@ -183,7 +183,7 @@ export default function StartersPage() {
       id: 'salads-prawns-tandoori',
       name: 'Prawns Tandoori (Salad)',
       description: 'Grilled gambas and prawns marinated in spices',
-      image: 'https://readdy.ai/api/search-image?query=grilled%20gambas%20and%20prawns%20tandoori%20style%20with%20spices%20served%20with%20fresh%20salad&width=400&height=300&seq=start13&orientation=landscape',
+      image: '',
       variants: [
         { label: 'Starter', price: 29.00 },
         { label: 'Main', price: 39.00 }
@@ -194,7 +194,7 @@ export default function StartersPage() {
       name: 'Fish Filet Tikka (Salad)',
       price: 27.00,
       description: 'Marinated grilled dorade or bar fish with fresh salad',
-      image: 'https://readdy.ai/api/search-image?query=marinated%20grilled%20salmon%20with%20fresh%20salad%20herbs%20and%20lemon&width=400&height=300&seq=start14&orientation=landscape',
+      image: '',
       // While uncommenting also include comma after image line
       // variants: [
       //   { label: 'Starter', price: 27.00 },
@@ -205,7 +205,7 @@ export default function StartersPage() {
       id: 'salads-chicken-tikka-black-pepper',
       name: 'Chicken Tikka Black Pepper',
       description: 'Chicken tikka grilled, marinated with cashew and black pepper',
-      image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20black%20pepper%20with%20cashew%20marinade%20served%20with%20salad&width=400&height=300&seq=start15&orientation=landscape',
+      image: '',
       variants: [
         { label: 'Starter', price: 22.00 },
         { label: 'Main', price: 29.00 }
@@ -216,7 +216,7 @@ export default function StartersPage() {
       name: 'Paneer Tikka',
       price: 14.00,
       description: 'Grilled marinated Indian cheese',
-      image: 'https://readdy.ai/api/search-image?query=grilled%20paneer%20tikka%20served%20with%20fresh%20salad&width=400&height=300&seq=start16&orientation=landscape',
+      image: '',
       // While uncommenting also include comma after image line
       // variants: [
       //   { label: 'Starter', price: 19.00 },
@@ -227,7 +227,7 @@ export default function StartersPage() {
       id: 'fresh-mixed-salad',
       name: 'Fresh Mixed Salad',
       description: 'Mixed salads',
-      image: 'https://readdy.ai/api/search-image?query=fresh%20mixed%20salad%20greens%20tomatoes%20cucumbers%20colorful%20bowl&width=400&height=300&seq=start17&orientation=landscape',
+      image: '',
       variants: [
         { label: 'Starter', price: 10.00 },
         { label: 'Main', price: 15.00 }
@@ -238,7 +238,7 @@ export default function StartersPage() {
       name: 'Indian Mixed Salad',
       price: 9.00,
       description: 'Made with cucumber, green chilli, onions, and tomatoes',
-      image: 'https://readdy.ai/api/search-image?query=indian%20mixed%20salad%20with%20cucumber%20green%20chilli%20onions%20tomatoes&width=400&height=300&seq=start18&orientation=landscape',
+      image: '',
       // While uncommenting also include comma after image line
       // variants: [
       //   { label: 'Starter', price: 10.00 },

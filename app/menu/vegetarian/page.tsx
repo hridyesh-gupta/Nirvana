@@ -72,7 +72,7 @@ export default function VegetarianPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=palak%20paneer%20simmered%20spinach%20with%20paneer%20and%20spices%20coriander%20green%20creamy%20curry&width=400&height=250&seq=palakpaneer2&orientation=landscape"
+                    src=""
                     alt="Palak Paneer"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -98,7 +98,7 @@ export default function VegetarianPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=paneer%20makhani%20cheese%20in%20cinnamon%20creamy%20sauce%20rich%20buttery%20tomato%20base&width=400&height=250&seq=paneermakhani1&orientation=landscape"
+                    src=""
                     alt="Paneer Makhani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -124,7 +124,7 @@ export default function VegetarianPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=paneer%20tikka%20masala%20grilled%20cheese%20served%20in%20medium%20spicy%20masala%20sauce%20restaurant%20style&width=400&height=250&seq=paneertikkamasala1&orientation=landscape"
+                    src=""
                     alt="Paneer Tikka Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -155,7 +155,7 @@ export default function VegetarianPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="/images/sabzi-nariyal.jpg"
+                    src=""
                     alt="Sabzi Nariyal"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

@@ -29,7 +29,7 @@ export default function RedWinesPage() {
       id: 'jerome-cruz',
       name: 'Jérôme Cruz – Domaine de Beauvent',
       description: 'Bernex, Geneva 2021 (Nature Rouge) - Aromas of red fruits, supple and fresh palate with fine tannins.',
-      image: 'https://readdy.ai/api/search-image?query=j%C3%A9r%C3%B4me%20cruz%20domaine%20de%20beauvent%20bernex%20geneva%202021%20nature%20rouge%20red%20wine%20bottle%20vineyard%20background%20switzerland&width=400&height=300&seq=wine-swiss-1&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 11.00 },
         { label: '75 cl', price: 59.00 }
@@ -39,7 +39,7 @@ export default function RedWinesPage() {
       id: 'johan-parmelin',
       name: 'Johan Parmelin – Domaine La Capitaine',
       description: 'La Côte 2020 (Cuvée Jeune Prodige) - Fruity wine with supple tannins, hints of spice, smooth and well-balanced.',
-      image: 'https://readdy.ai/api/search-image?query=johan%20parmelin%20domaine%20la%20capitaine%20la%20c%C3%B4te%202020%20cuv%C3%A9e%20jeune%20prodige%20red%20wine%20bottle%20switzerland&width=400&height=300&seq=wine-swiss-2&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 12.00 },
         { label: '75 cl', price: 69.00 }
@@ -49,7 +49,7 @@ export default function RedWinesPage() {
       id: 'christophe-pillon',
       name: 'Christophe Pillon – Domaine des Balisiers',
       description: 'Satigny-Geneva 2017 (Cuvée Matisse, Cabernet Sauvignon) - Intense aromas of black fruits, notes of spices and licorice. A structured and persistent wine. Organic certified.',
-      image: 'https://readdy.ai/api/search-image?query=christophe%20pillon%20domaine%20des%20balisiers%20satigny%20geneva%202017%20cuv%C3%A9e%20matisse%20cabernet%20sauvignon%20red%20wine%20bottle%20switzerland%20organic&width=400&height=300&seq=wine-swiss-3&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 13.00 },
         { label: '75 cl', price: 79.00 }
@@ -60,28 +60,28 @@ export default function RedWinesPage() {
       name: 'Domaine des Bossons – Gamareve',
       description: '2022 - Fruity red wine with freshness and supple tannins.',
       price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=domaine%20des%20bossons%20gamareve%202022%20red%20wine%20bottle%20switzerland&width=400&height=300&seq=wine-swiss-4&orientation=landscape'
+      image: ''
     },
     {
       id: 'domaine-des-bossons-pinot-noir',
       name: 'Domaine des Bossons – Pinot Noir',
       description: '2023 - Light, fruity, and elegant Pinot Noir with fine tannins.',
       price: 59.00,
-      image: 'https://readdy.ai/api/search-image?query=domaine%20des%20bossons%20pinot%20noir%202023%20red%20wine%20bottle%20switzerland&width=400&height=300&seq=wine-swiss-5&orientation=landscape'
+      image: ''
     },
     {
       id: 'les-balisiers-dame-noire',
       name: 'Les Balisiers – Dame Noire',
       description: 'Deep and structured red wine, intense and elegant.',
       price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=les%20balisiers%20dame%20noire%20red%20wine%20bottle%20switzerland&width=400&height=300&seq=wine-swiss-6&orientation=landscape'
+      image: ''
     },
     {
       id: 'les-balisiers-cuvee-matisse',
       name: 'Les Balisiers – Cuvée Matisse',
       description: 'Blend of red grape varieties, rich and complex with aromatic depth.',
       price: 79.00,
-      image: 'https://readdy.ai/api/search-image?query=les%20balisiers%20cuv%C3%A9e%20matisse%20red%20wine%20bottle%20switzerland&width=400&height=300&seq=wine-swiss-7&orientation=landscape'
+      image: ''
     }
   ];
 
@@ -91,42 +91,42 @@ export default function RedWinesPage() {
       name: 'Bordeaux – Le Haut Médoc de Giscours',
       description: '2018 - A well-balanced wine with soft tannins and elegant character.',
       price: 85.00,
-      image: 'https://readdy.ai/api/search-image?query=bordeaux%20le%20haut%20m%C3%A9doc%20de%20giscours%202018%20red%20wine%20bottle%20france&width=400&height=300&seq=wine-french-1&orientation=landscape'
+      image: ''
     },
     {
       id: 'pic-saint-loup-lavabre',
       name: 'Pic Saint Loup – Lavabre',
       description: '2020 - Produced by Domaine de l’Hortus in the heart of Pic Saint Loup (Languedoc). This wine offers aromas of ripe red fruits, blackcurrant, and blackberry, with a delicate touch of spice and garrigue. Perfectly balanced with soft tannins and a persistent finish.',
       price: 95.00,
-      image: 'https://readdy.ai/api/search-image?query=pic%20saint%20loup%20lavabre%202020%20red%20wine%20bottle%20france&width=400&height=300&seq=wine-french-2&orientation=landscape'
+      image: ''
     },
     {
       id: 'chateauneuf-du-pape-telegramme',
       name: 'Châteauneuf-du-Pape – Télégramme',
       description: '2021 - A generous and harmonious wine with great aromatic complexity.',
       price: 129.00,
-      image: 'https://readdy.ai/api/search-image?query=ch%C3%A2teauneuf%20du%20pape%20t%C3%A9l%C3%A9gramme%202021%20red%20wine%20bottle%20france&width=400&height=300&seq=wine-french-3&orientation=landscape'
+      image: ''
     },
     {
       id: 'la-reserve-de-jeanne',
       name: 'La Réserve de Jeanne – Maison Ventenac',
       description: '2023 - IGP Cité de Carcassonne. A Grenache and Syrah blend, expressive and fruity, with fine tannins, a perfect balance between power and freshness.',
       price: 55.00,
-      image: 'https://readdy.ai/api/search-image?query=la%20r%C3%A9serve%20de%20jeanne%20maison%20ventenac%202023%20red%20wine%20bottle%20france&width=400&height=300&seq=wine-french-4&orientation=landscape'
+      image: ''
     },
     {
       id: 'cotes-du-rhone-domaine-la-florane',
       name: 'Côtes du Rhône – Domaine la Florane',
       description: '2023 (Organic) - From a family estate certified organic. This wine reveals aromas of ripe fruits and spices, with a fresh and elegant structure.',
       price: 59.00,
-      image: 'https://readdy.ai/api/search-image?query=c%C3%B4tes%20du%20rh%C3%B4ne%20domaine%20la%20florane%202023%20red%20wine%20bottle%20france%20organic&width=400&height=300&seq=wine-french-5&orientation=landscape'
+      image: ''
     },
     {
       id: 'sancerre-rouge-pierre-prieur',
       name: 'Sancerre Rouge – Pierre Prieur',
       description: '2019 (Organic) - Elegant Pinot Noir with aromas of red berries and subtle tannins. Fresh, lively, and balanced.',
       price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=sancerre%20rouge%20pierre%20prieur%202019%20red%20wine%20bottle%20france%20organic&width=400&height=300&seq=wine-french-6&orientation=landscape'
+      image: ''
     }
   ];
 
@@ -136,35 +136,35 @@ export default function RedWinesPage() {
       name: 'Rioja DOC Rivaey Crianza',
       description: 'Spain 2015',
       price: 69.00,
-      image: 'https://readdy.ai/api/search-image?query=rioja%20doc%20rivaey%20crianza%202015%20red%20wine%20bottle%20spain&width=400&height=300&seq=wine-world-1&orientation=landscape'
+      image: ''
     },
     {
       id: 'cantine-paolini-sicilia-doc-nero-davola',
       name: 'Cantine Paolini Sicilia DOC Nero d’Avola',
       description: 'Italy 2019',
       price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=cantine%20paolini%20sicilia%20doc%202019%20nero%20d%E2%80%99avola%20red%20wine%20bottle%20italy&width=400&height=300&seq=wine-world-2&orientation=landscape'
+      image: ''
     },
     {
       id: 'diamandes-de-perlilla-malbec-syrah',
       name: 'Diamandes de Perlilla Malbec–Syrah',
       description: 'Valle de Uco, Mendoza 2019/18 - Argentina',
       price: 59.00,
-      image: 'https://readdy.ai/api/search-image?query=diamandes%20de%20perlilla%20malbec%20syrah%20valle%20de%20uco%20mendoza%202019%2F18%20red%20wine%20bottle%20argentina&width=400&height=300&seq=wine-world-3&orientation=landscape'
+      image: ''
     },
     {
       id: 'montes-reserva-cabernet-sauvignon',
       name: 'Montes Reserva Cabernet Sauvignon',
       description: 'Valle de Colchagua D.O. 2018 - Chile',
       price: 65.00,
-      image: 'https://readdy.ai/api/search-image?query=montes%20reserva%202018%20cabernet%20sauvignon%20valle%20de%20colchagua%20d.o.%20red%20wine%20bottle%20chile&width=400&height=300&seq=wine-world-4&orientation=landscape'
+      image: ''
     },
     {
       id: 'sula-vineyards-shiraz',
       name: 'Sula Vineyards Shiraz',
       description: '2019 Conversion BIO - India',
       price: 49.00,
-      image: 'https://readdy.ai/api/search-image?query=sula%20vineyards%20shiraz%202019%20conversion%20bio%20red%20wine%20bottle%20india&width=400&height=300&seq=wine-world-5&orientation=landscape'
+      image: ''
     }
   ];
 

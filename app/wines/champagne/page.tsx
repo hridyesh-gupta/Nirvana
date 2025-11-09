@@ -38,35 +38,35 @@ export default function ChampagnePage() {
       name: 'Deutz Brut Classic',
       description: '',
       price: 95.00,
-      image: 'https://readdy.ai/api/search-image?query=deutz%20brut%20classic%20champagne%20bottle&width=400&height=300&seq=champagne-1&orientation=landscape'
+      image: ''
     },
     {
       id: 'deutz-brut-rose',
       name: 'Deutz Brut Rosé',
       description: '',
       price: 139.00,
-      image: 'https://readdy.ai/api/search-image?query=deutz%20brut%20rose%20champagne%20bottle&width=400&height=300&seq=champagne-2&orientation=landscape'
+      image: ''
     },
     {
       id: 'gosset-extra-brut',
       name: 'Gosset Extra Brut',
       description: '',
       price: 145.00,
-      image: 'https://readdy.ai/api/search-image?query=gosset%20extra%20brut%20champagne%20bottle&width=400&height=300&seq=champagne-3&orientation=landscape'
+      image: ''
     },
     {
       id: 'gosset-la-grande-cuvee',
       name: 'Gosset La Grande Cuvée (BT 37.5 DL)',
       description: '',
       price: 59.00,
-      image: 'https://readdy.ai/api/search-image?query=gosset%20la%20grande%20cuvee%20champagne%20bottle&width=400&height=300&seq=champagne-4&orientation=landscape'
+      image: ''
     },
     {
       id: 'veuve-clicquot-cuvee-la-grande-dame',
       name: 'Veuve Clicquot Cuvée La Grande Dame 2004',
       description: '',
       price: 299.00,
-      image: 'https://readdy.ai/api/search-image?query=veuve%20clicquot%20cuvee%20la%20grande%20dame%202004%20champagne%20bottle&width=400&height=300&seq=champagne-5&orientation=landscape'
+      image: ''
     }
   ];
 
@@ -75,7 +75,7 @@ export default function ChampagnePage() {
       id: 'prosecco-risteri-bresolin-enrico',
       name: 'Prosecco Risseri – Bresolin Enrico',
       description: 'Maser, Province of Treviso 2021 (Nature Blanc). Pale straw yellow, very fine and abundant bubbles. Intense aroma with notes of apple and citrus fruits, accompanied by a floral hint of acacia. On the palate, fresh expression, delicate, and elegant with a saline finish. Certified Organic and Vegan.',
-      image: 'https://readdy.ai/api/search-image?query=prosecco%20risteri%20bresolin%20enrico%20maser%202021%20nature%20blanc%20organic%20vegan%20bottle&width=400&height=300&seq=prosecco-1&orientation=landscape',
+      image: '',
       variants: [
         { label: '10 cl', price: 9.00 },
         { label: '75 cl', price: 55.00 }

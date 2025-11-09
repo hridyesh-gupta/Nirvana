@@ -26,8 +26,7 @@ const renderDeliveryAddress = (
             <!-- Delivery Address (Highlighted) -->
             <div style="background-color: #f8d7da; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #dc3545;">
                 <h3 style="color: #721c24; margin: 0 0 10px 0; font-size: 18px;">📍 Delivery Address</h3>
-                ${orderData.postalCode ? `<p style="margin: 0 0 10px 0; color: #721c24; font-weight: bold; font-size: 18px;">🏷️ DELIVERY ZONE: ${orderData.postalCode}</p>
-                <p style="margin: 0 0 10px 0; color: #721c24; font-size: 14px; font-style: italic;">Zone determines delivery fee and minimum order</p>` : ''}
+                ${orderData.postalCode ? `<p style="margin: 0 0 10px 0; color: #721c24; font-weight: bold; font-size: 18px;">🏷️ DELIVERY ZONE: ${orderData.postalCode}</p>` : ''}
                 <p style="margin: 0; color: #721c24; line-height: 1.5; font-size: 16px; font-weight: bold;">${orderData.deliveryAddress}</p>
                 <p style="margin: 10px 0 0 0; color: #721c24; font-size: 14px;">📋 Copy this address for delivery driver</p>
             </div>
@@ -38,7 +37,7 @@ const renderDeliveryAddress = (
     return `${orderData.postalCode ? `Delivery Zone: ${orderData.postalCode}\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
   }
 
-  return `${orderData.postalCode ? `DELIVERY ZONE: ${orderData.postalCode}\n(Zone determines delivery fee and minimum order)\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
+  return `${orderData.postalCode ? `DELIVERY ZONE: ${orderData.postalCode}` : ''}Delivery Address: ${orderData.deliveryAddress}`;
 };
 
 /**
@@ -48,13 +47,14 @@ const renderDeliveryAddress = (
  */
 export const generateCustomerOrderEmail = (orderData: OrderEmailData): string => {
   const formatCurrency = (amount: number) => `CHF ${amount.toFixed(2)}`;
-  const formatDate = (date: Date) => date.toLocaleDateString('en-GB', {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit', 
+    timeZone: 'Europe/Zurich'
   });
 
   const orderDate = orderData.createdAt ? formatDate(orderData.createdAt) : 'Today';
@@ -181,9 +181,9 @@ export const generateCustomerOrderEmail = (orderData: OrderEmailData): string =>
             <div style="text-align: center; margin-bottom: 25px;">
                 <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">What's Next?</h3>
                 ${orderData.orderType === 'delivery' ? `
-                <p style="color: #666666; margin: 0; line-height: 1.5;">We'll prepare your order and deliver it to your address. You'll receive a notification when your order is out for delivery.</p>
+                <p style="color: #666666; margin: 0; line-height: 1.5;">We'll prepare your order and deliver it to your address. We'll contact you when your order is out for delivery.</p>
                 ` : `
-                <p style="color: #666666; margin: 0; line-height: 1.5;">We'll prepare your order for pickup. You'll receive a notification when your order is ready for collection.</p>
+                <p style="color: #666666; margin: 0; line-height: 1.5;">We'll prepare your order for pickup. We'll contact you when your order is ready for collection.</p>
                 `}
             </div>
         </div>
@@ -193,9 +193,9 @@ export const generateCustomerOrderEmail = (orderData: OrderEmailData): string =>
             <h3 style="color: #ffffff; margin: 0 0 15px 0; font-size: 20px;">Thank You for Choosing Nirvana!</h3>
             <p style="color: #f5f5f5; margin: 0 0 15px 0; line-height: 1.5;">We appreciate your business and look forward to serving you delicious Indian cuisine.</p>
             <div style="margin-top: 20px;">
-                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📍 [Insert actual street address], Geneva, Switzerland</p>
-                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 [Insert actual phone number]</p>
-                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">✉️ info@nirvana-geneve.ch</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📍 375, Route de Meyrin, 1217 Meyrin, Switzerland, Geneva, Switzerland</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 022 782 10 10</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">✉️ contact@nirvana-geneve.ch</p>
             </div>
         </div>
     </div>
@@ -211,13 +211,14 @@ export const generateCustomerOrderEmail = (orderData: OrderEmailData): string =>
  */
 export const generateOwnerNotificationEmail = (orderData: OrderEmailData): string => {
   const formatCurrency = (amount: number) => `CHF ${amount.toFixed(2)}`;
-  const formatDate = (date: Date) => date.toLocaleDateString('en-GB', {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
+    timeZone: 'Europe/Zurich'
   });
 
   const orderDate = orderData.createdAt ? formatDate(orderData.createdAt) : 'Just now';
@@ -355,7 +356,6 @@ export const generateOwnerNotificationEmail = (orderData: OrderEmailData): strin
                     <li>Prepare the order items according to specifications</li>
                     ${orderData.orderType === 'delivery' ? '<li>Coordinate with delivery driver</li>' : '<li>Notify customer when order is ready for pickup</li>'}
                     ${orderData.paymentMethod === 'cod' ? '<li>Collect payment upon delivery/pickup</li>' : ''}
-                    <li>Update order status in the system</li>
                 </ul>
             </div>
         </div>
@@ -410,8 +410,8 @@ Thank you for choosing Nirvana Restaurant!
 We appreciate your business and look forward to serving you delicious Indian cuisine.
 
 Nirvana Restaurant
-[Insert actual street address], Geneva, Switzerland
-[Insert actual phone number]
+375, Route de Meyrin, 1217 Meyrin, Geneva, Switzerland
+022 782 10 10
   `.trim();
 };
 

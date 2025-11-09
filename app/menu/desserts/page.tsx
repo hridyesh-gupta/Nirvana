@@ -82,7 +82,7 @@ export default function DessertsPage() {
                 {/* Halwa */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=indian%20semolina%20halwa%20sooji%20sheera%20garnished%20with%20nuts%20in%20a%20bowl&width=400&height=250&seq=halwa1&orientation=landscape"
+                    src=""
                     alt="Halwa"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -107,7 +107,7 @@ export default function DessertsPage() {
                 {/* Gulab Jamun */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=gulab%20jamun%20indian%20sweets%20in%20sugar%20syrup%20served%20warm%20golden%20brown&width=400&height=250&seq=gj2&orientation=landscape"
+                    src=""
                     alt="Gulab Jamun"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -157,7 +157,7 @@ export default function DessertsPage() {
                 {/* Gulab Jamun Flambé */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=gulab%20jamun%20flambe%20with%20blue%20flame%20dessert%20presentation&width=400&height=250&seq=gjflambe1&orientation=landscape"
+                    src=""
                     alt="Gulab Jamun Flambé"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -182,7 +182,7 @@ export default function DessertsPage() {
                 {/* Mango Ice Cream */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=mango%20ice%20cream%20with%20mango%20coulis%20and%20glazed%20almonds%20dessert&width=400&height=250&seq=mangoice1&orientation=landscape"
+                    src=""
                     alt="Mango Ice Cream"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -207,7 +207,7 @@ export default function DessertsPage() {
                 {/* Mango Fresh */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=fresh%20pakistani%20mango%20dessert%20sliced%20elegant%20plating&width=400&height=250&seq=mangofresh1&orientation=landscape"
+                    src=""
                     alt="Mango Fresh"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -232,7 +232,7 @@ export default function DessertsPage() {
                 {/* Nirvana */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=exotic%20fresh%20fruit%20and%20mango%20sorbet%20dessert%20with%20ginger%20liqueur%20elegant%20plating&width=400&height=250&seq=nirvana1&orientation=landscape"
+                    src=""
                     alt="Nirvana"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -257,7 +257,7 @@ export default function DessertsPage() {
                 {/* Orange Carpaccio */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=orange%20carpaccio%20thinly%20sliced%20oranges%20with%20cinnamon%20dessert%20plate&width=400&height=250&seq=orangecarp1&orientation=landscape"
+                    src="e"
                     alt="Orange Carpaccio"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -282,7 +282,7 @@ export default function DessertsPage() {
                 {/* Dame Blanche */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=dame%20blanche%20vanilla%20ice%20cream%20with%20chocolate%20sauce%20and%20whipped%20cream&width=400&height=250&seq=dameblanche1&orientation=landscape"
+                    src=""
                     alt="Dame Blanche"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -307,7 +307,7 @@ export default function DessertsPage() {
                 {/* Sorbets and Alcoholic Ice Creams */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=pear%20sorbet%20with%20brandy%20and%20prune%20ice%20cream%20with%20whisky%20dessert&width=400&height=250&seq=alcsorbet1&orientation=landscape"
+                    src=""
                     alt="Sorbets and Alcoholic Ice Creams"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -332,7 +332,7 @@ export default function DessertsPage() {
                 {/* Mango Ice Cream Flavours */}
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=assorted%20ice%20cream%20scoops%20raspberry%20strawberry%20passion%20fruit%20mango%20lemon%20lime%20espresso%20chocolate%20vanilla%20pear&width=400&height=250&seq=iceflavours1&orientation=landscape"
+                    src=""
                     alt="Ice Cream Flavours"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

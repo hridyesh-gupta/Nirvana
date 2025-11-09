@@ -46,7 +46,7 @@ export default function VeganPage() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=classic%20baingan%20bharta%20smoked%20roasted%20eggplant%20mashed%20with%20onions%20tomatoes%20and%20spices%2C%20authentic%20north%20indian%20curry&width=400&height=250&seq=veg_baingan2&orientation=landscape"
+                    src=""
                     alt="Baignan Bartha"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -70,7 +70,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=bhindi%20masala%20lady%20fingers%20okra%20simmered%20with%20onions%20cumin%20and%20coriander%2C%20dry%20curry&width=400&height=250&seq=veg_bhindi2&orientation=landscape"
+                    src=""
                     alt="Bhindi Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -94,7 +94,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=dal%20tadka%20yellow%20lentils%20tempered%20indian%20style%20with%20coriander%20comfort%20food&width=400&height=250&seq=veg_dal_tarka1&orientation=landscape"
+                    src=""
                     alt="Daal Tarka"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -118,7 +118,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=chana%20masala%20traditional%20chickpeas%20masala%20curry%20with%20coriander%20rich%20tomato%20gravy&width=400&height=250&seq=veg_chana2&orientation=landscape"
+                    src=""
                     alt="Chana Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -142,7 +142,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=palak%20aloo%20spinach%20and%20potatoes%20simmered%20indian%20curry%20comforting%20green%20dish&width=400&height=250&seq=veg_palak_aloo1&orientation=landscape"
+                    src=""
                     alt="Palak Aloo"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -166,7 +166,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=aloo%20gobi%20potatoes%20and%20cauliflower%20simmered%20with%20coriander%20dry%20curry%20golden&width=400&height=250&seq=veg_aloo_gobi2&orientation=landscape"
+                    src=""
                     alt="Aloo Gobi"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -190,7 +190,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=dam%20aloo%20baby%20potatoes%20cooked%20with%20cumin%20and%20curry%20leaves%20delicious%20indian%20curry&width=400&height=250&seq=veg_dam_aloo1&orientation=landscape"
+                    src=""
                     alt="Dam Aloo"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

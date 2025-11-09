@@ -40,7 +40,8 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                 </div>
                 <h1 className="text-4xl font-bold text-gray-800 mb-4">Processing Your Order</h1>
                 <p className="text-lg text-gray-600 mb-4">We're retrieving your order details...</p>
-                <p className="text-sm text-gray-500 mb-8">This may take a few moments while we process your payment.</p>
+                <p className="text-sm text-gray-500 mb-8">If it's taking too long, please refresh the page using the button below.
+                </p>
                 <div className="space-x-4">
                   <Link href="/" className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all">
                     Go to Home
@@ -58,7 +59,7 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
     // Calculate estimated time
     const now = new Date();
     const estimatedDeliveryTime = new Date(now.getTime() + (order.orderType === 'delivery' ? 45 : 20) * 60000);
-    const timeString = estimatedDeliveryTime.toLocaleTimeString('en-US', { 
+    const timeString = estimatedDeliveryTime.toLocaleTimeString('en-CH', { 
       hour: '2-digit', 
       minute: '2-digit',
       hour12: false,
@@ -104,20 +105,22 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                       <div className="flex justify-between">
                         <span className="text-gray-600">Order Date:</span>
                         <span className="font-medium text-gray-800">
-                          {order.createdAt.toLocaleDateString('en-US', { 
+                          {order.createdAt.toLocaleDateString('en-CH', { 
                             year: 'numeric', 
                             month: 'long', 
-                            day: 'numeric' 
+                            day: 'numeric',
+                            timeZone: 'Europe/Zurich'
                           })}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Order Time:</span>
                         <span className="font-medium text-gray-800">
-                          {order.createdAt.toLocaleTimeString('en-US', { 
+                          {order.createdAt.toLocaleTimeString('en-CH', { 
                             hour: '2-digit', 
                             minute: '2-digit',
-                            hour12: false 
+                            hour12: false,
+                            timeZone: 'Europe/Zurich'
                           })}
                         </span>
                       </div>
@@ -290,13 +293,13 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                       ) : (
                         <>
                           <p>• Your order is being prepared by our kitchen team</p>
-                          <p>• We'll notify you when it's ready for pickup</p>
+                          <p>• We'll contact you when it's ready for pickup</p>
                           <p>• Please arrive at our location to collect your order</p>
                           <div className="mt-4 p-3 bg-white rounded-lg">
                             <p className="font-medium text-gray-800">Nirvana Restaurant</p>
-                            <p className="text-gray-600">[Insert actual street address]</p>
-                            <p className="text-gray-600">[Insert postal code and city], Geneva</p>
-                            <p className="text-gray-600">Phone: [Insert actual phone number]</p>
+                            <p className="text-gray-600">375, Route de Meyrin</p>
+                            <p className="text-gray-600">1217 Meyrin, Geneva, Switzerland</p>
+                            <p className="text-gray-600">Phone: 022 782 10 10</p>
                           </div>
                         </>
                       )}

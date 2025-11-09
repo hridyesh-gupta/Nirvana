@@ -102,12 +102,14 @@ export default function ThalisBiryaniPage() {
 
             {/* Byriani Section */}
             <div>
-              <h2 className="text-4xl font-bold text-center mb-12 text-primary">
+              <h2 className="text-4xl font-bold text-center mb-6 text-primary">
                 Byrianis
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Served along with Raita
-              </p>
+              <center>
+                <p className="text-xl text-gray-600 mb-8">
+                  Served along with Raita
+                </p>
+              </center>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
@@ -135,7 +137,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=authentic%20chicken%20biryani%20with%20tender%20chicken%20pieces%20layered%20with%20spiced%20basmati%20rice%20hyderabadi%20style&width=400&height=250&seq=chickenbiryani2&orientation=landscape"
+                    src=""
                     alt="Chicken Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -181,7 +183,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=lamb%20biryani%20with%20succulent%20lamb%20pieces%20layered%20with%20spiced%20basmati%20rice%20traditional%20style&width=400&height=250&seq=lamxbiryani1&orientation=landscape"
+                    src=""
                     alt="Lamb Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -204,7 +206,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src="https://readdy.ai/api/search-image?query=king%20prawn%20biryani%20shelled%20prawns%20with%20aromatic%20basmati%20rice%20coastal%20spices&width=400&height=250&seq=prawnbiryani2&orientation=landscape"
+                    src=""
                     alt="Shelled King Prawns Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

@@ -33,14 +33,14 @@ export default function RoseWinesPage() {
       name: 'Oeil de Perdrix',
       description: 'Domaine des Bossons 2021 – Geneva',
       price: 49.00,
-      image: 'https://readdy.ai/api/search-image?query=oeil%20de%20perdrix%20domaine%20des%20bossons%202021%20rose%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=rose-swiss-1&orientation=landscape'
+      image: ''
     },
     {
       id: 'rose-de-lune-les-balisiers',
       name: 'Rosé de Lune',
       description: 'Les Balisiers 2021 – Geneva',
       price: 49.00,
-      image: 'https://readdy.ai/api/search-image?query=rose%20de%20lune%20les%20balisiers%202021%20rose%20wine%20bottle%20switzerland%20geneva&width=400&height=300&seq=rose-swiss-2&orientation=landscape'
+      image: ''
     }
   ];
 
@@ -50,7 +50,7 @@ export default function RoseWinesPage() {
       name: 'Domaine des Campaux – Côtes de Provence',
       description: '2024 - A fruity rosé with a dominance of strawberries and red fruits, with a delicate finish and a touch of acidity. Pairing: Butter Chicken Curry',
       price: 55.00,
-      image: 'https://readdy.ai/api/search-image?query=domaine%20des%20campaux%20c%C3%B4tes%20de%20provence%202024%20rose%20wine%20bottle%20france%20provence&width=400&height=300&seq=rose-french-1&orientation=landscape'
+      image: ''
     }
   ];
 
