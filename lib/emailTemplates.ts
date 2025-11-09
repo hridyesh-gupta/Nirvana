@@ -589,7 +589,7 @@ export const generateOwnerReservationNotificationEmail = (reservationData: Reser
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
-  const reservationDateFormatted = formatDate(reservationData.reservationDate);
+  const reservationDateFormatted = reservationData.reservationDate;
   const reservationTimeFormatted = formatTime(reservationData.reservationTime);
   const createdDate = reservationData.createdAt ? formatDate(reservationData.createdAt) : 'Just now';
 
