@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCart } from '../../lib/cartStore';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -15,6 +16,7 @@ import { DELIVERY_ZONES, getDeliveryFeeByZone, getZoneByZipcode, validateMinimum
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 export default function CartPage() {
+  const router = useRouter();
   const { items, updateQuantity, clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'cod'>('stripe');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
@@ -249,8 +251,8 @@ export default function CartPage() {
           setHasAttemptedCheckout(false);
           setTouched({});
           setMinimumOrderError(null);
-          // Show success message
-          alert(`Order placed successfully! Order number: ${result.orderNumber}. You will receive a confirmation email shortly.`);
+          // Redirect to confirmation page with order number
+          router.push(`/return?orderNumber=${result.orderNumber}`);
         } else {
           const errorData = await response.json();
           setOrderError(errorData.error || 'Failed to create order. Please try again.');

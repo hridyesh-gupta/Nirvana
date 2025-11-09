@@ -11,24 +11,34 @@ export const revalidate = 0;
 export default async function Return({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const resolvedSearchParams = await searchParams;
   const sessionIdParam = resolvedSearchParams?.session_id;
+  const orderNumberParam = resolvedSearchParams?.orderNumber;
   const session_id = Array.isArray(sessionIdParam) ? sessionIdParam[0] : sessionIdParam;
+  const orderNumber = Array.isArray(orderNumberParam) ? orderNumberParam[0] : orderNumberParam;
 
-  if (!session_id) {
-    redirect('/'); // Redirect to home if no session ID
+  if (!session_id && !orderNumber) {
+    redirect('/'); // Redirect to home if no session ID or order number
   }
 
   // CHF currency formatter
   const chf = new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' });
 
   try {
-    // Query order from database using stripeSessionId
-    const order = await prisma.order.findUnique({
-      where: { stripeSessionId: session_id },
-      include: { items: true }
-    });
+    // Query order from database - use session_id for Stripe orders, orderNumber for COD orders
+    let order;
+    if (session_id) {
+      order = await prisma.order.findUnique({
+        where: { stripeSessionId: session_id },
+        include: { items: true }
+      });
+    } else if (orderNumber) {
+      order = await prisma.order.findUnique({
+        where: { orderNumber: orderNumber },
+        include: { items: true }
+      });
+    }
 
     if (!order) {
-      // Order not found - might be webhook processing delay
+      // Order not found - might be webhook processing delay (for Stripe) or order not found
       return (
         <div className="min-h-screen bg-white">
           <Navigation />
@@ -46,7 +56,7 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                   <Link href="/" className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all">
                     Go to Home
                   </Link>
-                  <RefreshButton sessionId={session_id} />
+                  {session_id && <RefreshButton sessionId={session_id} />}
                 </div>
               </div>
             </div>
@@ -86,7 +96,9 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                     <i className="ri-check-line text-3xl text-green-600"></i>
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-green-800 text-center mb-2">Payment Successful!</h2>
+                <h2 className="text-2xl font-bold text-green-800 text-center mb-2">
+                  {order.paymentMethod === 'stripe' ? 'Payment Successful!' : 'Order Confirmed!'}
+                </h2>
                 <p className="text-green-700 text-center">Your order has been confirmed and is being prepared.</p>
               </div>
 
@@ -349,7 +361,9 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
               </div>
               <h1 className="text-4xl font-bold text-gray-800 mb-4">Something went wrong</h1>
               <p className="text-lg text-gray-600 mb-4">We encountered an error retrieving your order details.</p>
-              <p className="text-sm text-gray-500 mb-8">Session ID: {session_id}</p>
+              <p className="text-sm text-gray-500 mb-8">
+                {session_id ? `Session ID: ${session_id}` : orderNumber ? `Order Number: ${orderNumber}` : ''}
+              </p>
               <div className="space-x-4">
                 <Link href="/" className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all">
                   Go to Home
