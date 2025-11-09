@@ -25,3 +25,16 @@ export interface OrderEmailData {
   paymentStatus: 'pending' | 'paid' | 'failed';
   createdAt?: Date;
 }
+
+export interface ReservationEmailData {
+  reservationNumber: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  reservationDate: Date;
+  reservationTime: string;
+  numberOfGuests: number;
+  status: 'pending' | 'confirmed' | 'cancelled';
+  createdAt?: Date;
+  specialRequests?: string;
+}

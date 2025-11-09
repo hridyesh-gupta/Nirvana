@@ -168,7 +168,7 @@ export const products: Product[] = [
     name: 'Paneer',
     price: 21.00,
     category: 'Traditional Dishes',
-    description: 'Base price',
+    description: 'Traditional paneer curry',
     image: '',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']

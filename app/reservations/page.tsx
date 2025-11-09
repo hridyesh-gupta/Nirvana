@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,24 +18,78 @@ export default function ReservationsPage() {
     requests: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [reservationNumber, setReservationNumber] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const successMessageRef = useRef<HTMLDivElement>(null);
+  const errorMessageRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === 'requests' && value.length > 500) return;
     setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error message when user starts typing
+    if (errorMessage) {
+      setErrorMessage(null);
+    }
   };
+
+  // Auto-focus name field on page load
+  useEffect(() => {
+    const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
+    if (nameInput) {
+      nameInput.focus();
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.date || !formData.time) {
-      setSubmitStatus('Please fill in all required fields');
+    // Clear previous messages
+    setErrorMessage(null);
+    setSuccessMessage(null);
+    setReservationNumber(null);
+    
+    // Client-side validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time) {
+      setErrorMessage('Please fill in all required fields');
+      if (errorMessageRef.current) {
+        errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
       return;
     }
 
+    // Validate phone number
+    if (!formData.phone.trim()) {
+      setErrorMessage('Phone number is required');
+      if (errorMessageRef.current) {
+        errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+
+    // Validate date is not in the past (aligned with API's Europe/Zurich timezone)
+    if (formData.date) {
+      // Parse date using local components
+      const [year, month, day] = formData.date.split('-').map(Number);
+      const [hours, minutes] = (formData.time || '00:00').split(':').map(Number);
+      const selectedDate = new Date(year, month - 1, day, hours, minutes);
+      
+      // Convert both to Europe/Zurich timezone for comparison
+      const now = new Date();
+      const nowInZurich = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Zurich' }));
+      const selectedInZurich = new Date(selectedDate.toLocaleString('en-US', { timeZone: 'Europe/Zurich' }));
+      
+      if (selectedInZurich < nowInZurich) {
+        setErrorMessage('Reservation date and time cannot be in the past');
+        if (errorMessageRef.current) {
+          errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
+    }
+
     setIsSubmitting(true);
-    setSubmitStatus('');
     
     try {
       const response = await fetch('/api/reservations', {
@@ -54,13 +108,61 @@ export default function ReservationsPage() {
       });
       
       if (response.ok) {
-        setSubmitStatus('Reservation request submitted successfully! We will contact you to confirm.');
+        const result = await response.json();
+        
+        // Extract reservation details from response
+        const reservationNum = result.reservationNumber;
+        setReservationNumber(reservationNum);
+        setSuccessMessage(`Reservation confirmed! Your reservation number is ${reservationNum}. We will contact you shortly to confirm.`);
+        
+        // Clear form
         setFormData({ name: '', email: '', phone: '', date: '', time: '', guests: '2', requests: '' });
+        setErrorMessage(null);
+        
+        // Scroll to success message
+        setTimeout(() => {
+          if (successMessageRef.current) {
+            successMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
       } else {
-        setSubmitStatus('Failed to submit reservation. Please try again.');
+        // Parse error from API response
+        const errorData = await response.json();
+        let errorMsg = 'Failed to submit reservation. Please try again.';
+        
+        if (errorData.error) {
+          errorMsg = errorData.error;
+        } else if (response.status === 400) {
+          errorMsg = 'Invalid reservation data. Please check your information and try again.';
+        } else if (response.status === 409) {
+          errorMsg = 'Reservation number conflict. Please try again.';
+        } else if (response.status === 500) {
+          errorMsg = 'Server error. Please try again later.';
+        }
+        
+        setErrorMessage(errorMsg);
+        setSuccessMessage(null);
+        setReservationNumber(null);
+        
+        // Scroll to error message
+        setTimeout(() => {
+          if (errorMessageRef.current) {
+            errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
       }
     } catch (error) {
-      setSubmitStatus('Network error. Please try again later.');
+      setErrorMessage('Network error. Please check your connection and try again.');
+      setSuccessMessage(null);
+      setReservationNumber(null);
+      console.error('Network error during reservation submission:', error);
+      
+      // Scroll to error message
+      setTimeout(() => {
+        if (errorMessageRef.current) {
+          errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     } finally {
       setIsSubmitting(false);
     }
@@ -80,18 +182,89 @@ export default function ReservationsPage() {
           </div>
           
           <div className="bg-white rounded-2xl p-8 border border-primary max-w-3xl mx-auto">
-            <form id="kaiseki-reservation" onSubmit={handleSubmit} className="space-y-4">
+            {/* Success Message */}
+            {successMessage && (
+              <div ref={successMessageRef} className="bg-green-50 border-2 border-green-500 text-green-800 rounded-xl p-6 mb-6">
+                <div className="flex items-start">
+                  <i className="ri-checkbox-circle-fill text-2xl mr-3 mt-1"></i>
+                  <div className="flex-1">
+                    <p className="font-semibold mb-2">{successMessage}</p>
+                    {reservationNumber && (
+                      <div className="mt-3 p-3 bg-green-100 rounded-lg">
+                        <p className="text-sm font-medium mb-1">Reservation Number:</p>
+                        <p className="text-xl font-bold">{reservationNumber}</p>
+                      </div>
+                    )}
+                    <p className="text-sm mt-3 opacity-90">Check your email for confirmation details.</p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSuccessMessage(null);
+                        setReservationNumber(null);
+                      }}
+                      className="mt-4 text-sm underline hover:no-underline"
+                    >
+                      Make Another Reservation
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {errorMessage && (
+              <div ref={errorMessageRef} className="bg-red-50 border-2 border-red-500 text-red-800 rounded-xl p-6 mb-6">
+                <div className="flex items-start">
+                  <i className="ri-error-warning-fill text-2xl mr-3 mt-1"></i>
+                  <div className="flex-1">
+                    <p className="font-semibold mb-2">{errorMessage}</p>
+                    <p className="text-sm mt-2 opacity-90">Please check the form and try again.</p>
+                    <button
+                      type="button"
+                      onClick={() => setErrorMessage(null)}
+                      className="mt-4 text-sm underline hover:no-underline"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <form id="kaiseki-reservation" onSubmit={handleSubmit} className={`space-y-4 ${isSubmitting ? 'opacity-75' : ''}`}>
 
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-gray-700 text-sm mb-2">Date *</label>
                 <DatePicker
-                  selected={formData.date ? new Date(formData.date) : null}
-                  onChange={(date: Date | null) => setFormData(prev => ({ ...prev, date: date ? date.toISOString().split('T')[0] : '' }))}
+                  selected={formData.date ? (() => {
+                    // Parse using local date components to avoid timezone issues
+                    const [year, month, day] = formData.date.split('-').map(Number);
+                    return new Date(year, month - 1, day);
+                  })() : null}
+                  onChange={(date: Date | null) => {
+                    if (date) {
+                      // Build YYYY-MM-DD string using local date parts to avoid timezone shift
+                      const y = date.getFullYear();
+                      const m = String(date.getMonth() + 1).padStart(2, '0');
+                      const d = String(date.getDate()).padStart(2, '0');
+                      setFormData(prev => ({ ...prev, date: `${y}-${m}-${d}` }));
+                    } else {
+                      setFormData(prev => ({ ...prev, date: '' }));
+                    }
+                  }}
                   className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
                   dateFormat="yyyy-MM-dd"
                   placeholderText="Select a date"
+                  minDate={new Date()}
+                  filterDate={(date: Date) => {
+                    // Compare only calendar days, not full Date objects
+                    const today = new Date();
+                    const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    const day = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                    return day >= startOfToday;
+                  }}
                   required
                   wrapperClassName="w-full"
                 />
@@ -135,13 +308,14 @@ export default function ReservationsPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Phone</label>
+                <label className="block text-gray-700 text-sm mb-2">Phone *</label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none"
+                  required
                 />
               </div>
               <div>
@@ -184,16 +358,17 @@ export default function ReservationsPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-auto mx-auto bg-primary hover:bg-secondary text-white px-3 py-3 rounded font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                className="w-auto mx-auto bg-primary hover:bg-secondary text-white px-3 py-3 rounded font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center"
               >
-                {isSubmitting ? 'Submitting...' : 'Reserve Table'}
+                {isSubmitting ? (
+                  <>
+                    <i className="ri-loader-4-line animate-spin mr-2"></i>
+                    Submitting...
+                  </>
+                ) : (
+                  'Reserve Table'
+                )}
               </button>
-
-              {submitStatus && (
-                <div className={`text-center text-sm mb-6 p-4 rounded ${submitStatus.includes('success') ? 'bg-green-50 border border-green-200 text-green-700' : 'bg-red-50 border border-red-200 text-red-700'}`}>
-                  {submitStatus}
-                </div>
-              )}
             </form>
           </div>
         </div>

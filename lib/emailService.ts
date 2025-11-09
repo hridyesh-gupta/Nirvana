@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
-import { generateCustomerOrderEmail, generateCustomerOrderEmailText, generateOwnerNotificationEmail, generateOwnerNotificationEmailText } from './emailTemplates';
-import type { OrderEmailData } from './types/order';
+import { generateCustomerOrderEmail, generateCustomerOrderEmailText, generateOwnerNotificationEmail, generateOwnerNotificationEmailText, generateCustomerReservationEmail, generateCustomerReservationEmailText, generateOwnerReservationNotificationEmail, generateOwnerReservationNotificationEmailText } from './emailTemplates';
+import type { OrderEmailData, ReservationEmailData } from './types/order';
 
 // Email sending configuration and utility functions
 export interface EmailParams {
@@ -338,6 +338,100 @@ export const sendOwnerNotificationEmailDirect = async (orderData: OrderEmailData
     
     console.error('Error in sendOwnerNotificationEmailDirect:', {
       orderNumber: orderData.orderNumber,
+      ownerEmail,
+      error: error instanceof Error ? {
+        message: error.message,
+        stack: error.stack
+      } : error,
+      timestamp: new Date().toISOString()
+    });
+    
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
+    };
+  }
+};
+
+/**
+ * Send reservation confirmation email directly to customer (server-side only)
+ * @param reservationData - Reservation information to include in the confirmation email
+ * @returns Promise with email sending result
+ */
+export const sendReservationConfirmationEmailDirect = async (reservationData: ReservationEmailData): Promise<EmailResponse> => {
+  try {
+    const htmlContent = generateCustomerReservationEmail(reservationData);
+    const textContent = generateCustomerReservationEmailText(reservationData);
+    
+    const result = await sendEmail({
+      to: reservationData.customerEmail,
+      subject: `Reservation Confirmation - Nirvana Restaurant #${reservationData.reservationNumber}`,
+      html: htmlContent,
+      text: textContent
+    });
+    
+    if (!result.success) {
+      console.error('Failed to send reservation confirmation email:', {
+        reservationNumber: reservationData.reservationNumber,
+        customerEmail: reservationData.customerEmail,
+        error: result.error,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('Error in sendReservationConfirmationEmailDirect:', {
+      reservationNumber: reservationData.reservationNumber,
+      customerEmail: reservationData.customerEmail,
+      error: error instanceof Error ? {
+        message: error.message,
+        stack: error.stack
+      } : error,
+      timestamp: new Date().toISOString()
+    });
+    
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
+    };
+  }
+};
+
+/**
+ * Send owner reservation notification email directly (server-side only)
+ * @param reservationData - Reservation information to include in the notification email
+ * @returns Promise with email sending result
+ */
+export const sendOwnerReservationNotificationEmailDirect = async (reservationData: ReservationEmailData): Promise<EmailResponse> => {
+  try {
+    const htmlContent = generateOwnerReservationNotificationEmail(reservationData);
+    const textContent = generateOwnerReservationNotificationEmailText(reservationData);
+    
+    const ownerEmail = process.env.OWNER_EMAIL || 'orders@nirvana-geneve.ch';
+    
+    const result = await sendEmail({
+      to: ownerEmail,
+      subject: `New Reservation Received - Nirvana Restaurant #${reservationData.reservationNumber}`,
+      html: htmlContent,
+      text: textContent
+    });
+    
+    if (!result.success) {
+      console.error('Failed to send owner reservation notification email:', {
+        reservationNumber: reservationData.reservationNumber,
+        ownerEmail,
+        error: result.error,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    return result;
+  } catch (error) {
+    const ownerEmail = process.env.OWNER_EMAIL || 'orders@nirvana-geneve.ch';
+    
+    console.error('Error in sendOwnerReservationNotificationEmailDirect:', {
+      reservationNumber: reservationData.reservationNumber,
       ownerEmail,
       error: error instanceof Error ? {
         message: error.message,

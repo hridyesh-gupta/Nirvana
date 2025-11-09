@@ -79,3 +79,21 @@ model OrderItem {
 
   @@index([orderId])
 }
+
+model Reservation {
+  id                String            @id @default(uuid())
+  reservationNumber String            @unique @db.VarChar(50)
+  customerName      String            @db.VarChar(255)
+  customerEmail     String            @db.VarChar(320)
+  customerPhone     String            @db.VarChar(20)
+  reservationDate   DateTime
+  reservationTime   String            @db.VarChar(10)
+  numberOfGuests   Int
+  specialRequests  String?           @db.VarChar(1000)
+  createdAt         DateTime          @default(now())
+
+  @@map("reservations")
+  @@index([customerEmail])
+  @@index([reservationDate])
+  @@index([reservationDate, reservationTime])
+}

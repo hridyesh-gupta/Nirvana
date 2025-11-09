@@ -1,5 +1,5 @@
 // Email template generation for order confirmations and notifications
-import { OrderEmailData } from './types/order';
+import { OrderEmailData, ReservationEmailData } from './types/order';
 
 const renderDeliveryAddress = (
   orderData: OrderEmailData,
@@ -455,5 +455,327 @@ ${orderData.paymentMethod === 'cod' ? `Collect: ${formatCurrency(orderData.total
 ${orderData.specialInstructions ? `Special Instructions: ${orderData.specialInstructions}` : ''}
 
 ACTION REQUIRED: Please prepare this order promptly.
+  `.trim();
+};
+
+/**
+ * Generate HTML email template for customer reservation confirmation
+ * @param reservationData - Reservation information to include in the email
+ * @returns HTML string for the email body
+ */
+export const generateCustomerReservationEmail = (reservationData: ReservationEmailData): string => {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'Europe/Zurich'
+  });
+
+  const formatTime = (time: string) => {
+    // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
+  const reservationDateFormatted = formatDate(reservationData.reservationDate);
+  const reservationTimeFormatted = formatTime(reservationData.reservationTime);
+  const createdDate = reservationData.createdAt ? formatDate(reservationData.createdAt) : 'Today';
+
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation - Nirvana Restaurant</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%); padding: 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">Nirvana Restaurant</h1>
+            <p style="color: #f5f5f5; margin: 10px 0 0 0; font-size: 16px;">Authentic Indian Cuisine in Geneva</p>
+        </div>
+
+        <!-- Main Content -->
+        <div style="padding: 30px;">
+            <!-- Reservation Confirmation -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="color: #8B4513; margin: 0 0 10px 0; font-size: 24px;">Reservation Confirmed!</h2>
+                <p style="color: #666666; margin: 0; font-size: 16px;">Thank you for your reservation, ${reservationData.customerName}</p>
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin: 0; font-size: 18px; font-weight: bold; color: #8B4513;">Reservation #${reservationData.reservationNumber}</p>
+                    <p style="margin: 5px 0 0 0; color: #666666;">Requested on ${createdDate}</p>
+                </div>
+            </div>
+
+            <!-- Customer Details -->
+            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">Customer Information</h3>
+                <p style="margin: 5px 0; color: #333333;"><strong>Name:</strong> ${reservationData.customerName}</p>
+                <p style="margin: 5px 0; color: #333333;"><strong>Email:</strong> ${reservationData.customerEmail}</p>
+                <p style="margin: 5px 0; color: #333333;"><strong>Phone:</strong> ${reservationData.customerPhone}</p>
+            </div>
+
+            <!-- Reservation Details -->
+            <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
+                <h3 style="color: #28a745; margin: 0 0 15px 0; font-size: 18px;">Reservation Details</h3>
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px 0; color: #28a745; font-weight: bold; font-size: 16px;">📅 Date: ${reservationDateFormatted}</p>
+                    <p style="margin: 0; color: #333333; font-size: 18px; font-weight: bold;">${reservationTimeFormatted}</p>
+                </div>
+                <div style="margin-top: 15px;">
+                    <p style="margin: 0; color: #28a745; font-weight: bold; font-size: 16px;">👥 Number of Guests: ${reservationData.numberOfGuests}</p>
+                </div>
+            </div>
+
+            ${reservationData.specialRequests ? `
+            <!-- Special Requests -->
+            <div style="background-color: #fff3cd; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #ffc107;">
+                <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 18px;">Special Requests</h3>
+                <p style="margin: 0; color: #856404; line-height: 1.5;">${reservationData.specialRequests}</p>
+            </div>
+            ` : ''}
+
+            <!-- What to Expect -->
+            <div style="text-align: center; margin-bottom: 25px;">
+                <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">What to Expect</h3>
+                <p style="color: #666666; margin: 0; line-height: 1.5;">We will contact you shortly to confirm your reservation. Please arrive on time for your table reservation.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background-color: #8B4513; padding: 30px; text-align: center;">
+            <h3 style="color: #ffffff; margin: 0 0 15px 0; font-size: 20px;">Thank You for Choosing Nirvana!</h3>
+            <p style="color: #f5f5f5; margin: 0 0 15px 0; line-height: 1.5;">We appreciate your business and look forward to serving you delicious Indian cuisine.</p>
+            <div style="margin-top: 20px;">
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📍 375, Route de Meyrin, 1217 Meyrin, Switzerland, Geneva, Switzerland</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 022 782 10 10</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">✉️ contact@nirvana-geneve.ch</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+  `.trim();
+};
+
+/**
+ * Generate HTML email template for restaurant owner reservation notification
+ * @param reservationData - Reservation information to include in the notification
+ * @returns HTML string for the email body
+ */
+export const generateOwnerReservationNotificationEmail = (reservationData: ReservationEmailData): string => {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Zurich'
+  });
+
+  const formatTime = (time: string) => {
+    // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
+  const reservationDateFormatted = formatDate(reservationData.reservationDate);
+  const reservationTimeFormatted = formatTime(reservationData.reservationTime);
+  const createdDate = reservationData.createdAt ? formatDate(reservationData.createdAt) : 'Just now';
+
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Reservation - Nirvana Restaurant</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 30px; text-align: center;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">🚨 NEW RESERVATION RECEIVED</h1>
+            <p style="color: #f5f5f5; margin: 10px 0 0 0; font-size: 16px;">Nirvana Restaurant - Reservation Management</p>
+        </div>
+
+        <!-- Main Content -->
+        <div style="padding: 30px;">
+            <!-- Reservation Alert -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="color: #dc3545; margin: 0 0 10px 0; font-size: 24px;">Reservation #${reservationData.reservationNumber}</h2>
+                <p style="color: #666666; margin: 0; font-size: 16px;">Received on ${createdDate}</p>
+                <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+                    <p style="margin: 0; font-size: 18px; font-weight: bold; color: #856404;">Action Required: Please confirm this reservation</p>
+                </div>
+            </div>
+
+            <!-- Customer Contact Info (Highlighted) -->
+            <div style="background-color: #d1ecf1; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #17a2b8;">
+                <h3 style="color: #0c5460; margin: 0 0 15px 0; font-size: 18px;">📞 Customer Contact Information</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <p style="margin: 5px 0; color: #0c5460;"><strong>Name:</strong> ${reservationData.customerName}</p>
+                        <p style="margin: 5px 0; color: #0c5460;"><strong>Phone:</strong> <a href="tel:${reservationData.customerPhone}" style="color: #0c5460; text-decoration: none;">${reservationData.customerPhone}</a></p>
+                    </div>
+                    <div>
+                        <p style="margin: 5px 0; color: #0c5460;"><strong>Email:</strong> <a href="mailto:${reservationData.customerEmail}" style="color: #0c5460; text-decoration: none;">${reservationData.customerEmail}</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservation Details (Prominent) -->
+            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #8B4513;">
+                <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">📋 Reservation Details</h3>
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px 0; color: #8B4513; font-weight: bold; font-size: 20px;">📅 Date: ${reservationDateFormatted}</p>
+                    <p style="margin: 0; color: #333333; font-size: 24px; font-weight: bold;">Time: ${reservationTimeFormatted}</p>
+                </div>
+                <div style="margin-top: 15px;">
+                    <p style="margin: 0; color: #8B4513; font-weight: bold; font-size: 18px;">👥 Number of Guests: ${reservationData.numberOfGuests}</p>
+                </div>
+            </div>
+
+            ${reservationData.specialRequests ? `
+            <!-- Special Requests (Highlighted) -->
+            <div style="background-color: #fff3cd; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #ffc107;">
+                <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 18px;">⚠️ Special Requests</h3>
+                <p style="margin: 0; color: #856404; line-height: 1.5; font-weight: bold;">${reservationData.specialRequests}</p>
+            </div>
+            ` : ''}
+
+            <!-- Action Required -->
+            <div style="background-color: #d4edda; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
+                <h3 style="color: #155724; margin: 0 0 15px 0; font-size: 18px;">✅ Action Required</h3>
+                <ul style="margin: 0; padding-left: 20px; color: #155724;">
+                    <li>Check availability for the requested date/time</li>
+                    <li>Contact customer to confirm reservation</li>
+                    <li>Update reservation status in the system</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background-color: #8B4513; padding: 30px; text-align: center;">
+            <h3 style="color: #ffffff; margin: 0 0 15px 0; font-size: 20px;">Nirvana Restaurant - Reservation Management</h3>
+            <p style="color: #f5f5f5; margin: 0; line-height: 1.5;">This is an automated notification. Please confirm the reservation promptly.</p>
+        </div>
+    </div>
+</body>
+</html>
+  `.trim();
+};
+
+/**
+ * Generate plain text version of customer reservation email
+ * @param reservationData - Reservation information
+ * @returns Plain text string for email fallback
+ */
+export const generateCustomerReservationEmailText = (reservationData: ReservationEmailData): string => {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'Europe/Zurich'
+  });
+
+  const formatTime = (time: string) => {
+    // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
+  const reservationDateFormatted = formatDate(reservationData.reservationDate);
+  const reservationTimeFormatted = formatTime(reservationData.reservationTime);
+
+  return `
+RESERVATION CONFIRMATION - Nirvana Restaurant
+
+Reservation #${reservationData.reservationNumber}
+
+Customer Details:
+Name: ${reservationData.customerName}
+Email: ${reservationData.customerEmail}
+Phone: ${reservationData.customerPhone}
+
+Reservation Details:
+Date: ${reservationDateFormatted}
+Time: ${reservationTimeFormatted}
+Number of Guests: ${reservationData.numberOfGuests}
+${reservationData.specialRequests ? `Special Requests: ${reservationData.specialRequests}` : ''}
+
+We will contact you shortly to confirm your reservation.
+
+Thank you for choosing Nirvana Restaurant!
+We appreciate your business and look forward to serving you delicious Indian cuisine.
+
+Nirvana Restaurant
+375, Route de Meyrin, 1217 Meyrin, Geneva, Switzerland
+Phone: 022 782 10 10
+Email: contact@nirvana-geneve.ch
+  `.trim();
+};
+
+/**
+ * Generate plain text version of owner reservation notification email
+ * @param reservationData - Reservation information
+ * @returns Plain text string for email fallback
+ */
+export const generateOwnerReservationNotificationEmailText = (reservationData: ReservationEmailData): string => {
+  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Zurich'
+  });
+
+  const formatTime = (time: string) => {
+    // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+    return `${displayHour}:${minutes} ${ampm}`;
+  };
+
+  const reservationDateFormatted = formatDate(reservationData.reservationDate);
+  const reservationTimeFormatted = formatTime(reservationData.reservationTime);
+  const createdDate = reservationData.createdAt ? formatDate(reservationData.createdAt) : 'Just now';
+
+  return `
+NEW RESERVATION RECEIVED - Nirvana Restaurant
+
+Reservation #${reservationData.reservationNumber}
+Received: ${createdDate}
+
+CUSTOMER CONTACT:
+Name: ${reservationData.customerName}
+Phone: ${reservationData.customerPhone}
+Email: ${reservationData.customerEmail}
+
+RESERVATION DETAILS:
+Date: ${reservationDateFormatted}
+Time: ${reservationTimeFormatted}
+Number of Guests: ${reservationData.numberOfGuests}
+${reservationData.specialRequests ? `Special Requests: ${reservationData.specialRequests}` : ''}
+
+ACTION REQUIRED: Please confirm this reservation with the customer.
   `.trim();
 };
