@@ -464,13 +464,7 @@ ACTION REQUIRED: Please prepare this order promptly.
  * @returns HTML string for the email body
  */
 export const generateCustomerReservationEmail = (reservationData: ReservationEmailData): string => {
-  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'Europe/Zurich'
-  });
+  const formatDate = (date: Date) => date.toDateString();
 
   const formatTime = (time: string) => {
     // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
@@ -523,10 +517,10 @@ export const generateCustomerReservationEmail = (reservationData: ReservationEma
 
             <!-- Reservation Details -->
             <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
-                <h3 style="color: #28a745; margin: 0 0 15px 0; font-size: 18px;">Reservation Details</h3>
+                <h3 style="color: #28a745; margin: 0 0 15px 0; font-size: 18px;">📋 Reservation Details</h3>
                 <div style="margin-bottom: 15px;">
                     <p style="margin: 0 0 5px 0; color: #28a745; font-weight: bold; font-size: 16px;">📅 Date: ${reservationDateFormatted}</p>
-                    <p style="margin: 0; color: #333333; font-size: 18px; font-weight: bold;">${reservationTimeFormatted}</p>
+                    <p style="margin: 0; color: #333333; font-size: 18px; font-weight: bold;">Time: ${reservationTimeFormatted}</p>
                 </div>
                 <div style="margin-top: 15px;">
                     <p style="margin: 0; color: #28a745; font-weight: bold; font-size: 16px;">👥 Number of Guests: ${reservationData.numberOfGuests}</p>
@@ -536,14 +530,14 @@ export const generateCustomerReservationEmail = (reservationData: ReservationEma
             ${reservationData.specialRequests ? `
             <!-- Special Requests -->
             <div style="background-color: #fff3cd; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #ffc107;">
-                <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 18px;">Special Requests</h3>
+                <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 18px;">⚠️ Special Requests</h3>
                 <p style="margin: 0; color: #856404; line-height: 1.5;">${reservationData.specialRequests}</p>
             </div>
             ` : ''}
 
             <!-- What to Expect -->
             <div style="text-align: center; margin-bottom: 25px;">
-                <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">What to Expect</h3>
+                <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">🔜 What to Expect</h3>
                 <p style="color: #666666; margin: 0; line-height: 1.5;">We will contact you shortly to confirm your reservation. Please arrive on time for your table reservation.</p>
             </div>
         </div>
@@ -570,15 +564,7 @@ export const generateCustomerReservationEmail = (reservationData: ReservationEma
  * @returns HTML string for the email body
  */
 export const generateOwnerReservationNotificationEmail = (reservationData: ReservationEmailData): string => {
-  const formatDate = (date: Date) => date.toLocaleDateString('en-CH', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'Europe/Zurich'
-  });
+  const formatDate = (date: Date) => date.toDateString();
 
   const formatTime = (time: string) => {
     // Convert HH:MM to user-friendly format (e.g., "19:30" -> "7:30 PM")
@@ -589,7 +575,7 @@ export const generateOwnerReservationNotificationEmail = (reservationData: Reser
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
-  const reservationDateFormatted = reservationData.reservationDate;
+  const reservationDateFormatted = formatDate(reservationData.reservationDate);
   const reservationTimeFormatted = formatTime(reservationData.reservationTime);
   const createdDate = reservationData.createdAt ? formatDate(reservationData.createdAt) : 'Just now';
 
