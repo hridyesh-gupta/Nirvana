@@ -16,7 +16,7 @@ const renderDeliveryAddress = (
             <!-- Delivery Address -->
             <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #28a745;">
                 <h3 style="color: #28a745; margin: 0 0 10px 0; font-size: 18px;">Delivery Address</h3>
-                ${orderData.zipcode ? `<p style="margin: 0 0 8px 0; color: #28a745; font-weight: bold; font-size: 16px;">📍 Delivery Zone: ${orderData.zipcode}</p>` : ''}
+                ${orderData.postalCode ? `<p style="margin: 0 0 8px 0; color: #28a745; font-weight: bold; font-size: 16px;">📍 Delivery Zone: ${orderData.postalCode}</p>` : ''}
                 <p style="margin: 0; color: #333333; line-height: 1.5;">${orderData.deliveryAddress}</p>
             </div>
             `;
@@ -26,7 +26,7 @@ const renderDeliveryAddress = (
             <!-- Delivery Address (Highlighted) -->
             <div style="background-color: #f8d7da; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #dc3545;">
                 <h3 style="color: #721c24; margin: 0 0 10px 0; font-size: 18px;">📍 Delivery Address</h3>
-                ${orderData.zipcode ? `<p style="margin: 0 0 10px 0; color: #721c24; font-weight: bold; font-size: 18px;">🏷️ DELIVERY ZONE: ${orderData.zipcode}</p>
+                ${orderData.postalCode ? `<p style="margin: 0 0 10px 0; color: #721c24; font-weight: bold; font-size: 18px;">🏷️ DELIVERY ZONE: ${orderData.postalCode}</p>
                 <p style="margin: 0 0 10px 0; color: #721c24; font-size: 14px; font-style: italic;">Zone determines delivery fee and minimum order</p>` : ''}
                 <p style="margin: 0; color: #721c24; line-height: 1.5; font-size: 16px; font-weight: bold;">${orderData.deliveryAddress}</p>
                 <p style="margin: 10px 0 0 0; color: #721c24; font-size: 14px;">📋 Copy this address for delivery driver</p>
@@ -35,10 +35,10 @@ const renderDeliveryAddress = (
   }
 
   if (audience === 'customer') {
-    return `${orderData.zipcode ? `Delivery Zone: ${orderData.zipcode}\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
+    return `${orderData.postalCode ? `Delivery Zone: ${orderData.postalCode}\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
   }
 
-  return `${orderData.zipcode ? `DELIVERY ZONE: ${orderData.zipcode}\n(Zone determines delivery fee and minimum order)\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
+  return `${orderData.postalCode ? `DELIVERY ZONE: ${orderData.postalCode}\n(Zone determines delivery fee and minimum order)\n` : ''}Delivery Address: ${orderData.deliveryAddress}`;
 };
 
 /**

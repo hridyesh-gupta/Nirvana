@@ -19,7 +19,7 @@ export interface OrderEmailData {
   discount: number;
   total: number;
   deliveryAddress?: string;
-  zipcode?: string;
+  postalCode?: string;
   specialInstructions?: string;
   paymentMethod: 'stripe' | 'cod';
   paymentStatus: 'pending' | 'paid' | 'failed';

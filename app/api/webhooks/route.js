@@ -313,6 +313,7 @@ export async function POST(req) {
               customerEmail: order.customerEmail,
               customerPhone: order.customerPhone,
               deliveryAddress,
+              postalCode: order.postalCode || undefined,
               orderType: order.orderType,
               paymentMethod: order.paymentMethod,
               paymentStatus: order.paymentStatus,

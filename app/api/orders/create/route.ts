@@ -203,6 +203,7 @@ export async function POST(req: NextRequest) {
       deliveryAddress: order.orderType === 'delivery' && order.deliveryAddress && order.city && order.postalCode
         ? `${order.deliveryAddress}, ${order.city}${order.postalCode ? `, ${order.postalCode}` : ''}`
         : undefined,
+      postalCode: order.postalCode || undefined,
       specialInstructions: order.specialInstructions || undefined,
       items: cartItems.map((item: CartItem) => ({
         name: item.name,
