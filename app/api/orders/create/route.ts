@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
 
     // If orderType is 'delivery', validate address fields
     if (orderContext.orderType === 'delivery') {
-      if (!customerInfo.street || !customerInfo.city || !customerInfo.postalCode) {
+      if (!customerInfo.street || !customerInfo.city) {
         return NextResponse.json(
           { error: 'Delivery address is required for delivery orders' },
           { status: 400 }
@@ -154,8 +154,7 @@ export async function POST(req: NextRequest) {
           customerPhone: customerInfo.phone,
           deliveryAddress: orderContext.orderType === 'delivery' ? customerInfo.street : null,
           city: orderContext.orderType === 'delivery' ? customerInfo.city : null,
-          postalCode: orderContext.orderType === 'delivery' ? customerInfo.postalCode : null,
-          zipcode: orderContext.orderType === 'delivery' ? customerInfo.zipcode : null,
+          postalCode: orderContext.orderType === 'delivery' ? customerInfo.zipcode : null,
           orderType: orderContext.orderType,
           paymentMethod: 'cod',
           paymentStatus: 'pending',
@@ -202,7 +201,7 @@ export async function POST(req: NextRequest) {
       discount: parseFloat(order.discount.toString()),
       total: parseFloat(order.total.toString()),
       deliveryAddress: order.orderType === 'delivery' && order.deliveryAddress && order.city && order.postalCode
-        ? `${order.deliveryAddress}, ${order.city}, ${order.postalCode}`
+        ? `${order.deliveryAddress}, ${order.city}${order.postalCode ? `, ${order.postalCode}` : ''}`
         : undefined,
       specialInstructions: order.specialInstructions || undefined,
       items: cartItems.map((item: CartItem) => ({

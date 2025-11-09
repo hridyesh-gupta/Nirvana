@@ -254,8 +254,7 @@ export async function POST(req) {
                     customerPhone: session.metadata.customerPhone,
                     deliveryAddress: street,
                     city,
-                    postalCode,
-                    zipcode,
+                    postalCode: zipcode,
                     orderType: session.metadata.orderType,
                     paymentMethod: session.metadata.paymentMethod,
                     paymentStatus,
@@ -302,8 +301,8 @@ export async function POST(req) {
             
             // Prepare order data for emails
             // Format delivery address as a single string when order type is delivery and all parts are present
-            const deliveryAddress = order.orderType === 'delivery' && order.deliveryAddress && order.city && order.postalCode
-              ? `${order.deliveryAddress}, ${order.city}, ${order.postalCode}`
+            const deliveryAddress = order.orderType === 'delivery' && order.deliveryAddress && order.city
+              ? `${order.deliveryAddress}, ${order.city}${order.postalCode ? `, ${order.postalCode}` : ''}`
               : order.orderType === 'delivery' && order.deliveryAddress
               ? order.deliveryAddress
               : undefined;

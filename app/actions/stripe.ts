@@ -23,7 +23,6 @@ export interface CustomerInfo {
   phone: string;
   street: string;
   city: string;
-  postalCode: string;
   zipcode: string;
   specialInstructions: string;
 }
@@ -82,7 +81,7 @@ function formatDeliveryAddress(customerInfo: CustomerInfo, orderType: 'delivery'
   if (orderType === 'pickup') {
     return '';
   }
-  const address = `${customerInfo.zipcode} - ${customerInfo.street}, ${customerInfo.city}, ${customerInfo.postalCode}`;
+  const address = `${customerInfo.zipcode} - ${customerInfo.street}, ${customerInfo.city}`;
   return address.length > 500 ? address.substring(0, 500) : address;
 }
 

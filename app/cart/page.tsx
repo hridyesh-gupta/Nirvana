@@ -28,7 +28,6 @@ export default function CartPage() {
     zipcode: '',
     street: '',
     city: '',
-    postalCode: '',
     specialInstructions: ''
   });
   
@@ -98,7 +97,7 @@ export default function CartPage() {
   };
 
   // Pure function that returns errors without side effects
-  const getErrors = (customerInfo: { name: string; email: string; phone: string; zipcode: string; street: string; city: string; postalCode: string; specialInstructions: string }, orderType: 'delivery' | 'pickup'): Record<string, string> => {
+  const getErrors = (customerInfo: { name: string; email: string; phone: string; zipcode: string; street: string; city: string; specialInstructions: string }, orderType: 'delivery' | 'pickup'): Record<string, string> => {
     const errors: Record<string, string> = {};
     
     // Required fields for all orders
@@ -129,10 +128,6 @@ export default function CartPage() {
       
       if (!customerInfo.city.trim()) {
         errors.city = 'City is required for delivery';
-      }
-      
-      if (!customerInfo.postalCode.trim()) {
-        errors.postalCode = 'Postal code is required for delivery';
       }
     }
     
@@ -248,7 +243,6 @@ export default function CartPage() {
             zipcode: '',
             street: '',
             city: '',
-            postalCode: '',
             specialInstructions: ''
           });
           setFormErrors({});
@@ -281,7 +275,6 @@ export default function CartPage() {
       zipcode: '',
       street: '',
       city: '',
-      postalCode: '',
       specialInstructions: ''
     });
     setFormErrors({});
@@ -525,40 +518,21 @@ export default function CartPage() {
                         )}
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            City *
-                          </label>
-                          <input
-                            type="text"
-                            value={customerInfo.city}
-                            onChange={(e) => handleInputChange('city', e.target.value)}
-                            onBlur={() => handleFieldBlur('city')}
-                            className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                            placeholder="Enter city"
-                          />
-                          {(touched.city || hasAttemptedCheckout) && formErrors.city && (
-                            <p className="text-red-500 text-sm mt-1">{formErrors.city}</p>
-                          )}
-                        </div>
-
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Postal Code *
-                          </label>
-                          <input
-                            type="text"
-                            value={customerInfo.postalCode}
-                            onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                            onBlur={() => handleFieldBlur('postalCode')}
-                            className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                            placeholder="Enter postal code"
-                          />
-                          {(touched.postalCode || hasAttemptedCheckout) && formErrors.postalCode && (
-                            <p className="text-red-500 text-sm mt-1">{formErrors.postalCode}</p>
-                          )}
-                        </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          City *
+                        </label>
+                        <input
+                          type="text"
+                          value={customerInfo.city}
+                          onChange={(e) => handleInputChange('city', e.target.value)}
+                          onBlur={() => handleFieldBlur('city')}
+                          className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
+                          placeholder="Enter city"
+                        />
+                        {(touched.city || hasAttemptedCheckout) && formErrors.city && (
+                          <p className="text-red-500 text-sm mt-1">{formErrors.city}</p>
+                        )}
                       </div>
                     </div>
                   )}
