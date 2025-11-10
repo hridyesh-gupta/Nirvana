@@ -124,7 +124,7 @@ export default function VegetarianPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src=""
+                    src="/images/Paneer-Tikka-Masala.jpg"
                     alt="Paneer Tikka Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

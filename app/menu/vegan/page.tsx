@@ -70,7 +70,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src=""
+                    src="/images/Bhindi-Masala.jpg"
                     alt="Bhindi Masala"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -142,7 +142,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src=""
+                    src="/images/Palak-Aloo.jpg"
                     alt="Palak Aloo"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -166,7 +166,7 @@ export default function VeganPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-secondary">
                   <img
-                    src=""
+                    src="/images/Aloo-Gobi.jpg"
                     alt="Aloo Gobi"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

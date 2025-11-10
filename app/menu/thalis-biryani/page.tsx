@@ -183,7 +183,7 @@ export default function ThalisBiryaniPage() {
 
                 <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-2 hover:scale-105 overflow-hidden border-primary">
                   <img
-                    src=""
+                    src="/images/Lamb-Biryani.jpg"
                     alt="Lamb Byriani"
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />

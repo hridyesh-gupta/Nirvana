@@ -70,7 +70,7 @@ export default function StartersPage() {
       name: 'Raita Aubergines',
       price: 12.00,
       description: 'Tandoori smoked brinjals with yoghurt, herbs, spices',
-      image: 'https://readdy.ai/api/search-image?query=smoky%20baingan%20raita%20with%20tandoori%20roasted%20eggplant%20mixed%20with%20creamy%20yogurt%20fresh%20herbs%20and%20aromatic%20spices%20garnished%20with%20pomegranate%20seeds%20and%20mint%20leaves%2C%20creamy%20texture%20with%20charred%20eggplant%20pieces&width=400&height=300&seq=start5&orientation=landscape'
+      image: '/images/Raita-Eggplant.jpg'
     },
     {
       id: 'paneer-tikka',
@@ -144,7 +144,7 @@ export default function StartersPage() {
       name: 'Prawns Tandoori',
       price: 27.00,
       description: 'Grilled king prawns marinated, spicy flavours (shelled pieces)',
-      image: 'https://readdy.ai/api/search-image?query=tandoori%20prawns%20large%20king%20prawns%20marinated%20in%20spicy%20yogurt%20marinade%20grilled%20in%20tandoor%20with%20char%20marks%20served%20on%20banana%20leaf%20with%20lemon%20wedges%20and%20green%20chutney%2C%20vibrant%20orange-red%20color&width=400&height=300&seq=start11&orientation=landscape'
+      image: '/images/Prawns-Tandoori.jpg'
       // While uncommenting also include comma after image line
       // variants: [
       //   { label: 'Starter', price: 29.00 },
@@ -183,7 +183,7 @@ export default function StartersPage() {
       id: 'salads-prawns-tandoori',
       name: 'Prawns Tandoori (Salad)',
       description: 'Grilled gambas and prawns marinated in spices',
-      image: '',
+      image: '/images/Indian-Prawns-Salad.jpg',
       variants: [
         { label: 'Starter', price: 29.00 },
         { label: 'Main', price: 39.00 }
@@ -205,7 +205,7 @@ export default function StartersPage() {
       id: 'salads-chicken-tikka-black-pepper',
       name: 'Chicken Tikka Black Pepper',
       description: 'Chicken tikka grilled, marinated with cashew and black pepper',
-      image: '',
+      image: '/images/Black-Pepper-Chicken-Tikka.jpg',
       variants: [
         { label: 'Starter', price: 22.00 },
         { label: 'Main', price: 29.00 }
@@ -216,7 +216,7 @@ export default function StartersPage() {
       name: 'Paneer Tikka',
       price: 14.00,
       description: 'Grilled marinated Indian cheese',
-      image: '',
+      image: '/images/Grilled-Paneer-Tikka.jpg',
       // While uncommenting also include comma after image line
       // variants: [
       //   { label: 'Starter', price: 19.00 },

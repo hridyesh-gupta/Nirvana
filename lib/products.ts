@@ -139,7 +139,7 @@ export const products: Product[] = [
     price: 27.00,
     category: 'Traditional Dishes',
     description: 'Traditional chicken curry',
-    image: '/images/Chicken-Korma.jpg',
+    image: '/images/Chicken-Karahi.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
   },
@@ -149,7 +149,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Traditional Dishes',
     description: 'Traditional beef curry',
-    image: 'https://readdy.ai/api/search-image?query=traditional%20beef%20curry%20tender%20beef%20chunks%20in%20rich%20spiced%20gravy%20with%20onions%20ginger%20garlic%20and%20indian%20spices%20slow%20cooked%20to%20perfection%20garnished%20with%20fresh%20herbs%2C%20dark%20rich%20curry%20sauce&width=400&height=300&seq=main6&orientation=landscape',
+    image: '/images/Beef-Korma.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
   },
@@ -169,7 +169,7 @@ export const products: Product[] = [
     price: 21.00,
     category: 'Traditional Dishes',
     description: 'Traditional paneer curry',
-    image: '',
+    image: '/images/Paneer-Jalfrezi.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
   },

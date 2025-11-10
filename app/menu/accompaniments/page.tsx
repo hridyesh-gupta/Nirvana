@@ -50,7 +50,7 @@ export default function AccompanimentsPage() {
       description: 'Aromatic rice with green peas, herbs, and spices',
       descriptionFr: 'Petits Pois; Herbes; Épices',
       price: 5.00,
-      image: 'https://readdy.ai/api/search-image?query=delicious%20pullao%20rice%20with%20basmati%20rice%20green%20peas%20whole%20spices%20like%20cardamom%20cinnamon%20bay%20leaves%20garnished%20with%20fried%20onions%20and%20fresh%20herbs%2C%20colorful%20and%20aromatic%2C%20traditional%20indian%20style&width=400&height=300&seq=rice3&orientation=landscape'
+      image: '/images/Matar-Pulao.jpg'
     },
     {
       id: 'plain-rice',
@@ -58,7 +58,7 @@ export default function AccompanimentsPage() {
       description: 'Steamed basmati rice, perfectly cooked and fluffy',
       descriptionFr: 'Nature',
       price: 4.00,
-      image: 'https://readdy.ai/api/search-image?query=perfectly%20steamed%20plain%20basmati%20rice%20with%20fluffy%20white%20long%20grain%20rice%20in%20simple%20elegant%20bowl%20garnished%20with%20single%20cilantro%20leaf%2C%20clean%20white%20appearance%2C%20restaurant%20quality%20presentation&width=400&height=300&seq=rice4&orientation=landscape'
+      image: '/images/Plain-Rice.jpg'
     }
   ];
 
@@ -77,7 +77,7 @@ export default function AccompanimentsPage() {
       description: 'Spicy naan bread with green chilies and herbs',
       descriptionFr: 'Naan au piment',
       price: 5.00,
-      image: 'https://readdy.ai/api/search-image?query=spicy%20chilli%20naan%20bread%20with%20visible%20green%20chili%20pieces%20and%20herbs%20baked%20in%20tandoor%20with%20golden%20brown%20spots%20garnished%20with%20fresh%20cilantro%2C%20appetizing%20texture%20with%20slight%20char%20marks&width=400&height=300&seq=bread2&orientation=landscape'
+      image: '/images/Chilli-Naan.jpg'
     },
     {
       id: 'garlic-naan',
@@ -139,7 +139,7 @@ export default function AccompanimentsPage() {
       description: 'Whole wheat grain butter bread, layered and flaky',
       descriptionFr: 'Blé complet au beurre',
       price: 4.00,
-      image: 'https://readdy.ai/api/search-image?query=traditional%20roti%20paratha%20whole%20wheat%20layered%20flatbread%20with%20visible%20flaky%20layers%20brushed%20with%20butter%20golden%20brown%20color%20served%20on%20rustic%20wooden%20board%2C%20authentic%20indian%20home%20style%20bread&width=400&height=300&seq=bread7&orientation=landscape'
+      image: '/images/Chapati.jpg'
     },
     { 
       id: 'keema-naan', 
