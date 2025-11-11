@@ -84,15 +84,18 @@ export default function Footer() {
               <Link href="/news" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
                 News
               </Link>
-              <Link href="/partners" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
+              {/* <Link href="/partners" className="block text-gray-300 hover:text-secondary transition-colors cursor-pointer">
                 Partners
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-6 text-sm text-white-400">
+              <span>Made with ❤️ for great food by <strong><a href="https://ai.hridx.tech/" className="text-secondary underline underline-offset-4">HridxAI</a></strong>...</span>
+            </div>
             <p className="text-gray-400 text-sm">
               © 2024 Nirvana Restaurant. All rights reserved.
             </p>
@@ -100,9 +103,6 @@ export default function Footer() {
               <Link href="/privacy-policy" className="hover:text-secondary transition-colors cursor-pointer">Privacy Policy</Link>
               <Link href="/legal-notices" className="hover:text-secondary transition-colors cursor-pointer">Legal Notices</Link>
             </div>
-            <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <span>Made with ❤️ for great food by <strong><a href='https://hridyesh.com'>Hridyesh...</a></strong></span>
-              </div>
           </div>
         </div>
       </div>

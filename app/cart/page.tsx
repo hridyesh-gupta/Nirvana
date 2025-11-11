@@ -586,7 +586,13 @@ export default function CartPage() {
 
                 {minimumOrderError && (
                   <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
-                    Minimum order requirement not met: {minimumOrderError}
+                    <p>Minimum order requirement not met: {minimumOrderError}</p>
+                    <Link
+                      href="/menu"
+                      className="mt-2 inline-flex items-center justify-center text-primary font-medium underline decoration-dotted underline-offset-4 hover:text-secondary"
+                    >
+                      Browse the menu to add more items
+                    </Link>
                   </div>
                 )}
 

@@ -34,11 +34,15 @@ export default function NewsPage() {
                   </p>
                   <a
                     href="/images/news.jpeg"
-                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 text-center w-full sm:w-auto flex-wrap"
                   >
                     <i className="ri-download-line text-xl"></i>
-                    <span>Download Press Coverage</span>
+                    <span className="leading-tight text-sm sm:text-base">
+                      Download Press Coverage
+                    </span>
                   </a>
+
+
                 </div>
               </div>
             </div>
