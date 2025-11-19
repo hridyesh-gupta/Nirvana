@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { useLanguage } from '../LanguageProvider';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { language } = useLanguage();
 
   const galleryImages = [
     'https://www.nirvana-geneve.ch/wp-content/uploads/2019/02/nirvana-7.jpg',
@@ -37,7 +39,11 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     setTimeout(() => {
-      setSubmitMessage('Thank you for your message! We will get back to you soon.');
+      setSubmitMessage(
+        language === 'fr'
+          ? 'Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.'
+          : 'Thank you for your message! We will get back to you soon.'
+      );
       setIsSubmitting(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
     }, 2000);
@@ -73,7 +79,7 @@ export default function ContactPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-['fairdisplay']">
-                Contact Us
+                {language === 'fr' ? 'Contactez-nous' : 'Contact Us'}
               </h1>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -82,7 +88,9 @@ export default function ContactPage() {
               {/* Contact Form */}
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-6">Send us a Message</h2>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                    {language === 'fr' ? 'Envoyez-nous un message' : 'Send us a Message'}
+                  </h2>
                   
                   {submitMessage && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
@@ -93,7 +101,7 @@ export default function ContactPage() {
                   <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
-                        Full Name *
+                        {language === 'fr' ? 'Nom complet *' : 'Full Name *'}
                       </label>
                       <input
                         type="text"
@@ -108,7 +116,7 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
-                        Email Address *
+                        {language === 'fr' ? 'Adresse e-mail *' : 'Email Address *'}
                       </label>
                       <input
                         type="email"
@@ -123,7 +131,7 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">
-                        Subject
+                        {language === 'fr' ? 'Sujet' : 'Subject'}
                       </label>
                       <input
                         type="text"
@@ -137,7 +145,7 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
-                        Your Message * ({formData.message.length}/500)
+                        {language === 'fr' ? 'Votre message' : 'Your Message'} * ({formData.message.length}/500)
                       </label>
                       <textarea
                         id="message"
@@ -156,7 +164,13 @@ export default function ContactPage() {
                       disabled={isSubmitting || formData.message.length > 500}
                       className="w-full text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:opacity-90 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      {isSubmitting
+                        ? language === 'fr'
+                          ? 'Envoi en cours...'
+                          : 'Sending...'
+                        : language === 'fr'
+                          ? 'Envoyer le message'
+                          : 'Send Message'}
                     </button>
                   </form>
                 </div>
@@ -165,13 +179,15 @@ export default function ContactPage() {
               {/* Restaurant Information */}
               <div className="lg:col-span-2 space-y-8">
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-6">Restaurant Information</h2>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                    {language === 'fr' ? 'Informations du restaurant' : 'Restaurant Information'}
+                  </h2>
                   
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
                         <i className="ri-map-pin-line text-primary"></i>
-                        <span>Address</span>
+                        <span>{language === 'fr' ? 'Adresse' : 'Address'}</span>
                       </h3>
                       <div className="text-gray-600 space-y-1">
                         <p>Nirvana Lounge</p>
@@ -184,7 +200,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
                         <i className="ri-phone-line text-primary"></i>
-                        <span>Phone</span>
+                        <span>{language === 'fr' ? 'Téléphone' : 'Phone'}</span>
                       </h3>
                       <div className="text-gray-600">
                         <a 
@@ -201,19 +217,25 @@ export default function ContactPage() {
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-primary">
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center space-x-2">
                     <i className="ri-time-line text-primary"></i>
-                    <span>Opening Hours</span>
+                    <span>{language === 'fr' ? "Horaires d'ouverture" : 'Opening Hours'}</span>
                   </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Lunch:</span>
+                      <span className="text-gray-600">
+                        {language === 'fr' ? 'Déjeuner :' : 'Lunch:'}
+                      </span>
                       <span className="font-medium text-gray-800">12:00 - 14:30</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Dinner:</span>
+                      <span className="text-gray-600">
+                        {language === 'fr' ? 'Dîner :' : 'Dinner:'}
+                      </span>
                       <span className="font-medium text-gray-800">19:00 - 22:30</span>
                     </div>
                     <div className="mt-4 pt-4 border-t border-gray-200">
-                      <p className="text-center font-medium text-secondary">Open 7 days a week</p>
+                      <p className="text-center font-medium text-secondary">
+                        {language === 'fr' ? 'Ouvert 7 jours sur 7' : 'Open 7 days a week'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -260,7 +282,9 @@ export default function ContactPage() {
             {/* Quick Actions */}
             <div className="mt-16">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-semibold text-gray-800 mb-4">Quick Actions</h2>
+                <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Actions rapides' : 'Quick Actions'}
+                </h2>
               </div>
               
               <div className="grid md:grid-cols-3 gap-6">
@@ -271,7 +295,9 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <i className="ri-phone-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Call for Reservation</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {language === 'fr' ? 'Réserver par téléphone' : 'Call for Reservation'}
+                  </h3>
                   <p className="opacity-90">022 782 10 10</p>
                 </a>
 
@@ -282,8 +308,12 @@ export default function ContactPage() {
                   <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-primary">
                     <i className="ri-restaurant-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">View Menu</h3>
-                  <p className="text-gray-600">Explore Our Dishes</p>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {language === 'fr' ? 'Voir le menu' : 'View Menu'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {language === 'fr' ? 'Découvrez nos plats' : 'Explore Our Dishes'}
+                  </p>
                 </a>
 
                 <a
@@ -293,8 +323,12 @@ export default function ContactPage() {
                   <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-secondary">
                     <i className="ri-gallery-line text-white text-2xl"></i>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Photo Gallery</h3>
-                  <p className="text-gray-600">See Our Restaurant</p>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {language === 'fr' ? 'Galerie photos' : 'Photo Gallery'}
+                  </h3>
+                  <p className="text-gray-600">
+                    {language === 'fr' ? 'Voir notre restaurant' : 'See Our Restaurant'}
+                  </p>
                 </a>
               </div>
             </div>

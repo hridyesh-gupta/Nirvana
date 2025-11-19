@@ -8,12 +8,14 @@ import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 import { products, Product } from '../../../lib/products';
 import IceCreamFlavorSelectionModal from '../../components/IceCreamFlavorSelectionModal';
+import { useLanguage } from '../../LanguageProvider';
 
 export default function DessertsPage() {
   const { items: cartItems, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showFlavorSelectionModal, setShowFlavorSelectionModal] = useState(false);
   const [selectedIceCreamForFlavor, setSelectedIceCreamForFlavor] = useState<Product | null>(null);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: Product, selectedFlavor: string | null = null) => {
     if (item.requiresFlavor && !selectedFlavor) {
@@ -39,10 +41,12 @@ export default function DessertsPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Indian Desserts
+                {language === 'fr' ? 'Desserts indiens' : 'Indian Desserts'}
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Sweet endings with traditional Indian confections
+                {language === 'fr'
+                  ? 'Des douceurs de fin de repas avec des confiseries indiennes traditionnelles.'
+                  : 'Sweet endings with traditional Indian confections'}
               </p>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -50,7 +54,7 @@ export default function DessertsPage() {
             {/* Desserts Grid (updated) */}
             <div>
               <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
-                Desserts
+                {language === 'fr' ? 'Desserts' : 'Desserts'}
               </h2>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,7 +71,7 @@ export default function DessertsPage() {
                       CHF 8.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Rice pudding</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Riz au lait':'Rice pudding'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-kheer', name: 'Kheer', price: 8.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -75,7 +79,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -92,7 +96,7 @@ export default function DessertsPage() {
                       CHF 8.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Semolina cake</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Gâteau de semoule' : 'Semolina cake'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-halwa', name: 'Halwa', price: 8.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
@@ -100,7 +104,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -117,7 +121,7 @@ export default function DessertsPage() {
                       CHF 10.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Indian sweets</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Douceurs indiennes' : 'Indian sweets'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun', name: 'Gulab Jamun', price: 10.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -125,7 +129,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -142,7 +146,7 @@ export default function DessertsPage() {
                       CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Homemade ice cream with milk, pistachios, and cardamom</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Glace maison au lait, aux pistaches et à la cardamome' : 'Homemade ice cream with milk, pistachios, and cardamom'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-pista-kulfi', name: 'Pista Kulfi', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
@@ -150,7 +154,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -167,7 +171,7 @@ export default function DessertsPage() {
                       CHF 14.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Indian sweets flambéed</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Douceurs indiennes flambées' : 'Indian sweets flambéed'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-gulab-jamun-flambe', name: 'Gulab Jamun Flambé', price: 14.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -175,7 +179,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -192,7 +196,7 @@ export default function DessertsPage() {
                       CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">With mango coulis and glazed almonds</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Avec un coulis de mangue et des amandes glacées' : 'With mango coulis and glazed almonds'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-mango-ice-cream', name: 'Mango Ice Cream', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
@@ -200,7 +204,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -217,7 +221,7 @@ export default function DessertsPage() {
                       CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Fresh mango from Pakistan</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Mangue fraîche de Pakistan' : 'Fresh mango from Pakistan'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-mango-fresh', name: 'Mango Fresh', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -225,7 +229,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -242,7 +246,7 @@ export default function DessertsPage() {
                       CHF 14.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Exotic fresh fruit and mango sorbet with ginger liqueur</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Fruits exotiques et sorbet de mangue avec liqueur de gingembre' : 'Exotic fresh fruit and mango sorbet with ginger liqueur'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-nirvana', name: 'Nirvana', price: 14.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
@@ -250,7 +254,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -267,7 +271,7 @@ export default function DessertsPage() {
                       CHF 9.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">With cinnamon</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Avec cannelle' : 'With cinnamon'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-orange-carpaccio', name: 'Orange Carpaccio', price: 9.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -275,7 +279,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -292,7 +296,7 @@ export default function DessertsPage() {
                       CHF 12.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Vanilla ice cream with chocolate sauce and whipped cream</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Glace à la vanille avec sauce au chocolat et crème fouettée' : 'Vanilla ice cream with chocolate sauce and whipped cream'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-dame-blanche', name: 'Dame Blanche', price: 12.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-secondary to-primary"
@@ -300,7 +304,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -317,7 +321,7 @@ export default function DessertsPage() {
                       CHF 14.00
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4">Pear sorbet with brandy, prune ice cream with whisky</p>
+                  <p className="text-gray-600 mb-4">{language === 'fr' ? 'Sorbet poire au brandy, glace aux pruneaux au whisky' : 'Pear sorbet with brandy, prune ice cream with whisky'}</p>
                   <button
                     onClick={() => handleAddToCart({ id: 'dessert-sorbets-alcoholic', name: 'Sorbets and Alcoholic Ice Creams', price: 14.00, category: 'Desserts' })}
                     className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -325,7 +329,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -350,7 +354,7 @@ export default function DessertsPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
               </div>
@@ -362,9 +366,13 @@ export default function DessertsPage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-cake-3-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">Sweet Endings Await</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
+                  {language === 'fr' ? 'Une douce fin de repas' : 'Sweet Endings Await'}
+                </h2>
                 <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Complete your meal with our authentic Indian desserts, made fresh daily with traditional recipes and the finest ingredients.
+                  {language === 'fr'
+                    ? 'Complétez votre repas avec nos desserts indiens authentiques, préparés chaque jour avec des recettes traditionnelles et des ingrédients de première qualité.'
+                    : 'Complete your meal with our authentic Indian desserts, made fresh daily with traditional recipes and the finest ingredients.'}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -373,14 +381,14 @@ export default function DessertsPage() {
                     className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
-                    <span>Order: 022 782 10 10</span>
+                    <span>{language === 'fr' ? 'Commande : 022 782 10 10' : 'Order: 022 782 10 10'}</span>
                   </a>
                   <a
                     href="/menu"
                     className="bg-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer border-2 flex items-center justify-center space-x-2 text-primary border-primary"
                   >
                     <i className="ri-restaurant-line text-xl"></i>
-                    <span>Full Menu</span>
+                    <span>{language === 'fr' ? 'Menu complet' : 'Full Menu'}</span>
                   </a>
                 </div>
               </div>

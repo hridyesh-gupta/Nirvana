@@ -74,6 +74,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Classic Dishes',
     description: 'Tomato sauce, fresh herbs with spicy flavours',
+    frenchDescription: 'Sauce tomate, herbes fraîches et saveurs épicées',
     image: 'https://readdy.ai/api/search-image?query=king%20prawns%20balti%20large%20succulent%20prawns%20cooked%20in%20rich%20tomato%20sauce%20with%20fresh%20herbs%20and%20aromatic%20spices%20served%20in%20traditional%20balti%20dish%20garnished%20with%20coriander%20and%20green%20chilies%2C%20vibrant%20red%20sauce&width=400&height=300&seq=main1&orientation=landscape'
   },
   {
@@ -82,6 +83,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Classic Dishes',
     description: 'Prawns (shelled) in fine masala curry with coconut flavours',
+    frenchDescription: 'Crevettes décortiquées dans un curry masala fin aux saveurs de coco',
     image: '/images/Kerala-Prawns-Masala.jpg'
   },
   {
@@ -90,6 +92,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Classic Dishes',
     description: 'Grilled chicken, cinnamon creamy almond sauce',
+    frenchDescription: 'Poulet grillé, sauce crémeuse aux amandes parfumée à la cannelle',
     image: '/images/Butter-Chicken.jpg'
   },
   {
@@ -98,6 +101,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Classic Dishes',
     description: 'Grilled chicken in tikka masala sauce with ginger, green chilies, coriander',
+    frenchDescription: 'Poulet grillé dans une sauce tikka masala avec gingembre, piments verts et coriandre',
     image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
   },
   {
@@ -106,6 +110,7 @@ export const products: Product[] = [
     price: 28.00,
     category: 'Classic Dishes',
     description: 'Lentils mixed with your choice of meat.',
+    frenchDescription: 'Lentilles mélangées avec la viande de votre choix.',
     image: '',
     requiresMixOption: true,
     mixOptions: ['Chicken', 'Lamb', 'Beef'],
@@ -121,6 +126,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Classic Dishes',
     description: 'Green peas sauce with spices',
+    frenchDescription: 'Sauce aux pois verts et épices',
     image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
   },
   {
@@ -129,6 +135,7 @@ export const products: Product[] = [
     price: 28.00,
     category: 'Classic Dishes',
     description: 'Chicken sauce with coconut',
+    frenchDescription: 'Poulet dans une sauce à la noix de coco',
     image: 'https://readdy.ai/api/search-image?query=chicken%20tikka%20masala%20grilled%20chicken%20pieces%20in%20vibrant%20orange%20tikka%20masala%20sauce%20with%20ginger%20green%20chilies%20and%20fresh%20coriander%20served%20in%20traditional%20copper%20bowl%2C%20rich%20orange-red%20color&width=400&height=300&seq=main4&orientation=landscape'
   },
 
@@ -139,6 +146,7 @@ export const products: Product[] = [
     price: 27.00,
     category: 'Traditional Dishes',
     description: 'Traditional chicken curry',
+    frenchDescription: 'Curry de poulet traditionnel',
     image: '/images/Chicken-Karahi.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
@@ -149,6 +157,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Traditional Dishes',
     description: 'Traditional beef curry',
+    frenchDescription: 'Curry de bœuf traditionnel',
     image: '/images/Beef-Korma.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
@@ -159,6 +168,7 @@ export const products: Product[] = [
     price: 29.00,
     category: 'Traditional Dishes',
     description: 'Traditional lamb curry',
+    frenchDescription: 'Curry d’agneau traditionnel',
     image: '/images/Lamb-Vindaloo.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
@@ -169,6 +179,7 @@ export const products: Product[] = [
     price: 21.00,
     category: 'Traditional Dishes',
     description: 'Traditional paneer curry',
+    frenchDescription: 'Curry de paneer traditionnel',
     image: '/images/Paneer-Jalfrezi.jpg',
     requiresSauce: true,
     sauces: ['Korma', 'Karahi', 'Madras', 'Vindaloo', 'Jalfrezi', 'Sagwala']
@@ -181,6 +192,7 @@ export const products: Product[] = [
     name: 'Lamb Chops',
     price: 32.00,
     description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
+    frenchDescription: 'Côtelettes d’agneau marinées et grillées (~300g), servies avec la sauce de votre choix (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras).',
     image: 'https://readdy.ai/api/search-image?query=grilled%20lamb%20chops%20marinated%20lamb%20chops%20with%20perfect%20char%20marks%20served%20on%20sizzling%20platter%20with%20choice%20of%20curry%20sauce%20and%20grilled%20vegetables%20garnished%20with%20rosemary%20and%20lemon%20wedges&width=400&height=300&seq=main8&orientation=landscape'
   },
   {
@@ -189,6 +201,7 @@ export const products: Product[] = [
     name: 'Lamb Shank',
     price: 32.00,
     description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
+    frenchDescription: 'Souris d’agneau mijotée lentement dans une sauce kashmiri traditionnelle',
     image: 'https://readdy.ai/api/search-image?query=slow%20cooked%20lamb%20shank%20tender%20lamb%20shank%20in%20traditional%20kashmiri%20sauce%20with%20aromatic%20herbs%20and%20spices%20fall-off-the-bone%20texture%20garnished%20with%20saffron%20and%20almonds%2C%20rich%20reddish%20curry&width=400&height=300&seq=main9&orientation=landscape'
   },
   {
@@ -197,6 +210,7 @@ export const products: Product[] = [
     name: 'Grilled Sea Bream Filets',
     price: 32.00,
     description: 'Garnished with coconut sauce',
+    frenchDescription: 'Garnies d’une sauce à la noix de coco',
     image: 'https://readdy.ai/api/search-image?query=grilled%20sea%20bream%20fillets%20perfectly%20cooked%20fish%20with%20light%20char%20marks%20served%20with%20creamy%20coconut%20curry%20sauce%20garnished%20with%20curry%20leaves%20and%20lime%20wedges%2C%20white%20fish%20with%20coconut%20cream&width=400&height=300&seq=main10&orientation=landscape'
   },
   {
@@ -205,6 +219,7 @@ export const products: Product[] = [
     name: 'Omble Chevalier',
     price: 49.00,
     description: 'Grilled Omble Chevalier filets with curry sauce',
+    frenchDescription: 'Filets d’omble chevalier grillés avec sauce au curry',
     image: 'https://readdy.ai/api/search-image?query=grilled%20omble%20chevalier%20arctic%20char%20fillets%20with%20golden%20crust%20served%20with%20aromatic%20curry%20sauce%20and%20seasonal%20vegetables%20garnished%20with%20microgreens%20and%20lemon%2C%20premium%20fish%20presentation&width=400&height=300&seq=main11&orientation=landscape'
   },
 

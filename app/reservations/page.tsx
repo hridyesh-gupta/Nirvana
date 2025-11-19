@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { useLanguage } from '../LanguageProvider';
 
 export default function ReservationsPage() {
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ export default function ReservationsPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const successMessageRef = useRef<HTMLDivElement>(null);
   const errorMessageRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -52,7 +54,11 @@ export default function ReservationsPage() {
     
     // Client-side validation
     if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.time) {
-      setErrorMessage('Please fill in all required fields');
+      setErrorMessage(
+        language === 'fr'
+          ? 'Veuillez remplir tous les champs obligatoires'
+          : 'Please fill in all required fields'
+      );
       if (errorMessageRef.current) {
         errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -61,7 +67,11 @@ export default function ReservationsPage() {
 
     // Validate phone number
     if (!formData.phone.trim()) {
-      setErrorMessage('Phone number is required');
+      setErrorMessage(
+        language === 'fr'
+          ? 'Le numéro de téléphone est requis'
+          : 'Phone number is required'
+      );
       if (errorMessageRef.current) {
         errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -81,7 +91,11 @@ export default function ReservationsPage() {
       const selectedInZurich = new Date(selectedDate.toLocaleString('en-US', { timeZone: 'Europe/Zurich' }));
       
       if (selectedInZurich < nowInZurich) {
-        setErrorMessage('Reservation date and time cannot be in the past');
+        setErrorMessage(
+          language === 'fr'
+            ? 'La date et l\'heure de réservation ne peuvent pas être dans le passé'
+            : 'Reservation date and time cannot be in the past'
+        );
         if (errorMessageRef.current) {
           errorMessageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -113,7 +127,11 @@ export default function ReservationsPage() {
         // Extract reservation details from response
         const reservationNum = result.reservationNumber;
         setReservationNumber(reservationNum);
-        setSuccessMessage(`Reservation confirmed! Your reservation number is ${reservationNum}. We will contact you shortly to confirm.`);
+        setSuccessMessage(
+          language === 'fr'
+            ? `Réservation confirmée ! Votre numéro de réservation est ${reservationNum}. Nous vous contacterons prochainement pour confirmer.`
+            : `Reservation confirmed! Your reservation number is ${reservationNum}. We will contact you shortly to confirm.`
+        );
         
         // Clear form
         setFormData({ name: '', email: '', phone: '', date: '', time: '', guests: '2', requests: '' });
@@ -128,16 +146,24 @@ export default function ReservationsPage() {
       } else {
         // Parse error from API response
         const errorData = await response.json();
-        let errorMsg = 'Failed to submit reservation. Please try again.';
+        let errorMsg = language === 'fr'
+          ? 'Échec de la réservation. Veuillez réessayer.'
+          : 'Failed to submit reservation. Please try again.';
         
         if (errorData.error) {
           errorMsg = errorData.error;
         } else if (response.status === 400) {
-          errorMsg = 'Invalid reservation data. Please check your information and try again.';
+          errorMsg = language === 'fr'
+            ? 'Données de réservation invalides. Veuillez vérifier vos informations et réessayer.'
+            : 'Invalid reservation data. Please check your information and try again.';
         } else if (response.status === 409) {
-          errorMsg = 'Reservation number conflict. Please try again.';
+          errorMsg = language === 'fr'
+            ? 'Conflit de numéro de réservation. Veuillez réessayer.'
+            : 'Reservation number conflict. Please try again.';
         } else if (response.status === 500) {
-          errorMsg = 'Server error. Please try again later.';
+          errorMsg = language === 'fr'
+            ? 'Erreur du serveur. Veuillez réessayer plus tard.'
+            : 'Server error. Please try again later.';
         }
         
         setErrorMessage(errorMsg);
@@ -152,7 +178,11 @@ export default function ReservationsPage() {
         }, 100);
       }
     } catch (error) {
-      setErrorMessage('Network error. Please check your connection and try again.');
+      setErrorMessage(
+        language === 'fr'
+          ? 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.'
+          : 'Network error. Please check your connection and try again.'
+      );
       setSuccessMessage(null);
       setReservationNumber(null);
       console.error('Network error during reservation submission:', error);
@@ -176,7 +206,7 @@ export default function ReservationsPage() {
           {/* Centralized Heading for Reservation Page */}
           <div className="text-center py-20 px-4 sm:px-6 lg:px-8">
             <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-              Table Reservation
+              {language === 'fr' ? 'Réservation de table' : 'Table Reservation'}
             </h1>
             <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
           </div>
@@ -191,11 +221,17 @@ export default function ReservationsPage() {
                     <p className="font-semibold mb-2">{successMessage}</p>
                     {reservationNumber && (
                       <div className="mt-3 p-3 bg-green-100 rounded-lg">
-                        <p className="text-sm font-medium mb-1">Reservation Number:</p>
+                        <p className="text-sm font-medium mb-1">
+                          {language === 'fr' ? 'Numéro de réservation :' : 'Reservation Number:'}
+                        </p>
                         <p className="text-xl font-bold">{reservationNumber}</p>
                       </div>
                     )}
-                    <p className="text-sm mt-3 opacity-90">Check your email for confirmation details.</p>
+                    <p className="text-sm mt-3 opacity-90">
+                      {language === 'fr'
+                        ? 'Veuillez vérifier votre e-mail pour les détails de confirmation.'
+                        : 'Check your email for confirmation details.'}
+                    </p>
                     <button
                       type="button"
                       onClick={() => {
@@ -204,7 +240,7 @@ export default function ReservationsPage() {
                       }}
                       className="mt-4 text-sm underline hover:no-underline"
                     >
-                      Make Another Reservation
+                      {language === 'fr' ? 'Faire une autre réservation' : 'Make Another Reservation'}
                     </button>
                   </div>
                 </div>
@@ -218,13 +254,17 @@ export default function ReservationsPage() {
                   <i className="ri-error-warning-fill text-2xl mr-3 mt-1"></i>
                   <div className="flex-1">
                     <p className="font-semibold mb-2">{errorMessage}</p>
-                    <p className="text-sm mt-2 opacity-90">Please check the form and try again.</p>
+                    <p className="text-sm mt-2 opacity-90">
+                      {language === 'fr'
+                        ? 'Veuillez vérifier le formulaire et réessayer.'
+                        : 'Please check the form and try again.'}
+                    </p>
                     <button
                       type="button"
                       onClick={() => setErrorMessage(null)}
                       className="mt-4 text-sm underline hover:no-underline"
                     >
-                      Dismiss
+                      {language === 'fr' ? 'Fermer' : 'Dismiss'}
                     </button>
                   </div>
                 </div>
@@ -236,7 +276,9 @@ export default function ReservationsPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Date *</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'Date *' : 'Date *'}
+                </label>
                 <DatePicker
                   selected={formData.date ? (() => {
                     // Parse using local date components to avoid timezone issues
@@ -256,7 +298,7 @@ export default function ReservationsPage() {
                   }}
                   className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none pr-8"
                   dateFormat="yyyy-MM-dd"
-                  placeholderText="Select a date"
+                  placeholderText={language === 'fr' ? 'Sélectionnez une date' : 'Select a date'}
                   minDate={new Date()}
                   filterDate={(date: Date) => {
                     // Compare only calendar days, not full Date objects
@@ -270,7 +312,9 @@ export default function ReservationsPage() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Time *</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'Heure *' : 'Time *'}
+                </label>
                 <input
                   type="time"
                   name="time"
@@ -284,7 +328,9 @@ export default function ReservationsPage() {
 
 
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Name *</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'Nom *' : 'Name *'}
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -296,7 +342,9 @@ export default function ReservationsPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Email *</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'E-mail *' : 'Email *'}
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -308,7 +356,9 @@ export default function ReservationsPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Phone *</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'Téléphone *' : 'Phone *'}
+                </label>
                 <input
                   type="tel"
                   name="phone"
@@ -319,7 +369,9 @@ export default function ReservationsPage() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Number of Guests</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr' ? 'Nombre de convives' : 'Number of Guests'}
+                </label>
                 <div className="relative">
                   <select
                     name="guests"
@@ -328,7 +380,16 @@ export default function ReservationsPage() {
                     className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none appearance-none pr-8"
                   >
                     {[...Array(8)].map((_, i) => (
-                      <option key={i + 1} value={i + 1}>{i + 1} {i === 0 ? 'Guest' : 'Guests'}</option>
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}{' '}
+                        {language === 'fr'
+                          ? i === 0
+                            ? 'convive'
+                            : 'convives'
+                          : i === 0
+                            ? 'Guest'
+                            : 'Guests'}
+                      </option>
                     ))}
                   </select>
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
@@ -340,7 +401,11 @@ export default function ReservationsPage() {
               </div>
 
               <div>
-                <label className="block text-gray-700 text-sm mb-2">Special Requests (Max 500 characters)</label>
+                <label className="block text-gray-700 text-sm mb-2">
+                  {language === 'fr'
+                    ? 'Demandes particulières (max. 500 caractères)'
+                    : 'Special Requests (Max 500 characters)'}
+                </label>
                 <textarea
                   name="requests"
                   value={formData.requests}
@@ -348,7 +413,9 @@ export default function ReservationsPage() {
                   maxLength={500}
                   rows={3}
                   className="w-full bg-gray-50 border border-primary/30 rounded px-3 py-2 text-gray-800 text-sm focus:border-primary focus:outline-none resize-none"
-                  placeholder="Dietary restrictions, allergies, special occasions..."
+                  placeholder={language === 'fr'
+                    ? 'Restrictions alimentaires, allergies, occasions spéciales...'
+                    : 'Dietary restrictions, allergies, special occasions...'}
                 />
                 <div className="text-right text-gray-500 text-xs mt-1">
                   {formData.requests.length}/500
@@ -363,10 +430,12 @@ export default function ReservationsPage() {
                 {isSubmitting ? (
                   <>
                     <i className="ri-loader-4-line animate-spin mr-2"></i>
-                    Submitting...
+                    {language === 'fr' ? 'Envoi en cours...' : 'Submitting...'}
                   </>
                 ) : (
-                  'Reserve Table'
+                  <>
+                    {language === 'fr' ? 'Réserver une table' : 'Reserve Table'}
+                  </>
                 )}
               </button>
             </form>

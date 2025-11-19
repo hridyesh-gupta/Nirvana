@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import SauceSelectionModal from '../components/SauceSelectionModal';
 import IceCreamFlavorSelectionModal from '../components/IceCreamFlavorSelectionModal';
 import MixOptionSelectionModal from '../components/MixOptionSelectionModal';
+import { useLanguage } from '../LanguageProvider';
 
 interface GroupedProducts {
   [key: string]: Product[];
@@ -22,6 +23,7 @@ export default function OrderPage() {
   const [selectedIceCreamForFlavor, setSelectedIceCreamForFlavor] = useState<Product | null>(null);
   const [showMixOptionSelectionModal, setShowMixOptionSelectionModal] = useState(false);
   const [selectedDishForMixOption, setSelectedDishForMixOption] = useState<Product | null>(null);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: Product, selectedSauce: string | null = null, selectedFlavor: string | null = null, selectedMixOption: string | null = null) => {
     if (item.requiresSauce && !selectedSauce) {
@@ -70,9 +72,13 @@ export default function OrderPage() {
       <Navigation />
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-light mb-3 text-primary font-['fairdisplay']">Our Dishes</h1>
+          <h1 className="text-5xl md:text-6xl font-light mb-3 text-primary font-['fairdisplay']">
+            {language === 'fr' ? 'Nos plats' : 'Our Dishes'}
+          </h1>
           <div className="w-32 h-1 mx-auto mt-3 mb-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
-          <p className="text-xs uppercase tracking-wide text-gray-500">Click a category to expand</p>
+          <p className="text-xs uppercase tracking-wide text-gray-500">
+            {language === 'fr' ? 'Cliquez sur une catégorie pour l’afficher' : 'Click a category to expand'}
+          </p>
         </div>
         {Object.keys(groupedProducts).map((category) => (
           <div key={category} className="mb-12">
@@ -98,7 +104,7 @@ export default function OrderPage() {
                       onClick={() => handleAddToCart(product)}
                       className="bg-primary text-white px-4 py-2 rounded-md hover:bg-secondary transition-colors mt-auto"
                     >
-                      Add to Cart
+                      {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
                     </button>
                   </div>
                 ))}

@@ -1,6 +1,14 @@
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
+import {
+  OrderTrackingText,
+  OrderStatusLabel,
+  OrderStatusDescription,
+  OrderTypeText,
+  OrderPaymentMethodText,
+  OrderPaymentStatusText,
+} from '../../components/OrderTrackingTexts';
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
@@ -12,14 +20,14 @@ interface OrderTrackingPageProps {
   }>;
 }
 
-// Order status timeline configuration
+// Order status timeline configuration (labels/descriptions are provided by OrderTrackingTexts)
 const orderStatusTimeline = [
-  { status: 'pending', label: 'Order Received', description: 'Your order has been received and is being processed' },
-  { status: 'confirmed', label: 'Order Confirmed', description: 'Your order has been confirmed by our team' },
-  { status: 'preparing', label: 'Preparing', description: 'Your order is being prepared in our kitchen' },
-  { status: 'out_for_delivery', label: 'Out for Delivery', description: 'Your order is on its way to you' },
-  { status: 'delivered', label: 'Delivered', description: 'Your order has been delivered successfully' },
-  { status: 'cancelled', label: 'Cancelled', description: 'Your order has been cancelled' },
+  { status: 'pending' },
+  { status: 'confirmed' },
+  { status: 'preparing' },
+  { status: 'out_for_delivery' },
+  { status: 'delivered' },
+  { status: 'cancelled' },
 ];
 
 const getStatusIndex = (status: string): number => {
@@ -62,16 +70,24 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Tracking</h1>
-            <p className="text-gray-600">Track your order status in real-time</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <OrderTrackingText id="header.title" />
+            </h1>
+            <p className="text-gray-600">
+              <OrderTrackingText id="header.subtitle" />
+            </p>
           </div>
 
           {/* Order Summary Card */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">Order #{order.orderNumber}</h2>
-                <p className="text-gray-600">Placed on {formatDate(order.createdAt)}</p>
+                <h2 className="text-xl font-semibold text-gray-900">
+                  <OrderTrackingText id="summary.orderLabel" /> #{order.orderNumber}
+                </h2>
+                <p className="text-gray-600">
+                  <OrderTrackingText id="summary.placedOn" /> {formatDate(order.createdAt)}
+                </p>
               </div>
               <div className="mt-4 md:mt-0">
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
@@ -81,7 +97,7 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
                       : 'bg-red-100 text-red-800'
                     : 'bg-blue-100 text-blue-800'
                 }`}>
-                  {orderStatusTimeline[currentStatusIndex]?.label || order.status}
+                  <OrderStatusLabel status={order.status} fallback={order.status} />
                 </span>
               </div>
             </div>
@@ -89,20 +105,54 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
             {/* Customer Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Customer Information</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <OrderTrackingText id="customer.title" />
+                </h3>
                 <div className="space-y-1">
-                  <p className="text-gray-600"><span className="font-medium">Name:</span> {order.customerName}</p>
-                  <p className="text-gray-600"><span className="font-medium">Email:</span> {order.customerEmail}</p>
-                  <p className="text-gray-600"><span className="font-medium">Phone:</span> {order.customerPhone}</p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="customer.nameLabel" />
+                    </span>{' '}
+                    {order.customerName}
+                  </p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="customer.emailLabel" />
+                    </span>{' '}
+                    {order.customerEmail}
+                  </p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="customer.phoneLabel" />
+                    </span>{' '}
+                    {order.customerPhone}
+                  </p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Order Details</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <OrderTrackingText id="details.title" />
+                </h3>
                 <div className="space-y-1">
-                  <p className="text-gray-600"><span className="font-medium">Type:</span> {order.orderType.charAt(0).toUpperCase() + order.orderType.slice(1)}</p>
-                  <p className="text-gray-600"><span className="font-medium">Payment:</span> {order.paymentMethod.toUpperCase()}</p>
-                  <p className="text-gray-600"><span className="font-medium">Payment Status:</span> {order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}</p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="details.typeLabel" />
+                    </span>{' '}
+                    <OrderTypeText orderType={order.orderType} />
+                  </p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="details.paymentLabel" />
+                    </span>{' '}
+                    <OrderPaymentMethodText method={order.paymentMethod} />
+                  </p>
+                  <p className="text-gray-600">
+                    <span className="font-medium">
+                      <OrderTrackingText id="details.paymentStatusLabel" />
+                    </span>{' '}
+                    <OrderPaymentStatusText status={order.paymentStatus} />
+                  </p>
                 </div>
               </div>
             </div>
@@ -110,7 +160,9 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
             {/* Delivery Address (if applicable) */}
             {order.orderType === 'delivery' && order.deliveryAddress && (
               <div className="mb-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Delivery Address</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <OrderTrackingText id="delivery.title" />
+                </h3>
                 <p className="text-gray-600">
                   {order.deliveryAddress}
                   {order.city && `, ${order.city}`}
@@ -122,7 +174,9 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
             {/* Special Instructions */}
             {order.specialInstructions && (
               <div className="mb-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Special Instructions</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <OrderTrackingText id="special.title" />
+                </h3>
                 <p className="text-gray-600">{order.specialInstructions}</p>
               </div>
             )}
@@ -130,7 +184,9 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
 
           {/* Order Status Timeline */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Order Status Timeline</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              <OrderTrackingText id="timeline.title" />
+            </h3>
             <div className="space-y-4">
               {orderStatusTimeline.map((item, index) => {
                 const isActive = index <= currentStatusIndex;
@@ -155,10 +211,10 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
                     </div>
                     <div className="ml-4">
                       <p className={`font-medium ${isActive ? 'text-gray-900' : 'text-gray-500'}`}>
-                        {item.label}
+                        <OrderStatusLabel status={item.status} />
                       </p>
                       <p className={`text-sm ${isActive ? 'text-gray-600' : 'text-gray-400'}`}>
-                        {item.description}
+                        <OrderStatusDescription status={item.status} />
                       </p>
                     </div>
                   </div>
@@ -169,21 +225,31 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
 
           {/* Order Items */}
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Order Items</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              <OrderTrackingText id="items.title" />
+            </h3>
             <div className="space-y-4">
-              {order.items.map((item) => (
+              {order.items.map((item: any) => (
                 <div key={item.id} className="flex justify-between items-start border-b border-gray-200 pb-4 last:border-b-0">
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900">{item.productName}</h4>
-                    <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-gray-600">
+                      <OrderTrackingText id="items.quantityLabel" /> {item.quantity}
+                    </p>
                     {item.selectedSauce && (
-                      <p className="text-sm text-gray-600">Sauce: {item.selectedSauce}</p>
+                      <p className="text-sm text-gray-600">
+                        <OrderTrackingText id="items.sauceLabel" /> {item.selectedSauce}
+                      </p>
                     )}
                     {item.selectedFlavor && (
-                      <p className="text-sm text-gray-600">Flavor: {item.selectedFlavor}</p>
+                      <p className="text-sm text-gray-600">
+                        <OrderTrackingText id="items.flavorLabel" /> {item.selectedFlavor}
+                      </p>
                     )}
                     {item.selectedMixOption && (
-                      <p className="text-sm text-gray-600">Mix: {item.selectedMixOption}</p>
+                      <p className="text-sm text-gray-600">
+                        <OrderTrackingText id="items.mixLabel" /> {item.selectedMixOption}
+                      </p>
                     )}
                   </div>
                   <div className="text-right">
@@ -198,23 +264,31 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
             <div className="mt-6 pt-4 border-t border-gray-200">
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal:</span>
+                  <span className="text-gray-600">
+                    <OrderTrackingText id="totals.subtotalLabel" />
+                  </span>
                   <span className="text-gray-900">{formatCurrency(parseFloat(order.subtotal.toString()))}</span>
                 </div>
                 {parseFloat(order.deliveryFee.toString()) > 0 && (
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Delivery Fee:</span>
+                    <span className="text-gray-600">
+                      <OrderTrackingText id="totals.deliveryFeeLabel" />
+                    </span>
                     <span className="text-gray-900">{formatCurrency(parseFloat(order.deliveryFee.toString()))}</span>
                   </div>
                 )}
                 {parseFloat(order.discount.toString()) > 0 && (
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Discount:</span>
+                    <span className="text-gray-600">
+                      <OrderTrackingText id="totals.discountLabel" />
+                    </span>
                     <span className="text-gray-900">-{formatCurrency(parseFloat(order.discount.toString()))}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-lg font-semibold pt-2 border-t border-gray-200">
-                  <span>Total:</span>
+                  <span>
+                    <OrderTrackingText id="totals.totalLabel" />
+                  </span>
                   <span>{formatCurrency(parseFloat(order.total.toString()))}</span>
                 </div>
               </div>
@@ -227,20 +301,20 @@ export default async function OrderTrackingPage({ params }: OrderTrackingPagePro
               href="/"
               className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
             >
-              Back to Menu
+              <OrderTrackingText id="actions.backToMenu" />
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
             >
-              Contact Us
+              <OrderTrackingText id="actions.contactUs" />
             </Link>
           </div>
 
           {/* Auto-refresh notice */}
           <div className="text-center mt-6">
             <p className="text-sm text-gray-500">
-              This page automatically updates every 30 seconds to show the latest order status.
+              <OrderTrackingText id="autoRefresh.notice" />
             </p>
           </div>
         </div>

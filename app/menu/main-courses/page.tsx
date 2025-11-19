@@ -9,6 +9,7 @@ import { useCart } from '../../../lib/cartStore';
 import SauceSelectionModal from '../../components/SauceSelectionModal';
 import { products, Product } from '../../../lib/products';
 import MixOptionSelectionModal from '../../components/MixOptionSelectionModal';
+import { useLanguage } from '../../LanguageProvider';
 
 interface CartItem {
   id: string;
@@ -59,6 +60,7 @@ export default function MainCoursesPage() {
       name: 'Lamb Chops',
       price: 32.00,
       description: 'Marinated lamb chops grilled (~300g), with sauce of choice (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras)',
+      frenchDescription: 'Côtelettes d’agneau marinées et grillées (~300g), servies avec la sauce de votre choix (Rogan Josh, Vindaloo, Korma, Jalfrezi, Madras).',
       image: 'https://readdy.ai/api/search-image?query=grilled%20lamb%20chops%20marinated%20lamb%20chops%20with%20perfect%20char%20marks%20served%20on%20sizzling%20platter%20with%20choice%20of%20curry%20sauce%20and%20grilled%20vegetables%20garnished%20with%20rosemary%20and%20lemon%20wedges&width=400&height=300&seq=main8&orientation=landscape'
     },
     {
@@ -67,6 +69,7 @@ export default function MainCoursesPage() {
       name: 'Lamb Shank',
       price: 32.00,
       description: 'Slow-cooked lamb shank in traditional Kashmiri sauce',
+      frenchDescription: 'Souris d’agneau mijotée lentement dans une sauce kashmiri traditionnelle',
       image: 'https://readdy.ai/api/search-image?query=slow%20cooked%20lamb%20shank%20tender%20lamb%20shank%20in%20traditional%20kashmiri%20sauce%20with%20aromatic%20herbs%20and%20spices%20fall-off-the-bone%20texture%20garnished%20with%20saffron%20and%20almonds%2C%20rich%20reddish%20curry&width=400&height=300&seq=main9&orientation=landscape'
     },
     {
@@ -75,6 +78,7 @@ export default function MainCoursesPage() {
       name: 'Grilled Sea Bream Filets',
       price: 32.00,
       description: 'Garnished with coconut sauce',
+      frenchDescription: 'Garnies d’une sauce à la noix de coco',
       image: 'https://readdy.ai/api/search-image?query=grilled%20sea%20bream%20fillets%20perfectly%20cooked%20fish%20with%20light%20char%20marks%20served%20with%20creamy%20coconut%20curry%20sauce%20garnished%20with%20curry%20leaves%20and%20lime%20wedges%2C%20white%20fish%20with%20coconut%20cream&width=400&height=300&seq=main10&orientation=landscape'
     },
     {
@@ -83,9 +87,12 @@ export default function MainCoursesPage() {
       name: 'Omble Chevalier',
       price: 49.00,
       description: 'Grilled Omble Chevalier filets with curry sauce',
+      frenchDescription: 'Filets d’omble chevalier grillés avec sauce au curry',
       image: 'https://readdy.ai/api/search-image?query=grilled%20omble%20chevalier%20arctic%20char%20fillets%20with%20golden%20crust%20served%20with%20aromatic%20curry%20sauce%20and%20seasonal%20vegetables%20garnished%20with%20microgreens%20and%20lemon%2C%20premium%20fish%20presentation&width=400&height=300&seq=main11&orientation=landscape'
     }
   ];
+
+  const { language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -96,7 +103,7 @@ export default function MainCoursesPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Main Courses
+                {language === 'fr' ? 'Plats principaux' : 'Main Courses'}
               </h1>
               {/* <div className="text-2xl mb-8 text-secondary">Main Courses</div> */}
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
@@ -105,7 +112,9 @@ export default function MainCoursesPage() {
             {/* Classic Dishes */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Classic Dishes</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Plats classiques' : 'Classic Dishes'}
+                </h2>
                 {/* <div className="text-lg text-primary">Classic Dishes</div> */}
               </div>
 
@@ -135,7 +144,9 @@ export default function MainCoursesPage() {
                       </div>
                       
                       <div className="space-y-2 mb-6">
-                        <p className="text-gray-600">{item.description}</p>
+                        <p className="text-gray-600">
+                          {language === 'fr' && item.frenchDescription ? item.frenchDescription : item.description}
+                        </p>
                         {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
@@ -146,7 +157,7 @@ export default function MainCoursesPage() {
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
                         </div>
-                        <span>Add to Cart</span>
+                        <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                       </button>
                     </div>
                   </div>
@@ -157,16 +168,46 @@ export default function MainCoursesPage() {
             {/* Traditional Dishes */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Traditional Dishes</h2>
-                <p className="text-gray-700 mb-2">Choose your main dish with one of the following sauces:</p>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Plats traditionnels' : 'Traditional Dishes'}
+                </h2>
+                <p className="text-gray-700 mb-2">
+                  {language === 'fr'
+                    ? 'Choisissez votre plat principal avec l’une des sauces suivantes :'
+                    : 'Choose your main dish with one of the following sauces:'}
+                </p>
                 <div className="max-w-3xl mx-auto text-left text-gray-600">
                   <ul className="list-disc pl-6 space-y-1">
-                    <li><span className="font-medium text-gray-700">Korma</span> – Creamy sauce of almonds and cashew nuts</li>
-                    <li><span className="font-medium text-gray-700">Karahi</span> – Coriander, ginger, green chilli, onion sauce</li>
-                    <li><span className="font-medium text-gray-700">Madras</span> – Madras curry sauce, coriander</li>
-                    <li><span className="font-medium text-gray-700">Vindaloo</span> – Goan vindaloo curry, coriander</li>
-                    <li><span className="font-medium text-gray-700">Jalfrezi</span> – Coriander, ginger, green chillies, hot spices Jalfrezi sauce</li>
-                    <li><span className="font-medium text-gray-700">Sagwala</span> – Spinach stir-fry, fenugreek sauce with spicy flavours</li>
+                    <li>
+                      <span className="font-medium text-gray-700">Korma</span>
+                      {' '}
+                      – {language === 'fr' ? 'Sauce crémeuse aux amandes et noix de cajou' : 'Creamy sauce of almonds and cashew nuts'}
+                    </li>
+                    <li>
+                      <span className="font-medium text-gray-700">Karahi</span>
+                      {' '}
+                      – {language === 'fr' ? 'Coriandre, gingembre, piment vert, sauce aux oignons' : 'Coriander, ginger, green chilli, onion sauce'}
+                    </li>
+                    <li>
+                      <span className="font-medium text-gray-700">Madras</span>
+                      {' '}
+                      – {language === 'fr' ? 'Sauce curry Madras, coriandre' : 'Madras curry sauce, coriander'}
+                    </li>
+                    <li>
+                      <span className="font-medium text-gray-700">Vindaloo</span>
+                      {' '}
+                      – {language === 'fr' ? 'Curry vindaloo goanais, coriandre' : 'Goan vindaloo curry, coriander'}
+                    </li>
+                    <li>
+                      <span className="font-medium text-gray-700">Jalfrezi</span>
+                      {' '}
+                      – {language === 'fr' ? 'Coriandre, gingembre, piments verts, sauce Jalfrezi épicée' : 'Coriander, ginger, green chillies, hot spices Jalfrezi sauce'}
+                    </li>
+                    <li>
+                      <span className="font-medium text-gray-700">Sagwala</span>
+                      {' '}
+                      – {language === 'fr' ? 'Épinards sautés, sauce au fenugrec aux saveurs épicées' : 'Spinach stir-fry, fenugreek sauce with spicy flavours'}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -197,7 +238,9 @@ export default function MainCoursesPage() {
                       </div>
                       
                       <div className="space-y-2 mb-6">
-                        <p className="text-gray-600">{item.description}</p>
+                        <p className="text-gray-600">
+                          {language === 'fr' && item.frenchDescription ? item.frenchDescription : item.description}
+                        </p>
                         {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
@@ -208,7 +251,7 @@ export default function MainCoursesPage() {
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
                         </div>
-                        <span>Add to Cart</span>
+                        <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                       </button>
                     </div>
                   </div>
@@ -219,7 +262,9 @@ export default function MainCoursesPage() {
             {/* Chef's Specials */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Chef's Specials</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Spécialités du chef' : "Chef's Specials"}
+                </h2>
                 {/* <div className="text-lg text-primary">Chef's Specials</div> */}
               </div>
 
@@ -239,7 +284,7 @@ export default function MainCoursesPage() {
                       <div className="absolute top-4 left-4">
                         <span className="bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
                           <i className="ri-star-fill"></i>
-                          <span>Chef's Special</span>
+                          <span>{language === 'fr' ? 'Spécialité du chef' : "Chef's Special"}</span>
                         </span>
                       </div>
                     </div>
@@ -255,7 +300,9 @@ export default function MainCoursesPage() {
                       </div>
                       
                       <div className="space-y-2 mb-6">
-                        <p className="text-gray-600">{item.description}</p>
+                        <p className="text-gray-600">
+                          {language === 'fr' && item.frenchDescription ? item.frenchDescription : item.description}
+                        </p>
                         {/* <p className="text-sm italic text-secondary">{item.frenchDescription}</p> */}
                       </div>
 
@@ -266,7 +313,7 @@ export default function MainCoursesPage() {
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
                         </div>
-                        <span>Add to Cart</span>
+                        <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                       </button>
                     </div>
                   </div>

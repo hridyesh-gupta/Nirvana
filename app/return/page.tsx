@@ -4,6 +4,14 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 import RefreshButton from '../components/RefreshButton';
+import {
+  ReturnText,
+  ReturnPaymentHeading,
+  ReturnOrderTypeLabel,
+  ReturnEstimatedTitle,
+  ReturnEstimatedMessage,
+  ReturnPaymentStatusText,
+} from '../components/ReturnTexts';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -48,13 +56,18 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                 <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <i className="ri-loader-4-line text-4xl text-blue-600 animate-spin"></i>
                 </div>
-                <h1 className="text-4xl font-bold text-gray-800 mb-4">Processing Your Order</h1>
-                <p className="text-lg text-gray-600 mb-4">We're retrieving your order details...</p>
-                <p className="text-sm text-gray-500 mb-8">If it's taking too long, please refresh the page using the button below.
+                <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                  <ReturnText id="loading.title" />
+                </h1>
+                <p className="text-lg text-gray-600 mb-4">
+                  <ReturnText id="loading.subtitle1" />
+                </p>
+                <p className="text-sm text-gray-500 mb-8">
+                  <ReturnText id="loading.subtitle2" />
                 </p>
                 <div className="space-x-4">
                   <Link href="/" className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all">
-                    Go to Home
+                    <ReturnText id="actions.goHome" />
                   </Link>
                   {session_id && <RefreshButton sessionId={session_id} />}
                 </div>
@@ -83,7 +96,7 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
           <div className="w-full">
             <div className="text-center py-20 px-4 sm:px-6 lg:px-8">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Order Confirmed!
+                <ReturnText id="success.mainTitle" />
               </h1>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -97,9 +110,11 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                   </div>
                 </div>
                 <h2 className="text-2xl font-bold text-green-800 text-center mb-2">
-                  {order.paymentMethod === 'stripe' ? 'Payment Successful!' : 'Order Confirmed!'}
+                  <ReturnPaymentHeading paymentMethod={order.paymentMethod} />
                 </h2>
-                <p className="text-green-700 text-center">Your order has been confirmed and is being prepared.</p>
+                <p className="text-green-700 text-center">
+                  <ReturnText id="success.description" />
+                </p>
               </div>
 
               {/* Order Details */}
@@ -108,14 +123,20 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                 <div className="space-y-6">
                   {/* Order Number & Timestamp */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Order Details</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="orderInfo.title" />
+                    </h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Order Number:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="orderInfo.numberLabel" />
+                        </span>
                         <span className="font-semibold text-gray-800">{order.orderNumber}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Order Date:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="orderInfo.dateLabel" />
+                        </span>
                         <span className="font-medium text-gray-800">
                           {order.createdAt.toLocaleDateString('en-CH', { 
                             year: 'numeric', 
@@ -126,7 +147,9 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Order Time:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="orderInfo.timeLabel" />
+                        </span>
                         <span className="font-medium text-gray-800">
                           {order.createdAt.toLocaleTimeString('en-CH', { 
                             hour: '2-digit', 
@@ -137,26 +160,38 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Order Type:</span>
-                        <span className="font-medium text-gray-800 capitalize">{order.orderType}</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="orderInfo.typeLabel" />
+                        </span>
+                        <span className="font-medium text-gray-800 capitalize">
+                          <ReturnOrderTypeLabel orderType={order.orderType} />
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   {/* Customer Information */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Customer Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="customer.title" />
+                    </h3>
                     <div className="space-y-3">
                       <div>
-                        <span className="text-gray-600">Name:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="customer.nameLabel" />
+                        </span>
                         <p className="font-medium text-gray-800">{order.customerName}</p>
                       </div>
                       <div>
-                        <span className="text-gray-600">Email:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="customer.emailLabel" />
+                        </span>
                         <p className="font-medium text-gray-800">{order.customerEmail}</p>
                       </div>
                       <div>
-                        <span className="text-gray-600">Phone:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="customer.phoneLabel" />
+                        </span>
                         <p className="font-medium text-gray-800">{order.customerPhone}</p>
                       </div>
                     </div>
@@ -167,14 +202,16 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                     <div className="bg-gray-50 rounded-xl p-6">
                       <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                         <i className="ri-map-pin-line text-primary mr-2"></i>
-                        Delivery Address
+                        <ReturnText id="delivery.title" />
                       </h3>
                       <div className="space-y-2">
                         <p className="font-medium text-gray-800">{order.deliveryAddress}</p>
                         <p className="text-gray-600">{order.postalCode} {order.city}</p>
                         {order.specialInstructions && (
                           <div className="mt-4 pt-4 border-t border-gray-200">
-                            <span className="text-gray-600 text-sm">Special Instructions:</span>
+                            <span className="text-gray-600 text-sm">
+                              <ReturnText id="delivery.specialInstructionsLabel" />
+                            </span>
                             <p className="text-gray-800 text-sm mt-1">{order.specialInstructions}</p>
                           </div>
                         )}
@@ -184,29 +221,35 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
 
                   {/* Payment Information */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Payment Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="payment.title" />
+                    </h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Payment Method:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="payment.methodLabel" />
+                        </span>
                         <span className="font-medium text-gray-800 capitalize">
                           {order.paymentMethod === 'stripe' ? 'Online Payment (Stripe)' : 'Cash on Delivery'}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Payment Status:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="payment.statusLabel" />
+                        </span>
                         <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                           order.paymentStatus === 'paid' ? 'bg-green-100 text-green-800' :
                           order.paymentStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                           'bg-red-100 text-red-800'
                         }`}>
-                          {order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}
+                          <ReturnPaymentStatusText status={order.paymentStatus} />
                         </span>
                       </div>
                       {order.paymentMethod === 'cod' && (
                         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-3">
                           <p className="text-yellow-800 text-sm">
                             <i className="ri-information-line mr-1"></i>
-                            Please prepare cash payment for when your order arrives.
+                            <ReturnText id="payment.codNotice" />
                           </p>
                         </div>
                       )}
@@ -218,7 +261,9 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                 <div className="space-y-6">
                   {/* Order Items */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Order Items</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="items.title" />
+                    </h3>
                     <div className="space-y-4">
                       {order.items.map((item: typeof order.items[number]) => (
                         <div key={item.id} className="flex items-center space-x-4 p-4 bg-white rounded-xl">
@@ -229,7 +274,9 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                               {item.selectedFlavor && ` (${item.selectedFlavor})`}
                               {item.selectedMixOption && ` (${item.selectedMixOption})`}
                             </h4>
-                            <p className="text-sm text-gray-600">{chf.format(Number(item.price))} each</p>
+                            <p className="text-sm text-gray-600">
+                              {chf.format(Number(item.price))} <ReturnText id="items.each" />
+                            </p>
                           </div>
                           <div className="text-center">
                             <span className="font-medium text-gray-800">×{item.quantity}</span>
@@ -244,27 +291,37 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
 
                   {/* Pricing Summary */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Order Summary</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="summary.title" />
+                    </h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Subtotal:</span>
+                        <span className="text-gray-600">
+                          <ReturnText id="summary.subtotalLabel" />
+                        </span>
                         <span className="font-medium">{chf.format(Number(order.subtotal))}</span>
                       </div>
                       {order.orderType === 'delivery' && Number(order.deliveryFee) > 0 && (
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Delivery Fee:</span>
+                          <span className="text-gray-600">
+                            <ReturnText id="summary.deliveryFeeLabel" />
+                          </span>
                           <span className="font-medium">{chf.format(Number(order.deliveryFee))}</span>
                         </div>
                       )}
                       {Number(order.discount) > 0 && (
                         <div className="flex justify-between text-secondary">
-                          <span>Discount:</span>
+                          <span>
+                            <ReturnText id="summary.discountLabel" />
+                          </span>
                           <span className="font-medium">-{chf.format(Number(order.discount))}</span>
                         </div>
                       )}
                       <div className="border-t border-gray-200 pt-2">
                         <div className="flex justify-between font-semibold text-lg">
-                          <span>Total:</span>
+                          <span>
+                            <ReturnText id="summary.totalLabel" />
+                          </span>
                           <span>{chf.format(Number(order.total))}</span>
                         </div>
                       </div>
@@ -279,39 +336,42 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                       <i className={`ri-${order.orderType === 'delivery' ? 'truck' : 'store'}-line mr-2 ${
                         order.orderType === 'delivery' ? 'text-blue-600' : 'text-green-600'
                       }`}></i>
-                      {order.orderType === 'delivery' ? 'Estimated Delivery' : 'Ready for Pickup'}
+                      <ReturnEstimatedTitle orderType={order.orderType} />
                     </h3>
                     <div className="text-center">
                       <p className="text-2xl font-bold text-gray-800 mb-2">{timeString}</p>
                       <p className="text-gray-600">
-                        {order.orderType === 'delivery' 
-                          ? 'Your order will be delivered within 30-45 minutes'
-                          : 'Your order will be ready for pickup in 15-20 minutes'
-                        }
+                        <ReturnEstimatedMessage orderType={order.orderType} />
                       </p>
                     </div>
                   </div>
 
                   {/* Next Steps */}
                   <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">What's Next?</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                      <ReturnText id="next.title" />
+                    </h3>
                     <div className="space-y-3 text-sm text-gray-600">
                       {order.orderType === 'delivery' ? (
                         <>
-                          <p>• Your order is being prepared by our kitchen team</p>
-                          <p>• We'll contact you when your order is out for delivery</p>
-                          <p>• Please ensure someone is available to receive the order</p>
+                          <p>• <ReturnText id="next.delivery.step1" /></p>
+                          <p>• <ReturnText id="next.delivery.step2" /></p>
+                          <p>• <ReturnText id="next.delivery.step3" /></p>
                         </>
                       ) : (
                         <>
-                          <p>• Your order is being prepared by our kitchen team</p>
-                          <p>• We'll contact you when it's ready for pickup</p>
-                          <p>• Please arrive at our location to collect your order</p>
+                          <p>• <ReturnText id="next.pickup.step1" /></p>
+                          <p>• <ReturnText id="next.pickup.step2" /></p>
+                          <p>• <ReturnText id="next.pickup.step3" /></p>
                           <div className="mt-4 p-3 bg-white rounded-lg">
-                            <p className="font-medium text-gray-800">Nirvana Restaurant</p>
+                            <p className="font-medium text-gray-800">
+                              <ReturnText id="next.pickup.restaurantName" />
+                            </p>
                             <p className="text-gray-600">375, Route de Meyrin</p>
                             <p className="text-gray-600">1217 Meyrin, Geneva, Switzerland</p>
-                            <p className="text-gray-600">Phone: 022 782 10 10</p>
+                            <p className="text-gray-600">
+                              <ReturnText id="next.pickup.phoneLabel" /> 022 782 10 10
+                            </p>
                           </div>
                         </>
                       )}
@@ -326,19 +386,19 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                   href="/" 
                   className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  Go to Home
+                  <ReturnText id="actions.goHome" />
                 </Link>
                 <Link 
                   href="/menu" 
                   className="px-8 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  View Menu
+                  <ReturnText id="actions.viewMenu" />
                 </Link>
                 <Link 
                   href="/contact" 
                   className="px-8 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  Contact Us
+                  <ReturnText id="actions.contactUs" />
                 </Link>
               </div>
             </div>
@@ -359,17 +419,21 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
               <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i className="ri-error-warning-line text-4xl text-red-600"></i>
               </div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-4">Something went wrong</h1>
-              <p className="text-lg text-gray-600 mb-4">We encountered an error retrieving your order details.</p>
+              <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                <ReturnText id="error.genericTitle" />
+              </h1>
+              <p className="text-lg text-gray-600 mb-4">
+                <ReturnText id="error.genericDescription" />
+              </p>
               <p className="text-sm text-gray-500 mb-8">
                 {session_id ? `Session ID: ${session_id}` : orderNumber ? `Order Number: ${orderNumber}` : ''}
               </p>
               <div className="space-x-4">
                 <Link href="/" className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary/90 hover:to-secondary/90 transition-all">
-                  Go to Home
+                  <ReturnText id="actions.goHome" />
                 </Link>
                 <Link href="/contact" className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all">
-                  Contact Support
+                  <ReturnText id="actions.contactSupport" />
                 </Link>
               </div>
             </div>

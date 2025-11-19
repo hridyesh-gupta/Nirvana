@@ -8,10 +8,12 @@ import { useCart } from '../../../lib/cartStore';
 import { Product } from '@/lib/products'; // Updated import path
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useLanguage } from '../../LanguageProvider';
 
 export default function ThalisBiryaniPage() {
   const { items: cartItems, addItem, updateQuantity, clearCart } = useCart(); // Initialize useCart hook
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: Product) => {
     addItem(item);
@@ -30,10 +32,12 @@ export default function ThalisBiryaniPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Thalis & Byriani
+                {language === 'fr' ? 'Thalis & biryanis' : 'Thalis & Byriani'}
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Traditional complete meals and aromatic rice dishes
+                {language === 'fr'
+                  ? 'Repas complets traditionnels et plats de riz aromatiques.'
+                  : 'Traditional complete meals and aromatic rice dishes'}
               </p>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -59,7 +63,7 @@ export default function ThalisBiryaniPage() {
                   </div>
                   <p className="text-gray-600 mb-1">(Vegetarian Thali)</p>
                   <p className="text-gray-600 mb-4">
-                    Samosa; Raita; Nauratan (mixed vegetables); Dal; Baignan Bartha
+                    {language === 'fr' ? 'Samosa; Raita; Nauratan (vegetables mixtes); Dal; Baignan Bartha' : 'Samosa; Raita; Nauratan (mixed vegetables); Dal; Baignan Bartha'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'thali-nauratan', name: 'Nauratan (Vegetarian Thali)', price: 35.00, category: 'Thalis' })}
@@ -68,7 +72,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -85,7 +89,7 @@ export default function ThalisBiryaniPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Chicken Tikka; Seekh Kebab; Butter Chicken; Raita; Nauratan (mixed vegetables); Rogan Josh; Lamb cooked with Kashmiri spicy flavours
+                    {language === 'fr' ? 'Poulet Tikka; Seekh Kebab; Poulet au beurre; Raita; Nauratan (vegetables mixtes); Rogan Josh; Agneau cuit avec des saveurs de curcumin' : 'Chicken Tikka; Seekh Kebab; Butter Chicken; Raita; Nauratan (mixed vegetables); Rogan Josh; Lamb cooked with Kashmiri spicy flavours'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'thali-shikaarpuri', name: 'Shikaarpuri', price: 39.00, category: 'Thalis' })}
@@ -94,7 +98,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
               </div>
@@ -103,11 +107,11 @@ export default function ThalisBiryaniPage() {
             {/* Byriani Section */}
             <div>
               <h2 className="text-4xl font-bold text-center mb-6 text-primary">
-                Byrianis
+                {language === 'fr' ? 'Biryanis' : 'Byrianis'}
               </h2>
               <center>
                 <p className="text-xl text-gray-600 mb-8">
-                  Served along with Raita
+                  {language === 'fr' ? 'Servis avec du raita' : 'Served along with Raita'}
                 </p>
               </center>
               
@@ -131,7 +135,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -154,7 +158,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -177,7 +181,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -200,7 +204,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -223,7 +227,7 @@ export default function ThalisBiryaniPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
               </div>
@@ -236,9 +240,15 @@ export default function ThalisBiryaniPage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-bowl-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">Order Your Favorite Thali or Byriani</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
+                  {language === 'fr'
+                    ? 'Commandez votre thali ou biryani préféré'
+                    : 'Order Your Favorite Thali or Byriani'}
+                </h2>
                 <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Experience the authentic taste of traditional Indian complete meals and aromatic rice dishes.
+                  {language === 'fr'
+                    ? "Découvrez le goût authentique des repas complets traditionnels indiens et de leurs plats de riz parfumés."
+                    : 'Experience the authentic taste of traditional Indian complete meals and aromatic rice dishes.'}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -247,14 +257,14 @@ export default function ThalisBiryaniPage() {
                     className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
-                    <span>Order: 022 782 10 10</span>
+                    <span>{language === 'fr' ? 'Commande : 022 782 10 10' : 'Order: 022 782 10 10'}</span>
                   </a>
                   <a
                     href="/cart"
                     className="bg-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer border-2 flex items-center justify-center space-x-2 text-primary border-primary"
                   >
                     <i className="ri-shopping-cart-line text-xl"></i>
-                    <span>View Cart</span>
+                    <span>{language === 'fr' ? 'Voir le panier' : 'View Cart'}</span>
                   </a>
                 </div>
               </div>

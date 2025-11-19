@@ -6,6 +6,7 @@ import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
+import { useLanguage } from '../../LanguageProvider';
 
 interface CartItem {
   id: string;
@@ -18,6 +19,7 @@ interface CartItem {
 export default function WhiteWinesPage() {
   const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: any) => {
     addItem(item);
@@ -37,6 +39,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-de-la-deviniere-chasselas-sur-lies',
       name: 'Domaine de la Devinière – Chasselas sur lies',
       description: 'Willy & Camille Cretegny (Satigny, Geneva) 2017 - A very precise, luminous, slightly oxidative style.',
+      descriptionFr: 'Willy & Camille Cretegny (Satigny, Genève) 2017 – Style très précis, lumineux, légèrement oxydatif.',
       image: '',
       variants: [
         { label: '10 cl', price: 9.00 },
@@ -47,6 +50,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-de-beauvent-nature-blanc',
       name: 'Domaine de Beauvent – Nature Blanc',
       description: 'Jérôme Cruz (Bernex, Geneva) 2021 - Chardonnay 13.5% vol. Natural wine, no added sulfur, aged one year on lees.',
+      descriptionFr: 'Jérôme Cruz (Bernex, Genève) 2021 – Chardonnay 13,5 % vol. Vin naturel sans soufre ajouté, élevé un an sur lies.',
       image: '',
       variants: [
         { label: '10 cl', price: 10.00 },
@@ -57,6 +61,7 @@ export default function WhiteWinesPage() {
       id: 'domaine-la-capitaine-cuvee-jeune-prodige',
       name: 'Domaine La Capitaine – Cuvée Jeune Prodige',
       description: 'Johann Parmelin (Begnins, La Côte) 2020 - Sauvignon, Pinot Gris, Viognier, Muscat. Very aromatic and expressive, a gastronomic wine, persistent finish with freshness.',
+      descriptionFr: 'Johann Parmelin (Begnins, La Côte) 2020 – Sauvignon, Pinot gris, Viognier, Muscat. Vin très aromatique et expressif, de gastronomie, à la finale persistante et fraîche.',
       image: '',
       variants: [
         { label: '10 cl', price: 11.00 },
@@ -67,6 +72,7 @@ export default function WhiteWinesPage() {
       id: 'hirondelle-blanc-les-lolliets',
       name: 'Hirondelle Blanc, Les Lolliets',
       description: 'Geneva (Raphael Dunand à Soral, Geneva) 2022 - Dry and fruity wine, delicate aromas of white fruits and white flowers, supple and balanced on the palate, persistent finish. Pairing: Kerala Prawns Masala',
+      descriptionFr: 'Genève (Raphael Dunand à Soral, Genève) 2022 – Vin sec et fruité aux arômes délicats de fruits blancs et de fleurs blanches, bouche souple et équilibrée, finale persistante. Accord : Kerala Prawns Masala.',
       image: '',
       variants: [
         { label: 'dc', price: 10.00 },
@@ -77,6 +83,7 @@ export default function WhiteWinesPage() {
       id: 'aligote-domaine-des-bossons',
       name: 'Aligoté – Domaine des Bossons',
       description: '2023 - Gentle bitterness, great freshness, surprising finesse and fruit.',
+      descriptionFr: '2023 – Amertume délicate, grande fraîcheur, finesse et fruit surprenants.',
       price: 49.00,
       image: ''
     }
@@ -87,6 +94,7 @@ export default function WhiteWinesPage() {
       id: 'ventenac-chardonnay-prejuges',
       name: 'Ventenac (BIO) Chardonnay – Prejugés Maison Ventenac',
       description: '2023 - Aromas of white flowers, apple, and pear, with a delicate and fresh balance. Pairing: Butter Chicken Masala',
+      descriptionFr: '2023 – Arômes de fleurs blanches, pomme et poire, avec un équilibre délicat et frais. Accord : Butter Chicken Masala.',
       price: 51.00,
       image: ''
     },
@@ -94,6 +102,7 @@ export default function WhiteWinesPage() {
       id: 'pouilly-fume-roger-pabiot',
       name: 'Pouilly Fumé – Roger Pabiot (bt)',
       description: 'Vallée de la Loire 2022 - Expressive notes of citrus fruits, delicate minerality, and an aromatic persistence characteristic of Sauvignon Blanc grown in this terroir. Pairing: Kerala Prawn Masala, King Prawn Balti',
+      descriptionFr: 'Vallée de la Loire 2022 – Notes expressives d’agrumes, minéralité délicate et persistance aromatique typique du Sauvignon blanc de ce terroir. Accords : Kerala Prawn Masala, King Prawn Balti.',
       price: 79.00,
       image: ''
     }
@@ -108,7 +117,7 @@ export default function WhiteWinesPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                White Wines
+                {language === 'fr' ? 'Vins blancs' : 'White Wines'}
               </h1>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -116,7 +125,9 @@ export default function WhiteWinesPage() {
             {/* Swiss White Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Swiss White Wines</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Vins blancs suisses' : 'Swiss White Wines'}
+                </h2>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {swissWhiteWines.map((wine) => (
@@ -135,7 +146,9 @@ export default function WhiteWinesPage() {
                           </span>
                         )} */}
                       </div>
-                      <p className="text-gray-600 mb-6">{wine.description}</p>
+                      <p className="text-gray-600 mb-6">
+                        {language === 'fr' && wine.descriptionFr ? wine.descriptionFr : wine.description}
+                      </p>
                       {('variants' in wine) ? (
                         <div className="grid grid-cols-1 gap-3">
                           {(wine as any).variants.map((v: any) => (
@@ -144,7 +157,7 @@ export default function WhiteWinesPage() {
                               onClick={() => handleAddVariant(wine.id, wine.name, v.label, v.price)}
                               className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                             >
-                              <span>Add {v.label}</span>
+                              <span>{language === 'fr' ? `Ajouter ${v.label}` : `Add ${v.label}`}</span>
                               <span className="font-bold">CHF {v.price.toFixed(2)}</span>
                             </button>
                           ))}
@@ -154,7 +167,7 @@ export default function WhiteWinesPage() {
                           onClick={() => handleAddToCart({ id: wine.id, name: wine.name, price: wine.price })}
                           className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                         >
-                          <span>Add to Cart</span>
+                          <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                           <span className="font-bold">CHF {wine.price.toFixed(2)}</span>
                         </button>
                       )}
@@ -167,7 +180,9 @@ export default function WhiteWinesPage() {
             {/* French White Wines */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">French White Wines</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Vins blancs français' : 'French White Wines'}
+                </h2>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {frenchWhiteWines.map((wine) => (
@@ -184,7 +199,9 @@ export default function WhiteWinesPage() {
                       <h3 className="text-xl font-semibold mb-3 transition-colors text-primary">
                           {wine.name}
                       </h3>
-                      <p className="text-gray-600 mb-6">{wine.description}</p>
+                      <p className="text-gray-600 mb-6">
+                        {language === 'fr' && wine.descriptionFr ? wine.descriptionFr : wine.description}
+                      </p>
                       <button
                         onClick={() => handleAddToCart(wine)}
                         className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
@@ -192,7 +209,7 @@ export default function WhiteWinesPage() {
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
                         </div>
-                        <span>Add to Cart</span>
+                        <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                       </button>
                     </div>
                   </div>
@@ -206,37 +223,41 @@ export default function WhiteWinesPage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-restaurant-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">Perfect Pairings</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
+                  {language === 'fr' ? 'Accords parfaits' : 'Perfect Pairings'}
+                </h2>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Light & Fresh Whites</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-primary">
+                    {language === 'fr' ? 'Blancs légers et frais' : 'Light & Fresh Whites'}
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Muscadet and crisp Loire Valley wines complement our seafood curries, 
-                    tandoori fish, and lighter vegetarian dishes perfectly. Their mineral notes 
-                    enhance the delicate spices without overwhelming the palate.
+                    {language === 'fr'
+                      ? 'Les muscadets et les vins vifs de la vallée de la Loire accompagnent parfaitement nos currys de fruits de mer, nos poissons tandoori et nos plats végétariens plus légers. Leurs notes minérales rehaussent les épices délicates sans dominer le palais.'
+                      : 'Muscadet and crisp Loire Valley wines complement our seafood curries, tandoori fish, and lighter vegetarian dishes perfectly. Their mineral notes enhance the delicate spices without overwhelming the palate.'}
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Rich & Complex Whites</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-primary">
+                    {language === 'fr' ? 'Blancs riches et complexes' : 'Rich & Complex Whites'}
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Chassagne-Montrachet and premium Burgundy whites pair beautifully with 
-                    our cream-based curries, butter chicken, and rich vegetarian dishes. 
-                    Their depth matches the complexity of our signature sauces.
+                    {language === 'fr'
+                      ? 'Les Chassagne-Montrachet et les grands blancs de Bourgogne se marient à merveille avec nos currys à base de crème, le butter chicken et les plats végétariens riches. Leur profondeur répond à la complexité de nos sauces signatures.'
+                      : 'Chassagne-Montrachet and premium Burgundy whites pair beautifully with our cream-based curries, butter chicken, and rich vegetarian dishes. Their depth matches the complexity of our signature sauces.'}
                   </p>
                 </div>
               </div>
 
               <div className="text-center mt-8">
                 <p className="text-gray-600 italic">
-                  Our sommelier is available to help you choose the perfect white wine for your meal. 
-                  Please don't hesitate to ask for recommendations.
+                  {language === 'fr'
+                    ? 'Notre sommelier est à votre disposition pour vous aider à choisir le vin blanc idéal pour votre repas. N’hésitez pas à demander des recommandations.'
+                    : "Our sommelier is available to help you choose the perfect white wine for your meal. Please don't hesitate to ask for recommendations."}
                 </p>
-                {/* <p className="text-sm mt-2 text-secondary">
-                  Notre sommelier est disponible pour vous conseiller le vin blanc parfait pour votre repas.
-                </p> */}
               </div>
             </div>
           </div>

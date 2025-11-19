@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { CartItem } from '../../lib/cartStore'; // Import CartItem interface
+import { useLanguage } from '../LanguageProvider';
 
 interface CartProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface CartProps {
 export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClearCart }: CartProps) {
   const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
   const [orderType, setOrderType] = useState<'delivery' | 'pickup'>('delivery');
+  const { language } = useLanguage();
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const deliveryFee = orderType === 'delivery' ? 3.5 : 0;
@@ -25,10 +27,18 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
     
     if (paymentMethod === 'razorpay') {
       // Integrate Razorpay payment
-      alert('Redirecting to Razorpay payment gateway...');
+      alert(
+        language === 'fr'
+          ? 'Redirection vers la plateforme de paiement...'
+          : 'Redirecting to payment gateway...'
+      );
     } else {
       // Cash on delivery
-      alert('Order placed! You will receive a confirmation email shortly.');
+      alert(
+        language === 'fr'
+          ? 'Commande passée ! Vous recevrez prochainement un e-mail de confirmation.'
+          : 'Order placed! You will receive a confirmation email shortly.'
+      );
     }
   };
 
@@ -38,7 +48,9 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
     <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 ${isOpen ? 'block' : 'hidden'}`}>
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-primary to-secondary">
-          <h2 className="text-2xl font-semibold text-white">Your Cart</h2>
+          <h2 className="text-2xl font-semibold text-white">
+            {language === 'fr' ? 'Votre panier' : 'Your Cart'}
+          </h2>
           <button
             onClick={onClose}
             className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer"
@@ -53,8 +65,14 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i className="ri-shopping-cart-line text-4xl text-gray-400"></i>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Your cart is empty</h3>
-              <p className="text-gray-600">Add some delicious items from our menu!</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {language === 'fr' ? 'Votre panier est vide' : 'Your cart is empty'}
+              </h3>
+              <p className="text-gray-600">
+                {language === 'fr'
+                  ? 'Ajoutez quelques délicieux plats depuis notre menu !'
+                  : 'Add some delicious items from our menu!'}
+              </p>
             </div>
           ) : (
             <div className="p-6 space-y-6">
@@ -99,7 +117,9 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
           <div className="p-6 border-t border-gray-200 space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Order Type</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {language === 'fr' ? 'Type de commande' : 'Order Type'}
+                </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setOrderType('delivery')}
@@ -109,7 +129,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    Delivery
+                    {language === 'fr' ? 'Livraison' : 'Delivery'}
                   </button>
                   <button
                     onClick={() => setOrderType('pickup')}
@@ -119,13 +139,15 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    Pickup
+                    {language === 'fr' ? 'À emporter' : 'Pickup'}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Payment</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {language === 'fr' ? 'Paiement' : 'Payment'}
+                </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setPaymentMethod('razorpay')}
@@ -135,7 +157,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    Online
+                    {language === 'fr' ? 'En ligne' : 'Online'}
                   </button>
                   {orderType === 'delivery' && (
                     <button
@@ -146,7 +168,7 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
-                      COD
+                      {language === 'fr' ? 'Paiement à la livraison' : 'COD'}
                     </button>
                   )}
                 </div>
@@ -155,24 +177,32 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
 
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal:</span>
+                <span className="text-gray-600">
+                  {language === 'fr' ? 'Sous-total :' : 'Subtotal:'}
+                </span>
                 <span className="font-medium">CHF {subtotal.toFixed(2)}</span>
               </div>
               {orderType === 'delivery' && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Delivery Fee:</span>
+                  <span className="text-gray-600">
+                    {language === 'fr' ? 'Frais de livraison :' : 'Delivery Fee:'}
+                  </span>
                   <span className="font-medium">CHF {deliveryFee.toFixed(2)}</span>
                 </div>
               )}
               {orderType === 'pickup' && discount > 0 && (
                 <div className="flex justify-between text-secondary">
-                  <span>Pickup Discount (10%):</span>
+                  <span>
+                    {language === 'fr'
+                      ? 'Remise sur les plats à emporter (10 %):'
+                      : 'Pickup Discount (10%):'}
+                  </span>
                   <span className="font-medium">-CHF {discount.toFixed(2)}</span>
                 </div>
               )}
               <div className="border-t border-gray-200 pt-2">
                 <div className="flex justify-between font-semibold text-lg">
-                  <span>Total:</span>
+                  <span>{language === 'fr' ? 'Total :' : 'Total:'}</span>
                   <span>CHF {total.toFixed(2)}</span>
                 </div>
               </div>
@@ -182,13 +212,19 @@ export default function Cart({ isOpen, onClose, items, onUpdateQuantity, onClear
               onClick={handleCheckout}
               className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
             >
-              {paymentMethod === 'razorpay' ? 'Pay Now' : 'Place Order (COD)'}
+              {paymentMethod === 'razorpay'
+                ? language === 'fr'
+                  ? 'Payer maintenant'
+                  : 'Pay Now'
+                : language === 'fr'
+                  ? 'Passer la commande (paiement à la livraison)'
+                  : 'Place Order (COD)'}
             </button>
             <button
               onClick={onClearCart}
               className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer mt-4"
             >
-              Clear Cart
+              {language === 'fr' ? 'Vider le panier' : 'Clear Cart'}
             </button>
           </div>
         )}

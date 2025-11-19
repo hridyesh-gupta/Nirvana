@@ -2,8 +2,10 @@
 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { useLanguage } from '../LanguageProvider';
 
 export default function NewsPage() {
+  const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <Navigation />
@@ -13,7 +15,7 @@ export default function NewsPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-['fairdisplay']">
-                News & Updates
+                {language === 'fr' ? 'Actualités & mises à jour' : 'News & Updates'}
               </h1>
               <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
             </div>
@@ -25,12 +27,14 @@ export default function NewsPage() {
                   <div className="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
                     <i className="ri-newspaper-line text-white text-3xl"></i>
                   </div>
-                  <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Press Coverage</h2>
+                  <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                    {language === 'fr' ? 'Revue de presse' : 'Press Coverage'}
+                  </h2>
                 </div>
                 
                 <div className="text-center">
                   <p className="text-lg text-gray-600 mb-6">
-                    Nirvana Restaurant has been featured in local and international press for our authentic Indian cuisine and exceptional dining experience.
+                    {language === 'fr' ? 'Nirvana Restaurant a été mentionné dans la presse locale et internationale pour notre cuisine indienne authentique et notre expérience exceptionnelle de restauration.' : 'Nirvana Restaurant has been featured in local and international press for our authentic Indian cuisine and exceptional dining experience.'}
                   </p>
                   <a
                     href="/images/news.jpeg"
@@ -38,7 +42,7 @@ export default function NewsPage() {
                   >
                     <i className="ri-download-line text-xl"></i>
                     <span className="leading-tight text-sm sm:text-base">
-                      Download Press Coverage
+                      {language === 'fr' ? 'Télécharger la revue de presse' : 'Download Press Coverage'}
                     </span>
                   </a>
 
@@ -50,7 +54,9 @@ export default function NewsPage() {
             {/* Latest News */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Latest Updates</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Dernières nouvelles' : 'Latest Updates'}
+                </h2>
               </div>
               
               <div className="space-y-8">
@@ -60,12 +66,11 @@ export default function NewsPage() {
                       <i className="ri-restaurant-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl text-primary font-semibold text-gray-800 mb-3">New Menu Items Available</h3>
+                      <h3 className="text-xl text-primary font-semibold text-gray-800 mb-3">{language === 'fr' ? 'Nouveaux plats disponibles' : 'New Menu Items Available'}</h3>
                       <p className="text-gray-600 mb-4">
-                        We're excited to announce new additions to our menu, featuring seasonal specialties and 
-                        traditional recipes from different regions of India. Come and discover new flavors!
+                        {language === 'fr' ? 'Nous sommes excités d\'annoncer de nouveaux plats à notre menu, offrant des spécialités saisonnières et des recettes traditionnelles de différentes régions de l\'Inde. Viens et découvre de nouveaux saveurs!' : 'We\'re excited to announce new additions to our menu, featuring seasonal specialties and traditional recipes from different regions of India. Come and discover new flavors!'}
                       </p>
-                      <div className="text-sm text-primary">January 2024</div>
+                      <div className="text-sm text-primary">{language === 'fr' ? 'Janvier 2024' : 'January 2024'}</div>
                     </div>
                   </div>
                 </div>
@@ -76,12 +81,12 @@ export default function NewsPage() {
                       <i className="ri-award-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <h3 className="text-xl text-primary font-semibold text-gray-800 mb-3">Award Recognition</h3>
+                      <h3 className="text-xl text-primary font-semibold text-gray-800 mb-3">{language === 'fr' ? 'Reconnaissance des prix' : 'Award Recognition'}</h3>
                       <p className="text-gray-600 mb-4">
-                        Nirvana Restaurant has been recognized for excellence in Indian cuisine and outstanding customer service. 
-                        Thank you to all our loyal customers for your continued support.
+                        {language === 'fr' ? 'Nirvana Restaurant a été reconnu pour son excellence en cuisine indienne et son service client exceptionnel. ' : 'Nirvana Restaurant has been recognized for excellence in Indian cuisine and outstanding customer service. '}
+                        {language === 'fr' ? 'Merci à tous nos clients fidèles pour votre soutien continu.' : 'Thank you to all our loyal customers for your continued support.'}
                       </p>
-                      <div className="text-sm text-primary">December 2023</div>
+                      <div className="text-sm text-primary">{language === 'fr' ? 'Décembre 2023' : 'December 2023'}</div>
                     </div>
                   </div>
                 </div>
@@ -92,12 +97,11 @@ export default function NewsPage() {
                       <i className="ri-gift-line text-white text-xl"></i>
                     </div>
                     <div>
-                      <h3 className="ext-xl text-primary font-semibold text-gray-800 mb-3">Special Holiday Menus</h3>
+                      <h3 className="ext-xl text-primary font-semibold text-gray-800 mb-3">{language === 'fr' ? 'Menus de fête spéciaux' : 'Special Holiday Menus'}</h3>
                       <p className="text-gray-600 mb-4">
-                        Join us for special holiday celebrations with exclusive menus featuring festive dishes 
-                        and traditional Indian celebration foods. Perfect for family gatherings and special occasions.
+                        {language === 'fr' ? 'Rejoignez-nous pour des célébrations de Noël avec des menus exclusifs offrant des plats festifs et des plats traditionnels indiens. Parfait pour les réunions familiales et les occasions spéciales.' : 'Join us for special holiday celebrations with exclusive menus featuring festive dishes and traditional Indian celebration foods. Perfect for family gatherings and special occasions.'}
                       </p>
-                      <div className="text-sm text-primary">Ongoing</div>
+                      <div className="text-sm text-primary">{language === 'fr' ? 'En cours' : 'Ongoing'}</div>
                     </div>
                   </div>
                 </div>

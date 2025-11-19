@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer'; // Import useInView
+import { useLanguage } from '../LanguageProvider';
 
 export default function AboutSection() {
   const [ref1, inView1] = useInView({
@@ -18,6 +19,7 @@ export default function AboutSection() {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { language } = useLanguage();
 
   return (
     <>
@@ -26,29 +28,58 @@ export default function AboutSection() {
         <div className="mx-auto">
           <div className="grid md:grid-cols-2 items-stretch">
             <div className="bg-primary text-white p-8 text-center">
-              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">WE ARE OPEN <span className="font-lato">7</span> DAYS A WEEK</h2>
+              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">
+                {language === 'fr' ? (
+                  <>
+                    NOUS SOMMES OUVERTS <span className="font-lato">7</span> JOURS SUR 7
+                  </>
+                ) : (
+                  <>
+                    WE ARE OPEN <span className="font-lato">7</span> DAYS A WEEK
+                  </>
+                )}
+              </h2>
               <p className="mb-6 font-serif text-[17px] sm:text-[18px]">
-                Lunch: <span className="font-lato">12:00 – 14:30</span> | Dinner: <span className="font-lato">19:00 – 22:30</span>
+                {language === 'fr' ? (
+                  <>
+                    Déjeuner : <span className="font-lato">12:00 – 14:30</span> | Dîner : <span className="font-lato">19:00 – 22:30</span>
+                  </>
+                ) : (
+                  <>
+                    Lunch: <span className="font-lato">12:00 – 14:30</span> | Dinner: <span className="font-lato">19:00 – 22:30</span>
+                  </>
+                )}
               </p>
               <a
                 href="/reservations"
                 className="inline-block bg-primary border-2 border-white text-white hover:bg-white hover:text-secondary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
               >
-                Book Your Table
+                {language === 'fr' ? 'Réserver votre table' : 'Book Your Table'}
               </a>
-              <p className="text-lg font-light tracking-wide font-serif"><strong>OR CALL <a href="tel:+41227821010" className="no-underline hover:no-underline"><span className="font-lato">022 782 10 10</span></a> </strong></p>
+              <p className="text-lg font-light tracking-wide font-serif">
+                <strong>
+                  {language === 'fr' ? 'OU APPELEZ ' : 'OR CALL '}
+                  <a href="tel:+41227821010" className="no-underline hover:no-underline">
+                    <span className="font-lato">022 782 10 10</span>
+                  </a>{' '}
+                </strong>
+              </p>
             </div>
             
             <div className="bg-secondary text-white p-8 text-center">
-              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">YOUR INDIAN RESTAURANT IN MEYRIN</h2>
+              <h2 className="text-xl sm:text-2xl font-light mb-4 font-serif tracking-wide">
+                {language === 'fr' ? 'VOTRE RESTAURANT INDIEN À MEYRIN' : 'YOUR INDIAN RESTAURANT IN MEYRIN'}
+              </h2>
               <p className="mb-6 font-serif text-[17px] sm:text-[18px]">
-                Discover a universe of authentic flavors and vibrant colors.
+                {language === 'fr'
+                  ? 'Découvrez un univers de saveurs authentiques et de couleurs vibrantes.'
+                  : 'Discover a universe of authentic flavors and vibrant colors.'}
               </p>
               <a
                 href="/menu"
                 className="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary px-4 py-3 rounded font-medium transition-all duration-300 cursor-pointer text-base md:px-6 md:text-lg font-serif tracking-wide"
               >
-                Explore Our Dishes & Menus
+                {language === 'fr' ? 'Découvrez nos plats et nos menus' : 'Explore Our Dishes & Menus'}
               </a>
             </div>
           </div>
@@ -91,10 +122,18 @@ export default function AboutSection() {
               href="/order"
               className="bg-secondary inline-block hover:opacity-90 text-white px-6 py-3 rounded-lg font-light text-base transition-all duration-300 cursor-pointer sm:px-12 sm:py-4 sm:text-xl font-serif tracking-wider"
             >
-              ORDER FOR DELIVERY OR TAKEAWAY
+              {language === 'fr' ? 'COMMANDER EN LIVRAISON OU À EMPORTER' : 'ORDER FOR DELIVERY OR TAKEAWAY'}
             </a>
           </div>
-            <p className="text-lg font-light tracking-wide"><strong>TAKEAWAY DISHES: <span className="font-lato">10%</span> DISCOUNT </strong></p>
+            <p className="text-lg font-light tracking-wide">
+              <strong>
+                {language === 'fr'
+                  ? 'PLATS À EMPORTER : '
+                  : 'TAKEAWAY DISHES: '}
+                <span className="font-lato">10%</span>
+                {language === 'fr' ? ' DE RABAIS ' : ' DISCOUNT '}
+              </strong>
+            </p>
             {/* <p className="text-lg font-light tracking-wide"><strong>AND FOR DELIVERY, ORDER <a href="/order" className="underline text-secondary">HERE</a></strong></p> */}
           </div>
         </div>
@@ -105,21 +144,48 @@ export default function AboutSection() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start flex-col-reverse lg:flex-row">
             <div className="space-y-6">
-              <h1 className="text-3xl md:text-4xl font-light mb-6 text-primary font-['fairdisplay']">Welcome to NIRVANA</h1>
+              <h1 className="text-3xl md:text-4xl font-light mb-6 text-primary font-['fairdisplay']">
+                {language === 'fr' ? 'Bienvenue chez NIRVANA' : 'Welcome to NIRVANA'}
+              </h1>
               <div className="w-32 h-1 bg-primary" />
               
               <div className="space-y-4 text-gray-700 text-justify font-serif text-base sm:text-lg leading-relaxed">
                 <p>
-                  NIRVANA also offers takeaway dishes with a <span className="font-lato">10%</span> discount (payment on site).<br />
-                  Order your "basket" immediately at <span className="font-lato">0227821010</span>.
+                  {language === 'fr' ? (
+                    <>
+                      NIRVANA propose également des plats à emporter avec une{' '}
+                      <span className="font-lato">10%</span> réduction (paiement sur place).<br />
+                      Commandez votre "panier" immédiatement au{' '}
+                      <span className="font-lato">0227821010</span>.
+                    </>
+                  ) : (
+                    <>
+                      NIRVANA also offers takeaway dishes with a{' '}
+                      <span className="font-lato">10%</span> discount (payment on site).<br />
+                      Order your "basket" immediately at{' '}
+                      <span className="font-lato">0227821010</span>.
+                    </>
+                  )}
                 </p>
                 
                 <p>
-                  For Delivery and Takeaway, order <a href="/order" className="underline text-primary">HERE</a>.
+                  {language === 'fr' ? (
+                    <>
+                      Pour la livraison et les plats à emporter, commandez{' '}
+                      <a href="/order" className="underline text-primary">ICI</a>.
+                    </>
+                  ) : (
+                    <>
+                      For Delivery and Takeaway, order{' '}
+                      <a href="/order" className="underline text-primary">HERE</a>.
+                    </>
+                  )}
                 </p>
                 
                 <p>
-                  NIRVANA boasts a superb terrace that will be made available to you on beautiful days.
+                  {language === 'fr'
+                    ? "NIRVANA dispose d'une superbe terrasse qui sera à votre disposition les beaux jours."
+                    : 'NIRVANA boasts a superb terrace that will be made available to you on beautiful days.'}
                 </p>
               </div>
             </div>
@@ -135,12 +201,12 @@ export default function AboutSection() {
 
           <div ref={ref3} className={`mt-16 transition-opacity duration-1000 ${inView3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
             <h2 className="text-xl sm:text-2xl font-light text-black mb-6 font-serif tracking-wide">
-              Reserve your table now:
+              {language === 'fr' ? 'Réservez votre table dès maintenant :' : 'Reserve your table now:'}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link href="/reservations" className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-secondary transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
                 <i className="ri-calendar-line text-xl"></i>
-                <span>Online Reservation</span>
+                <span>{language === 'fr' ? 'Réservation en ligne' : 'Online Reservation'}</span>
               </Link>
               <a href="tel:+41227821010" className="bg-white text-primary border border-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
                 <i className="ri-phone-line text-xl"></i>
@@ -148,7 +214,9 @@ export default function AboutSection() {
               </a>
             </div>
             <p className="text-gray-700 font-serif text-base sm:text-lg leading-relaxed">
-              Come visit us; we will be delighted to welcome you and happy to greet our regular customers in Meyrin.
+              {language === 'fr'
+                ? 'Venez nous rendre visite ; nous serons ravis de vous accueillir et heureux de retrouver nos clients fidèles à Meyrin.'
+                : 'Come visit us; we will be delighted to welcome you and happy to greet our regular customers in Meyrin.'}
             </p>
           </div>
         </div>

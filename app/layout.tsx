@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pacifico } from "next/font/google";
 import "./globals.css";
 import FloatingCartButton from "./components/FloatingCartButton"; // Import the FloatingCartButton
+import { LanguageProvider } from "./LanguageProvider";
 const pacifico = Pacifico({
   weight: '400',
   subsets: ['latin'],
@@ -35,8 +36,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased`}
       >
-        {children}
-        <FloatingCartButton />
+        <LanguageProvider>
+          {children}
+          <FloatingCartButton />
+        </LanguageProvider>
         
       </body>
     </html>

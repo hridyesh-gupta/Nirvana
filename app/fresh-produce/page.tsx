@@ -3,8 +3,10 @@
 
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer'; // Re-confirming import path
+import { useLanguage } from '../LanguageProvider';
 
 export default function FreshProducePage() {
+  const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <Navigation />
@@ -14,9 +16,11 @@ export default function FreshProducePage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-['fairdisplay']">
-                Fresh Products
+                {language === 'fr' ? 'Produits frais' : 'Fresh Products'}
               </h1>
-              <div className="text-2xl text-primary mb-8">Fresh Products</div>
+              <div className="text-2xl text-primary mb-8">
+                {language === 'fr' ? 'Produits frais' : 'Fresh Products'}
+              </div>
               <div className="w-32 h-1 bg-gradient-to-r from-primary via-secondary to-primary mx-auto rounded-full" />
             </div>
 
@@ -28,42 +32,53 @@ export default function FreshProducePage() {
                       <i className="ri-leaf-line text-white text-2xl"></i>
                     </div>
                     <div>
-                      <h2 className="text-3xl font-semibold text-gray-800 mb-4">Quality First</h2>
+                      <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+                        {language === 'fr' ? 'La qualité avant tout' : 'Quality First'}
+                      </h2>
                       <p className="text-lg text-gray-600 leading-relaxed">
-                        <strong>NIRVANA</strong> prioritizes fresh, local products, and the best from each region. 
-                        We believe in sourcing the finest ingredients to create authentic Indian flavors that 
-                        transport you to the heart of India.
+                        <strong>NIRVANA</strong> {language === 'fr' ? 'prioritise les produits frais, locaux et les meilleurs de chaque région.' : 'prioritizes fresh, local products, and the best from each region.'}
+                        {language === 'fr' ? 'Nous croyons à la source des meilleurs ingrédients pour créer des saveurs indiennes authentiques qui vous transportent au cœur de l’Inde.' : 'We believe in sourcing the finest ingredients to create authentic Indian flavors that transport you to the heart of India.'}
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-gradient-to-r from-primary/50 to-secondary/50 rounded-2xl p-8 border border-primary">
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-6">Our Commitment</h3>
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                    {language === 'fr' ? 'Notre engagement' : 'Our Commitment'}
+                  </h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-4">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
-                      <span className="text-gray-700">Fresh ingredients sourced daily</span>
+                      <span className="text-gray-700">
+                        {language === 'fr' ? 'Ingrédients frais sélectionnés chaque jour' : 'Fresh ingredients sourced daily'}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
-                      <span className="text-gray-700">Local suppliers and regional specialties</span>
+                      <span className="text-gray-700">
+                        {language === 'fr' ? 'Fournisseurs locaux et spécialités régionales' : 'Local suppliers and regional specialties'}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
-                      <span className="text-gray-700">Authentic spices imported from India</span>
+                      <span className="text-gray-700">
+                        {language === 'fr' ? 'Épices authentiques importées d’Inde' : 'Authentic spices imported from India'}
+                      </span>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                         <i className="ri-check-line text-white"></i>
                       </div>
-                      <span className="text-gray-700">Sustainable and ethical sourcing practices</span>
+                      <span className="text-gray-700">
+                        {language === 'fr' ? 'Approvisionnement durable et éthique' : 'Sustainable and ethical sourcing practices'}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -78,8 +93,12 @@ export default function FreshProducePage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-white text-2xl font-semibold mb-2">Farm to Table</h3>
-                    <p className="text-white/90">Fresh, local, and the best from each region</p>
+                    <h3 className="text-white text-2xl font-semibold mb-2">
+                      {language === 'fr' ? 'De la ferme à la table' : 'Farm to Table'}
+                    </h3>
+                    <p className="text-white/90">
+                      {language === 'fr' ? 'Frais, local et le meilleur de chaque région' : 'Fresh, local, and the best from each region'}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -90,17 +109,19 @@ export default function FreshProducePage() {
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
                   <i className="ri-restaurant-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-bold mb-6">Discover Indian Flavors Without Traveling</h2>
+                <h2 className="text-3xl font-bold mb-6">
+                  {language === 'fr' ? 'Découvrez les saveurs de l’Inde sans voyager' : 'Discover Indian Flavors Without Traveling'}
+                </h2>
                 <p className="text-xl mb-8 opacity-90">
-                  NIRVANA is always ready to let you discover authentic Indian flavors without leaving Switzerland. 
-                  Experience the rich culinary traditions of India with our carefully prepared dishes.
+                  {language === 'fr' ? 'NIRVANA est toujours prêt à vous permettre de découvrir les saveurs authentiques de l’Inde sans quitter la Suisse. ' : 'NIRVANA is always ready to let you discover authentic Indian flavors without leaving Switzerland. '}
+                  {language === 'fr' ? 'Expérimenter les traditions culinaires riche de l’Inde avec nos plats soigneusement préparés.' : 'Experience the rich culinary traditions of India with our carefully prepared dishes.'}
                 </p>
                 <a 
                   href="tel:+41227821010" 
                   className="inline-flex items-center space-x-3 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
                 >
                   <i className="ri-phone-line"></i>
-                  <span>Contact Us</span>
+                  <span>{language === 'fr' ? 'Contactez-nous' : 'Contact Us'}</span>
                 </a>
               </div>
             </div>

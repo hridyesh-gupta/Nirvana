@@ -7,10 +7,12 @@ import Footer from '../../components/Footer';
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
 import { Product } from '@/lib/products';
+import { useLanguage } from '../../LanguageProvider';
 
 export default function VegetarianPage() {
   const { items: cartItems, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: Product) => {
     addItem(item);
@@ -29,10 +31,12 @@ export default function VegetarianPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Vegetarian Specialties
+                {language === 'fr' ? 'Spécialités végétariennes' : 'Vegetarian Specialties'}
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Rich and flavorful vegetarian dishes from across India
+                {language === 'fr'
+                  ? "Des plats végétariens riches en saveurs provenant de toute l’Inde."
+                  : 'Rich and flavorful vegetarian dishes from across India'}
               </p>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
             </div>
@@ -40,7 +44,7 @@ export default function VegetarianPage() {
             {/* Paneer Dishes */}
             <div className="mb-20">
               <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
-                Paneer Specialties
+                {language === 'fr' ? 'Spécialités de paneer' : 'Paneer Specialties'}
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,7 +61,7 @@ export default function VegetarianPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Creamy green peas sauce, onions, ginger, masala
+                    {language === 'fr' ? 'Sauce de pois verts croustillantes, oignons, gingembre, masala' : 'Creamy green peas sauce, onions, ginger, masala'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'veg-matar-paneer', name: 'Matar Paneer', price: 21.00, category: 'Paneer Specialties' })}
@@ -66,7 +70,7 @@ export default function VegetarianPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -83,7 +87,7 @@ export default function VegetarianPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Simmered spinach; paneer; spices; coriander
+                    {language === 'fr' ? 'Épinards mijotés ; paneer ; épices ; coriandre' : 'Simmered spinach; paneer; spices; coriander'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'veg-palak-paneer', name: 'Palak Paneer', price: 21.00, category: 'Paneer Specialties' })}
@@ -92,7 +96,7 @@ export default function VegetarianPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -109,7 +113,7 @@ export default function VegetarianPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Cheese in a cinnamon creamy sauce
+                    {language === 'fr' ? 'Fromage dans une sauce croustillante de cannelle' : 'Cheese in a cinnamon creamy sauce'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'veg-paneer-makhani', name: 'Paneer Makhani', price: 21.00, category: 'Paneer Specialties' })}
@@ -118,7 +122,7 @@ export default function VegetarianPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
 
@@ -135,7 +139,7 @@ export default function VegetarianPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Grilled cheese served in a medium spicy sauce
+                    {language === 'fr' ? 'Croque-monsieur servi dans une sauce moyennement épicée' : 'Grilled cheese served in a medium spicy sauce'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'veg-paneer-tikka-masala', name: 'Paneer Tikka Masala', price: 21.00, category: 'Paneer Specialties' })}
@@ -144,12 +148,12 @@ export default function VegetarianPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
               </div>
               <h2 className="text-4xl font-bold text-center mb-12 text-secondary">
-                Coconut Specialties
+                {language === 'fr' ? 'Spécialités à la noix de coco' : 'Coconut Specialties'}
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -166,7 +170,7 @@ export default function VegetarianPage() {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-4">
-                    Rich coconut-based vegetable curry
+                    {language === 'fr' ? 'Curry de légumes à la noix de coco' : 'Rich coconut-based vegetable curry'}
                   </p>
                   <button
                     onClick={() => handleAddToCart({ id: 'sabzi-naariyal', name: 'Sabzi Nariyal', price: 22.00, category: 'Coconut Specialties' })}
@@ -175,7 +179,7 @@ export default function VegetarianPage() {
                     <div className="w-5 h-5 flex items-center justify-center">
                       <i className="ri-add-line"></i>
                     </div>
-                    <span>Add to Cart</span>
+                    <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                   </button>
                 </div>
               </div>
@@ -361,9 +365,13 @@ export default function VegetarianPage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-plant-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">Savor Our Vegetarian Delights</h2>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
+                  {language === 'fr' ? 'Savourez nos spécialités végétariennes' : 'Savor Our Vegetarian Delights'}
+                </h2>
                 <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                  Experience the rich tradition of Indian vegetarian cuisine with our authentic recipes and fresh ingredients.
+                  {language === 'fr'
+                    ? "Découvrez la riche tradition de la cuisine végétarienne indienne grâce à nos recettes authentiques et à nos ingrédients frais."
+                    : 'Experience the rich tradition of Indian vegetarian cuisine with our authentic recipes and fresh ingredients.'}
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -372,14 +380,14 @@ export default function VegetarianPage() {
                     className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
-                    <span>Order: 022 782 10 10</span>
+                    <span>{language === 'fr' ? 'Commande : 022 782 10 10' : 'Order: 022 782 10 10'}</span>
                   </a>
                   <a
                     href="/menu"
                     className="bg-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer border-2 flex items-center justify-center space-x-2 text-primary border-primary"
                   >
                     <i className="ri-restaurant-line text-xl"></i>
-                    <span>Full Menu</span>
+                    <span>{language === 'fr' ? 'Menu complet' : 'Full Menu'}</span>
                   </a>
                 </div>
               </div>
