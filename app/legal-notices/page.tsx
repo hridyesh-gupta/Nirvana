@@ -34,7 +34,7 @@ export default function LegalNoticesPage() {
           <p className="mb-4">
             <strong>{language === "fr" ? "Tél :" : "Tel :"}</strong>{" "}
             <a href="tel:+41227821010" className="text-primary hover:underline">
-              022 782 10 10
+              +41 22 782 10 10
             </a>
           </p>
           <p className="mb-4">
@@ -65,7 +65,7 @@ export default function LegalNoticesPage() {
             <strong>
               {language === "fr" ? "Directeur de la publication : " : "Publication Director : "}
             </strong>{" "}
-            Mr ASHRAN KHAN
+            Mr. IRFAN Muhammad 
           </p>
         </section>
 

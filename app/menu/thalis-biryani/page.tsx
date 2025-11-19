@@ -257,7 +257,7 @@ export default function ThalisBiryaniPage() {
                     className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
-                    <span>{language === 'fr' ? 'Commande : 022 782 10 10' : 'Order: 022 782 10 10'}</span>
+                    <span>{language === 'fr' ? 'Commande : +41 22 782 10 10' : 'Order: +41 22 782 10 10'}</span>
                   </a>
                   <a
                     href="/cart"

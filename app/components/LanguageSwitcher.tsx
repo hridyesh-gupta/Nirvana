@@ -6,9 +6,14 @@ export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="w-full flex justify-center">
-    <div className="flex items-center justify-end space-x-2 text-xs sm:text-sm">
-      <span className="text-gray-600">{language === "en" ? "Langue : " : "Language : "}</span>
+  <div className="w-full flex items-center justify-between">
+    <div className="text-xs sm:text-sm text-gray-700">
+      <a href="tel:+41227821010" className="text-primary hover:underline">
+        📞 +41 22 782 10 10
+      </a>
+    </div>
+    <div className="flex space-x-2 text-xs sm:text-sm">
+      {/* <span className="text-gray-600">{language === "en" ? "Langue : " : "Language : "}</span> */}
       <button
         type="button"
         onClick={() => setLanguage('en')}

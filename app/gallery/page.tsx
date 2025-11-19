@@ -140,7 +140,7 @@ export default function GalleryPage() {
                     className="text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-secondary"
                   >
                     <i className="ri-phone-line text-xl"></i>
-                    <span>{language === 'fr' ? 'Réserver : 022 782 10 10' : 'Reserve: 022 782 10 10'}</span>
+                    <span>{language === 'fr' ? 'Réserver : +41 22 782 10 10' : 'Reserve: +41 22 782 10 10'}</span>
                   </a>
                   <a
                     href="/menu"

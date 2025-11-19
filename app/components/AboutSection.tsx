@@ -60,7 +60,7 @@ export default function AboutSection() {
                 <strong>
                   {language === 'fr' ? 'OU APPELEZ ' : 'OR CALL '}
                   <a href="tel:+41227821010" className="no-underline hover:no-underline">
-                    <span className="font-lato">022 782 10 10</span>
+                    <span className="font-lato"><a href="tel:+41227821010" className="text-white hover:underline">+41 22 782 10 10</a></span>
                   </a>{' '}
                 </strong>
               </p>
@@ -107,7 +107,7 @@ export default function AboutSection() {
           {/* <div ref={ref1} className={`max-w-4xl mx-auto text-center px-4 relative z-10 transition-opacity duration-1000 ${inView1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}> Text container with z-index and fade-in
             <h3 className="text-3xl sm:text-3xl text-white leading-relaxed font-cursive font-light tracking-wide text-shadow-lg">
               NIRVANA welcomes you for your business meals in a cozy and colorful atmosphere.<br />
-              Don't hesitate to book your table: <a href="tel:+41227821010" className="underline hover:no-underline"><span className="font-lato">022 782 10 10</span></a>
+              Don't hesitate to book your table: <a href="tel:+41227821010" className="underline hover:no-underline"><span className="font-lato">+41 22 782 10 10</span></a>
             </h3>
           </div> */}
         {/* </div> */}
@@ -156,14 +156,15 @@ export default function AboutSection() {
                       NIRVANA propose également des plats à emporter avec une{' '}
                       <span className="font-lato">10%</span> réduction (paiement sur place).<br />
                       Commandez votre "panier" immédiatement au{' '}
-                      <span className="font-lato">0227821010</span>.
+                      <span className="font-lato"><a href="tel:+41227821010" className="text-primary hover:underline">+41 22 782 10 10</a></span>.
                     </>
                   ) : (
                     <>
                       NIRVANA also offers takeaway dishes with a{' '}
                       <span className="font-lato">10%</span> discount (payment on site).<br />
                       Order your "basket" immediately at{' '}
-                      <span className="font-lato">0227821010</span>.
+                      <span className="font-lato"><a href="tel:+41227821010" className="text-primary hover:underline">+41 22 782 10 10</a></span>.
+                      
                     </>
                   )}
                 </p>
@@ -210,7 +211,7 @@ export default function AboutSection() {
               </Link>
               <a href="tel:+41227821010" className="bg-white text-primary border border-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
                 <i className="ri-phone-line text-xl"></i>
-                <span className="font-lato">022 782 10 10</span>
+                <span className="font-lato">+41 22 782 10 10</span>
               </a>
             </div>
             <p className="text-gray-700 font-serif text-base sm:text-lg leading-relaxed">

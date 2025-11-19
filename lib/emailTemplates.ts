@@ -194,7 +194,7 @@ export const generateCustomerOrderEmail = (orderData: OrderEmailData): string =>
             <p style="color: #f5f5f5; margin: 0 0 15px 0; line-height: 1.5;">We appreciate your business and look forward to serving you delicious Indian cuisine.</p>
             <div style="margin-top: 20px;">
                 <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📍 375, Route de Meyrin, 1217 Meyrin, Switzerland, Geneva, Switzerland</p>
-                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 022 782 10 10</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 +41 22 782 10 10</p>
                 <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">✉️ contact@nirvana-geneve.ch</p>
             </div>
         </div>
@@ -411,7 +411,7 @@ We appreciate your business and look forward to serving you delicious Indian cui
 
 Nirvana Restaurant
 375, Route de Meyrin, 1217 Meyrin, Geneva, Switzerland
-022 782 10 10
++41 22 782 10 10
   `.trim();
 };
 
@@ -548,7 +548,7 @@ export const generateCustomerReservationEmail = (reservationData: ReservationEma
             <p style="color: #f5f5f5; margin: 0 0 15px 0; line-height: 1.5;">We appreciate your business and look forward to serving you delicious Indian cuisine.</p>
             <div style="margin-top: 20px;">
                 <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📍 375, Route de Meyrin, 1217 Meyrin, Switzerland, Geneva, Switzerland</p>
-                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 022 782 10 10</p>
+                <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">📞 +41 22 782 10 10</p>
                 <p style="color: #f5f5f5; margin: 5px 0; font-size: 14px;">✉️ contact@nirvana-geneve.ch</p>
             </div>
         </div>
@@ -711,7 +711,7 @@ We appreciate your business and look forward to serving you delicious Indian cui
 
 Nirvana Restaurant
 375, Route de Meyrin, 1217 Meyrin, Geneva, Switzerland
-Phone: 022 782 10 10
+Phone: +41 22 782 10 10
 Email: contact@nirvana-geneve.ch
   `.trim();
 };

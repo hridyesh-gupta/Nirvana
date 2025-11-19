@@ -370,7 +370,7 @@ export default async function Return({ searchParams }: { searchParams?: Promise<
                             <p className="text-gray-600">375, Route de Meyrin</p>
                             <p className="text-gray-600">1217 Meyrin, Geneva, Switzerland</p>
                             <p className="text-gray-600">
-                              <ReturnText id="next.pickup.phoneLabel" /> 022 782 10 10
+                              <ReturnText id="next.pickup.phoneLabel" /> +41 22 782 10 10
                             </p>
                           </div>
                         </>

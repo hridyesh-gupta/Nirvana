@@ -207,7 +207,7 @@ export default function ContactPage() {
                           href="tel:+41227821010" 
                           className="text-lg font-medium hover:opacity-80 transition-colors text-primary"
                         >
-                          022 782 10 10
+                          +41 22 782 10 10
                         </a>
                       </div>
                     </div>
@@ -298,7 +298,7 @@ export default function ContactPage() {
                   <h3 className="text-xl font-semibold mb-2">
                     {language === 'fr' ? 'Réserver par téléphone' : 'Call for Reservation'}
                   </h3>
-                  <p className="opacity-90">022 782 10 10</p>
+                  <p className="opacity-90">+41 22 782 10 10</p>
                 </a>
 
                 <a

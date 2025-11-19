@@ -54,7 +54,7 @@ export default function Footer() {
                   <i className="ri-phone-line text-secondary"></i>
                 </div>
                 <a href="tel:+41227821010" className="text-gray-300 hover:text-secondary transition-colors">
-                  022 782 10 10
+                  +41 22 782 10 10
                 </a>
               </div>
               
