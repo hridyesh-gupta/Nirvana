@@ -538,7 +538,7 @@ export const generateCustomerReservationEmail = (reservationData: ReservationEma
             <!-- What to Expect -->
             <div style="text-align: center; margin-bottom: 25px;">
                 <h3 style="color: #8B4513; margin: 0 0 15px 0; font-size: 18px;">🔜 What to Expect</h3>
-                <p style="color: #666666; margin: 0; line-height: 1.5;">We will contact you shortly to confirm your reservation. Please arrive on time for your table reservation.</p>
+                <p style="color: #666666; margin: 0; line-height: 1.5;">Your reservation is confirmed, please arrive on time for your table.</p>
             </div>
         </div>
 
