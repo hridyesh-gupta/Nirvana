@@ -36,7 +36,7 @@ import type { NextConfig } from "next";
  */
 const nextConfig: NextConfig = {
   // Standalone output mode for optimized deployments
-  output: 'standalone',
+  // output: 'standalone',
   
   // TypeScript configuration
   typescript: {
