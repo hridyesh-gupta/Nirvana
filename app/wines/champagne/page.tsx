@@ -6,6 +6,7 @@ import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import Cart from '../../components/Cart';
 import { useCart } from '../../../lib/cartStore';
+import { useLanguage } from '../../LanguageProvider';
 
 interface CartItem {
   id: string;
@@ -18,6 +19,7 @@ interface CartItem {
 export default function ChampagnePage() {
   const { items: cartItems, itemCount, addItem, updateQuantity, clearCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { language } = useLanguage();
 
   const handleAddToCart = (item: any) => {
     addItem(item);
@@ -75,6 +77,7 @@ export default function ChampagnePage() {
       id: 'prosecco-risteri-bresolin-enrico',
       name: 'Prosecco Risseri – Bresolin Enrico',
       description: 'Maser, Province of Treviso 2021 (Nature Blanc). Pale straw yellow, very fine and abundant bubbles. Intense aroma with notes of apple and citrus fruits, accompanied by a floral hint of acacia. On the palate, fresh expression, delicate, and elegant with a saline finish. Certified Organic and Vegan.',
+      descriptionFr: 'Maser, province de Trévise 2021 (Nature blanc). Robe jaune paille pâle, bulles très fines et abondantes. Nez intense avec des notes de pomme et d’agrumes, accompagné d’une touche florale d’acacia. En bouche, expression fraîche, délicate et élégante avec une finale saline. Certifié biologique et végan.',
       image: '',
       variants: [
         { label: '10 cl', price: 9.00 },
@@ -92,18 +95,24 @@ export default function ChampagnePage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-                Champagnes & Sparkling Wines
+                {language === 'fr'
+                  ? 'Champagnes & vins effervescents'
+                  : 'Champagnes & Sparkling Wines'}
               </h1>
               <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
               <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
-                Celebrate special moments with our prestigious champagne collection and delightful sparkling wines.
+                {language === 'fr'
+                  ? 'Célébrez vos moments spéciaux avec notre prestigieuse sélection de champagnes et de vins effervescents.'
+                  : 'Celebrate special moments with our prestigious champagne collection and delightful sparkling wines.'}
               </p>
             </div>
 
             {/* Champagnes */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Champagnes</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Champagnes' : 'Champagnes'}
+                </h2>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -140,7 +149,7 @@ export default function ChampagnePage() {
                         <div className="w-5 h-5 flex items-center justify-center">
                           <i className="ri-add-line"></i>
                         </div>
-                        <span>Add to Cart</span>
+                        <span>{language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}</span>
                       </button>
                     </div>
                   </div>
@@ -151,7 +160,9 @@ export default function ChampagnePage() {
             {/* Sparkling Wines (Prosecco) */}
             <div className="mb-16">
               <div className="text-center mb-12">
-                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">Sparkling Wines</h2>
+                <h2 className="text-3xl text-primary font-semibold text-gray-800 mb-4">
+                  {language === 'fr' ? 'Vins effervescents' : 'Sparkling Wines'}
+                </h2>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {proseccoList.map((prosecco) => (
@@ -171,7 +182,11 @@ export default function ChampagnePage() {
                           {prosecco.name}
                         </h3>
                       </div>
-                      <p className="text-gray-600 mb-6">{prosecco.description}</p>
+                      <p className="text-gray-600 mb-6">
+                        {language === 'fr' && (prosecco as any).descriptionFr
+                          ? (prosecco as any).descriptionFr
+                          : prosecco.description}
+                      </p>
                       {('variants' in prosecco) ? (
                         <div className="grid grid-cols-1 gap-3">
                           {(prosecco as any).variants.map((v: any) => (
@@ -180,7 +195,7 @@ export default function ChampagnePage() {
                               onClick={() => handleAddVariant(prosecco.id, prosecco.name, v.label, v.price)}
                               className="w-full text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-between space-x-2 whitespace-nowrap cursor-pointer bg-gradient-to-r from-primary to-secondary"
                             >
-                              <span>Add {v.label}</span>
+                              <span>{language === 'fr' ? `Ajouter ${v.label}` : `Add ${v.label}`}</span>
                               <span className="font-bold">CHF {v.price.toFixed(2)}</span>
                             </button>
                           ))}
@@ -198,8 +213,12 @@ export default function ChampagnePage() {
                 <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-primary to-secondary">
                   <i className="ri-award-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-semibold mb-4 text-primary">The Art of Champagne</h2>
-                <div className="text-lg mb-6 text-secondary">The Art of Champagne</div>
+                <h2 className="text-3xl font-semibold mb-4 text-primary">
+                  {language === 'fr' ? "L'art du champagne" : 'The Art of Champagne'}
+                </h2>
+                <div className="text-lg mb-6 text-secondary">
+                  {language === 'fr' ? "L'art du champagne" : 'The Art of Champagne'}
+                </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
@@ -208,7 +227,11 @@ export default function ChampagnePage() {
                     <i className="ri-star-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Méthode Champenoise</h3>
-                  <p className="text-gray-600">Traditional method of secondary fermentation creating the signature bubbles and complexity</p>
+                  <p className="text-gray-600">
+                    {language === 'fr'
+                      ? 'Méthode traditionnelle de seconde fermentation qui crée les bulles et la complexité caractéristiques.'
+                      : 'Traditional method of secondary fermentation creating the signature bubbles and complexity'}
+                  </p>
                 </div>
 
                 <div className="text-center">
@@ -216,7 +239,11 @@ export default function ChampagnePage() {
                     <i className="ri-map-pin-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Champagne Region</h3>
-                  <p className="text-gray-600">Protected designation from the historic Champagne region in northeastern France</p>
+                  <p className="text-gray-600">
+                    {language === 'fr'
+                      ? 'Appellation protégée de la région historique de Champagne, dans le nord-est de la France.'
+                      : 'Protected designation from the historic Champagne region in northeastern France'}
+                  </p>
                 </div>
 
                 <div className="text-center">
@@ -224,7 +251,11 @@ export default function ChampagnePage() {
                     <i className="ri-time-line text-white text-2xl"></i>
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-primary">Aging Process</h3>
-                  <p className="text-gray-600">Minimum aging on lees for exceptional depth and character development</p>
+                  <p className="text-gray-600">
+                    {language === 'fr'
+                      ? 'Élevage minimum sur lies pour une profondeur et un caractère exceptionnels.'
+                      : 'Minimum aging on lees for exceptional depth and character development'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -235,29 +266,35 @@ export default function ChampagnePage() {
                 <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center">
                   <i className="ri-restaurant-line text-white text-3xl"></i>
                 </div>
-                <h2 className="text-3xl font-bold mb-6">Champagne & Indian Cuisine</h2>
+                <h2 className="text-3xl font-bold mb-6">
+                  {language === 'fr' ? 'Champagne et cuisine indienne' : 'Champagne & Indian Cuisine'}
+                </h2>
                 <p className="text-xl mb-8 opacity-90">
-                  The effervescence and acidity of champagne create an excellent palate cleanser
-                  between courses, while the complexity of our premium cuvées complements the
-                  intricate spice blends in our dishes. Perfect for celebrations and special occasions.
+                  {language === 'fr'
+                    ? "L’effervescence et l’acidité du champagne en font un excellent nettoyeur de palais entre les plats, tandis que la complexité de nos cuvées premium complète à merveille les mélanges d’épices de nos recettes. Parfait pour les célébrations et les grandes occasions."
+                    : 'The effervescence and acidity of champagne create an excellent palate cleanser between courses, while the complexity of our premium cuvées complements the intricate spice blends in our dishes. Perfect for celebrations and special occasions.'}
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 text-left">
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Perfect Pairings:</h3>
+                    <h3 className="text-lg font-semibold mb-2">
+                      {language === 'fr' ? 'Accords parfaits :' : 'Perfect Pairings:'}
+                    </h3>
                     <ul className="space-y-1 text-sm opacity-90">
-                      <li>• Tandoori appetizers</li>
-                      <li>• Mild curry dishes</li>
-                      <li>• Vegetarian specialties</li>
-                      <li>• Celebration feasts</li>
+                      <li>{language === 'fr' ? '• Entrées tandoori' : '• Tandoori appetizers'}</li>
+                      <li>{language === 'fr' ? '• Plats de curry doux' : '• Mild curry dishes'}</li>
+                      <li>{language === 'fr' ? '• Spécialités végétariennes' : '• Vegetarian specialties'}</li>
+                      <li>{language === 'fr' ? '• Repas de fête' : '• Celebration feasts'}</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">Service Style:</h3>
+                    <h3 className="text-lg font-semibold mb-2">
+                      {language === 'fr' ? 'Style de service :' : 'Service Style:'}
+                    </h3>
                     <ul className="space-y-1 text-sm opacity-90">
-                      <li>• Served in champagne flutes</li>
-                      <li>• Chilled to 6-8°C</li>
-                      <li>• Available by bottle</li>
-                      <li>• Professional service</li>
+                      <li>{language === 'fr' ? '• Servi dans des flûtes à champagne' : '• Served in champagne flutes'}</li>
+                      <li>{language === 'fr' ? '• Rafraîchi entre 6 et 8 °C' : '• Chilled to 6-8°C'}</li>
+                      <li>{language === 'fr' ? '• Disponible à la bouteille' : '• Available by bottle'}</li>
+                      <li>{language === 'fr' ? '• Service professionnel' : '• Professional service'}</li>
                     </ul>
                   </div>
                 </div>

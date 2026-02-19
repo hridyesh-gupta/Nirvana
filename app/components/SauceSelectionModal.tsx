@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../LanguageProvider';
 
 interface SauceSelectionModalProps {
   dish: any;
@@ -9,6 +10,7 @@ interface SauceSelectionModalProps {
 
 export default function SauceSelectionModal({ dish, onClose, onSelectSauce, sauces }: SauceSelectionModalProps) {
   const [selectedSauce, setSelectedSauce] = useState<string | null>(null);
+  const { language } = useLanguage();
 
   const handleConfirm = () => {
     if (selectedSauce) {
@@ -25,16 +27,23 @@ export default function SauceSelectionModal({ dish, onClose, onSelectSauce, sauc
         >
           <i className="ri-close-line text-2xl"></i>
         </button>
-        <h2 className="text-2xl font-bold text-primary mb-6">Select Sauce for {dish.name}</h2>
+        <h2 className="text-2xl font-bold text-primary mb-6">
+          {language === 'fr' ? 'Choisissez la sauce pour ' : 'Select Sauce for '}
+          {dish.name}
+        </h2>
         <div className="mb-6">
-          <label htmlFor="sauce-select" className="block text-gray-700 text-sm font-medium mb-2">Choose your sauce:</label>
+          <label htmlFor="sauce-select" className="block text-gray-700 text-sm font-medium mb-2">
+            {language === 'fr' ? 'Choisissez votre sauce :' : 'Choose your sauce:'}
+          </label>
           <select
             id="sauce-select"
             className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             onChange={(e) => setSelectedSauce(e.target.value)}
             defaultValue=""
           >
-            <option value="" disabled>Select a sauce</option>
+            <option value="" disabled>
+              {language === 'fr' ? 'Sélectionnez une sauce' : 'Select a sauce'}
+            </option>
             {sauces.map((sauce) => (
               <option key={sauce} value={sauce}>{sauce}</option>
             ))}
@@ -45,7 +54,7 @@ export default function SauceSelectionModal({ dish, onClose, onSelectSauce, sauc
           disabled={!selectedSauce}
           className={`w-full px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg ${selectedSauce ? 'bg-gradient-to-r from-primary to-secondary hover:scale-105 hover:shadow-xl text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
         >
-          Add to Cart
+          {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
         </button>
       </div>
     </div>

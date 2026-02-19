@@ -12,10 +12,11 @@ import { loadStripe } from '@stripe/stripe-js';
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js';
 import { fetchClientSecret } from '../actions/stripe';
 import { DELIVERY_ZONES, getDeliveryFeeByZone, getZoneByZipcode, validateMinimumOrder } from '../../lib/deliveryZones';
+import { useLanguage } from '../LanguageProvider';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
-
 export default function CartPage() {
+  const { language } = useLanguage();
   const router = useRouter();
   const { items, updateQuantity, clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'cod'>('stripe');
@@ -104,32 +105,32 @@ export default function CartPage() {
     
     // Required fields for all orders
     if (!customerInfo.name.trim()) {
-      errors.name = 'Name is required';
+      errors.name = language === 'fr' ? 'Nom est requis' : 'Name is required';
     }
     
     if (!customerInfo.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = language === 'fr' ? 'Email est requis' : 'Email is required';
     } else if (!validateEmail(customerInfo.email)) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = language === 'fr' ? 'Veuillez entrer une adresse e-mail valide' : 'Please enter a valid email address';
     }
     
     if (!customerInfo.phone.trim()) {
-      errors.phone = 'Phone number is required';
+      errors.phone = language === 'fr' ? 'Numéro de téléphone est requis' : 'Phone number is required';
     } else if (!validatePhone(customerInfo.phone)) {
-      errors.phone = 'Please enter a valid phone number (+ or 00 for international, 0 for Swiss local)';
+      errors.phone = language === 'fr' ? 'Veuillez entrer un numéro de téléphone valide (+ ou 00 pour international, 0 pour suisse locale)' : 'Please enter a valid phone number (+ or 00 for international, 0 for Swiss local)';
     }
     
     // Address fields required only for delivery
     if (orderType === 'delivery') {
       if (!customerInfo.zipcode.trim()) {
-        errors.zipcode = 'Zipcode is required for delivery';
+        errors.zipcode = language === 'fr' ? 'Code postal est requis pour la livraison' : 'Zipcode is required for delivery';
       }
       if (!customerInfo.street.trim()) {
-        errors.street = 'Street address is required for delivery';
+        errors.street = language === 'fr' ? 'Adresse de rue est requise pour la livraison' : 'Street address is required for delivery';
       }
       
       if (!customerInfo.city.trim()) {
-        errors.city = 'City is required for delivery';
+        errors.city = language === 'fr' ? 'Ville est requise pour la livraison' : 'City is required for delivery';
       }
     }
     
@@ -174,7 +175,7 @@ export default function CartPage() {
     const validation = validateMinimumOrder(zoneInfo.zone, subtotal);
     if (!validation.isValid) {
       setMinimumOrderError(
-        `Minimum order for this zone is CHF ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
+        `${language === 'fr' ? 'Commande minimale pour cette zone : CHF' : 'Minimum order for this zone is: CHF'} ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
       );
     } else {
       setMinimumOrderError(null);
@@ -206,7 +207,7 @@ export default function CartPage() {
         const validation = validateMinimumOrder(zoneInfo.zone, subtotal);
         if (!validation.isValid) {
           setMinimumOrderError(
-            `Minimum order for this zone is CHF ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
+            `{language === 'fr' ? 'Commande minimale pour cette zone : CHF' : 'Minimum order for this zone is: CHF'} ${validation.minimumRequired.toFixed(2)}. Current subtotal: CHF ${subtotal.toFixed(2)}`
           );
           return;
         }
@@ -255,12 +256,12 @@ export default function CartPage() {
           router.push(`/return?orderNumber=${result.orderNumber}`);
         } else {
           const errorData = await response.json();
-          setOrderError(errorData.error || 'Failed to create order. Please try again.');
-          console.error('Order creation failed:', errorData);
+          setOrderError(errorData.error || language === 'fr' ? 'Impossible de créer la commande. Veuillez réessayer.' : 'Failed to create order. Please try again.');
+          console.error(language === 'fr' ? 'Commande impossible à créer:' : 'Order creation failed:', errorData);
         }
       } catch (error) {
-        setOrderError('Network error. Please check your connection and try again.');
-        console.error('Network error during order creation:', error);
+        setOrderError(language === 'fr' ? 'Erreur de reseau. Veuillez verifier votre connexion et reessayer.' : 'Network error. Please check your connection and try again.');
+        console.error(language === 'fr' ? 'Erreur réseau lors de la création de la commande :' : 'Network error during order creation:', error);
       } finally {
         setIsProcessingOrder(false);
       }
@@ -294,7 +295,7 @@ export default function CartPage() {
         <div className="w-full">
           <div className="text-center py-20 px-4 sm:px-6 lg:px-8">
             <h1 className="text-5xl md:text-6xl font-light mb-6 text-primary font-['fairdisplay']">
-              Your Cart
+              {language === 'fr' ? 'Votre panier' : 'Your Cart'}
             </h1>
             <div className="w-32 h-1 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary" />
           </div>
@@ -306,8 +307,8 @@ export default function CartPage() {
                   <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i className="ri-shopping-cart-line text-4xl text-gray-400"></i>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Your cart is empty</h3>
-                  <p className="text-gray-600">Add some delicious items from our menu!</p>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{language === 'fr' ? 'Votre panier est vide' : 'Your cart is empty'}</h3>
+                  <p className="text-gray-600">{language === 'fr' ? 'Ajoutez quelques délicieux plats de notre menu!' : 'Add some delicious items from our menu!'}</p>
                 </div>
               ) : (
                 <div className="p-6 space-y-6">
@@ -350,7 +351,7 @@ export default function CartPage() {
               <div className="p-6 border-t border-gray-200 space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Order Type</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{language === 'fr' ? 'Type de commande' : 'Order Type'}</label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
                         onClick={() => {
@@ -363,7 +364,7 @@ export default function CartPage() {
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        Delivery
+                        {language === 'fr' ? 'Livraison' : 'Delivery'}
                       </button>
                       <button
                         onClick={() => {
@@ -376,13 +377,13 @@ export default function CartPage() {
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        Pickup
+                        {language === 'fr' ? 'Retrait' : 'Pickup'}
                       </button>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Payment</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{language === 'fr' ? 'Type de paiement' : 'Payment'}</label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
                         onClick={() => setPaymentMethod('stripe')}
@@ -392,7 +393,7 @@ export default function CartPage() {
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        Online (Stripe)
+                        {language === 'fr' ? 'En ligne (Stripe)' : 'Online (Stripe)'}
                       </button>
                       {(
                         <button
@@ -403,7 +404,7 @@ export default function CartPage() {
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                           }`}
                         >
-                          COD
+                          {language === 'fr' ? 'Paiement à la livraison' : 'Cash on Delivery'}
                         </button>
                       )}
                     </div>
@@ -412,12 +413,12 @@ export default function CartPage() {
 
                 {/* Customer Information Form */}
                 <div className="space-y-6 border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-800">Customer Information</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">{language === 'fr' ? 'Informations client' : 'Customer Information'}</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
+                        {language === 'fr' ? 'Nom complet *' : 'Full Name *'}
                       </label>
                       <input
                         type="text"
@@ -425,7 +426,7 @@ export default function CartPage() {
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         onBlur={() => handleFieldBlur('name')}
                         className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                        placeholder="Enter your full name"
+                        placeholder={language === 'fr' ? 'Entrez votre nom complet' : 'Enter your full name'}
                       />
                       {(touched.name || hasAttemptedCheckout) && formErrors.name && (
                         <p className="text-red-500 text-sm mt-1">{formErrors.name}</p>
@@ -434,7 +435,7 @@ export default function CartPage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                        {language === 'fr' ? 'Adresse e-mail *' : 'Email Address *'}
                       </label>
                       <input
                         type="email"
@@ -442,7 +443,7 @@ export default function CartPage() {
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         onBlur={() => handleFieldBlur('email')}
                         className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                        placeholder="Enter your email address"
+                        placeholder={language === 'fr' ? 'Entrez votre adresse e-mail' : 'Enter your email address'}
                       />
                       {(touched.email || hasAttemptedCheckout) && formErrors.email && (
                         <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
@@ -451,7 +452,7 @@ export default function CartPage() {
 
                     <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number *
+                        {language === 'fr' ? 'Numéro de téléphone *' : 'Phone Number *'}
                       </label>
                       <input
                         type="tel"
@@ -470,11 +471,11 @@ export default function CartPage() {
                   {/* Delivery Address Section - Only show for delivery orders */}
                   {orderType === 'delivery' && (
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-gray-800">Delivery Address</h3>
+                      <h3 className="text-lg font-semibold text-gray-800">{language === 'fr' ? 'Adresse de livraison' : 'Delivery Address'}</h3>
                       
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Delivery Zipcode *
+                          {language === 'fr' ? 'Code postal *' : 'Delivery Zipcode *'}
                         </label>
                         <select
                           value={customerInfo.zipcode}
@@ -483,12 +484,12 @@ export default function CartPage() {
                           className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
                         >
                           <option value="" disabled>
-                            Select your zipcode
+                            {language === 'fr' ? 'Sélectionnez votre code postal' : 'Select your zipcode'}
                           </option>
                           {DELIVERY_ZONES.map((zoneInfo) => (
                             <optgroup
                               key={zoneInfo.zone}
-                              label={`Zone ${zoneInfo.zone} - Min Order CHF ${zoneInfo.minimumOrder.toFixed(2)}, Delivery CHF ${zoneInfo.deliveryFee.toFixed(2)}`}
+                              label={`Zone ${zoneInfo.zone} - ${language === 'fr' ? 'Commande minimum' : 'Min Order'} CHF ${zoneInfo.minimumOrder.toFixed(2)}, ${language === 'fr' ? 'Livraison' : 'Delivery'} CHF ${zoneInfo.deliveryFee.toFixed(2)}`}
                             >
                               {zoneInfo.zipcodes.map((zipcode) => (
                                 <option key={zipcode} value={zipcode}>
@@ -505,7 +506,7 @@ export default function CartPage() {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Street Address *
+                          {language === 'fr' ? 'Adresse *' : 'Street Address *'}
                         </label>
                         <input
                           type="text"
@@ -513,7 +514,7 @@ export default function CartPage() {
                           onChange={(e) => handleInputChange('street', e.target.value)}
                           onBlur={() => handleFieldBlur('street')}
                           className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                          placeholder="Enter street address"
+                          placeholder={language === 'fr' ? 'Entrez votre adresse' : 'Enter street address'}
                         />
                         {(touched.street || hasAttemptedCheckout) && formErrors.street && (
                           <p className="text-red-500 text-sm mt-1">{formErrors.street}</p>
@@ -522,7 +523,7 @@ export default function CartPage() {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          City *
+                          {language === 'fr' ? 'Ville *' : 'City *'}
                         </label>
                         <input
                           type="text"
@@ -530,7 +531,7 @@ export default function CartPage() {
                           onChange={(e) => handleInputChange('city', e.target.value)}
                           onBlur={() => handleFieldBlur('city')}
                           className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all"
-                          placeholder="Enter city"
+                          placeholder={language === 'fr' ? 'Entrez votre ville' : 'Enter city'}
                         />
                         {(touched.city || hasAttemptedCheckout) && formErrors.city && (
                           <p className="text-red-500 text-sm mt-1">{formErrors.city}</p>
@@ -542,7 +543,7 @@ export default function CartPage() {
                   {/* Special Instructions */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Special Instructions ({customerInfo.specialInstructions.length}/500)
+                      {language === 'fr' ? 'Instructions spéciales' : 'Special Instructions'} ({customerInfo.specialInstructions.length}/500)
                     </label>
                     <textarea
                       value={customerInfo.specialInstructions}
@@ -554,25 +555,25 @@ export default function CartPage() {
                       rows={3}
                       maxLength={500}
                       className="w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:border-primary transition-all resize-none"
-                      placeholder="Any special delivery instructions, dietary requirements, or notes..."
+                      placeholder={language === 'fr' ? 'Entrez vos instructions de livraison, vos besoins en régime alimentaire ou vos notes...' : 'Any special delivery instructions, dietary requirements, or notes...'}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal:</span>
+                    <span className="text-gray-600">{language === 'fr' ? 'Sous-total' : 'Subtotal'}:</span>
                     <span className="font-medium">CHF {subtotal.toFixed(2)}</span>
                   </div>
                   {orderType === 'delivery' && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Delivery Fee:</span>
+                      <span className="text-gray-600">{language === 'fr' ? 'Frais de livraison' : 'Delivery Fee'}:</span>
                       <span className="font-medium">CHF {deliveryFee.toFixed(2)}</span>
                     </div>
                   )}
                   {orderType === 'pickup' && discount > 0 && (
                     <div className="flex justify-between text-secondary">
-                      <span>Pickup Discount (10%):</span>
+                      <span>{language === 'fr' ? 'Ramasser Rabais' : 'Pickup Discount'} (10%):</span>
                       <span className="font-medium">-CHF {discount.toFixed(2)}</span>
                     </div>
                   )}
@@ -586,12 +587,12 @@ export default function CartPage() {
 
                 {minimumOrderError && (
                   <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
-                    <p>Minimum order requirement not met: {minimumOrderError}</p>
+                    <p>{language === 'fr' ? 'Condition de commande minimale non remplie:' : 'Minimum order requirement not met:'} {minimumOrderError}</p>
                     <Link
                       href="/menu"
                       className="mt-2 inline-flex items-center justify-center text-primary font-medium underline decoration-dotted underline-offset-4 hover:text-secondary"
                     >
-                      Browse the menu to add more items
+                      {language === 'fr' ? 'Naviguer sur le menu pour ajouter plus d\'articles' : 'Browse the menu to add more items'}
                     </Link>
                   </div>
                 )}
@@ -599,14 +600,14 @@ export default function CartPage() {
                 {/* Form validation message */}
                 {hasAttemptedCheckout && !isFormValid && items.length > 0 && (
                   <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
-                    Please fill in all required customer information to proceed with checkout.
+                    {language === 'fr' ? 'Veuillez remplir toutes les informations requises pour effectuer le paiement.' : 'Please fill in all required customer information to proceed with checkout.'}
                   </div>
                 )}
 
                 {/* Order error message */}
                 {orderError && (
                   <div className="text-center text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
-                    <strong>Order Failed:</strong> {orderError}
+                    {language === 'fr' ? 'Commande échouée:' : 'Order Failed:'} {orderError}
                   </div>
                 )}
 
@@ -617,7 +618,7 @@ export default function CartPage() {
                       disabled={!isFormValid || items.length === 0 || !!minimumOrderError}
                       className="w-1/3 mx-auto bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
-                      Pay Now (Stripe)
+                      {language === 'fr' ? 'Payer maintenant (Stripe)' : 'Pay Now (Stripe)'}
                     </button>
                   )}
                   <StripeCheckoutModal
@@ -636,10 +637,10 @@ export default function CartPage() {
                       {isProcessingOrder ? (
                         <span className="flex items-center justify-center">
                           <i className="ri-loader-4-line animate-spin mr-2"></i>
-                          Processing Order...
+                          {language === 'fr' ? 'Traitement de la commande...' : 'Processing Order...'}
                         </span>
                       ) : (
-                        'Place Order (COD)'
+                        language === 'fr' ? 'Commander (COD)' : 'Place Order (COD)'
                       )}
                     </button>
                   )}
@@ -647,7 +648,7 @@ export default function CartPage() {
                     onClick={handleClearCart}
                     className="w-1/3 mx-auto bg-red-500 hover:bg-red-600 text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg whitespace-nowrap cursor-pointer"
                   >
-                    Clear Cart
+                    {language === 'fr' ? 'Vider le panier' : 'Clear Cart'}
                   </button>
                 </div>
               </div>

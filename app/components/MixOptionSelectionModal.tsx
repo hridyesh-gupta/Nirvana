@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../LanguageProvider';
 
 interface MixOptionSelectionModalProps {
   dish: any;
@@ -9,6 +10,7 @@ interface MixOptionSelectionModalProps {
 
 export default function MixOptionSelectionModal({ dish, onClose, onSelectMixOption, mixOptions }: MixOptionSelectionModalProps) {
   const [selectedMixOption, setSelectedMixOption] = useState<string | null>(null);
+  const { language } = useLanguage();
 
   const handleConfirm = () => {
     if (selectedMixOption) {
@@ -25,16 +27,23 @@ export default function MixOptionSelectionModal({ dish, onClose, onSelectMixOpti
         >
           <i className="ri-close-line text-2xl"></i>
         </button>
-        <h2 className="text-2xl font-bold text-primary mb-6">Select Mix Option for {dish.name}</h2>
+        <h2 className="text-2xl font-bold text-primary mb-6">
+          {language === 'fr' ? "Choisissez l'option de mélange pour " : 'Select Mix Option for '}
+          {dish.name}
+        </h2>
         <div className="mb-6">
-          <label htmlFor="mix-option-select" className="block text-gray-700 text-sm font-medium mb-2">Choose your mix option:</label>
+          <label htmlFor="mix-option-select" className="block text-gray-700 text-sm font-medium mb-2">
+            {language === 'fr' ? 'Choisissez votre option de mélange :' : 'Choose your mix option:'}
+          </label>
           <select
             id="mix-option-select"
             className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             onChange={(e) => setSelectedMixOption(e.target.value)}
             defaultValue=""
           >
-            <option value="" disabled>Select a mix option</option>
+            <option value="" disabled>
+              {language === 'fr' ? 'Sélectionnez une option de mélange' : 'Select a mix option'}
+            </option>
             {mixOptions.map((option) => {
               const price = dish.mixOptionPrices && dish.mixOptionPrices[option] !== undefined 
                 ? dish.mixOptionPrices[option] 
@@ -52,7 +61,7 @@ export default function MixOptionSelectionModal({ dish, onClose, onSelectMixOpti
           disabled={!selectedMixOption}
           className={`w-full px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg ${selectedMixOption ? 'bg-gradient-to-r from-primary to-secondary hover:scale-105 hover:shadow-xl text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
         >
-          Add to Cart
+          {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
         </button>
       </div>
     </div>

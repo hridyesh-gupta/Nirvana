@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { fetchClientSecret } from '../actions/stripe';
 import type { CartItem, CustomerInfo, OrderContext } from '../actions/stripe';
 import { useEffect } from 'react';
+import { useLanguage } from '../LanguageProvider';
 
 interface StripeCheckoutModalProps {
   show: boolean;
@@ -23,6 +24,7 @@ export default function StripeCheckoutModal({
   customerInfo,
   orderContext,
 }: StripeCheckoutModalProps) {
+  const { language } = useLanguage();
   useEffect(() => {
     if (show) {
       document.body.style.overflow = 'hidden';
@@ -45,7 +47,9 @@ export default function StripeCheckoutModal({
         >
           &times;
         </button>
-        <h2 className="text-2xl font-semibold mb-4 text-center">Complete Your Purchase</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          {language === 'fr' ? 'Finalisez votre achat' : 'Complete Your Purchase'}
+        </h2>
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options={{ fetchClientSecret: () => fetchClientSecret(cartItems, customerInfo, orderContext) }}

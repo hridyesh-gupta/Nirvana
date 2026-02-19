@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../LanguageProvider';
 
 interface IceCreamFlavorSelectionModalProps {
   dish: any;
@@ -9,6 +10,7 @@ interface IceCreamFlavorSelectionModalProps {
 
 export default function IceCreamFlavorSelectionModal({ dish, onClose, onSelectFlavor, flavors }: IceCreamFlavorSelectionModalProps) {
   const [selectedFlavor, setSelectedFlavor] = useState<string | null>(null);
+  const { language } = useLanguage();
 
   const handleConfirm = () => {
     if (selectedFlavor) {
@@ -25,16 +27,23 @@ export default function IceCreamFlavorSelectionModal({ dish, onClose, onSelectFl
         >
           <i className="ri-close-line text-2xl"></i>
         </button>
-        <h2 className="text-2xl font-bold text-primary mb-6">Select Flavor for {dish.name}</h2>
+        <h2 className="text-2xl font-bold text-primary mb-6">
+          {language === 'fr' ? 'Choisissez le parfum pour ' : 'Select Flavor for '}
+          {dish.name}
+        </h2>
         <div className="mb-6">
-          <label htmlFor="flavor-select" className="block text-gray-700 text-sm font-medium mb-2">Choose your flavor:</label>
+          <label htmlFor="flavor-select" className="block text-gray-700 text-sm font-medium mb-2">
+            {language === 'fr' ? 'Choisissez votre parfum :' : 'Choose your flavor:'}
+          </label>
           <select
             id="flavor-select"
             className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"
             onChange={(e) => setSelectedFlavor(e.target.value)}
             defaultValue=""
           >
-            <option value="" disabled>Select a flavor</option>
+            <option value="" disabled>
+              {language === 'fr' ? 'Sélectionnez un parfum' : 'Select a flavor'}
+            </option>
             {flavors.map((flavor) => (
               <option key={flavor} value={flavor}>{flavor}</option>
             ))}
@@ -45,7 +54,7 @@ export default function IceCreamFlavorSelectionModal({ dish, onClose, onSelectFl
           disabled={!selectedFlavor}
           className={`w-full px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-lg ${selectedFlavor ? 'bg-gradient-to-r from-primary to-secondary hover:scale-105 hover:shadow-xl text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
         >
-          Add to Cart
+          {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
         </button>
       </div>
     </div>

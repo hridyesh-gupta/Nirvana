@@ -3,9 +3,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../LanguageProvider';
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { t } = useLanguage();
   // const [isMounted, setIsMounted] = useState(false); // Removed isMounted
 
   const heroImages = [
@@ -57,8 +59,8 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4">
         <h1 className="font-playfair font-light mb-6 leading-tight tracking-wide" style={{ fontSize: '50px' }}>
-          Discover the Indian Restaurant<br />
-          and Bar-Lounge
+          {t('hero.title.line1')}<br />
+          {t('hero.title.line2')}
         </h1>
         
         {/* Temporary Index Display for debugging */}
@@ -84,8 +86,7 @@ export default function HeroSection() {
         
         <div className="mb-8 text-lg md:text-xl font-serif leading-relaxed">
           <p className="mb-4 text-lg font-light tracking-wide">
-            Come discover our new establishment in a cozy and warm environment. 
-            Nirvana Geneva is the new meeting place for all of Geneva residents.
+            {t('hero.description')}
           </p>
         </div>
         
@@ -94,13 +95,13 @@ export default function HeroSection() {
             href="/reservations" 
             className="bg-primary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
-            Reservation
+            {t('hero.cta.reservation')}
           </Link>
           <Link 
             href="/order" 
             className="bg-secondary hover:opacity-90 text-white px-8 py-3 rounded font-medium transition-all duration-300 cursor-pointer whitespace-nowrap font-serif text-lg tracking-wide"
           >
-            Order
+            {t('hero.cta.order')}
           </Link>
         </div>
       </div>
